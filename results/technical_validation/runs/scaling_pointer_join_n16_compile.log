@@ -1,0 +1,27 @@
+Default bit length for compilation: 64
+Default security parameter for compilation: 40
+Compiling file Programs/Source/sle_pointer_join_transition.mpc
+Changed bit length for comparisons etc. to 64
+Writing to Programs/Bytecode/sle_pointer_join_transition-16-32-4-4-43-EQZ(16)_64-1.bc
+Writing to Programs/Bytecode/sle_pointer_join_transition-16-32-4-4-43-EQZ(18)_64-3.bc
+Compiled 100000 lines at Wed Aug  5 06:32:05 2026
+Writing to Programs/Bytecode/sle_pointer_join_transition-16-32-4-4-43-EQZ(2)_64-4.bc
+Writing to Programs/Schedules/sle_pointer_join_transition-16-32-4-4-43.sch
+Writing to Programs/Bytecode/sle_pointer_join_transition-16-32-4-4-43-0.bc
+Hash: 47fc5798e407d84d1ac58c68cb5f42ba80932a347ba84308f11660149336b6d1
+Program requires at most:
+        1553 integer inputs from player 0
+           1 integer inputs from player 1
+           1 integer inputs from player 2
+           1 integer inputs from player 3
+           1 integer inputs from player 4
+       15917 integer triples
+       15917 integer simple multiplications
+        9218 strict edabits of length 40
+        9218 strict edabits of length 64
+        9221 integer opens
+      580734 bit triples
+        9218 integer dabits
+        4112 bit opens
+         514 strict edabits of length 60
+        6863 virtual machine rounds

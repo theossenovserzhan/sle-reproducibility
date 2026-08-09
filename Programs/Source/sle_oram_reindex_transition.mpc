@@ -1,0 +1,207 @@
+"""
+ORAM-based private reindexing baseline for an SLE epoch transition.
+
+This baseline adapts a standard private-memory design to the exact coupled
+database/index transition evaluated by SLE.  Each padded index slot carries a
+persistent secret-shared row reference.  Fresh database locators are stored in
+MP-SPDZ OptimalORAM and every slot performs one secret-address lookup.  The
+access pattern and row references remain hidden, but the design requires
+persistent pointer metadata that SLE does not materialize.
+
+The database transition, relation fingerprint, public output, and atomic
+commit semantics are identical to the other same-backend baselines.
+
+Compile-time arguments:
+    sle_oram_reindex_transition <n_records> <root_bits> <block_bits>
+                                <bucket_capacity> <epoch>
+"""
+
+from Compiler.library import tree_reduce
+from oram import OptimalORAM
+
+program.use_edabit(True)
+program.set_bit_length(64)
+
+if len(program.args) != 6:
+    raise CompilerError(
+        "Usage: sle_oram_reindex_transition <n_records> <root_bits> "
+        "<block_bits> <bucket_capacity> <epoch>"
+    )
+
+N_RECORDS = int(program.args[1])
+ROOT_BITS = int(program.args[2])
+BLOCK_BITS = int(program.args[3])
+BUCKET_CAPACITY = int(program.args[4])
+NEW_EPOCH = int(program.args[5])
+
+if N_RECORDS < 2:
+    raise CompilerError("n_records must be at least two")
+if ROOT_BITS % BLOCK_BITS != 0:
+    raise CompilerError("root_bits must be divisible by block_bits")
+
+N_BLOCKS = ROOT_BITS // BLOCK_BITS
+BUCKET_VALUES = 2 ** BLOCK_BITS
+N_BUCKETS = N_BLOCKS * BUCKET_VALUES
+N_INDEX_SLOTS = N_BUCKETS * BUCKET_CAPACITY
+MIMC_ROUNDS = 73
+
+
+old_db_locators = sint.Array(N_RECORDS)
+roots = sint.Matrix(N_RECORDS, ROOT_BITS)
+old_index_locators = sint.Array(N_INDEX_SLOTS)
+index_valid = sint.Array(N_INDEX_SLOTS)
+
+old_db_locators.input_from(0)
+roots.input_from(0)
+old_index_locators.input_from(0)
+index_valid.input_from(0)
+
+epoch_key = sint(0)
+for party in range(5):
+    epoch_key += sint.get_input_from(party)
+
+# These secret references are the extra state required by the ORAM baseline.
+# Invalid padded slots may contain the dummy address N_RECORDS.
+index_row_references = sint.Array(N_INDEX_SLOTS)
+index_row_references.input_from(0)
+
+MIMC_CONSTANTS = [
+    int.from_bytes(
+        __import__("hashlib").sha256(
+            ("SLE-MiMC-round-%d" % round_no).encode()
+        ).digest()[:8],
+        "big",
+    )
+    for round_no in range(MIMC_ROUNDS)
+]
+
+
+def secure_locator_prp_vector(values):
+    x = values + NEW_EPOCH
+    for constant in MIMC_CONSTANTS:
+        x = (x + epoch_key + constant) ** 3
+    return x + epoch_key
+
+
+def root_bucket_value(root, block):
+    value = sint(0)
+    for bit in range(BLOCK_BITS):
+        value += root[block * BLOCK_BITS + bit] * (2 ** bit)
+    return value
+
+
+def product_tree(factors):
+    if not factors:
+        return sint(1)
+    return tree_reduce(lambda left, right: left * right, factors)
+
+
+start_timer(5)
+
+new_db_locators = sint.Array(N_RECORDS)
+new_db_locators.assign_vector(
+    secure_locator_prp_vector(old_db_locators.get_vector())
+)
+
+# One extra dummy row keeps every secret address in range.  Its value is never
+# committed because invalid slots are masked below.
+locator_oram = OptimalORAM(N_RECORDS + 1, entry_size=(64,))
+for row in range(N_RECORDS):
+    locator_oram[row] = new_db_locators[row]
+locator_oram[N_RECORDS] = sint.get_random_int(60)
+
+dummy_candidates = sint.Array(N_INDEX_SLOTS)
+dummy_candidates.assign_vector(
+    secure_locator_prp_vector(old_index_locators.get_vector())
+)
+
+new_index_locators = sint.Array(N_INDEX_SLOTS)
+new_index_valid = sint.Array(N_INDEX_SLOTS)
+
+for position in range(N_INDEX_SLOTS):
+    valid = index_valid[position]
+    translated = locator_oram[index_row_references[position]]
+    new_index_locators[position] = valid.if_else(
+        translated, dummy_candidates[position]
+    )
+    new_index_valid[position] = valid
+
+# The same two-challenge hidden multiset check used by SLE prevents a method
+# from appearing faster by omitting verification or rollback semantics.
+challenge_1 = sint.get_random_int(60).reveal() + 101
+challenge_2 = sint.get_random_int(60).reveal() + 211
+alpha_1 = cint(1_000_003)
+beta_1 = cint(1_000_033)
+alpha_2 = cint(1_000_037)
+beta_2 = cint(1_000_081)
+
+expected_factors_1 = []
+expected_factors_2 = []
+for row in range(N_RECORDS):
+    locator = new_db_locators[row]
+    for block in range(N_BLOCKS):
+        bucket = root_bucket_value(roots[row], block)
+        expected_factors_1.append(
+            challenge_1 - (locator + alpha_1 * block + beta_1 * bucket)
+        )
+        expected_factors_2.append(
+            challenge_2 - (locator + alpha_2 * block + beta_2 * bucket)
+        )
+
+actual_factors_1 = []
+actual_factors_2 = []
+for position in range(N_INDEX_SLOTS):
+    bucket_address = position // BUCKET_CAPACITY
+    block = bucket_address // BUCKET_VALUES
+    bucket = bucket_address % BUCKET_VALUES
+    locator = new_index_locators[position]
+    valid = new_index_valid[position]
+    actual_factors_1.append(
+        valid * (
+            challenge_1 - (locator + alpha_1 * block + beta_1 * bucket)
+        ) + (1 - valid)
+    )
+    actual_factors_2.append(
+        valid * (
+            challenge_2 - (locator + alpha_2 * block + beta_2 * bucket)
+        ) + (1 - valid)
+    )
+
+relation_ok = (
+    (product_tree(expected_factors_1) == product_tree(actual_factors_1))
+    * (product_tree(expected_factors_2) == product_tree(actual_factors_2))
+)
+
+committed_db_locators = sint.Array(N_RECORDS)
+committed_index_locators = sint.Array(N_INDEX_SLOTS)
+committed_index_valid = sint.Array(N_INDEX_SLOTS)
+
+for row in range(N_RECORDS):
+    committed_db_locators[row] = relation_ok.if_else(
+        new_db_locators[row], old_db_locators[row]
+    )
+
+for position in range(N_INDEX_SLOTS):
+    committed_index_locators[position] = relation_ok.if_else(
+        new_index_locators[position], old_index_locators[position]
+    )
+    committed_index_valid[position] = relation_ok.if_else(
+        new_index_valid[position], index_valid[position]
+    )
+
+committed_db_locators.write_to_file()
+committed_index_locators.write_to_file()
+committed_index_valid.write_to_file()
+
+opened_relation_ok = relation_ok.reveal()
+stop_timer(5)
+
+print_ln(
+    "SLE_MPC_RESULT mode=oram_reindex epoch=%s relation_ok=%s",
+    NEW_EPOCH,
+    opened_relation_ok,
+)
+print_ln(
+    "SLE_MPC_PRIVATE key=not_opened locators=not_opened "
+    "access_pattern=oram_hidden row_references=not_opened"
+)

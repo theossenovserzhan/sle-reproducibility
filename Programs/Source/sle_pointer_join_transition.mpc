@@ -1,0 +1,210 @@
+"""
+Generic secret pointer-translation baseline for an SLE epoch transition.
+
+The baseline gives SLE a meaningful competitor under the same five-party
+Shamir execution and the same opened output. It first evolves the N database
+locators. Every one of the M padded index entries is then joined against all N
+old database locators with secret equality tests in order to recover the
+corresponding new locator. No pointer map is opened, but O(N*M) secure equality
+work is required.
+
+This is deliberately not presented as a novel protocol. It is an executable
+generic MPC baseline for the pointer-translation step that SLE avoids.
+
+Compile-time arguments:
+    sle_pointer_join_transition <n_records> <root_bits> <block_bits>
+                                <bucket_capacity> <epoch>
+"""
+
+from Compiler.library import tree_reduce
+
+program.use_edabit(True)
+program.set_bit_length(64)
+
+if len(program.args) != 6:
+    raise CompilerError(
+        "Usage: sle_pointer_join_transition <n_records> <root_bits> "
+        "<block_bits> <bucket_capacity> <epoch>"
+    )
+
+N_RECORDS = int(program.args[1])
+ROOT_BITS = int(program.args[2])
+BLOCK_BITS = int(program.args[3])
+BUCKET_CAPACITY = int(program.args[4])
+NEW_EPOCH = int(program.args[5])
+
+if N_RECORDS < 2:
+    raise CompilerError("n_records must be at least two")
+if ROOT_BITS % BLOCK_BITS != 0:
+    raise CompilerError("root_bits must be divisible by block_bits")
+
+N_BLOCKS = ROOT_BITS // BLOCK_BITS
+BUCKET_VALUES = 2 ** BLOCK_BITS
+N_BUCKETS = N_BLOCKS * BUCKET_VALUES
+N_INDEX_SLOTS = N_BUCKETS * BUCKET_CAPACITY
+MIMC_ROUNDS = 73
+
+
+old_db_locators = sint.Array(N_RECORDS)
+roots = sint.Matrix(N_RECORDS, ROOT_BITS)
+old_index_locators = sint.Array(N_INDEX_SLOTS)
+index_valid = sint.Array(N_INDEX_SLOTS)
+
+old_db_locators.input_from(0)
+roots.input_from(0)
+old_index_locators.input_from(0)
+index_valid.input_from(0)
+
+epoch_key = sint(0)
+for party in range(5):
+    epoch_key += sint.get_input_from(party)
+
+MIMC_CONSTANTS = [
+    int.from_bytes(
+        __import__("hashlib").sha256(
+            ("SLE-MiMC-round-%d" % round_no).encode()
+        ).digest()[:8],
+        "big",
+    )
+    for round_no in range(MIMC_ROUNDS)
+]
+
+
+def secure_locator_prp_vector(values):
+    x = values + NEW_EPOCH
+    for constant in MIMC_CONSTANTS:
+        x = (x + epoch_key + constant) ** 3
+    return x + epoch_key
+
+
+def root_bucket_value(root, block):
+    value = sint(0)
+    for bit in range(BLOCK_BITS):
+        value += root[block * BLOCK_BITS + bit] * (2 ** bit)
+    return value
+
+
+def product_tree(factors):
+    if not factors:
+        return sint(1)
+    return tree_reduce(lambda left, right: left * right, factors)
+
+
+start_timer(4)
+
+# Database transition is identical to optimized SLE.
+new_db_locators = sint.Array(N_RECORDS)
+new_db_locators.assign_vector(
+    secure_locator_prp_vector(old_db_locators.get_vector())
+)
+
+# Generic pointer translation. Each valid index copy must discover which old
+# database locator it refers to before selecting the corresponding new value.
+new_index_locators = sint.Array(N_INDEX_SLOTS)
+new_index_valid = sint.Array(N_INDEX_SLOTS)
+join_checks = []
+
+for position in range(N_INDEX_SLOTS):
+    valid = index_valid[position]
+    translated = sint(0)
+    number_of_matches = sint(0)
+
+    for row in range(N_RECORDS):
+        is_match = old_index_locators[position] == old_db_locators[row]
+        translated += is_match * new_db_locators[row]
+        number_of_matches += is_match
+
+    # Dummy slots receive fresh secret values. For valid entries the equality
+    # join must find exactly one database record; dummies must find none.
+    dummy_locator = sint.get_random_int(60)
+    new_index_locators[position] = valid.if_else(
+        translated, dummy_locator
+    )
+    new_index_valid[position] = valid
+    join_checks.append(
+        valid * (number_of_matches == 1)
+        + (1 - valid) * (number_of_matches == 0)
+    )
+
+join_ok = product_tree(join_checks)
+
+# Use the same hidden relation check as SLE so both transitions have the same
+# integrity output and commit semantics.
+challenge_1 = sint.get_random_int(60).reveal() + 101
+challenge_2 = sint.get_random_int(60).reveal() + 211
+alpha_1 = cint(1_000_003)
+beta_1 = cint(1_000_033)
+alpha_2 = cint(1_000_037)
+beta_2 = cint(1_000_081)
+
+expected_factors_1 = []
+expected_factors_2 = []
+for row in range(N_RECORDS):
+    locator = new_db_locators[row]
+    for block in range(N_BLOCKS):
+        bucket = root_bucket_value(roots[row], block)
+        expected_factors_1.append(
+            challenge_1 - (locator + alpha_1 * block + beta_1 * bucket)
+        )
+        expected_factors_2.append(
+            challenge_2 - (locator + alpha_2 * block + beta_2 * bucket)
+        )
+
+actual_factors_1 = []
+actual_factors_2 = []
+for position in range(N_INDEX_SLOTS):
+    bucket_address = position // BUCKET_CAPACITY
+    block = bucket_address // BUCKET_VALUES
+    bucket = bucket_address % BUCKET_VALUES
+    locator = new_index_locators[position]
+    valid = new_index_valid[position]
+    actual_factors_1.append(
+        valid * (
+            challenge_1 - (locator + alpha_1 * block + beta_1 * bucket)
+        ) + (1 - valid)
+    )
+    actual_factors_2.append(
+        valid * (
+            challenge_2 - (locator + alpha_2 * block + beta_2 * bucket)
+        ) + (1 - valid)
+    )
+
+relation_ok = (
+    join_ok
+    * (product_tree(expected_factors_1) == product_tree(actual_factors_1))
+    * (product_tree(expected_factors_2) == product_tree(actual_factors_2))
+)
+
+committed_db_locators = sint.Array(N_RECORDS)
+committed_index_locators = sint.Array(N_INDEX_SLOTS)
+committed_index_valid = sint.Array(N_INDEX_SLOTS)
+
+for row in range(N_RECORDS):
+    committed_db_locators[row] = relation_ok.if_else(
+        new_db_locators[row], old_db_locators[row]
+    )
+
+for position in range(N_INDEX_SLOTS):
+    committed_index_locators[position] = relation_ok.if_else(
+        new_index_locators[position], old_index_locators[position]
+    )
+    committed_index_valid[position] = relation_ok.if_else(
+        new_index_valid[position], index_valid[position]
+    )
+
+committed_db_locators.write_to_file()
+committed_index_locators.write_to_file()
+committed_index_valid.write_to_file()
+
+opened_relation_ok = relation_ok.reveal()
+stop_timer(4)
+
+print_ln(
+    "SLE_MPC_RESULT mode=pointer_join epoch=%s relation_ok=%s",
+    NEW_EPOCH,
+    opened_relation_ok,
+)
+print_ln(
+    "SLE_MPC_PRIVATE key=not_opened locators=not_opened "
+    "pointer_map=not_opened"
+)

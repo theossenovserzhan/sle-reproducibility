@@ -1,0 +1,2 @@
+method,artifact_kind,native_operation,n,items_per_operation,parties,protocol_seconds,driver_seconds,communication_mb,build_seconds,commit,status,directly_comparable_to_sle_transition
+PRAC/Duoram,official exact native artifact,dependent/independent ORAM operations,1024,5,3,1.729,3.10865274400021,0.17036,0.0,ef2b926a0c5c6082cf07cd2f172fcf770c825bb6,success,False

@@ -1,0 +1,24 @@
+Default bit length for compilation: 64
+Default security parameter for compilation: 40
+Compiling file Programs/Source/sle_transition_optimized.mpc
+Changed bit length for comparisons etc. to 64
+Writing to Programs/Bytecode/sle_transition_optimized-32-32-4-6-43-0-EQZ(2)_64-1.bc
+Writing to Programs/Schedules/sle_transition_optimized-32-32-4-6-43-0.sch
+Writing to Programs/Bytecode/sle_transition_optimized-32-32-4-6-43-0-0.bc
+Hash: 4b762f69272b7f7a31d89412be91e6a4f653befceb1f285d4407a93d021a5521
+Program requires at most:
+        2593 integer inputs from player 0
+           1 integer inputs from player 1
+           1 integer inputs from player 2
+           1 integer inputs from player 3
+           1 integer inputs from player 4
+      121949 integer triples
+      121949 integer simple multiplications
+           2 strict edabits of length 60
+           5 integer opens
+           2 strict edabits of length 40
+           2 strict edabits of length 64
+         126 bit triples
+           2 integer dabits
+           8 bit opens
+        1888 virtual machine rounds

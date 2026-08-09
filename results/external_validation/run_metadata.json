@@ -1,0 +1,17 @@
+{
+  "seed": 20260722,
+  "datasets": [
+    "CelebA",
+    "LFW"
+  ],
+  "identities_per_dataset": 128,
+  "images_per_identity": 6,
+  "gallery_images_per_identity": 2,
+  "randomized_splits": 20,
+  "backbone": "FaceNet InceptionResnetV1 pretrained on VGGFace2",
+  "embedded_reference_sources": {
+    "scaling": "validated prior five-party MP-SPDZ scaling run",
+    "security": "15 held-out run-cluster attack evaluation"
+  },
+  "synthetic_smoke": false
+}

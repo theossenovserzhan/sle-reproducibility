@@ -1,0 +1,20 @@
+N=8: SLE transition passed relation verification.
+  versus ORAM reindexing adaptation: 1.353 s vs 9.206 s (6.80x speedup); 9.605 MB vs 15.630 MB (1.63x less communication).
+  versus Oblivious join/sort adaptation: 1.353 s vs 47.098 s (34.80x speedup); 9.605 MB vs 430.372 MB (44.81x less communication).
+  versus Quadratic pointer join: 1.353 s vs 7.350 s (5.43x speedup); 9.605 MB vs 32.819 MB (3.42x less communication).
+N=16: SLE transition passed relation verification.
+  versus ORAM reindexing adaptation: 1.677 s vs 14.589 s (8.70x speedup); 9.823 MB vs 18.390 MB (1.87x less communication).
+  versus Oblivious join/sort adaptation: 1.677 s vs 49.142 s (29.31x speedup); 9.823 MB vs 431.597 MB (43.94x less communication).
+  versus Quadratic pointer join: 1.677 s vs 8.838 s (5.27x speedup); 9.823 MB vs 58.153 MB (5.92x less communication).
+N=32: SLE transition passed relation verification.
+  versus ORAM reindexing adaptation: 2.367 s vs 50.363 s (21.27x speedup); 19.620 MB vs 47.015 MB (2.40x less communication).
+  versus Oblivious join/sort adaptation: 2.367 s vs 97.127 s (41.03x speedup); 19.620 MB vs 980.521 MB (49.98x less communication).
+  versus Quadratic pointer join: 2.367 s vs 26.773 s (11.31x speedup); 19.620 MB vs 232.338 MB (11.84x less communication).
+N=64: SLE transition passed relation verification.
+  versus ORAM reindexing adaptation: 3.598 s vs 155.045 s (43.09x speedup); 32.973 MB vs 110.930 MB (3.36x less communication).
+  versus Oblivious join/sort adaptation: 3.598 s vs 182.560 s (50.74x speedup); 32.973 MB vs 2216.330 MB (67.22x less communication).
+
+Allowed claim: same-backend numerical advantage over measured SOTA-derived ORAM and oblivious-join/sort adaptations for the verified coupled epoch-transition task at completed N values.
+Not allowed: claim that the adaptations are byte-for-byte reproductions of CCS 2020, NDSS 2024, GigaDORAM, PRAC, or Bifrost.
+
+Exact PRAC/Duoram native artifact: N=1024, protocol time=1.729 s, communication=0.170 MB. This is native-operation context, not a direct SLE ratio.

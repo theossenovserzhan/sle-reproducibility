@@ -1,0 +1,2 @@
+dataset,identities,gallery_roots,probe_roots,root_bits,locator_bits,plaintext_rank1,embedding_storage
+CelebA subset,128,128,256,512,64,0.81640625,deleted after binarization

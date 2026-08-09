@@ -1,0 +1,152 @@
+"""
+Real MPC-ORAM candidate retrieval for binary 1:N identification.
+
+Two oblivious memories are used:
+  1. bucket_oram maps a secret LSH bucket address to fixed-size candidate IDs;
+  2. root_oram maps every secret candidate ID to its biometric root and label.
+
+The physical access pattern is hidden by MP-SPDZ ORAM. Secure Hamming and
+ArgMin then open only Top-1/reject. Small smoke tests use the linear ORAM
+backend selected by OptimalORAM; larger tables automatically use recursive
+tree ORAM.
+
+Compile-time arguments:
+    sle_oram_index <n_records> <root_bits> <block_bits>
+                   <bucket_capacity> <accept_threshold>
+"""
+
+from oram import OptimalORAM
+
+program.use_edabit(True)
+program.set_bit_length(64)
+
+if len(program.args) != 6:
+    raise CompilerError(
+        "Usage: sle_oram_index <n_records> <root_bits> <block_bits> "
+        "<bucket_capacity> <accept_threshold>"
+    )
+
+N_RECORDS = int(program.args[1])
+ROOT_BITS = int(program.args[2])
+BLOCK_BITS = int(program.args[3])
+BUCKET_CAPACITY = int(program.args[4])
+ACCEPT_THRESHOLD = int(program.args[5])
+
+if ROOT_BITS % BLOCK_BITS != 0:
+    raise CompilerError("root_bits must be divisible by block_bits")
+if BLOCK_BITS < 1 or BLOCK_BITS > 8:
+    raise CompilerError("block_bits must be in [1, 8]")
+if BUCKET_CAPACITY < 1:
+    raise CompilerError("bucket_capacity must be positive")
+
+N_BLOCKS = ROOT_BITS // BLOCK_BITS
+BUCKET_VALUES = 2 ** BLOCK_BITS
+N_BUCKETS = N_BLOCKS * BUCKET_VALUES
+DUMMY_ROW = N_RECORDS
+ROW_BITS = max(1, (N_RECORDS + 1).bit_length())
+
+
+# Player 0 initializes the persistent protected database. The dummy row lets
+# fixed-capacity buckets hide their true occupancy.
+labels = sint.Array(N_RECORDS + 1)
+valid_records = sint.Array(N_RECORDS + 1)
+tie_tags = sint.Array(N_RECORDS + 1)
+gallery = sint.Matrix(N_RECORDS + 1, ROOT_BITS)
+
+labels.input_from(0)
+valid_records.input_from(0)
+tie_tags.input_from(0)
+gallery.input_from(0)
+
+# The complete padded bucket table is secret input. Each cell contains a row
+# ID in [0,N_RECORDS] where N_RECORDS denotes the dummy record.
+bucket_rows = sint.Matrix(N_BUCKETS, BUCKET_CAPACITY)
+bucket_rows.input_from(0)
+
+probe = sint.Array(ROOT_BITS)
+probe.input_from(1)
+
+
+# Root ORAM values contain label, validity, tie tag, and every binary root bit.
+root_entry_sizes = (ROW_BITS, 1, 32) + (1,) * ROOT_BITS
+root_oram = OptimalORAM(
+    N_RECORDS + 1,
+    entry_size=root_entry_sizes,
+)
+
+for row in range(N_RECORDS + 1):
+    root_oram[row] = tuple(
+        [labels[row], valid_records[row], tie_tags[row]]
+        + [gallery[row][j] for j in range(ROOT_BITS)]
+    )
+
+# Bucket ORAM values are fixed-length vectors of secret candidate row IDs.
+bucket_oram = OptimalORAM(
+    N_BUCKETS,
+    entry_size=(ROW_BITS,) * BUCKET_CAPACITY,
+)
+
+for bucket in range(N_BUCKETS):
+    bucket_oram[bucket] = tuple(
+        bucket_rows[bucket][slot] for slot in range(BUCKET_CAPACITY)
+    )
+
+
+def secure_hamming(root_values, query):
+    return sum(
+        root_values[j] + query[j] - 2 * root_values[j] * query[j]
+        for j in range(ROOT_BITS)
+    )
+
+
+start_timer(2)
+
+best_distance = sint(ROOT_BITS + 1)
+best_label = sint(-1)
+best_tie_tag = sint(2 ** 31 - 1)
+valid_candidate_count = sint(0)
+
+for block in range(N_BLOCKS):
+    # The query-derived address remains secret. ORAM hides which logical
+    # bucket and which physical storage path are touched.
+    bucket_value = sint(0)
+    for bit in range(BLOCK_BITS):
+        bucket_value += probe[block * BLOCK_BITS + bit] * (2 ** bit)
+    secret_bucket_address = bucket_value + block * BUCKET_VALUES
+
+    candidate_rows = bucket_oram[secret_bucket_address]
+    if BUCKET_CAPACITY == 1:
+        candidate_rows = (candidate_rows,)
+
+    for slot in range(BUCKET_CAPACITY):
+        candidate_row = candidate_rows[slot]
+        entry = root_oram[candidate_row]
+        label = entry[0]
+        valid = entry[1]
+        tie_tag = entry[2]
+        root = entry[3:]
+
+        distance = secure_hamming(root, probe)
+        strictly_closer = distance < best_distance
+        equal_distance = distance == best_distance
+        smaller_tie_tag = tie_tag < best_tie_tag
+        better = valid * (
+            strictly_closer + equal_distance * smaller_tie_tag
+        )
+
+        best_distance = better.if_else(distance, best_distance)
+        best_label = better.if_else(label, best_label)
+        best_tie_tag = better.if_else(tie_tag, best_tie_tag)
+        valid_candidate_count += valid
+
+accepted = (valid_candidate_count > 0) * (best_distance <= ACCEPT_THRESHOLD)
+opened_decision = accepted.if_else(best_label, sint(-1)).reveal()
+opened_accept = accepted.reveal()
+
+stop_timer(2)
+
+print_ln("SLE_MPC_RESULT mode=oram accepted=%s identity=%s",
+         opened_accept, opened_decision)
+print_ln("SLE_MPC_PRIVATE bucket_addresses=not_opened candidates=not_opened "
+         "distance=not_opened")
+

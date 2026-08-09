@@ -1,0 +1,16 @@
+\begin{tabular}{lrrrrrr}
+\toprule
+mode & n & total_seconds_mean & global_mb_mean & runtime_rounds_mean & runtime_vs_sle & communication_vs_sle \\
+\midrule
+pointer_join & 8 & 1.383 & 21.960 & 4192.000 & 3.575 & 3.387 \\
+pointer_join & 16 & 3.191 & 77.386 & 7786.000 & 5.492 & 5.979 \\
+pointer_join & 32 & 6.257 & 232.338 & 11937.000 & 8.165 & 11.842 \\
+pointer_join & 64 & 16.344 & 775.790 & 22822.000 & 12.242 & 21.493 \\
+pointer_join & 128 & 33.138 & 1867.940 & 31993.000 & 19.796 & 39.580 \\
+sle & 8 & 0.387 & 6.484 & 1258.000 & 1.000 & 1.000 \\
+sle & 16 & 0.581 & 12.944 & 1779.000 & 1.000 & 1.000 \\
+sle & 32 & 0.766 & 19.620 & 2310.000 & 1.000 & 1.000 \\
+sle & 64 & 1.335 & 36.094 & 3627.000 & 1.000 & 1.000 \\
+sle & 128 & 1.674 & 47.194 & 4461.000 & 1.000 & 1.000 \\
+\bottomrule
+\end{tabular}

@@ -1,0 +1,77 @@
+Default bit length for compilation: 64
+Default security parameter for compilation: 40
+Compiling file Programs/Source/sle_integrated_transition_match.mpc
+Changed bit length for comparisons etc. to 64
+Compiled 100000 lines at Wed Aug  5 06:23:40 2026
+Compiled 200000 lines at Wed Aug  5 06:23:42 2026
+Compiled 300000 lines at Wed Aug  5 06:23:44 2026
+Compiled 400000 lines at Wed Aug  5 06:23:46 2026
+Compiled 500000 lines at Wed Aug  5 06:23:48 2026
+Compiled 600000 lines at Wed Aug  5 06:23:50 2026
+Compiled 700000 lines at Wed Aug  5 06:23:52 2026
+Compiled 800000 lines at Wed Aug  5 06:23:53 2026
+Compiled 900000 lines at Wed Aug  5 06:23:55 2026
+Compiled 1000000 lines at Wed Aug  5 06:23:57 2026
+Compiled 1100000 lines at Wed Aug  5 06:23:59 2026
+Compiled 1200000 lines at Wed Aug  5 06:24:01 2026
+Compiled 1300000 lines at Wed Aug  5 06:24:04 2026
+Compiled 1400000 lines at Wed Aug  5 06:24:05 2026
+Compiled 1500000 lines at Wed Aug  5 06:24:07 2026
+Compiled 1600000 lines at Wed Aug  5 06:24:08 2026
+Compiled 1700000 lines at Wed Aug  5 06:24:11 2026
+Compiled 1800000 lines at Wed Aug  5 06:24:13 2026
+Compiled 1900000 lines at Wed Aug  5 06:24:14 2026
+Compiled 2000000 lines at Wed Aug  5 06:24:16 2026
+Compiled 2100000 lines at Wed Aug  5 06:24:19 2026
+Compiled 2200000 lines at Wed Aug  5 06:24:20 2026
+Compiled 2300000 lines at Wed Aug  5 06:24:22 2026
+Compiled 2400000 lines at Wed Aug  5 06:24:23 2026
+Compiled 2500000 lines at Wed Aug  5 06:24:25 2026
+Compiled 2600000 lines at Wed Aug  5 06:24:28 2026
+Compiled 2700000 lines at Wed Aug  5 06:24:30 2026
+Compiled 2800000 lines at Wed Aug  5 06:24:31 2026
+Compiled 2900000 lines at Wed Aug  5 06:24:33 2026
+Compiled 3000000 lines at Wed Aug  5 06:24:34 2026
+Compiled 3100000 lines at Wed Aug  5 06:24:36 2026
+Compiled 3200000 lines at Wed Aug  5 06:24:37 2026
+Processed dependency of 1000000/2658257 instructions at Wed Aug  5 06:25:08 2026
+Processed dependency of 2000000/2658257 instructions at Wed Aug  5 06:25:23 2026
+Merging instructions...
+Merging 159744 muls in round 294/143801
+Merging 79872 muls in round 295/143801
+Merging 39936 muls in round 296/143801
+Merging 19968 muls in round 297/143801
+Topological sort ...
+Done at Wed Aug  5 06:25:35 2026
+Merging 65536 muls in round 1/518
+Writing to Programs/Bytecode/sle_integrated_transition_match-128-512-4-35-43-512-64-EQZ(2)_64-1.bc
+Writing to Programs/Bytecode/sle_integrated_transition_match-128-512-4-35-43-512-64-LTZ(2)_65-3.bc
+Writing to Programs/Bytecode/sle_integrated_transition_match-128-512-4-35-43-512-64-EQZ(1)_64-5.bc
+Writing to Programs/Bytecode/sle_integrated_transition_match-128-512-4-35-43-512-64-LTZ(1)_65-6.bc
+Compiled 3300000 lines at Wed Aug  5 06:25:46 2026
+Compiled 3400000 lines at Wed Aug  5 06:26:02 2026
+Allocating sle_integrated_transition_match-128-512-4-35-43-512-64-0-cisc-23, 780/789
+Compiled 3500000 lines at Wed Aug  5 06:26:07 2026
+Compiled 3600000 lines at Wed Aug  5 06:26:08 2026
+Compiled 3700000 lines at Wed Aug  5 06:27:05 2026
+Allocated registers for 1000000 instructions at Wed Aug  5 06:28:06 2026
+Writing to Programs/Schedules/sle_integrated_transition_match-128-512-4-35-43-512-64.sch
+Writing to Programs/Bytecode/sle_integrated_transition_match-128-512-4-35-43-512-64-0.bc
+Hash: 94447ead2de7142c3c812d2fbc557d917fac1cc714830fe69e33a9007ec0ac82
+Program requires at most:
+      209281 integer inputs from player 0
+         513 integer inputs from player 1
+           1 integer inputs from player 2
+           1 integer inputs from player 3
+           1 integer inputs from player 4
+    11012991 integer triples
+    11012991 integer simple multiplications
+           2 strict edabits of length 60
+         392 integer opens
+         130 strict edabits of length 40
+         387 strict edabits of length 64
+       39030 bit triples
+         387 integer dabits
+        2064 bit opens
+         257 strict edabits of length 41
+      146597 virtual machine rounds

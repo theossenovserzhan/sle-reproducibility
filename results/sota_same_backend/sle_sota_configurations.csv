@@ -1,0 +1,5 @@
+n,root_bits,block_bits,capacity,padded_slots,combined_rows
+8,32,4,3,384,392
+16,32,4,3,384,400
+32,32,4,6,768,800
+64,32,4,10,1280,1344

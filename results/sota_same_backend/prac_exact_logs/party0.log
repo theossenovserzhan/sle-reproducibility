@@ -1,0 +1,85 @@
+===== DEPENDENT UPDATES =====
+120 messages sent
+6550 message bytes sent
+115 Lamport clock (latencies)
+30690 local AES operations
+195 milliseconds wall clock time
+{200000000;0;0} nanoseconds {real;user;system}
+Mem: 5760 KiB
+
+===== DEPENDENT READS =====
+120 messages sent
+6350 message bytes sent
+116 Lamport clock (latencies)
+30690 local AES operations
+445 milliseconds wall clock time
+{440000000;10000000;10000000} nanoseconds {real;user;system}
+Mem: 5760 KiB
+
+===== INDEPENDENT READS =====
+24 messages sent
+6350 message bytes sent
+24 Lamport clock (latencies)
+30690 local AES operations
+96 milliseconds wall clock time
+{100000000;0;0} nanoseconds {real;user;system}
+Mem: 6300 KiB
+
+===== INDEPENDENT UPDATES =====
+24 messages sent
+6550 message bytes sent
+23 Lamport clock (latencies)
+30690 local AES operations
+57 milliseconds wall clock time
+{60000000;10000000;0} nanoseconds {real;user;system}
+Mem: 6428 KiB
+
+===== DEPENDENT WRITES =====
+130 messages sent
+6570 message bytes sent
+125 Lamport clock (latencies)
+30690 local AES operations
+275 milliseconds wall clock time
+{270000000;0;10000000} nanoseconds {real;user;system}
+Mem: 6428 KiB
+
+===== DEPENDENT INTERLEAVED =====
+250 messages sent
+12920 message bytes sent
+240 Lamport clock (latencies)
+61380 local AES operations
+661 milliseconds wall clock time
+{660000000;10000000;10000000} nanoseconds {real;user;system}
+Mem: 6428 KiB
+
+Head of linked list: 29e
+
+Non-zero reconstructed database entries:
+18a: 318
+18b: 319
+18c: 002
+18d: 31b
+288: 18a
+289: 18b
+28a: 003
+28b: 18d
+29e: 3b8
+29f: 3b9
+2a0: 005
+2a1: 3bb
+318: 056
+319: 057
+31a: 001
+31b: 059
+3b8: 288
+3b9: 289
+3ba: 004
+3bb: 28b
+0 messages sent
+0 message bytes sent
+1 Lamport clock (latencies)
+0 local AES operations
+2 milliseconds wall clock time
+{10000000;0;0} nanoseconds {real;user;system}
+Mem: 6428 KiB
+Precomputed values used: T0 r10:35

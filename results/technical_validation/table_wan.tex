@@ -1,0 +1,10 @@
+\begin{tabular}{llrrrrrr}
+\toprule
+network & mode & wall_seconds_mean & wall_seconds_std & wall_slowdown_vs_local & global_mb_mean & runtime_rounds_mean & repeats \\
+\midrule
+local & pointer_join & 1.553 & 0.047 & 1.000 & 21.960 & 4192.000 & 3 \\
+local & sle & 0.507 & 0.006 & 1.000 & 6.484 & 1258.000 & 3 \\
+userspace_wan & pointer_join & 118.263 & 0.078 & 76.153 & 21.960 & 4192.000 & 3 \\
+userspace_wan & sle & 27.087 & 0.015 & 53.409 & 6.484 & 1258.000 & 3 \\
+\bottomrule
+\end{tabular}

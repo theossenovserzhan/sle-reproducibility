@@ -1,0 +1,9 @@
+criterion,value,threshold,passed
+Two real face datasets evaluated,2.0,>= 2,True
+At least 128 identities on each dataset,128.0,>= 128,True
+Repeated gallery/probe assignments,20.0,>= 20,True
+No dataset collapsed to chance-level identification,0.85146484375,> 0.0391 (5x chance),True
+No dataset has random verification behavior,0.04771930364173228,< 0.45,True
+SLE faster than pointer join at N=128,28.473713637538765,> 1,True
+SLE communicates less than pointer join at N=128,38.79115025956165,> 1,True
+Threat model and forbidden overclaims exported,6.0,>= 5 claims,True

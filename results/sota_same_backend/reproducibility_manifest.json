@@ -1,0 +1,18 @@
+{
+  "generated_at_utc": "2026-08-03T14:23:59.231700+00:00",
+  "mp_spdz_commit": "9d809599ea6ce627216a389ca7d984fbb75d0cb9",
+  "players": 5,
+  "threshold": 2,
+  "active_n": [
+    8,
+    16,
+    32,
+    64
+  ],
+  "repeats": 10,
+  "paper_mode": true,
+  "root_bits": 32,
+  "block_bits": 4,
+  "exact_prac_enabled": true,
+  "exact_prac_commit": "ef2b926a0c5c6082cf07cd2f172fcf770c825bb6"
+}

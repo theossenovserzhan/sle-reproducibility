@@ -1,0 +1,16 @@
+Running /content/MP-SPDZ/Scripts/../shamir-party.x 0 sle_transition_optimized-8-32-4-2-43-0 -T 2 -pn 11391 -h localhost -N 5
+Running /content/MP-SPDZ/Scripts/../shamir-party.x 1 sle_transition_optimized-8-32-4-2-43-0 -T 2 -pn 11391 -h localhost -N 5
+Running /content/MP-SPDZ/Scripts/../shamir-party.x 2 sle_transition_optimized-8-32-4-2-43-0 -T 2 -pn 11391 -h localhost -N 5
+Running /content/MP-SPDZ/Scripts/../shamir-party.x 3 sle_transition_optimized-8-32-4-2-43-0 -T 2 -pn 11391 -h localhost -N 5
+Running /content/MP-SPDZ/Scripts/../shamir-party.x 4 sle_transition_optimized-8-32-4-2-43-0 -T 2 -pn 11391 -h localhost -N 5
+Trying to run 128-bit computation (128-bit representation)
+Starting timer 3 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 2.129e-05
+Stopped timer 3 at 0.380829 (1.29244 MB, 1255 rounds, 0.34372 CPU seconds)
+SLE_MPC_RESULT mode=transition_optimized epoch=43 relation_ok=1 fault=0
+SLE_MPC_PRIVATE key=not_opened locators=not_opened mapping=not_materialized
+The following benchmarks are including preprocessing (offline phase).
+Time = 0.382811 seconds 
+Time3 = 0.380829 seconds (1.29244 MB, 1255 rounds, 0.34372 CPU seconds)
+Data sent = 1.3173 MB in ~1258 rounds (party 0 only; use '-v' for more details)
+Global data sent = 6.48428 MB (all parties)
+This protocol doesn't scale well with the number of parties, have you considered using ATLAS instead?

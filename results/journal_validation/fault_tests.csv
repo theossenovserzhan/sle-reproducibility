@@ -1,0 +1,8 @@
+epoch,fault,relation_ok,exact_audit_ok,committed,rollback_preserved_old_state,expected_relation_ok,test_passed
+101,clean,1,1,1,1,1,1
+102,omission,0,0,0,1,0,1
+103,duplication,0,0,0,1,0,1
+104,locator_corruption,0,0,0,1,0,1
+105,wrong_bucket,0,0,0,1,0,1
+106,partial_update,0,0,0,1,0,1
+107,wrong_key,0,0,0,1,0,1

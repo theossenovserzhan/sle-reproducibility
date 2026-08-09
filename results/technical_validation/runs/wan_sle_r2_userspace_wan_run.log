@@ -1,0 +1,18 @@
+Running /content/MP-SPDZ/Scripts/../shamir-party.x 0 sle_transition_optimized-8-32-4-2-43-0 -T 2 -pn 19672 -h localhost -N 5
+Running /content/MP-SPDZ/Scripts/../shamir-party.x 1 sle_transition_optimized-8-32-4-2-43-0 -T 2 -pn 19672 -h localhost -N 5
+Running /content/MP-SPDZ/Scripts/../shamir-party.x 2 sle_transition_optimized-8-32-4-2-43-0 -T 2 -pn 19672 -h localhost -N 5
+Running /content/MP-SPDZ/Scripts/../shamir-party.x 3 sle_transition_optimized-8-32-4-2-43-0 -T 2 -pn 19672 -h localhost -N 5
+Running /content/MP-SPDZ/Scripts/../shamir-party.x 4 sle_transition_optimized-8-32-4-2-43-0 -T 2 -pn 19672 -h localhost -N 5
+Trying to run 128-bit computation (128-bit representation)
+Starting timer 3 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 1.983e-05
+Stopped timer 3 at 26.0114 (1.29244 MB, 1255 rounds, 0.894156 CPU seconds)
+SLE_MPC_RESULT mode=transition_optimized epoch=43 relation_ok=1 fault=0
+SLE_MPC_PRIVATE key=not_opened locators=not_opened mapping=not_materialized
+The following benchmarks are including preprocessing (offline phase).
+Time = 26.0742 seconds 
+Time3 = 26.0114 seconds (1.29244 MB, 1255 rounds, 0.894156 CPU seconds)
+Data sent = 1.3173 MB in ~1258 rounds (party 0 only; use '-v' for more details)
+Global data sent = 6.48428 MB (all parties)
+Communication time accounts for more than 95 percent of total time (26.0352 seconds). This might be because of the computation and the network setting, but it could also be product of the optimization trade-off during compilation. See https://mp-spdz.readthedocs.io/en/latest/troubleshooting.html#high-number-of-rounds-or-slow-wan-execution
+This protocol doesn't scale well with the number of parties, have you considered using ATLAS instead?
+SLE_WAN_DELAY_REPORT delay_us=20000 delayed_messages=5019 delayed_bytes=1318828

@@ -1,0 +1,9 @@
+item,adversary_access,expected_property,in_scope
+Epoch locator tokens,Observed before and after re-keying,Cross-epoch unlinkability near random,True
+Top-1/reject and transition accept/reject,Opened protocol outputs,Only intended outputs are revealed,True
+Epoch keys,Secret-shared; threshold not exceeded,At least one contribution remains unknown,True
+MPC and ORAM transcript,Passive corruption within backend threshold,Inputs and access patterns remain hidden,True
+Binary biometric root compromise,Root reconstructed by attacker,No unlinkability guarantee,False
+Epoch-key compromise,Complete epoch key reconstructed,No transition secrecy guarantee,False
+Persistent bucket metadata,Signatures visible across epochs,No unlinkability guarantee; must stay in MPC/ORAM,False
+Malicious majority or active backend break,Corruption beyond passive Shamir model,Fault tests are not an active-security proof,False

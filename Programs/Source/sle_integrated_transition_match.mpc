@@ -1,0 +1,254 @@
+"""
+Integrated SLE epoch transition and binary biometric identification.
+
+The circuit consumes one protected database state, its padded candidate index,
+and one binary biometric probe. It then:
+
+  1. evolves every database and index copy of a locator with the same hidden
+     epoch permutation;
+  2. verifies the hidden (locator, block, bucket) multiset relation;
+  3. atomically commits or rolls back the candidate state; and
+  4. performs a complete secret Hamming/ArgMin identification over the same
+     binary roots.
+
+Only relation_ok, accept/reject, and the final identity are opened. Roots,
+locators, keys, distances, and the old-to-new relation remain secret-shared.
+
+Compile-time arguments:
+    sle_integrated_transition_match <n_records> <root_bits> <block_bits>
+                                    <bucket_capacity> <epoch>
+                                    <accept_threshold> <locator_bits>
+"""
+
+from Compiler.library import tree_reduce
+
+program.use_edabit(True)
+program.set_bit_length(64)
+
+if len(program.args) != 8:
+    raise CompilerError(
+        "Usage: sle_integrated_transition_match <n_records> <root_bits> "
+        "<block_bits> <bucket_capacity> <epoch> <accept_threshold> "
+        "<locator_bits>"
+    )
+
+N_RECORDS = int(program.args[1])
+ROOT_BITS = int(program.args[2])
+BLOCK_BITS = int(program.args[3])
+BUCKET_CAPACITY = int(program.args[4])
+NEW_EPOCH = int(program.args[5])
+ACCEPT_THRESHOLD = int(program.args[6])
+LOCATOR_BITS = int(program.args[7])
+
+if N_RECORDS < 2:
+    raise CompilerError("n_records must be at least two")
+if ROOT_BITS < 8 or ROOT_BITS % BLOCK_BITS != 0:
+    raise CompilerError("root_bits must be divisible by block_bits")
+if BLOCK_BITS < 1 or BLOCK_BITS > 8:
+    raise CompilerError("block_bits must be in [1, 8]")
+if BUCKET_CAPACITY < 1:
+    raise CompilerError("bucket_capacity must be positive")
+if not 0 <= ACCEPT_THRESHOLD <= ROOT_BITS:
+    raise CompilerError("accept_threshold must be in [0, root_bits]")
+if LOCATOR_BITS < 16 or LOCATOR_BITS > 64:
+    raise CompilerError("locator_bits must be in [16, 64]")
+
+N_BLOCKS = ROOT_BITS // BLOCK_BITS
+BUCKET_VALUES = 2 ** BLOCK_BITS
+N_BUCKETS = N_BLOCKS * BUCKET_VALUES
+N_INDEX_SLOTS = N_BUCKETS * BUCKET_CAPACITY
+MIMC_ROUNDS = 73
+
+
+# Player 0 owns the enrolled state. All values become secret shares.
+old_db_locators = sint.Array(N_RECORDS)
+roots = sint.Matrix(N_RECORDS, ROOT_BITS)
+old_index_locators = sint.Array(N_INDEX_SLOTS)
+index_valid = sint.Array(N_INDEX_SLOTS)
+labels = sint.Array(N_RECORDS)
+tie_tags = sint.Array(N_RECORDS)
+
+old_db_locators.input_from(0)
+roots.input_from(0)
+old_index_locators.input_from(0)
+index_valid.input_from(0)
+labels.input_from(0)
+tie_tags.input_from(0)
+
+
+# Every computing party supplies one fresh contribution. The complete epoch
+# key is assembled only inside MPC.
+epoch_key = sint(0)
+for party in range(5):
+    epoch_key += sint.get_input_from(party)
+
+
+# Player 1 independently supplies the biometric probe.
+probe = sint.Array(ROOT_BITS)
+probe.input_from(1)
+
+
+MIMC_CONSTANTS = [
+    int.from_bytes(
+        __import__("hashlib").sha256(
+            ("SLE-MiMC-round-%d" % round_no).encode()
+        ).digest()[:8],
+        "big",
+    )
+    for round_no in range(MIMC_ROUNDS)
+]
+
+
+def secure_locator_prp_vector(values):
+    """Vectorized keyed field permutation for one epoch transition."""
+
+    x = values + NEW_EPOCH
+    for constant in MIMC_CONSTANTS:
+        x = (x + epoch_key + constant) ** 3
+    return x + epoch_key
+
+
+def root_bucket_value(root, block):
+    value = sint(0)
+    for bit in range(BLOCK_BITS):
+        value += root[block * BLOCK_BITS + bit] * (2 ** bit)
+    return value
+
+
+def product_tree(factors):
+    if not factors:
+        return sint(1)
+    return tree_reduce(lambda left, right: left * right, factors)
+
+
+def secure_hamming(enrolled, query):
+    return sum(
+        enrolled[bit] + query[bit] - 2 * enrolled[bit] * query[bit]
+        for bit in range(ROOT_BITS)
+    )
+
+
+start_timer(7)
+
+# SLE transition: equal locator copies receive the same hidden permutation.
+new_db_locators = sint.Array(N_RECORDS)
+new_index_locators = sint.Array(N_INDEX_SLOTS)
+new_index_valid = sint.Array(N_INDEX_SLOTS)
+
+new_db_locators.assign_vector(
+    secure_locator_prp_vector(old_db_locators.get_vector())
+)
+new_index_locators.assign_vector(
+    secure_locator_prp_vector(old_index_locators.get_vector())
+)
+new_index_valid.assign_vector(index_valid.get_vector())
+
+
+# Two independently challenged multiset fingerprints verify that every
+# semantic index element is present with the right locator, block, and bucket.
+challenge_1 = sint.get_random_int(60).reveal() + 101
+challenge_2 = sint.get_random_int(60).reveal() + 211
+alpha_1 = cint(1_000_003)
+beta_1 = cint(1_000_033)
+alpha_2 = cint(1_000_037)
+beta_2 = cint(1_000_081)
+
+expected_factors_1 = []
+expected_factors_2 = []
+for row in range(N_RECORDS):
+    locator = new_db_locators[row]
+    for block in range(N_BLOCKS):
+        bucket = root_bucket_value(roots[row], block)
+        expected_factors_1.append(
+            challenge_1 - (locator + alpha_1 * block + beta_1 * bucket)
+        )
+        expected_factors_2.append(
+            challenge_2 - (locator + alpha_2 * block + beta_2 * bucket)
+        )
+
+actual_factors_1 = []
+actual_factors_2 = []
+for position in range(N_INDEX_SLOTS):
+    bucket_address = position // BUCKET_CAPACITY
+    block = bucket_address // BUCKET_VALUES
+    bucket = bucket_address % BUCKET_VALUES
+    locator = new_index_locators[position]
+    valid = new_index_valid[position]
+    actual_factors_1.append(
+        valid * (
+            challenge_1 - (locator + alpha_1 * block + beta_1 * bucket)
+        ) + (1 - valid)
+    )
+    actual_factors_2.append(
+        valid * (
+            challenge_2 - (locator + alpha_2 * block + beta_2 * bucket)
+        ) + (1 - valid)
+    )
+
+relation_ok = (
+    (product_tree(expected_factors_1) == product_tree(actual_factors_1))
+    * (product_tree(expected_factors_2) == product_tree(actual_factors_2))
+)
+
+
+# Atomic state selection. A failed relation check retains the old state.
+committed_db_locators = sint.Array(N_RECORDS)
+committed_index_locators = sint.Array(N_INDEX_SLOTS)
+committed_index_valid = sint.Array(N_INDEX_SLOTS)
+
+for row in range(N_RECORDS):
+    committed_db_locators[row] = relation_ok.if_else(
+        new_db_locators[row], old_db_locators[row]
+    )
+
+for position in range(N_INDEX_SLOTS):
+    committed_index_locators[position] = relation_ok.if_else(
+        new_index_locators[position], old_index_locators[position]
+    )
+    committed_index_valid[position] = relation_ok.if_else(
+        new_index_valid[position], index_valid[position]
+    )
+
+committed_db_locators.write_to_file()
+committed_index_locators.write_to_file()
+committed_index_valid.write_to_file()
+
+
+# Closed-set 1:N identification over the same roots. The decision is released
+# only when the transition relation is valid.
+best_distance = sint(ROOT_BITS + 1)
+best_label = sint(-1)
+best_tie_tag = sint(2 ** 31 - 1)
+
+for row in range(N_RECORDS):
+    distance = secure_hamming(roots[row], probe)
+    strictly_closer = distance < best_distance
+    equal_distance = distance == best_distance
+    smaller_tie_tag = tie_tags[row] < best_tie_tag
+    better = strictly_closer + equal_distance * smaller_tie_tag
+
+    best_distance = better.if_else(distance, best_distance)
+    best_label = better.if_else(labels[row], best_label)
+    best_tie_tag = better.if_else(tie_tags[row], best_tie_tag)
+
+accepted = relation_ok * (best_distance <= ACCEPT_THRESHOLD)
+opened_relation_ok = relation_ok.reveal()
+opened_accept = accepted.reveal()
+opened_decision = accepted.if_else(best_label, sint(-1)).reveal()
+
+stop_timer(7)
+
+print_ln(
+    "SLE_MPC_RESULT mode=integrated n=%s root_bits=%s locator_bits=%s "
+    "relation_ok=%s accepted=%s identity=%s",
+    N_RECORDS,
+    ROOT_BITS,
+    LOCATOR_BITS,
+    opened_relation_ok,
+    opened_accept,
+    opened_decision,
+)
+print_ln(
+    "SLE_MPC_PRIVATE roots=not_opened distances=not_opened "
+    "locators=not_opened key=not_opened mapping=not_materialized"
+)

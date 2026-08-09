@@ -1,0 +1,16 @@
+criterion,value,threshold,passed
+Real 128-identity Rank-1 remains useful,0.8515625,>= 0.80,True
+Accepted epochs preserve every decision,1.0,== 1.0,True
+All controlled relation faults are handled correctly,1.0,== 1.0,True
+Static positive control detected at N=32,1.0,== 1.0,True
+SLE effective learned AUC near random at N=32,0.5012472173219085,<= 0.55,True
+SLE/private-join effective AUC gap at N=32,0.0006292527721772911,<= 0.03,True
+SLE global linking near chance at N=32,0.032552083333333336,<= 0.0612,True
+Static positive control detected at N=64,1.0,== 1.0,True
+SLE effective learned AUC near random at N=64,0.504011882802166,<= 0.55,True
+SLE/private-join effective AUC gap at N=64,0.0038463128306878147,<= 0.03,True
+SLE global linking near chance at N=64,0.016276041666666668,<= 0.0456,True
+Static positive control detected at N=128,1.0,== 1.0,True
+SLE effective learned AUC near random at N=128,0.503460595238553,<= 0.55,True
+SLE/private-join effective AUC gap at N=128,0.0020408430124519983,<= 0.03,True
+SLE global linking near chance at N=128,0.009635416666666667,<= 0.0378,True

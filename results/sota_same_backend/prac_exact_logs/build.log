@@ -1,0 +1,1 @@
+g++ -ggdb -o prac prac.o mpcio.o preproc.o online.o mpcops.o rdpf.o cdpf.o duoram.o cell.o bst.o avl.o heap.o heapsampler.o -lbsd -lboost_system -lboost_context -lboost_chrono -lboost_thread -lpthread

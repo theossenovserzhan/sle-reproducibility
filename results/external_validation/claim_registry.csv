@@ -1,0 +1,7 @@
+claim_id,status,supported_wording,evidence,forbidden_overclaim
+C1,supported,Biometric utility was evaluated on 2 datasets with 20 randomized gallery/probe assignments; the lower mean Rank-1 was 0.851.,biometric_external_summary.csv,The method generalizes to all biometric domains.
+C2,supported,SLE retained near-random held-out linkability under the tested observable-token attacks.,validated_security_reference.csv,SLE is cryptographically unlinkable against every adversary.
+C3,supported,"Under the measured five-party MP-SPDZ configuration, SLE reduced transition runtime and communication relative to Secret Pointer Join.",joint_efficiency_unlinkability_comparison.csv,SLE is universally faster on every network and MPC backend.
+C4,supported,The maximum effective-AUC gap from Secret Pointer Join was 0.0038 under the evaluated attacker.,joint_efficiency_unlinkability_comparison.csv,SLE provides stronger cryptographic security than Secret Pointer Join.
+C5,supported,"With no persistent bucket signature exposed, mean metadata-attack AUC was 0.503; leakage increased rapidly when metadata was revealed.",validated_bucket_ablation_reference.csv,Public bucket metadata is safe.
+C6,supported,The current backend and experiments support a passive-threshold empirical claim.,threat_model.csv; security_assumptions.csv,Fault injection establishes malicious MPC security.

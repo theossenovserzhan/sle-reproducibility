@@ -1,0 +1,23 @@
+{
+  "seed": 20260721,
+  "dataset": "flwrlabs/celeba",
+  "real_identities": 128,
+  "images_per_identity": 6,
+  "gallery_images_per_identity": 2,
+  "probe_images": 512,
+  "embedding_bits": 512,
+  "security_N_values": [
+    32,
+    64,
+    128
+  ],
+  "training_runs": 5,
+  "held_out_run_clusters": 15,
+  "epochs": 20,
+  "test_transitions_per_run": 8,
+  "attacker_feature_count": 204,
+  "cluster_bootstrap_samples": 3000,
+  "rank1": 0.8515625,
+  "all_empirical_criteria_passed": true,
+  "claim_boundary": "Empirical unlinkability under observable locator tokens. No security claim after root, key, or persistent metadata compromise."
+}

@@ -1,0 +1,90 @@
+"""
+Real MPC baseline for binary 1:N biometric identification.
+
+Player 0 supplies the enrolled binary roots, identity labels, and stable
+tie-breaking tags. Player 1 supplies one binary probe. All values become
+secret shares on input. The five computing parties evaluate every Hamming
+distance and the complete ArgMin without reconstructing a root, a distance,
+or an intermediate comparison. Only the final identity/reject decision is
+opened.
+
+Compile-time arguments:
+    sle_full_scan <n_records> <root_bits> <accept_threshold>
+"""
+
+program.use_edabit(True)
+program.set_bit_length(64)
+
+if len(program.args) != 4:
+    raise CompilerError(
+        "Usage: sle_full_scan <n_records> <root_bits> <accept_threshold>"
+    )
+
+N_RECORDS = int(program.args[1])
+ROOT_BITS = int(program.args[2])
+ACCEPT_THRESHOLD = int(program.args[3])
+
+if N_RECORDS < 2:
+    raise CompilerError("n_records must be at least two")
+if ROOT_BITS < 8:
+    raise CompilerError("root_bits must be at least eight")
+if not 0 <= ACCEPT_THRESHOLD <= ROOT_BITS:
+    raise CompilerError("accept_threshold must be in [0, root_bits]")
+
+
+# The database owner inputs one label, one stable tie tag, and ROOT_BITS
+# binary values for every enrolled record. These arrays hold secret shares.
+labels = sint.Array(N_RECORDS)
+tie_tags = sint.Array(N_RECORDS)
+gallery = sint.Matrix(N_RECORDS, ROOT_BITS)
+
+labels.input_from(0)
+tie_tags.input_from(0)
+gallery.input_from(0)
+
+# The probe owner is independent from the database owner. Input conversion
+# secret-shares the probe among the computing parties.
+probe = sint.Array(ROOT_BITS)
+probe.input_from(1)
+
+
+def secure_hamming(enrolled, query):
+    """Hamming distance for secret binary values in an arithmetic field."""
+
+    # For bits a,b, XOR(a,b) = a + b - 2ab. Every multiplication is handled
+    # by the selected MP-SPDZ protocol and does not open either bit.
+    return sum(
+        enrolled[j] + query[j] - 2 * enrolled[j] * query[j]
+        for j in range(ROOT_BITS)
+    )
+
+
+start_timer(1)
+
+# ROOT_BITS + 1 is larger than every valid distance. Tie tags make the result
+# deterministic if two gallery entries have equal distance to the probe.
+best_distance = sint(ROOT_BITS + 1)
+best_label = sint(-1)
+best_tie_tag = sint(2 ** 31 - 1)
+
+for row in range(N_RECORDS):
+    distance = secure_hamming(gallery[row], probe)
+    strictly_closer = distance < best_distance
+    equal_distance = distance == best_distance
+    smaller_tie_tag = tie_tags[row] < best_tie_tag
+    better = strictly_closer + equal_distance * smaller_tie_tag
+
+    best_distance = better.if_else(distance, best_distance)
+    best_label = better.if_else(labels[row], best_label)
+    best_tie_tag = better.if_else(tie_tags[row], best_tie_tag)
+
+accepted = best_distance <= ACCEPT_THRESHOLD
+opened_decision = accepted.if_else(best_label, sint(-1)).reveal()
+opened_accept = accepted.reveal()
+
+stop_timer(1)
+
+print_ln("SLE_MPC_RESULT mode=full_scan accepted=%s identity=%s",
+         opened_accept, opened_decision)
+print_ln("SLE_MPC_PRIVATE distance=not_opened roots=not_opened")
+

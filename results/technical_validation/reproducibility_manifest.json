@@ -1,0 +1,75 @@
+{
+  "generated_at_utc": "2026-08-05T06:48:45.920445+00:00",
+  "run_profile": "paper",
+  "mp_spdz_commit": "9d809599ea6ce627216a389ca7d984fbb75d0cb9",
+  "players": 5,
+  "threshold": 2,
+  "biometric_configuration": {
+    "n": 128,
+    "root_bits": 512,
+    "locator_bits": 64,
+    "block_bits": 4,
+    "capacity": 35,
+    "padded_slots": 71680
+  },
+  "scaling_n": [
+    8,
+    16,
+    32,
+    64,
+    128
+  ],
+  "scaling_repeats": 3,
+  "locator_widths": [
+    32,
+    64
+  ],
+  "wan_status": {
+    "empirical": true,
+    "validated": false,
+    "backend": "userspace_logical_message_delay",
+    "configured_delay_ms": 20,
+    "netem_one_way_delay_ms": null,
+    "userspace_logical_message_delay_ms": 20,
+    "measured_ping_rtt_ms": null,
+    "wall_slowdown_by_method": {
+      "pointer_join": 76.153322431285,
+      "sle": 53.40893723586058
+    },
+    "pointer_join_over_sle_local": 3.062096862198994,
+    "pointer_join_over_sle_wan": 4.366101662593936,
+    "all_relations_pass": true,
+    "repeats_complete": true,
+    "traffic_delay_verified": false,
+    "wall_delay_effect_observed": true,
+    "local_order": [
+      "sle",
+      "pointer_join"
+    ],
+    "wan_order": [
+      "sle",
+      "pointer_join"
+    ],
+    "ordering_preserved": true,
+    "netem_message": "RTNETLINK answers: Operation not permitted"
+  },
+  "checks": {
+    "integrated_uses_128_identities": true,
+    "integrated_uses_512bit_roots": true,
+    "integrated_uses_64bit_locators": true,
+    "all_integrated_relations_pass": true,
+    "all_mpc_decisions_match_plain": true,
+    "transition_table_contains_n128": true,
+    "n128_contains_both_methods": true,
+    "realistic_64bit_locator_point_present": true,
+    "wan_is_empirical": true,
+    "wan_transport_delay_verified": false,
+    "wan_wall_time_increased": true,
+    "wan_repeats_complete": true,
+    "wan_all_relations_pass": true,
+    "wan_method_order_preserved": true,
+    "wan_point_fully_validated": false,
+    "not_synthetic_biometric_data": true
+  },
+  "claim_boundary": "The WAN point is a controlled single-host userspace_logical_message_delay experiment evaluated with end-to-end wall-clock time; it is not a geographically distributed deployment. The N-scaling rows isolate the verified transition contract and are not cross-paper SOTA query timings."
+}

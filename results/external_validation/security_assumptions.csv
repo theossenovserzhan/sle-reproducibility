@@ -1,0 +1,8 @@
+id,assumption
+A1,F is a secure PRP under a fresh hidden epoch key.
+A2,MPC privacy holds within the stated corruption threshold.
+A3,ORAM hides data-dependent index access patterns.
+A4,Candidate state is committed before fingerprint challenges.
+A5,Tuple encoding is injective in the selected field.
+A6,Epoch commit is atomic; rejected updates preserve old state.
+A7,"Roots, full keys, and persistent bucket signatures are not exposed."

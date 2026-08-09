@@ -1,0 +1,17 @@
+check,passed
+integrated_uses_128_identities,True
+integrated_uses_512bit_roots,True
+integrated_uses_64bit_locators,True
+all_integrated_relations_pass,True
+all_mpc_decisions_match_plain,True
+transition_table_contains_n128,True
+n128_contains_both_methods,True
+realistic_64bit_locator_point_present,True
+wan_is_empirical,True
+wan_transport_delay_verified,False
+wan_wall_time_increased,True
+wan_repeats_complete,True
+wan_all_relations_pass,True
+wan_method_order_preserved,True
+wan_point_fully_validated,False
+not_synthetic_biometric_data,True

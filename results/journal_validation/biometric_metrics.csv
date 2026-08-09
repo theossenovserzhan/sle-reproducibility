@@ -1,0 +1,2 @@
+identities,gallery_images_per_identity,probe_images,rank1,rank1_ci_low,rank1_ci_high,rank5,verification_eer,eer_threshold,tar_at_far_1e-2,tar_at_far_1e-3
+128,2,512,0.8515625,0.80859375,0.892578125,0.9375,0.04790538877952756,0.60546875,0.8828125,0.72265625

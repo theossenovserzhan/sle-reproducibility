@@ -1,0 +1,17 @@
+Running /content/MP-SPDZ/Scripts/../shamir-party.x 0 sle_integrated_transition_match-128-512-4-35-43-512-64 -T 2 -pn 16784 -h localhost -N 5
+Running /content/MP-SPDZ/Scripts/../shamir-party.x 1 sle_integrated_transition_match-128-512-4-35-43-512-64 -T 2 -pn 16784 -h localhost -N 5
+Running /content/MP-SPDZ/Scripts/../shamir-party.x 2 sle_integrated_transition_match-128-512-4-35-43-512-64 -T 2 -pn 16784 -h localhost -N 5
+Running /content/MP-SPDZ/Scripts/../shamir-party.x 3 sle_integrated_transition_match-128-512-4-35-43-512-64 -T 2 -pn 16784 -h localhost -N 5
+Running /content/MP-SPDZ/Scripts/../shamir-party.x 4 sle_integrated_transition_match-128-512-4-35-43-512-64 -T 2 -pn 16784 -h localhost -N 5
+Trying to run 128-bit computation (128-bit representation)
+Starting timer 7 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 1.944e-05
+Stopped timer 7 at 57.1787 (353.138 MB, 147145 rounds, 44.3152 CPU seconds)
+SLE_MPC_RESULT mode=integrated n=128 root_bits=512 locator_bits=64 relation_ok=1 accepted=1 identity=1
+SLE_MPC_PRIVATE roots=not_opened distances=not_opened locators=not_opened key=not_opened mapping=not_materialized
+Significant amount of unused dabits of Shamir gfp distorting the benchmark. For more accurate benchmarks, consider reducing the batch size with --batch-size.
+The following benchmarks are including preprocessing (offline phase).
+Time = 57.3012 seconds 
+Time7 = 57.1787 seconds (353.138 MB, 147145 rounds, 44.3152 CPU seconds)
+Data sent = 359.835 MB in ~147359 rounds (party 0 only; use '-v' for more details)
+Global data sent = 1772.05 MB (all parties)
+This protocol doesn't scale well with the number of parties, have you considered using ATLAS instead?

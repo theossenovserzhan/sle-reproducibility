@@ -1,0 +1,196 @@
+"""
+MPC implementation of one Synchronized Locator Evolution transition.
+
+All five parties contribute to the epoch key. The complete key is never an
+input of one server. A MiMC-style field PRP evolves every database and index
+copy of a locator. A random-challenge multiset fingerprint checks the hidden
+(locator, block, bucket) relation before the new state is selected. Only the
+accept/reject bit is opened; committed locators are written as secret shares.
+
+Compile-time arguments:
+    sle_transition <n_records> <root_bits> <block_bits>
+                   <bucket_capacity> <epoch> <fault_mode>
+
+fault_mode: 0 clean, 1 drop first valid index entry,
+            2 corrupt first valid locator, 3 corrupt first bucket relation.
+"""
+
+program.use_edabit(True)
+program.set_bit_length(64)
+
+if len(program.args) != 7:
+    raise CompilerError(
+        "Usage: sle_transition <n_records> <root_bits> <block_bits> "
+        "<bucket_capacity> <epoch> <fault_mode>"
+    )
+
+N_RECORDS = int(program.args[1])
+ROOT_BITS = int(program.args[2])
+BLOCK_BITS = int(program.args[3])
+BUCKET_CAPACITY = int(program.args[4])
+NEW_EPOCH = int(program.args[5])
+FAULT_MODE = int(program.args[6])
+
+if ROOT_BITS % BLOCK_BITS != 0:
+    raise CompilerError("root_bits must be divisible by block_bits")
+if FAULT_MODE not in (0, 1, 2, 3):
+    raise CompilerError("fault_mode must be 0, 1, 2, or 3")
+
+N_BLOCKS = ROOT_BITS // BLOCK_BITS
+BUCKET_VALUES = 2 ** BLOCK_BITS
+N_BUCKETS = N_BLOCKS * BUCKET_VALUES
+N_INDEX_SLOTS = N_BUCKETS * BUCKET_CAPACITY
+MIMC_ROUNDS = 73
+
+
+old_db_locators = sint.Array(N_RECORDS)
+roots = sint.Matrix(N_RECORDS, ROOT_BITS)
+old_index_locators = sint.Array(N_INDEX_SLOTS)
+index_valid = sint.Array(N_INDEX_SLOTS)
+
+old_db_locators.input_from(0)
+roots.input_from(0)
+old_index_locators.input_from(0)
+index_valid.input_from(0)
+
+# No single party supplies the complete epoch key. Security holds as long as
+# at least one contribution remains unknown to the adversary.
+epoch_key = sint(0)
+for party in range(5):
+    epoch_key += sint.get_input_from(party)
+
+
+# Deterministic public round constants. They are not keys and can be included
+# in the paper/implementation. MiMC computations remain over secret shares.
+MIMC_CONSTANTS = [
+    int.from_bytes(
+        __import__("hashlib").sha256(
+            ("SLE-MiMC-round-%d" % round_no).encode()
+        ).digest()[:8],
+        "big",
+    )
+    for round_no in range(MIMC_ROUNDS)
+]
+
+
+def secure_locator_prp(value):
+    """Keyed MiMC-style permutation evaluated without opening key or input."""
+
+    x = value + NEW_EPOCH
+    for constant in MIMC_CONSTANTS:
+        x = (x + epoch_key + constant) ** 3
+    return x + epoch_key
+
+
+def root_bucket_value(root, block):
+    value = sint(0)
+    for bit in range(BLOCK_BITS):
+        value += root[block * BLOCK_BITS + bit] * (2 ** bit)
+    return value
+
+
+start_timer(3)
+
+new_db_locators = sint.Array(N_RECORDS)
+new_index_locators = sint.Array(N_INDEX_SLOTS)
+new_index_valid = sint.Array(N_INDEX_SLOTS)
+
+for row in range(N_RECORDS):
+    new_db_locators[row] = secure_locator_prp(old_db_locators[row])
+
+for position in range(N_INDEX_SLOTS):
+    new_index_locators[position] = secure_locator_prp(
+        old_index_locators[position]
+    )
+    new_index_valid[position] = index_valid[position]
+
+
+# Controlled active faults validate that the hidden relation, not merely the
+# record count, is checked before commit.
+if FAULT_MODE == 1:
+    new_index_valid[0] = sint(0)
+elif FAULT_MODE == 2:
+    new_index_locators[0] = new_index_locators[0] + 1
+elif FAULT_MODE == 3:
+    # Move the semantic element to a different public bucket by swapping two
+    # locator values while retaining the original valid flags.
+    temporary = new_index_locators[0]
+    new_index_locators[0] = new_index_locators[BUCKET_CAPACITY]
+    new_index_locators[BUCKET_CAPACITY] = temporary
+
+
+# The challenge is revealed only after all protected candidate values exist.
+# It reveals no database value. Two independent fingerprints reduce accidental
+# algebraic collisions in this executable prototype.
+challenge_1 = sint.get_random_int(60).reveal() + 101
+challenge_2 = sint.get_random_int(60).reveal() + 211
+alpha_1 = cint(1_000_003)
+beta_1 = cint(1_000_033)
+alpha_2 = cint(1_000_037)
+beta_2 = cint(1_000_081)
+
+expected_1 = sint(1)
+expected_2 = sint(1)
+
+for row in range(N_RECORDS):
+    locator = new_db_locators[row]
+    for block in range(N_BLOCKS):
+        bucket = root_bucket_value(roots[row], block)
+        element_1 = locator + alpha_1 * block + beta_1 * bucket
+        element_2 = locator + alpha_2 * block + beta_2 * bucket
+        expected_1 *= challenge_1 - element_1
+        expected_2 *= challenge_2 - element_2
+
+actual_1 = sint(1)
+actual_2 = sint(1)
+
+for position in range(N_INDEX_SLOTS):
+    bucket_address = position // BUCKET_CAPACITY
+    block = bucket_address // BUCKET_VALUES
+    bucket = bucket_address % BUCKET_VALUES
+    locator = new_index_locators[position]
+    valid = new_index_valid[position]
+
+    element_1 = locator + alpha_1 * block + beta_1 * bucket
+    element_2 = locator + alpha_2 * block + beta_2 * bucket
+    factor_1 = valid * (challenge_1 - element_1) + (1 - valid)
+    factor_2 = valid * (challenge_2 - element_2) + (1 - valid)
+    actual_1 *= factor_1
+    actual_2 *= factor_2
+
+relation_ok = (expected_1 == actual_1) * (expected_2 == actual_2)
+
+# Atomic selection happens while values remain shared. A rejected transition
+# writes the old state; an accepted transition writes the evolved state.
+committed_db_locators = sint.Array(N_RECORDS)
+committed_index_locators = sint.Array(N_INDEX_SLOTS)
+committed_index_valid = sint.Array(N_INDEX_SLOTS)
+
+for row in range(N_RECORDS):
+    committed_db_locators[row] = relation_ok.if_else(
+        new_db_locators[row], old_db_locators[row]
+    )
+
+for position in range(N_INDEX_SLOTS):
+    committed_index_locators[position] = relation_ok.if_else(
+        new_index_locators[position], old_index_locators[position]
+    )
+    committed_index_valid[position] = relation_ok.if_else(
+        new_index_valid[position], index_valid[position]
+    )
+
+# MP-SPDZ writes each party's share, not a reconstructed locator. The files can
+# be loaded by a later MPC epoch without ever assembling the protected state.
+committed_db_locators.write_to_file()
+committed_index_locators.write_to_file()
+committed_index_valid.write_to_file()
+
+opened_relation_ok = relation_ok.reveal()
+
+stop_timer(3)
+
+print_ln("SLE_MPC_RESULT mode=transition epoch=%s relation_ok=%s fault=%s",
+         NEW_EPOCH, opened_relation_ok, FAULT_MODE)
+print_ln("SLE_MPC_PRIVATE key=not_opened locators=not_opened "
+         "mapping=not_materialized")
+

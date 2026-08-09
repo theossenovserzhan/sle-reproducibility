@@ -1,0 +1,47 @@
+# Python and notebook state
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.venv/
+venv/
+
+# Local datasets and biometric intermediates
+data/
+datasets/
+*.npz
+*.npy
+*.pt
+*.pth
+*.ckpt
+
+# MP-SPDZ generated state and builds
+Player-Data/
+Programs/Bytecode/
+Programs/Schedules/
+Programs/Public-Input/
+Programs/Private-Input/
+Programs/Memory-Data/
+*.bc
+*.sch
+
+# Downloaded third-party artifacts and local experiment scratch
+external_artifacts/
+vendor/
+tmp/
+outputs/
+*.zip
+
+# Credentials and local configuration
+.env
+.env.*
+*.pem
+*.key
+credentials*.json
+kaggle.json
+
+# Editors and operating systems
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+

@@ -1,0 +1,62 @@
+===== DEPENDENT UPDATES =====
+10 messages sent
+11340 message bytes sent
+115 Lamport clock (latencies)
+20532 local AES operations
+234 milliseconds wall clock time
+{240000000;0;0} nanoseconds {real;user;system}
+Mem: 6016 KiB
+
+===== DEPENDENT READS =====
+20 messages sent
+11420 message bytes sent
+115 Lamport clock (latencies)
+20544 local AES operations
+404 milliseconds wall clock time
+{400000000;10000000;0} nanoseconds {real;user;system}
+Mem: 6016 KiB
+
+===== INDEPENDENT READS =====
+4 messages sent
+11420 message bytes sent
+23 Lamport clock (latencies)
+20540 local AES operations
+98 milliseconds wall clock time
+{100000000;0;0} nanoseconds {real;user;system}
+Mem: 6784 KiB
+
+===== INDEPENDENT UPDATES =====
+2 messages sent
+11340 message bytes sent
+23 Lamport clock (latencies)
+20544 local AES operations
+96 milliseconds wall clock time
+{100000000;0;0} nanoseconds {real;user;system}
+Mem: 6800 KiB
+
+===== DEPENDENT WRITES =====
+20 messages sent
+11420 message bytes sent
+125 Lamport clock (latencies)
+41096 local AES operations
+235 milliseconds wall clock time
+{230000000;10000000;10000000} nanoseconds {real;user;system}
+Mem: 6800 KiB
+
+===== DEPENDENT INTERLEAVED =====
+40 messages sent
+22840 message bytes sent
+240 Lamport clock (latencies)
+61614 local AES operations
+661 milliseconds wall clock time
+{660000000;10000000;0} nanoseconds {real;user;system}
+Mem: 6800 KiB
+
+0 messages sent
+0 message bytes sent
+0 Lamport clock (latencies)
+0 local AES operations
+0 milliseconds wall clock time
+{0;0;0} nanoseconds {real;user;system}
+Mem: 6800 KiB
+Precomputed values used: T0 r10:35

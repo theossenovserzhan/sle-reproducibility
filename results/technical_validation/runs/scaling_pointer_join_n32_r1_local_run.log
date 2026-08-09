@@ -1,0 +1,18 @@
+Running /content/MP-SPDZ/Scripts/../shamir-party.x 0 sle_pointer_join_transition-32-32-4-6-43 -T 2 -pn 10493 -h localhost -N 5
+Running /content/MP-SPDZ/Scripts/../shamir-party.x 1 sle_pointer_join_transition-32-32-4-6-43 -T 2 -pn 10493 -h localhost -N 5
+Running /content/MP-SPDZ/Scripts/../shamir-party.x 2 sle_pointer_join_transition-32-32-4-6-43 -T 2 -pn 10493 -h localhost -N 5
+Running /content/MP-SPDZ/Scripts/../shamir-party.x 3 sle_pointer_join_transition-32-32-4-6-43 -T 2 -pn 10493 -h localhost -N 5
+Running /content/MP-SPDZ/Scripts/../shamir-party.x 4 sle_pointer_join_transition-32-32-4-6-43 -T 2 -pn 10493 -h localhost -N 5
+Trying to run 128-bit computation (128-bit representation)
+Starting timer 4 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 1.972e-05
+Stopped timer 4 at 6.30622 (51.804 MB, 11932 rounds, 5.29552 CPU seconds)
+SLE_MPC_RESULT mode=pointer_join epoch=43 relation_ok=1
+SLE_MPC_PRIVATE key=not_opened locators=not_opened pointer_map=not_opened
+Significant amount of unused edaBits of size 40. For more accurate benchmarks, consider reducing the batch size with --batch-size.
+Significant amount of unused edaBits of size 64. For more accurate benchmarks, consider reducing the batch size with --batch-size.
+The following benchmarks are including preprocessing (offline phase).
+Time = 6.30951 seconds 
+Time4 = 6.30622 seconds (51.804 MB, 11932 rounds, 5.29552 CPU seconds)
+Data sent = 51.8869 MB in ~11937 rounds (party 0 only; use '-v' for more details)
+Global data sent = 232.338 MB (all parties)
+This protocol doesn't scale well with the number of parties, have you considered using ATLAS instead?

@@ -1,0 +1,55 @@
+Default bit length for compilation: 64
+Default security parameter for compilation: 40
+Compiling file Programs/Source/sle_pointer_join_transition.mpc
+Changed bit length for comparisons etc. to 64
+Compiled 100000 lines at Wed Aug  5 06:35:24 2026
+Compiled 200000 lines at Wed Aug  5 06:35:26 2026
+Compiled 300000 lines at Wed Aug  5 06:35:28 2026
+Compiled 400000 lines at Wed Aug  5 06:35:30 2026
+Compiled 500000 lines at Wed Aug  5 06:35:33 2026
+Compiled 600000 lines at Wed Aug  5 06:35:35 2026
+Compiled 700000 lines at Wed Aug  5 06:35:37 2026
+Compiled 800000 lines at Wed Aug  5 06:35:40 2026
+Compiled 900000 lines at Wed Aug  5 06:35:41 2026
+Compiled 1000000 lines at Wed Aug  5 06:35:44 2026
+Compiled 1100000 lines at Wed Aug  5 06:35:46 2026
+Compiled 1200000 lines at Wed Aug  5 06:35:49 2026
+Compiled 1300000 lines at Wed Aug  5 06:35:51 2026
+Compiled 1400000 lines at Wed Aug  5 06:35:52 2026
+Compiled 1500000 lines at Wed Aug  5 06:35:55 2026
+Compiled 1600000 lines at Wed Aug  5 06:35:57 2026
+Compiled 1700000 lines at Wed Aug  5 06:35:59 2026
+Compiled 1800000 lines at Wed Aug  5 06:36:02 2026
+Compiled 1900000 lines at Wed Aug  5 06:36:04 2026
+Processed dependency of 1000000/2180960 instructions at Wed Aug  5 06:36:31 2026
+Processed dependency of 2000000/2180960 instructions at Wed Aug  5 06:36:41 2026
+Merging instructions...
+Topological sort ...
+Done at Wed Aug  5 06:36:50 2026
+Writing to Programs/Bytecode/sle_pointer_join_transition-128-32-4-14-43-EQZ(128)_64-1.bc
+Writing to Programs/Bytecode/sle_pointer_join_transition-128-32-4-14-43-EQZ(130)_64-3.bc
+Compiled 2000000 lines at Wed Aug  5 06:36:52 2026
+Compiled 2100000 lines at Wed Aug  5 06:36:52 2026
+Writing to Programs/Bytecode/sle_pointer_join_transition-128-32-4-14-43-EQZ(2)_64-4.bc
+Compiled 2200000 lines at Wed Aug  5 06:36:59 2026
+Compiled 2300000 lines at Wed Aug  5 06:37:12 2026
+Compiled 2400000 lines at Wed Aug  5 06:37:31 2026
+Writing to Programs/Schedules/sle_pointer_join_transition-128-32-4-14-43.sch
+Writing to Programs/Bytecode/sle_pointer_join_transition-128-32-4-14-43-0.bc
+Hash: 179c000be30348627c0a6e3b4b6ff1edad897dcc03160177018fff52bc34ed29
+Program requires at most:
+        7809 integer inputs from player 0
+           1 integer inputs from player 1
+           1 integer inputs from player 2
+           1 integer inputs from player 3
+           1 integer inputs from player 4
+      268157 integer triples
+      268157 integer simple multiplications
+      232962 strict edabits of length 40
+      232962 strict edabits of length 64
+      232965 integer opens
+    14676606 bit triples
+      232962 integer dabits
+       43016 bit opens
+        1794 strict edabits of length 60
+       23626 virtual machine rounds

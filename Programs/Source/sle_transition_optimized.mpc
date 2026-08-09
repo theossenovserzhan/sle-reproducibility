@@ -1,0 +1,206 @@
+"""
+Round-optimized MPC implementation of one SLE epoch transition.
+
+The semantics match sle_transition.mpc:
+  * five parties jointly contribute the epoch key;
+  * database and index copies evolve without opening a locator;
+  * the hidden (locator, block, bucket) relation is checked twice;
+  * only relation_ok is opened and state selection is atomic.
+
+The implementation changes two performance details only. First, all locator
+copies are evaluated as register vectors, so independent PRP instances are
+batched across the same 73 sequential rounds. Second, multiset fingerprints
+use a balanced product tree instead of one long dependency chain.
+
+Compile-time arguments:
+    sle_transition_optimized <n_records> <root_bits> <block_bits>
+                             <bucket_capacity> <epoch> <fault_mode>
+"""
+
+from Compiler.library import tree_reduce
+
+program.use_edabit(True)
+program.set_bit_length(64)
+
+if len(program.args) != 7:
+    raise CompilerError(
+        "Usage: sle_transition_optimized <n_records> <root_bits> "
+        "<block_bits> <bucket_capacity> <epoch> <fault_mode>"
+    )
+
+N_RECORDS = int(program.args[1])
+ROOT_BITS = int(program.args[2])
+BLOCK_BITS = int(program.args[3])
+BUCKET_CAPACITY = int(program.args[4])
+NEW_EPOCH = int(program.args[5])
+FAULT_MODE = int(program.args[6])
+
+if N_RECORDS < 2:
+    raise CompilerError("n_records must be at least two")
+if ROOT_BITS % BLOCK_BITS != 0:
+    raise CompilerError("root_bits must be divisible by block_bits")
+if FAULT_MODE not in (0, 1, 2, 3):
+    raise CompilerError("fault_mode must be 0, 1, 2, or 3")
+
+N_BLOCKS = ROOT_BITS // BLOCK_BITS
+BUCKET_VALUES = 2 ** BLOCK_BITS
+N_BUCKETS = N_BLOCKS * BUCKET_VALUES
+N_INDEX_SLOTS = N_BUCKETS * BUCKET_CAPACITY
+MIMC_ROUNDS = 73
+
+
+old_db_locators = sint.Array(N_RECORDS)
+roots = sint.Matrix(N_RECORDS, ROOT_BITS)
+old_index_locators = sint.Array(N_INDEX_SLOTS)
+index_valid = sint.Array(N_INDEX_SLOTS)
+
+old_db_locators.input_from(0)
+roots.input_from(0)
+old_index_locators.input_from(0)
+index_valid.input_from(0)
+
+# The complete epoch key is never supplied by one party.
+epoch_key = sint(0)
+for party in range(5):
+    epoch_key += sint.get_input_from(party)
+
+MIMC_CONSTANTS = [
+    int.from_bytes(
+        __import__("hashlib").sha256(
+            ("SLE-MiMC-round-%d" % round_no).encode()
+        ).digest()[:8],
+        "big",
+    )
+    for round_no in range(MIMC_ROUNDS)
+]
+
+
+def secure_locator_prp_vector(values):
+    """Evaluate independent locator transitions in one vectorized circuit."""
+
+    x = values + NEW_EPOCH
+    for constant in MIMC_CONSTANTS:
+        x = (x + epoch_key + constant) ** 3
+    return x + epoch_key
+
+
+def root_bucket_value(root, block):
+    value = sint(0)
+    for bit in range(BLOCK_BITS):
+        value += root[block * BLOCK_BITS + bit] * (2 ** bit)
+    return value
+
+
+def product_tree(factors):
+    """Multiply factors with logarithmic dependency depth."""
+
+    if not factors:
+        return sint(1)
+    return tree_reduce(lambda left, right: left * right, factors)
+
+
+start_timer(3)
+
+new_db_locators = sint.Array(N_RECORDS)
+new_index_locators = sint.Array(N_INDEX_SLOTS)
+new_index_valid = sint.Array(N_INDEX_SLOTS)
+
+new_db_locators.assign_vector(
+    secure_locator_prp_vector(old_db_locators.get_vector())
+)
+new_index_locators.assign_vector(
+    secure_locator_prp_vector(old_index_locators.get_vector())
+)
+new_index_valid.assign_vector(index_valid.get_vector())
+
+# These controlled faults test the relation gate. They are public test modes,
+# not a claim of active security for the passive Shamir backend.
+if FAULT_MODE == 1:
+    new_index_valid[0] = sint(0)
+elif FAULT_MODE == 2:
+    new_index_locators[0] = new_index_locators[0] + 1
+elif FAULT_MODE == 3:
+    temporary = new_index_locators[0]
+    new_index_locators[0] = new_index_locators[BUCKET_CAPACITY]
+    new_index_locators[BUCKET_CAPACITY] = temporary
+
+
+# Two public challenges are sampled after candidate values have been formed.
+challenge_1 = sint.get_random_int(60).reveal() + 101
+challenge_2 = sint.get_random_int(60).reveal() + 211
+alpha_1 = cint(1_000_003)
+beta_1 = cint(1_000_033)
+alpha_2 = cint(1_000_037)
+beta_2 = cint(1_000_081)
+
+expected_factors_1 = []
+expected_factors_2 = []
+for row in range(N_RECORDS):
+    locator = new_db_locators[row]
+    for block in range(N_BLOCKS):
+        bucket = root_bucket_value(roots[row], block)
+        element_1 = locator + alpha_1 * block + beta_1 * bucket
+        element_2 = locator + alpha_2 * block + beta_2 * bucket
+        expected_factors_1.append(challenge_1 - element_1)
+        expected_factors_2.append(challenge_2 - element_2)
+
+actual_factors_1 = []
+actual_factors_2 = []
+for position in range(N_INDEX_SLOTS):
+    bucket_address = position // BUCKET_CAPACITY
+    block = bucket_address // BUCKET_VALUES
+    bucket = bucket_address % BUCKET_VALUES
+    locator = new_index_locators[position]
+    valid = new_index_valid[position]
+
+    element_1 = locator + alpha_1 * block + beta_1 * bucket
+    element_2 = locator + alpha_2 * block + beta_2 * bucket
+    actual_factors_1.append(
+        valid * (challenge_1 - element_1) + (1 - valid)
+    )
+    actual_factors_2.append(
+        valid * (challenge_2 - element_2) + (1 - valid)
+    )
+
+expected_1 = product_tree(expected_factors_1)
+expected_2 = product_tree(expected_factors_2)
+actual_1 = product_tree(actual_factors_1)
+actual_2 = product_tree(actual_factors_2)
+relation_ok = (expected_1 == actual_1) * (expected_2 == actual_2)
+
+
+# A failed transition preserves the old shared state.
+committed_db_locators = sint.Array(N_RECORDS)
+committed_index_locators = sint.Array(N_INDEX_SLOTS)
+committed_index_valid = sint.Array(N_INDEX_SLOTS)
+
+for row in range(N_RECORDS):
+    committed_db_locators[row] = relation_ok.if_else(
+        new_db_locators[row], old_db_locators[row]
+    )
+
+for position in range(N_INDEX_SLOTS):
+    committed_index_locators[position] = relation_ok.if_else(
+        new_index_locators[position], old_index_locators[position]
+    )
+    committed_index_valid[position] = relation_ok.if_else(
+        new_index_valid[position], index_valid[position]
+    )
+
+committed_db_locators.write_to_file()
+committed_index_locators.write_to_file()
+committed_index_valid.write_to_file()
+
+opened_relation_ok = relation_ok.reveal()
+stop_timer(3)
+
+print_ln(
+    "SLE_MPC_RESULT mode=transition_optimized epoch=%s relation_ok=%s fault=%s",
+    NEW_EPOCH,
+    opened_relation_ok,
+    FAULT_MODE,
+)
+print_ln(
+    "SLE_MPC_PRIVATE key=not_opened locators=not_opened "
+    "mapping=not_materialized"
+)
