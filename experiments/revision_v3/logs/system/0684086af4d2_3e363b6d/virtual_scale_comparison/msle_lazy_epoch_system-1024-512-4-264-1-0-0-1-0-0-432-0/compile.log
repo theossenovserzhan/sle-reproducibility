@@ -1,0 +1,42 @@
+{"argv": ["python3", "compile.py", "-P", "340282366920938463463374607431764574209", "-b", "64", "-M", "msle_lazy_epoch_system", "1024", "512", "4", "264", "1", "0", "0", "1", "0", "0", "432", "0"], "cwd": "/home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8"}
+WARNING: --prime/-P activates code that usually isn't the most efficient variant. Consider using --field/-F and set the prime only during the actual computation.
+Default bit length for compilation: 126
+Default security parameter for compilation: 40
+Compiling file Programs/Source/msle_lazy_epoch_system.mpc
+Changed bit length for comparisons etc. to 64
+Changed statistical security for comparison etc. to 80
+Compiled 100000 lines at Fri Oct 30 16:07:58 2026
+Compiled 200000 lines at Fri Oct 30 16:08:00 2026
+Compiled 300000 lines at Fri Oct 30 16:08:01 2026
+Compiled 400000 lines at Fri Oct 30 16:08:03 2026
+Compiled 500000 lines at Fri Oct 30 16:08:04 2026
+Compiled 600000 lines at Fri Oct 30 16:08:06 2026
+Compiled 700000 lines at Fri Oct 30 16:08:08 2026
+Compiled 800000 lines at Fri Oct 30 16:08:10 2026
+Compiled 900000 lines at Fri Oct 30 16:08:10 2026
+Compiled 1000000 lines at Fri Oct 30 16:08:12 2026
+Compiled 1100000 lines at Fri Oct 30 16:08:15 2026
+Compiled 1200000 lines at Fri Oct 30 16:08:15 2026
+Compiled 1300000 lines at Fri Oct 30 16:08:17 2026
+Compiled 1400000 lines at Fri Oct 30 16:08:18 2026
+Writing to Programs/Schedules/msle_lazy_epoch_system-1024-512-4-264-1-0-0-1-0-0-432-0.sch
+Writing to Programs/Bytecode/msle_lazy_epoch_system-1024-512-4-264-1-0-0-1-0-0-432-0-0.bc
+Hash: 5c9df2554e273088ba24cf97ab1e42f9518f11783668d75de0ab6637f90fcd0f
+Program requires at most:
+    23140380 integer inputs from player 0
+    21531676 integer inputs from player 1
+     1608731 integer inputs from player 2
+     1608731 integer inputs from player 3
+     1608731 integer inputs from player 4
+    60013029 integer triples
+    10655195 integer simple multiplications
+           6 integer randoms
+       16395 integer opens
+         inf bit inverses
+           1 integer shuffle generations
+           1 integer shuffle applications
+       16384 strict edabits of length 128
+    10420224 bit triples
+     2097152 integer dabits
+      262144 bit opens
+      200501 virtual machine rounds

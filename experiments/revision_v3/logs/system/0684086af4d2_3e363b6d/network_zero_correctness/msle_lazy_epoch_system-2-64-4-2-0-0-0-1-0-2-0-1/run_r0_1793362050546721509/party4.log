@@ -1,0 +1,61 @@
+Trying to run 128-bit computation (128-bit representation)
+Starting timer 30 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 3.9137e-05
+Starting timer 11 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 2.047e-05
+Starting timer 12 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 1.1441e-05
+Stopped timer 12 at 4.2463e-05 (0 MB, 0 rounds, 4.5648e-05 CPU seconds)
+Starting timer 13 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 1.0469e-05
+Stopped timer 13 at 2.14319 (0.110896 MB, 976 rounds, 0.746174 CPU seconds)
+Starting timer 14 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 1.3563e-05
+Stopped timer 14 at 0.960528 (0.201536 MB, 512 rounds, 0.34493 CPU seconds)
+Starting timer 15 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 1.6765e-05
+Stopped timer 15 at 0.37489 (0.064576 MB, 250 rounds, 0.137447 CPU seconds)
+Starting timer 16 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 3.9808e-05
+Stopped timer 16 at 0.0625404 (0.043968 MB, 107 rounds, 0.0316873 CPU seconds)
+Stopped timer 11 at 3.55696 (0.420976 MB, 1845 rounds, 1.26182 CPU seconds)
+Starting timer 20 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 0.000127739
+Starting timer 21 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 1.9618e-05
+Stopped timer 21 at 0.450794 (0.072816 MB, 354 rounds, 0.16947 CPU seconds)
+Starting timer 22 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 1.3889e-05
+Stopped timer 22 at 0.661218 (0.019548 MB, 329 rounds, 0.244816 CPU seconds)
+Stopped timer 20 at 1.1192 (0.092364 MB, 683 rounds, 0.415062 CPU seconds)
+Stopped timer 30 at 4.78189 (0.514954 MB, 2584 rounds, 1.70832 CPU seconds)
+Significant amount of unused dabits of Shamir gfp distorting the benchmark. For more accurate benchmarks, consider reducing the batch size with --batch-size.
+The following benchmarks are including preprocessing (offline phase).
+Time = 4.80895 seconds 
+Time11 = 3.55696 seconds (0.420976 MB, 1845 rounds, 1.26182 CPU seconds)
+Time12 = 4.2463e-05 seconds (0 MB, 0 rounds, 4.5648e-05 CPU seconds)
+Time13 = 2.14319 seconds (0.110896 MB, 976 rounds, 0.746174 CPU seconds)
+Time14 = 0.960528 seconds (0.201536 MB, 512 rounds, 0.34493 CPU seconds)
+Time15 = 0.37489 seconds (0.064576 MB, 250 rounds, 0.137447 CPU seconds)
+Time16 = 0.0625404 seconds (0.043968 MB, 107 rounds, 0.0316873 CPU seconds)
+Time20 = 1.1192 seconds (0.092364 MB, 683 rounds, 0.415062 CPU seconds)
+Time21 = 0.450794 seconds (0.072816 MB, 354 rounds, 0.16947 CPU seconds)
+Time22 = 0.661218 seconds (0.019548 MB, 329 rounds, 0.244816 CPU seconds)
+Time30 = 4.78189 seconds (0.514954 MB, 2584 rounds, 1.70832 CPU seconds)
+Data sent = 0.514954 MB in ~2585 rounds (party 4 only; use '-v' for more details)
+Global data sent = 2.79406 MB (all parties)
+This virtual machine was compiled with GCC. Recompile with 'CXX = clang++' in 'CONFIG.mine' for optimal performance.
+This protocol doesn't scale well with the number of parties, have you considered using ATLAS instead?
+	Command being timed: "/home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8/shamir-party.x 4 msle_lazy_epoch_system-2-64-4-2-0-0-0-1-0-2-0-1 --prime 340282366920938463463374607431764574209 -N 5 -T 2 -ip /mnt/c/Users/ossen/OneDrive/Documents/SmartCity/TBIOM_revision_experiments_2026-10-29/revision_v3/logs/system/0684086af4d2_3e363b6d/network_zero_correctness/msle_lazy_epoch_system-2-64-4-2-0-0-0-1-0-2-0-1/run_r0_1793362050546721509/hosts_P4.txt -pn 43491"
+	User time (seconds): 0.78
+	System time (seconds): 1.17
+	Percent of CPU this job got: 35%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:05.47
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 25332
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 6647
+	Voluntary context switches: 36431
+	Involuntary context switches: 988
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 0
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

@@ -1,0 +1,11 @@
+{
+  "script_sha256": "e03192a79157eacfb9b073c67db3c7ad3bf884ac3fe75a8344a0f9abaa68bd75",
+  "source_summaries": [
+    "868c7c787849b3623b2f3c91a7c1db2db92043c40bf3d603407617cc58f5ae8b",
+    "8120595826da4e70bf3500e3ce874d2118fa8d4817d42c2dd9de1b972ec07c70"
+  ],
+  "paired_summary_sha256": "143f41a911847e28a7038202d3c2f501e1a03814963bba26079f8ab0854574d4",
+  "matplotlib": "3.10.7",
+  "new_recognition_scores_computed": false,
+  "figure_sha256": "d098d849bcbbf3051000725bc245197f928963bf1da9ce2aa9fff3055a1ea708"
+}

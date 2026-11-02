@@ -1,0 +1,235 @@
+\documentclass[journal]{IEEEtran}
+\usepackage{iftex}
+\ifPDFTeX
+\usepackage[T1]{fontenc}\usepackage[utf8]{inputenc}
+\else
+\usepackage{fontspec}\setmainfont{Times New Roman}\setsansfont{Arial}\setmonofont{Courier New}
+\fi
+\usepackage{cite,amsmath,amssymb,amsthm,graphicx,booktabs,array,tabularx,xspace,url}
+\usepackage[hidelinks]{hyperref}
+\newcommand{\MSLE}{\textsc{M-SLE}\xspace}
+\newcommand{\HD}{\operatorname{HD}}
+\newcommand{\Adv}{\operatorname{Adv}}
+\newcommand{\rowdivider}{\specialrule{0.25pt}{0.35ex}{0.35ex}}
+\newtheorem{proposition}{Proposition}
+\newtheorem{theorem}{Theorem}
+\begin{document}
+\title{Masked Synchronized Locator Evolution for Re-Keyable Private Face Identification}
+\author{Beibut Amirgaliyev,~\IEEEmembership{Member,~IEEE}, and Serzhan Ossenov,~\IEEEmembership{Member,~IEEE}%
+\thanks{The authors are with the Research and Innovation Center Smart City, Astana IT University, Astana 010000, Kazakhstan (e-mail: beibut.amirgaliyev@astanait.edu.kz; 255351@astanait.edu.kz).}%
+\thanks{Serzhan Ossenov is the corresponding author.}}
+\markboth{IEEE Transactions on Biometrics, Behavior, and Identity Science, 2026}{Amirgaliyev and Ossenov: Masked Synchronized Locator Evolution}
+\maketitle
+\begin{abstract}
+Renewing a protected biometric template also requires preserving its association with a private index. Masked Synchronized Locator Evolution couples binary-template masking with a verified transaction over protected templates, references and epoch secrets. The transaction jointly checks old/new template binding and decoded template-index consistency; counterexamples show why both checks are needed. Hamming scores are exact over the same candidates; candidate completeness is handled by a strict certificate and exhaustive fallback. A virtual-locator representation keeps secret logical handles stable while renewing their shares and the epoch-dependent template protection, reducing unnecessary permutation evaluations on padded index copies. In five-party local MPC, complete re-keying at 512 records decreases from 140.2 to 67.6 seconds and global communication from 9.78 to 2.58 GB; query cost does not share this improvement. Real persisted-share experiments, a conventional AES-CTR construction and shared-root controls expose the costs and limits of the lifecycle contract. Paired utility evaluation retains 128 query identities across nested LFW galleries up to 4096. A second frontend with two fixed public 512-bit projections improves mean Rank-1 from 93.67\% to 97.09\% at unchanged code width; model, alignment and coding change together. The contribution is a condition-scoped lifecycle construction and reproducible evaluation, not a new cipher, general post-compromise guarantee or sublinear encrypted-search algorithm.
+\end{abstract}
+\begin{IEEEkeywords}
+Biometric template protection, private face identification, key rotation, secure multi-party computation, private index, unlinkability.
+\end{IEEEkeywords}
+
+\section{Introduction}\label{sec:intro}
+An encrypted or secret-shared face database must remain usable when its protection keys change. Updating only the template can leave a stale private index; updating only the index can retain a stable protected biometric object. We study the joint transition of a binary template, redundant semantic locator copies and their hidden relation. The intended operation is a key-epoch change without requesting another face sample.
+
+Our motivating leakage example concerns a gallery exposed as protected values. XORing every root with one epoch-wide mask changes individual values but preserves every pairwise Hamming distance. A row can therefore be described by its sorted distances to the other rows. Matching these signatures across shuffled epochs can recover correspondence even when direct old/new similarity is uninformative. Identity-conditioned masks remove this common isometry. This observation is about exposed protected values; ordinary Shamir sharing already hides raw roots against a below-threshold adversary.
+
+\MSLE stores $\mathbf c_i^e=\mathbf b_i\oplus G(K_e,\ell_i^e)$ and masks each probe separately for each compared identity. Its central requirement is \emph{faithful renewal}: the accepted templates must encode the previously enrolled roots, and the new private index must represent exactly those decoded roots. A valid new template/index relation alone is insufficient. A coupled root-bit and bucket mutation preserves that relation while changing the enrolled biometric content; conversely, correct template renewal does not detect an omitted index occurrence. The proposed transaction checks both obligations before selecting the complete epoch. These counterexamples isolate the role of the joint invariant. Cipher renewal, referential integrity and their generic MPC composition are established tools; the contribution is their explicit biometric-state specification, necessity witnesses and measured implementation. Table~\ref{tab:joint_ablation} makes the distinction executable.
+
+The paper contributes (i) an explicit template-binding and index-relation invariant with necessity witnesses; (ii) materialized and virtual-locator implementations under stated hidden-metadata assumptions; (iii) complete private-query and persisted-state measurements against shared roots, oblivious sort/merge and a conventional cipher; and (iv) paired biometric, retrieval and calibration evidence for two frontends. The fixed-scan backend does not provide sublinear query time.
+
+\section{Related Work and Simpler Alternatives}\label{sec:related}
+FaceNet and VGGFace2 provide the evaluated embedding frontend~\cite{schroff2015facenet,cao2018vggface2}. Cancelable and protected representations include PolyProtect, learned non-linkable representations and stable hashes for preselection~\cite{hahn2022polyprotect,pinto2021securetriplet,osorioroig2022stablehash}; broader surveys emphasize separate utility, irreversibility and unlinkability criteria~\cite{krivokuca2023survey}. Their transformation and reissuance mechanisms differ. We do not infer an absence of re-keying merely because a method does not implement our joint index transaction.
+
+Private identification systems protect matching through cryptographic computation~\cite{franz2009privacyface,osadchy2010scifi}. HERS compresses learned representations and searches encrypted galleries using homomorphic encryption~\cite{engelsma2022hers}. It is an important scalable encrypted-search reference, with a different numeric representation, key architecture and workload. Its reported large-gallery throughput is not a comparable baseline for a five-party verified epoch transition. We compare functionalities and assumptions, not unrelated runtime numbers.
+
+Updatable encryption explicitly supports ciphertext renewal without decrypting data at the updating server; Lehmann and Tackmann formalize post-compromise and forward security with update tokens~\cite{lehmann2018updatable}. Thus protected-to-protected renewal itself is established functionality. Our secret-key, clean-snapshot statement is not their post-compromise guarantee. Conventional randomized encryption can also store renewable templates; MPC can decrypt, compare and re-encrypt transiently while synchronizing the same index. We make no impossibility or superiority claim against this design.
+
+Updatable tokenization already preserves references across key changes~\cite{cachin2017tokenization}; MUSES delegates private keyword-index re-encryption to distributed servers~\cite{le2024muses}. Protected biometric indexing~\cite{drozdowski2021fusion} and packed preselection~\cite{xin2026pfip} also precede our implementation. Pura supplies threshold-encrypted matching~\cite{xu2025pura}, CryptoFace additionally encrypts feature extraction~\cite{ao2025cryptoface}, and BioZKFHE verifies outsourced similarity against malicious compute~\cite{xin2026biozkfhe}. Our passive consistency checks do not supply that public-proof guarantee. These interfaces motivate a precise lifecycle comparison rather than a first-private-recognition claim.
+
+MPC, Shamir sharing, proactive refresh, shuffles, ORAM and private joins supply the required components~\cite{shamir1979share,keller2020mpspdz,herzberg1995proactive,stefanov2013pathoram,mohassel2020joins}. We evaluate an \emph{unmasked shared-root baseline} with synchronized locator evolution, relation fingerprints and joint state selection. This internal, unpublished implementation is included in the reproducibility artifact. Table~\ref{tab:extension} compares its state and operations with the materialized masked reference.
+\begin{table}[t]
+\caption{Unmasked shared-root baseline and the materialized masked reference. The virtual representation is specified separately.}
+\label{tab:extension}\centering\small
+\renewcommand{\arraystretch}{1.04}
+\begin{tabularx}{\columnwidth}{>{\raggedright\arraybackslash}p{.25\columnwidth}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}
+\toprule Component & Unmasked baseline & \MSLE \\
+\midrule Persistent root & $[\mathbf b_i]$ & $[\mathbf c_i^e]$ \\ \rowdivider
+Epoch secrets & locator key & locator key and independent mask keys \\ \rowdivider
+Locator evolution & synchronized permutation & same permutation on independent copies \\ \rowdivider
+Relation invariant & root-index tuples & proposed decoded template-index tuples \\ \rowdivider
+Renewal binding & stable root & verify old/new template equation \\ \rowdivider
+Commit/refresh & root/index state & includes template and mask-key bundle \\ \rowdivider
+Query & root Hamming & candidate-conditioned Hamming \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+The strongest simple comparison is shared raw roots with proactive refresh under the same five-party threshold. It already hides roots, metadata and transcripts and can support the same index transaction. \MSLE removes raw roots from persistent logical state and additionally protects \emph{exposed masked values while mask keys remain secret}. The mask layer is standard locator-conditioned PRF encryption at the value level. Its benefit matters only when such exposure is in scope; it does not strengthen below-threshold MPC privacy. We measure its extra cost against this baseline.
+
+\section{State, Adversary and Concrete Construction}\label{sec:state}
+Five parties use degree-two Shamir sharing over $\mathbb F_p$; any three shares reconstruct. The evaluated MP-SPDZ backend is passive~\cite{keller2020mpspdz}. The proof assumes at most two corrupt parties, private authenticated channels, and correct protocol execution. Fault injection tests application-level consistency, not malicious MPC security.
+
+For a normalized embedding $\mathbf z$, the binary root is $b_j=\mathbf1[z_j\ge0]$. A gallery root is the sign of the mean of two embeddings. A row contains shared locator $\ell_i$, masked root $\mathbf c_i$, identity label and a unique stable tie tag. Tie tags remain attached to identities during shuffling. The index holds a validity bit and independent locator copy in each padded slot. A root has $B=d/w$ blocks; bucket $(g,v)$ contains the locators whose block $g$ equals $v$. All dimensions and public capacities are disclosed. Enrollment rejects insufficient capacity and requires distinct locators; it never silently truncates buckets.
+
+The clean-snapshot adversary may see unordered masked-value sets. It does not receive mask keys, locators, label mappings, stable row identifiers or index bucket contents. Query outputs and accept/reject bits can themselves reveal identity information; unlinkability is claimed only for snapshot assignments consistent with the \emph{same allowed leakage}, not for arbitrary identity-revealing interactions. A complete key/locator/template compromise recovers the root. A secret locator with an exposed mask key is \emph{not} covered by our PRF argument.
+
+Secure initial sharing is assumed. In the executable storage experiment, an external trusted fixture prepares a valid protected state and gives each computing party one degree-two Shamir evaluation per field. The parties privately input these evaluations, interpolate inside MPC and store fresh state shares. The fixture knows the initial public-test roots and keys and is outside the party-corruption model. Subsequent transitions and queries load each party's own share file; plaintext database, index and old keys are not resupplied to a computing party.
+
+For an external query client, each probe bit and the threshold are independently degree-two shared; each server receives only one evaluation. To return the result only to the client, it also shares a fresh uniform $R\in\mathbb F_p$. The circuit opens $y+R$, where $y$ is the identity or $-1$, and the client subtracts $R$. Acceptance is not separately opened. This standard additive pad hides the outcome from the computing parties under passive MPC and private channels. The client is honest and supplies valid bits; diagnostic runs with trusted correctness-oracle inputs are excluded from this privacy statement.
+
+\begin{table}[t]
+\caption{Executable parameters. Full constants and vectors are released.}
+\label{tab:parameters}\centering\small
+\renewcommand{\arraystretch}{1.04}
+\begin{tabularx}{\columnwidth}{>{\raggedright\arraybackslash}p{.33\columnwidth}>{\raggedright\arraybackslash}X}
+\toprule Item & Value \\
+\midrule Field & $p=2^{128}-3637247$, prime \\ \rowdivider
+Permutation & cubic MiMC, 81 rounds; $\gcd(3,p-1)=1$ \\ \rowdivider
+Round constants & $c_0=0$; SHAKE rejection-sampled constants \\ \rowdivider
+Epoch keys & nine independent uniform elements of $\mathbb F_p$ \\ \rowdivider
+Key generation & sum of five independent full-field contributions per key \\ \rowdivider
+512-bit mask & eight independent keyed permutations, low 64 bits of each output \\ \rowdivider
+Bit extraction & canonical 128-bit known-prime decomposition \\ \rowdivider
+Relation challenges & two independent $(r,\alpha,\beta)\in\mathbb F_p^3$ \\ \rowdivider
+MPC parameters & five parties, threshold two; statistical parameter 80 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+MiMC follows the cubic construction of Albrecht et al.~\cite{albrecht2016mimc}. In each round $x\leftarrow(x+k+c_j)^3$; the output adds $k$. The invertible cubing map makes the full circuit a permutation. The round count is at least $\lceil\log_3 p\rceil$. For locator evolution use key $k_0$; for mask word $h$ use independent key $k_h$, $1\le h\le8$, at the locator input. Independence avoids an unstated related-key or additive-domain-separation assumption. We assume this concrete keyed permutation is secure; the round formula and 128-bit field alone are not a security proof. The separate SHAKE-256 lifecycle simulation uses its released domain string and key/locator serialization and requires a corresponding secret-key pseudorandomness assumption. Its timings are never used as MPC performance.
+
+\section{Protocol and Exactness}\label{sec:protocol}
+\subsection{Matching and Candidate Retrieval}\label{sec:retrieval}
+For a probe $\mathbf q$ and candidate $i$, compute
+\begin{equation}
+\mathbf q_i^e=\mathbf q\oplus G(K_e,\ell_i^e),\qquad
+d_i=\HD(\mathbf c_i^e,\mathbf q_i^e).
+\end{equation}
+\begin{proposition}[Same-candidate exactness]\label{prop:exact}
+For every fixed candidate set, protected and binary-root scores coincide. Rankings and threshold decisions coincide when the same stable tie tags are used.
+\end{proposition}
+\begin{proof}
+For every bit, $(b\oplus m)\oplus(q\oplus m)=b\oplus q$. Summation preserves Hamming distance. Deterministic selection uses identical scores and tie tags.
+\end{proof}
+This proposition does not establish retrieval recall or equality with float recognition.
+
+For each query block, select its bucket, union all valid locators and remove duplicates. The actual private reference circuit computes secret one-hot bucket flags, scans \emph{every padded slot}, compares full-field locators with every gallery locator and ORs matches. Retrieval costs $O(NM)$ full-field comparisons for $M$ slots. Candidate identities and candidate count stay secret. It scores the full gallery on the same public schedule and selects between candidate and exhaustive winners with a secret multiplexer. Consequently, a data-dependent fallback does not expose a change of memory trace or work. This construction is expensive but concrete; a faster ORAM-based implementation is not claimed.
+
+\begin{proposition}[Certified exhaustive agreement]\label{prop:certificate}
+If the index relation is complete and capacity is sufficient, an omitted record has Hamming distance at least $B$. The candidate winner is therefore also the exhaustive winner if its distance is strictly less than $B$, or if all records were retrieved. Otherwise use exhaustive fallback.
+\end{proposition}
+\begin{proof}
+An omitted root differs from the probe in at least one bit in every block. Its distance is at least $B$. A candidate distance strictly below $B$ excludes both a better omitted record and an omitted tie. Exhaustive fallback handles the other cases.
+\end{proof}
+The strict inequality is needed for ties. The CPU retrieval study additionally records queried-overflow fallback for deliberately undersized indices; the secure backend instead rejects such enrollment. Main closed-set biometric comparisons use exhaustive search. Candidate recall and agreement are separate measurements.
+
+\subsection{Complete-Matcher Controls}\label{sec:matcher}
+The reference computes all Hamming distances on a fixed schedule. A strong complete-matcher control can therefore form candidate flags directly from the already computed mismatch bits $z_{i,j}=b_{i,j}\oplus q_j$:
+\[
+a_i=1-\prod_g\left(1-\prod_{j\in g}(1-z_{i,j})\right).
+\]
+For a valid index relation, $a_i$ equals membership in the union of selected buckets. This fused construction and a full exact scan are mandatory controls for an optimized index lookup. Our polynomial support-lookup variant is useful as a separate index operator, but its acceleration over repeated field equality does not establish acceleration of complete identification.
+
+\subsection{Verified Epoch Transition}\label{sec:transition}
+Let independent fresh epoch keys define
+\begin{align}
+\ell_i'&=\Pi_{k_0'}(\ell_i),\\
+\mathbf c_i'&=\mathbf c_i\oplus G(K_e,\ell_i)\oplus G(K_{e+1},\ell_i').\label{eq:renew}
+\end{align}
+Every index locator copy is passed independently through the same permutation. No row-to-row pointer map is needed. The root is not a transition input. It can occur on transient secret wires while deriving bucket membership.
+
+Before commit, verify \emph{both} (a) Eq.~\eqref{eq:renew} for every proposed template bit, and (b) the complete index multiset derived from $\mathbf c_i'\oplus G(K_{e+1},\ell_i')$. This prevents an index-consistent but incorrectly re-keyed template from being accepted. For $x=(\ell,g,v)$ define $E_{\alpha,\beta}(x)=\ell+\alpha g+\beta v$. For each of two independent challenges compare
+\begin{equation}
+\prod_{x\in\mathcal R_{\rm expected}}(r-E_{\alpha,\beta}(x))
+=\prod_{x\in\mathcal R_{\rm proposed}}(r-E_{\alpha,\beta}(x)).
+\end{equation}
+Invalid padded entries contribute one. Full-field equality uses $1-x^{p-1}$, avoiding a bounded-integer equality test on a 128-bit field value. Challenge generation follows candidate fixation.
+
+One secret acceptance bit selects templates, all locator copies, validity bits and the complete key bundle. Failure retains the old \emph{decoded logical state}. The maintenance step can still change shares and row order. Successful selection is logical atomicity inside the circuit; the prototype does not implement distributed crash-atomic publication, quorum recovery or durable rollback across operating-system failures. We do not infer those properties from a file-write instruction.
+
+The parties then shuffle complete database rows, including labels and tie tags, with MP-SPDZ's secret shuffle and refresh every persistent field using independent zero sharings from all parties. The index stays in public bucket/slot positions, with its contents and validity bits secret-shared. Public fixed scans hide which bucket and row is used. All state is written as one logical bundle. A mobile extension requires the proactive-sharing model~\cite{herzberg1995proactive}: at most two distinct corrupted parties per period, with corruption during refresh counted in both adjacent periods, and secure erasure. A bound on concurrent corruptions alone is insufficient. The prototype does not establish composable mobile security or implement operating-system secure erasure. Its refresh and mixed-share tests are functional checks.
+
+\subsection{Virtual-Locator Representation}\label{sec:virtual}
+An alternative stores distinct secret handles $h_i$ and defines semantic locators by $\ell_e(h)=\Pi_{k_e}(h)$. Valid index slots store independent shares of the referenced handle, while $\mathbf c_i^e=\mathbf b_i\oplus G(K_e,\ell_e(h_i))$. Rekeying computes
+\[
+\mathbf c_i'=\mathbf c_i\oplus G(K_e,\ell_e(h_i))\oplus G(K_{e+1},\ell_{e+1}(h_i)).
+\]
+The logical handles remain stable. Since $\Pi$ is injective, the root/index tuple relation checked over handles is equivalent to the relation over their semantic locators. Template binding, proposed-root/index verification, joint state selection, complete-row shuffle, all-field share refresh and persistence writes remain.
+
+Materialized evolution evaluates a permutation on $N+M$ references; the virtual masked implementation derives $2N$ old/new semantic locators. Standalone queries add $N$ locator derivations. This is a different representation and update family, not a physical rewrite of every logical index value. Hidden handles, labels, tie tags and bucket contents are essential. A stale-handle-value injection is a no-op and is excluded from the virtual fault-rejection count.
+
+\section{Security Boundaries}\label{sec:security}
+\begin{theorem}[Secret-key masked snapshots]\label{thm:secret_key}
+Assume secure MPC, hidden mask keys and distinct locator inputs per epoch. If $G$ is a PRF on these inputs, replacing masked templates by independent uniform strings changes the snapshot view by at most the multi-query PRF advantage. With independent keys in different epochs, this also hides cross-epoch assignment except for the explicitly allowed leakage.
+\end{theorem}
+\begin{proof}
+Replace each epoch's keyed mask oracle by a random function. Distinct inputs obtain independent uniform masks. XOR with fixed roots preserves uniformity. Repeat the hybrid independently for each epoch, and simulate the protected MPC transcript under its stated leakage. The remaining unordered sets carry no additional assignment information. Adaptive outputs that reveal labels are part of the leakage and are not erased by this argument.
+\end{proof}
+Exposed keys with hidden locators are outside the theorem. High input entropy does not repair the missing secret-key PRF hypothesis.
+
+For the concrete mask, assume each independent MiMC key yields a secure PRP. At $q_e$ distinct inputs in epoch $e$, switching each of eight permutations to a random function costs at most $q_e(q_e-1)/(2p)$. Uniform $\mathbb F_p$ outputs differ from uniform 128-bit strings in total variation by $\delta/2^{128}$, where $\delta=2^{128}-p$; truncation cannot increase this distance. A conservative mask hybrid bound is
+\begin{equation}
+8\sum_e\left(\Adv_{\Pi,e}^{\rm prp}+\frac{q_e(q_e-1)}{2p}
++\frac{q_e\delta}{2^{128}}\right).
+\end{equation}
+A separate bad event is collision among independently sampled epoch/word keys; for $E$ epochs and nine keys per epoch it is bounded by $\binom{9E}{2}/p$. Thus the field/key width is approximately 128 bits, while multi-user/data bounds and the 80-bit MPC statistical parameter must be stated separately. We do not advertise unconditional 128-bit security for the composed system.
+
+For a fixed unequal tuple multiset, the fingerprint difference is a nonzero polynomial in $(r,\alpha,\beta)$ of degree at most $M$, where $M$ is the padded slot count and $M<p$. Schwartz--Zippel~\cite{schwartz1980fast} bounds false acceptance by $M/p$ per independent check and $(M/p)^2$ for two checks. This is a relation-check bound, not protection against a party that violates the passive MPC protocol. The template-binding test is exact for valid bit inputs.
+
+The global-mask attack follows directly from
+\begin{equation}
+\HD(\mathbf b_i\oplus\mathbf m,\mathbf b_j\oplus\mathbf m)
+=\HD(\mathbf b_i,\mathbf b_j).
+\end{equation}
+Sorted distance signatures remove row-order dependence. Conversely, suppressing this attack does not prove resistance to all auxiliary-information or generative attacks.
+
+\section{Evaluation Protocol}\label{sec:evaluation}
+\subsection{Paired Utility, Rejection and Retrieval}\label{sec:utility_protocol}
+The CelebA evaluation uses two 128-identity cohorts. The fixed-cohort protocol uses two gallery images and four probes per identity, with 512-bit roots; its exhaustive Rank-1/Rank-5 are 0.8515625/0.9375. The portability protocol selects a separate cohort with seed 20260722 and evaluates 20 gallery/probe splits. Paired float/binary comparisons are reported for each cohort separately. The supplement specifies image provenance, cohort overlap and exact binary reproduction checks.
+
+LFW~\cite{huang2007lfw} uses the same 128 evaluation identities, six images each, and 20 frozen two-gallery/four-probe assignments. FaceNet is the released VGGFace2-pretrained InceptionResnetV1. Gallery float means are normalized for cosine matching; the binary gallery is the sign of the same unnormalized mean. All float and binary decisions share images, splits and tie rules. These are custom research protocols, not official LFW benchmark scores or a modern face-recognition leaderboard.
+
+Before extracting additional LFW features, we froze an availability-only partition excluding all 192 identities in the initial evaluation/calibration pilot. Of 5557 remaining identities, 512 calibrate thresholds, a separate 512 supply fresh unenrolled test probes, and 4533 form a nested distractor pool. One image is sampled per additional identity. Gallery sizes are 128, 256, 512, 1024, 2048 and 4096. At larger sizes the same 128 evaluation identities supply probes; extra identities are distractors. We do not claim 4096 independently tested query identities.
+
+Thresholds use the maximum gallery score for each calibration identity, at the matching gallery size. Before extracting the additional features, we froze an empirical 1\% rule permitting five of 512 calibration maxima and a conservative order-statistic rule permitting one, whose one-sided binomial tail is at most 0.05 at 1\%. This was a local prospective protocol manifest, not an external preregistration. Discrete ties are handled conservatively. No threshold is fitted to test unknowns. We report observed FPIR and correct accepted identification (DIR), not the nominal calibration target as achieved performance. The conservative interpretation assumes exchangeable independent calibration and future unknown identities. Dataset selection and population shift limit that interpretation.
+
+Confidence intervals resample identities: 128 enrolled identities for paired Rank-1/DIR and 512 unknown identities for FPIR, after averaging their outcomes over repeated gallery contexts. They condition on the selected calibration pool, gallery contexts and backbone. We do not treat 20 uses of one person as 20 independent people. A separate 32/32 frequent-image-identity pilot is reported, including its higher test FPIR. Retrieval is evaluated on the frozen split with candidate recall, exhaustive decision agreement, capacity, overflow and fallback; it is not confused with recognition accuracy.
+
+We additionally use the fixed OpenCV SFace/YuNet frontend~\cite{opencv2026zoo}. Public Gaussian hyperplane signs~\cite{charikar2002similarity} produce 512, 1024 or 2048 bits, with both seeds retained. A centering mean uses only 565 unused LFW identities, separate from evaluation, calibration, unknowns and used distractors. This is established preprocessing. Changing frontend requires source features or re-enrollment; epoch renewal keeps its selected binary root fixed. No images are excluded; deterministic detection fallback and pretrained-model checksums are reported in the supplement. Cross-dataset and pretrained-training identity overlap are unaudited.
+
+\subsection{Secure System and Baselines}\label{sec:system_protocol}
+The executable configuration is Table~\ref{tab:parameters}. An independent clear implementation checks canonical field arithmetic, permutation outputs, bit extraction, complete renewal and query outcomes. Tests include omission, duplication, wrong bucket, locator corruption, wrong key, stale index, template bit flip and stale template, plus accept/reject threshold controls. Diagnostic correctness runs and timed runs are separate.
+
+Two measurement families remain separate. The input-inclusive reference starts from protected test fixtures; the persisted-state experiment loads actual per-party share files and performs successive re-keying and reload queries. Both include fresh standalone-query masks, Hamming/ArgMin, old/new masks, locator/index transition, relation checks, selection, complete-row shuffle and share refresh; re-keying also writes the selected logical bundle. Trusted-fixture initialization is outside query/re-key timing. Scripts preserve phase timers, total VM/wall time, global traffic and rounds. Peak RSS is the largest child's memory, not a sum over five processes. Logical per-party share payload is reported separately.
+
+The machine is an Intel Core i5-1135G7 (four cores/eight threads), 21.15 GB host RAM, Windows 11 with Ubuntu WSL, MP-SPDZ frozen revision \texttt{9d809599}. Five parties run locally over loopback. These measurements are not a WAN deployment. The compiler uses the explicit prime, 80-bit statistical setting, full-width equality and bounded compilation/vector batches; details and repetitions are in the supplement.
+
+Two baselines use the same state, capacity, keys, verification, shuffle and refresh contract. Shared raw roots remove the mask layer while retaining private computation and root confidentiality. The transition comparator first obliviously compacts the index to its public valid count $NB$, then stable-sorts $N+NB$ rows by all 128 old-locator bits, propagates translations within equal-key groups, and privately restores all padded slots. Perfect-permutation sorting handles restoration without another full radix pass. This avoids sorting the dummy population while preserving the contract. Width and padding match the direct transition. The quadratic join and interrupted uncompacted-sort warmup are excluded from the efficiency conclusion.
+
+\section{Results}\label{sec:results}
+\input{generated_v3_results.tex}
+
+\section{Discussion and Limitations}\label{sec:discussion}
+The experiments separate three questions: does masking preserve a given binary comparison; does the candidate index retrieve enough records; and how much biometric information is lost before protection? Algebra answers the first exactly. Candidate recall, certified fallback and float/binary comparisons answer the others empirically. A cheap-looking candidate union can contain almost the entire gallery, while more selective buckets can lose winners or overflow. The protected fixed-scan fallback restores exhaustive decisions but does not reduce query work.
+
+The substantive distinction is between a \emph{self-consistent new database} and a \emph{faithful renewal of the old enrollment}. The relation fingerprint establishes the former; old/new template binding is also needed for the latter. The coupled substitution in Table~\ref{tab:joint_ablation} would otherwise pass a relation-only checker and produce a wrong secure-query result. The invariant is independent of the chosen masking cipher, as demonstrated by the AES control. Its operational value is an explicit, testable acceptance condition for a complete protected-state update under the stated passive model.
+
+Similarly, a correct transition does not imply a universally preferable representation. Shared roots plus refresh are simpler and already confidential under the same MPC threshold. Conventional encryption and updatable encryption offer established renewal options. The extra masked layer is useful when exposed logical template values must remain pseudorandom while their keys are hidden, and when the joint template/index transaction is the desired system boundary. The current measurements quantify that choice; they do not establish a general advantage over encrypted-search systems.
+
+The prototype uses passive MPC, two frontends and custom public-dataset protocols, with five colocated processes. Public projection hashes do not add cryptographic irreversibility; model, alignment and code-width changes must be evaluated separately from protection. The MiMC security assumption is explicit, not independently proven here. The access-hiding backend uses fixed scans and secret row shuffles, not an efficient ORAM. Logical atomicity does not cover distributed crash recovery. Strong post-compromise encryption security, active-party attacks, demographic performance, modern generative reconstruction and large-scale operational deployment require further work. The 512 unknown test identities do not support claims at FPIR $10^{-3}$ or lower.
+
+\section{Ethical Considerations}\label{sec:ethics}
+Only public research datasets are used under their providers' access conditions. Local caches and derived biometric features remain sensitive and are not automatically redistributed. Template protection does not remove surveillance or exclusion risks; any operational use requires purpose limitation, retention controls and human review for consequential decisions.
+
+\section{Conclusion}\label{sec:conclusion}
+\MSLE specifies and implements a joint renewal invariant for masked binary templates and a private index. A coupled template/index substitution demonstrates why relation consistency and old/new template binding are both required. Virtual locators reduce complete renewal work, including on persisted shares and real galleries up to 1024 records. A second frontend improves recognition at the same 512-bit width, while private input and padded output keep a complete query within the stated passive model. Exactness is conditional on the compared candidate set, and confidentiality requires secret keys and protected metadata. Shared-root, conventional-cipher and full-scan controls make these benefits and costs explicit.
+
+\section*{Conflict of Interest}
+None of the authors have a conflict of interest to disclose.
+
+\section*{Acknowledgment}
+This research has been funded by the Committee of Science of the Ministry of Science and Higher Education of the Republic of Kazakhstan (Grant No. BR24992852, ``Intelligent models and methods of Smart City digital ecosystem for sustainable development and the citizens' quality of life improvement'').
+\section*{Data and Code Availability}
+The accompanying reproducibility archive contains implementation sources, frozen parameters, protocol manifests, image/feature checksums, raw logs and scripts reproducing the reported tables. Related public source materials are at \url{https://github.com/theossenovserzhan/sle-reproducibility}. Face images and locally extracted embeddings are excluded; reproduction obtains source data from their providers.
+\bibliographystyle{IEEEtran}\bibliography{references}
+\input{author_biographies.tex}
+\end{document}

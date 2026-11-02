@@ -1,0 +1,17 @@
+{
+  "audit_mpc_parameters.py": "07785da52606e8f694ff8009022b15056f19a9e38d51049f02e55b89437336c0",
+  "evaluate_feature_index.py": "6cb3ada5fa1019cce2e265a259e23ad0f46b2ed2d019d9da5a78c0d8abfa2f0c",
+  "evaluate_float_binary.py": "a20faf00aca9648b8eb064a980f9327a32f5bbe0c85c37bb98876767535ac84f",
+  "extract_float_features.py": "395a237f200391ab412ad16ddf5b159326903922a895961b63ecbc7c3c3e6eb2",
+  "prepare_mpc.py": "5e4caca86057912052653cd97d0797fb29b10982769c67c72498fbe8063ccf05",
+  "run_experiments.py": "47b1630d5e33b7c0b0e8811cbab9e82e108e3eb1239914de43b0ebb9d16aa9a6",
+  "run_mpc_pilots.py": "77953a654bfcfc395f6cf4d316df0e14b6d730d72b8287e4e8f15a171e36d0eb",
+  "summarize_revision.py": "ce23a7d77bc5529e9298cb34284c67ea78e166057c379f6f6d3477c8219ff11e",
+  "test_experiments.py": "0b60600493ee252239c7f53b88690f0aecabac4dd736773f52c55b5e7ee95956",
+  "protocol.json": "ab192c6f7571a9097a7d6ed949bc30c4fb998cfca12c9e2c4714e0cbd3289753",
+  "hardware.json": "139f05c0641ad622bdff2e97d9b6219ed19e2d5f7a1ce73d891131f39d114f82",
+  "inputs\\celeba_128_binary_roots.npz": "96862a03094d7a92b697e30b8e264dc7d6b000b7a6303512c510c530486f0db1",
+  "inputs\\historical_randomized_splits.csv": "656a1e82afa3480fb54dd6536c016bf36a699726a9c6a97ecf699c4bd8060b23",
+  "legacy_source\\generate_journal_inputs.py": "962c9df800ec45c035c2645ba013ef64f3dcaf3c592e056e6884e25cc5687092",
+  "legacy_source\\msle_integrated_transition_match.mpc": "000797d0353703d112929b830daf217f2bd8f4a3237aa4e1a8014976a511a758"
+}

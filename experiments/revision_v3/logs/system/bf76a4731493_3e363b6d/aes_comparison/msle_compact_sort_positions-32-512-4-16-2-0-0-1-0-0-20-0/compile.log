@@ -1,0 +1,36 @@
+{"argv": ["python3", "compile.py", "-P", "340282366920938463463374607431764574209", "-b", "64", "-M", "msle_compact_sort_positions", "32", "512", "4", "16", "2", "0", "0", "1", "0", "0", "20", "0"], "cwd": "/home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8"}
+WARNING: --prime/-P activates code that usually isn't the most efficient variant. Consider using --field/-F and set the prime only during the actual computation.
+Default bit length for compilation: 126
+Default security parameter for compilation: 40
+Compiling file Programs/Source/msle_compact_sort_positions.mpc
+Changed bit length for comparisons etc. to 64
+Changed statistical security for comparison etc. to 80
+Writing to Programs/Bytecode/msle_compact_sort_positions-32-512-4-16-2-0-0-1-0-0-20-0-EQZ(16)_64-1.bc
+Writing to Programs/Bytecode/msle_compact_sort_positions-32-512-4-16-2-0-0-1-0-0-20-0-LTZ(32)_65-3.bc
+Writing to Programs/Bytecode/msle_compact_sort_positions-32-512-4-16-2-0-0-1-0-0-20-0-EQZ(8)_64-5.bc
+Writing to Programs/Bytecode/msle_compact_sort_positions-32-512-4-16-2-0-0-1-0-0-20-0-LTZ(16)_65-6.bc
+Writing to Programs/Bytecode/msle_compact_sort_positions-32-512-4-16-2-0-0-1-0-0-20-0-EQZ(4)_64-7.bc
+Writing to Programs/Bytecode/msle_compact_sort_positions-32-512-4-16-2-0-0-1-0-0-20-0-LTZ(8)_65-8.bc
+Writing to Programs/Bytecode/msle_compact_sort_positions-32-512-4-16-2-0-0-1-0-0-20-0-EQZ(2)_64-9.bc
+Writing to Programs/Bytecode/msle_compact_sort_positions-32-512-4-16-2-0-0-1-0-0-20-0-LTZ(4)_65-10.bc
+Writing to Programs/Bytecode/msle_compact_sort_positions-32-512-4-16-2-0-0-1-0-0-20-0-EQZ(1)_64-11.bc
+Writing to Programs/Bytecode/msle_compact_sort_positions-32-512-4-16-2-0-0-1-0-0-20-0-LTZ(2)_65-12.bc
+Writing to Programs/Bytecode/msle_compact_sort_positions-32-512-4-16-2-0-0-1-0-0-20-0-LTZ(1)_65-13.bc
+Writing to Programs/Schedules/msle_compact_sort_positions-32-512-4-16-2-0-0-1-0-0-20-0.sch
+Writing to Programs/Bytecode/msle_compact_sort_positions-32-512-4-16-2-0-0-1-0-0-20-0-0.bc
+Hash: f96e45fdd13039e7c4ac4d831d57ed909b5af4b1c585b65e2af6380be35ddb09
+Program requires at most:
+       16489 integer inputs from player 0
+         522 integer inputs from player 1
+           9 integer inputs from player 2
+           9 integer inputs from player 3
+           9 integer inputs from player 4
+       74365 integer triples
+       74365 integer simple multiplications
+         350 strict edabits of length 128
+         355 integer opens
+      194033 bit triples
+       32862 integer dabits
+        8328 bit opens
+          63 strict edabits of length 1
+        1997 virtual machine rounds

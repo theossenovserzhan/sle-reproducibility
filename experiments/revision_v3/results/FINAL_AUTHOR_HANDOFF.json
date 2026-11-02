@@ -1,0 +1,28 @@
+{
+  "ready_for_author_review": true,
+  "not_submitted": true,
+  "checked_utc": "2026-10-30T12:49:02.982666+00:00",
+  "active_experiment_jobs": 0,
+  "required_experiments_remaining": 0,
+  "pdfs": {
+    "main": {
+      "pages": 9,
+      "sha256": "8def2d93aa2223aad596ed80f88c39947e3f100df3e976242d69601a30208140"
+    },
+    "supplement": {
+      "pages": 12,
+      "sha256": "25217b421229a433bd010bec9be76c677482aa03e932a5352ae43eeb292a43de"
+    },
+    "response_to_reviewers": {
+      "pages": 6,
+      "sha256": "7ffa69978e8a04c5d3a3d6e60bb0e9808354c8b4929311b1f84a06954e943105"
+    }
+  },
+  "evidence_checks": 135,
+  "all27pages_visually_reviewed": true,
+  "fresh_extraction_tables_and_response_byte_identical": true,
+  "reviewer_matrix": "results/reviewer_closure_matrix_v3.json",
+  "reading_guide": "README_REPRODUCE_V3.txt",
+  "archive_path": "output/TBIOM_R1_v3_package.zip",
+  "archive_integrity": "See external output/package_manifest.json for final ZIP hash and all-member CRC/SHA verification."
+}

@@ -1,0 +1,42 @@
+{"argv": ["python3", "compile.py", "-P", "340282366920938463463374607431764574209", "-b", "64", "-M", "msle_position_compact_system", "128", "512", "4", "40", "1", "0", "1", "1", "0", "0", "56", "0"], "cwd": "/home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8"}
+WARNING: --prime/-P activates code that usually isn't the most efficient variant. Consider using --field/-F and set the prime only during the actual computation.
+Default bit length for compilation: 126
+Default security parameter for compilation: 40
+Compiling file Programs/Source/msle_position_compact_system.mpc
+Changed bit length for comparisons etc. to 64
+Changed statistical security for comparison etc. to 80
+Writing to Programs/Bytecode/msle_position_compact_system-128-512-4-40-1-0-1-1-0-0-56-0-multithread-1.bc
+Writing to Programs/Bytecode/msle_position_compact_system-128-512-4-40-1-0-1-1-0-0-56-0-multithread-2.bc
+Writing to Programs/Bytecode/msle_position_compact_system-128-512-4-40-1-0-1-1-0-0-56-0-multithread-3.bc
+Writing to Programs/Bytecode/msle_position_compact_system-128-512-4-40-1-0-1-1-0-0-56-0-multithread-4.bc
+Writing to Programs/Bytecode/msle_position_compact_system-128-512-4-40-1-0-1-1-0-0-56-0-multithread-5.bc
+Writing to Programs/Bytecode/msle_position_compact_system-128-512-4-40-1-0-1-1-0-0-56-0-multithread-6.bc
+Writing to Programs/Bytecode/msle_position_compact_system-128-512-4-40-1-0-1-1-0-0-56-0-multithread-7.bc
+Writing to Programs/Bytecode/msle_position_compact_system-128-512-4-40-1-0-1-1-0-0-56-0-multithread-8.bc
+Writing to Programs/Bytecode/msle_position_compact_system-128-512-4-40-1-0-1-1-0-0-56-0-multithread-9.bc
+Compiled 100000 lines at Fri Oct 30 10:23:32 2026
+Compiled 200000 lines at Fri Oct 30 10:23:34 2026
+Compiled 300000 lines at Fri Oct 30 10:23:36 2026
+Writing to Programs/Schedules/msle_position_compact_system-128-512-4-40-1-0-1-1-0-0-56-0.sch
+Writing to Programs/Bytecode/msle_position_compact_system-128-512-4-40-1-0-1-1-0-0-56-0-0.bc
+Hash: efe456f6fc4e464be29caaa649be23327590c8475dfba0ff7b0face9e615cd67
+Program requires at most:
+     6751006 integer inputs from player 0
+     6521246 integer inputs from player 1
+      229787 integer inputs from player 2
+      229787 integer inputs from player 3
+      229787 integer inputs from player 4
+    51036259 integer triples
+     4105285 integer simple multiplications
+         inf bit inverses
+           2 integer shuffle generations
+           4 integer shuffle applications
+       65542 integer randoms
+      165899 integer opens
+           1 integer shuffle generations
+           1 integer shuffle applications
+        2048 strict edabits of length 128
+     1302528 bit triples
+      262144 integer dabits
+       32768 bit opens
+       29583 virtual machine rounds

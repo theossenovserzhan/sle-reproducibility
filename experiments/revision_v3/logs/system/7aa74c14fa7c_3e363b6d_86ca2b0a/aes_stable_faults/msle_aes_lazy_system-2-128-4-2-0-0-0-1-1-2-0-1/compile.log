@@ -1,0 +1,37 @@
+{"argv": ["python3", "compile.py", "-P", "340282366920938463463374607431764574209", "-b", "64", "-M", "msle_aes_lazy_system", "2", "128", "4", "2", "0", "0", "0", "1", "1", "2", "0", "1"], "cwd": "/home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8"}
+WARNING: --prime/-P activates code that usually isn't the most efficient variant. Consider using --field/-F and set the prime only during the actual computation.
+Default bit length for compilation: 126
+Default security parameter for compilation: 40
+Compiling file Programs/Source/msle_aes_lazy_system.mpc
+Changed bit length for comparisons etc. to 64
+Changed statistical security for comparison etc. to 80
+Compiled 100000 lines at Fri Oct 30 11:24:55 2026
+Compiled 200000 lines at Fri Oct 30 11:24:58 2026
+Compiled 300000 lines at Fri Oct 30 11:25:01 2026
+Compiled 400000 lines at Fri Oct 30 11:25:03 2026
+Writing to Programs/Bytecode/msle_aes_lazy_system-2-128-4-2-0-0-0-1-1-2-0-1-EQZ(1)_64-1.bc
+Writing to Programs/Bytecode/msle_aes_lazy_system-2-128-4-2-0-0-0-1-1-2-0-1-LTZ(2)_65-3.bc
+Writing to Programs/Bytecode/msle_aes_lazy_system-2-128-4-2-0-0-0-1-1-2-0-1-LTZ(1)_65-5.bc
+Compiled 500000 lines at Fri Oct 30 11:25:27 2026
+Writing to Programs/Schedules/msle_aes_lazy_system-2-128-4-2-0-0-0-1-1-2-0-1.sch
+Writing to Programs/Bytecode/msle_aes_lazy_system-2-128-4-2-0-0-0-1-1-2-0-1-0.bc
+Hash: efc0b4fe23bb1baff46b7f92222ef288c879fa095a7ef759a892e2f264468102
+Program requires at most:
+        8984 integer inputs from player 0
+        6542 integer inputs from player 1
+        2316 integer inputs from player 2
+        2316 integer inputs from player 3
+        2316 integer inputs from player 4
+          15 strict edabits of length 128
+          26 integer opens
+         396 integer dabits
+        7977 bit triples
+        3152 bit opens
+      434830 integer triples
+      426372 integer simple multiplications
+           6 integer randoms
+         inf bit inverses
+           1 integer shuffle generations
+           1 integer shuffle applications
+           3 strict edabits of length 1
+        2821 virtual machine rounds

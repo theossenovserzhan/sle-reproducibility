@@ -1,0 +1,52 @@
+{"argv": ["/usr/bin/time", "-v", "bash", "Scripts/shamir.sh", "msle_persistent_system-8-512-4-8-2-1-0-1-0-8-0-1", "--prime", "340282366920938463463374607431764574209"], "cwd": "/home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8"}
+Running /home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8/Scripts/../shamir-party.x 0 msle_persistent_system-8-512-4-8-2-1-0-1-0-8-0-1 --prime 340282366920938463463374607431764574209 -T 2 -pn 10259 -h localhost -N 5
+Running /home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8/Scripts/../shamir-party.x 1 msle_persistent_system-8-512-4-8-2-1-0-1-0-8-0-1 --prime 340282366920938463463374607431764574209 -T 2 -pn 10259 -h localhost -N 5
+Running /home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8/Scripts/../shamir-party.x 2 msle_persistent_system-8-512-4-8-2-1-0-1-0-8-0-1 --prime 340282366920938463463374607431764574209 -T 2 -pn 10259 -h localhost -N 5
+Running /home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8/Scripts/../shamir-party.x 3 msle_persistent_system-8-512-4-8-2-1-0-1-0-8-0-1 --prime 340282366920938463463374607431764574209 -T 2 -pn 10259 -h localhost -N 5
+Running /home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8/Scripts/../shamir-party.x 4 msle_persistent_system-8-512-4-8-2-1-0-1-0-8-0-1 --prime 340282366920938463463374607431764574209 -T 2 -pn 10259 -h localhost -N 5
+Trying to run 128-bit computation (128-bit representation)
+Starting timer 30 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 2.8155e-05
+Starting timer 31 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 3.957e-06
+Stopped timer 31 at 0.00690841 (0 MB, 0 rounds, 0.00706944 CPU seconds)
+Starting timer 20 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 1.2132e-05
+Starting timer 21 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 2.767e-06
+Stopped timer 21 at 1.677e-06 (0 MB, 0 rounds, 2.638e-06 CPU seconds)
+Starting timer 22 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 1.873e-06
+Stopped timer 22 at 0.691245 (0.193494 MB, 728 rounds, 0.530346 CPU seconds)
+Stopped timer 20 at 0.691324 (0.193494 MB, 728 rounds, 0.530422 CPU seconds)
+Stopped timer 30 at 0.752611 (0.194696 MB, 768 rounds, 0.563818 CPU seconds)
+MSLE_SYSTEM n=8 d=512 mode=2 protection=1 transition=0 maintenance=1 fault=0 relation=1 accepted=1 identity=24 state_ok=1 query_ok=1
+The following benchmarks are including preprocessing (offline phase).
+Time = 0.7561 seconds 
+Time20 = 0.691324 seconds (0.193494 MB, 728 rounds, 0.530422 CPU seconds)
+Time21 = 1.677e-06 seconds (0 MB, 0 rounds, 2.638e-06 CPU seconds)
+Time22 = 0.691245 seconds (0.193494 MB, 728 rounds, 0.530346 CPU seconds)
+Time30 = 0.752611 seconds (0.194696 MB, 768 rounds, 0.563818 CPU seconds)
+Time31 = 0.00690841 seconds (0 MB, 0 rounds, 0.00706944 CPU seconds)
+Data sent = 0.195016 MB in ~770 rounds (party 0 only; use '-v' for more details)
+Global data sent = 0.970306 MB (all parties)
+This virtual machine was compiled with GCC. Recompile with 'CXX = clang++' in 'CONFIG.mine' for optimal performance.
+This protocol doesn't scale well with the number of parties, have you considered using ATLAS instead?
+	Command being timed: "bash Scripts/shamir.sh msle_persistent_system-8-512-4-8-2-1-0-1-0-8-0-1 --prime 340282366920938463463374607431764574209"
+	User time (seconds): 1.30
+	System time (seconds): 2.63
+	Percent of CPU this job got: 210%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:01.87
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 22688
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 18826
+	Voluntary context switches: 48446
+	Involuntary context switches: 3671
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 0
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

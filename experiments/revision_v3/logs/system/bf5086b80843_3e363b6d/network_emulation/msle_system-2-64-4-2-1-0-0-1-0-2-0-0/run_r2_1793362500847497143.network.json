@@ -1,0 +1,11 @@
+{
+  "requested_added_rtt_ms": 20,
+  "connections": 40,
+  "bytes_relayed": 17011032,
+  "max_direction_queue_bytes": 53493,
+  "backpressure_events": 0,
+  "wall_seconds": 22.516659893000906,
+  "relay_controller_cpu_seconds": 4.396154783000014,
+  "failure": null,
+  "mechanism": "User-space per-direction stream release at arrival+RTT/2; loopback, no bandwidth/loss model"
+}

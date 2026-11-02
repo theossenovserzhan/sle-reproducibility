@@ -1,0 +1,44 @@
+Trying to run 128-bit computation (128-bit representation)
+Starting timer 30 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 2.8323e-05
+Starting timer 20 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 2.2089e-05
+Starting timer 21 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 1.7583e-05
+Stopped timer 21 at 53.6662 (2.14431 MB, 1961 rounds, 1.32001 CPU seconds)
+Starting timer 22 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 1.0181e-05
+Stopped timer 22 at 4.44662 (0.278881 MB, 161 rounds, 0.112791 CPU seconds)
+Stopped timer 20 at 58.1176 (2.42319 MB, 2122 rounds, 1.43357 CPU seconds)
+Stopped timer 30 at 58.1877 (2.42348 MB, 2198 rounds, 1.44051 CPU seconds)
+Significant amount of unused dabits of Shamir gfp distorting the benchmark. For more accurate benchmarks, consider reducing the batch size with --batch-size.
+The following benchmarks are including preprocessing (offline phase).
+Time = 58.2604 seconds 
+Time20 = 58.1176 seconds (2.42319 MB, 2122 rounds, 1.43357 CPU seconds)
+Time21 = 53.6662 seconds (2.14431 MB, 1961 rounds, 1.32001 CPU seconds)
+Time22 = 4.44662 seconds (0.278881 MB, 161 rounds, 0.112791 CPU seconds)
+Time30 = 58.1877 seconds (2.42348 MB, 2198 rounds, 1.44051 CPU seconds)
+Data sent = 2.42356 MB in ~2200 rounds (party 2 only; use '-v' for more details)
+Global data sent = 11.1085 MB (all parties)
+Communication time accounts for more than 95 percent of total time (58.0661 seconds). This might be because of the computation and the network setting, but it could also be product of the optimization trade-off during compilation. See https://mp-spdz.readthedocs.io/en/latest/troubleshooting.html#high-number-of-rounds-or-slow-wan-execution
+This virtual machine was compiled with GCC. Recompile with 'CXX = clang++' in 'CONFIG.mine' for optimal performance.
+This protocol doesn't scale well with the number of parties, have you considered using ATLAS instead?
+	Command being timed: "/home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8/shamir-party.x 2 msle_lazy_epoch_system-8-512-4-8-2-0-0-1-0-8-0-0 --prime 340282366920938463463374607431764574209 -N 5 -T 2 -ip /mnt/c/Users/ossen/OneDrive/Documents/SmartCity/TBIOM_revision_experiments_2026-10-29/revision_v3/logs/system/0684086af4d2_3e363b6d/network_emulation/msle_lazy_epoch_system-8-512-4-8-2-0-0-1-0-8-0-0/run_r1_1793363408770016287/hosts_P2.txt -pn 48847"
+	User time (seconds): 0.76
+	System time (seconds): 0.83
+	Percent of CPU this job got: 2%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 1:03.54
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 28040
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 5644
+	Voluntary context switches: 30988
+	Involuntary context switches: 1114
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 0
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

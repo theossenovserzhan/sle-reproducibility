@@ -1,0 +1,19 @@
+{
+  "created_local_date": "2026-10-30",
+  "status": "frozen before random-hyperplane scores, and before all SFace extraction/metrics",
+  "motivation": "The predefined ITQ study did not improve closed-set rank1. Test whether more independent angular measurements reduce quantization error, while the cheaper transition may compensate for longer codes.",
+  "method": "Public Gaussian random-hyperplane signs; established angular LSH, not a new hashing algorithm",
+  "primary_source": "https://www.cs.princeton.edu/courses/archive/spring04/cos598B/bib/CharikarEstim.pdf",
+  "frontends": ["FaceNet512 development benchmark", "SFace128 subsequent independent frontend on frozen images"],
+  "widths": [512,1024,2048],
+  "public_projection_seeds": [20261030,20261031],
+  "projection_generation": "For each input dimension and seed, generate standard_normal((2048,input_dimension)).T with NumPy default_rng, save the matrix, and use column prefixes. No seed/width chosen by observed test scores.",
+  "center_variants": ["original normalized embedding", "subtract training-only mean from normalized embedding"],
+  "training_rows": "Same untouched565 identities in extended rows4992:, only used to estimate the centering mean",
+  "controls": ["original cosine", "original coordinate signs at the native dimension", "training-centered cosine", "training-centered coordinate signs at the native dimension"],
+  "normalization_and_ties": "Normalize source embedding or enrollment mean before the optional centering; sign>=0 is1; same deterministic gallery tie rule",
+  "evaluation": "All predefined variants, both seeds, all20 frozen image assignments, all6 gallery sizes, calibration-only empirical/conservative thresholds, paired identity uncertainty, split0 index/capacity/fallback measurements",
+  "interpretation": "FaceNet results are iterative development, not blinded confirmation. SFace outcomes were not observed when this protocol was fixed. Different frontends are not independent identity samples, and cross-dataset identity overlap has not been audited.",
+  "cost_rule": "Longer codes increase storage and MPC work. Report actual measured costs before a quality/cost claim; current512-bit timings cannot be relabeled as1024/2048-bit timings.",
+  "selection_policy": "Keep all widths/seeds/center variants. Report variability across seeds; freeze any selected method before subsequent secure-system confirmation. Do not treat a favorable seed as the method result."
+}

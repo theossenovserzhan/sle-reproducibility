@@ -1,0 +1,140 @@
+CURRENT AUTHORITATIVE CHECKPOINT. Supersedes queue/status paragraphs in older
+CHECKPOINT_STARTED_2026-10-30.txt. Use live status files before making claims.
+
+User asks to actively improve the method and pursue useful results, not stop
+after adverse pilots. Original six work packages remain authorized. No agents,
+external submission, messages, push or purchase authorized. CPU only; GPU optional.
+
+Workspace: C:/Users/ossen/OneDrive/Documents/SmartCity/
+TBIOM_revision_experiments_2026-10-29/revision_v3.
+Frozen revision_v2 remains unchanged. Its ZIP SHA256 is
+eb0b7411fe238e3dd7c1728b3311d23f8cb78e7f6b7e68a0f2f52796185a587c.
+WSL Ubuntu runtime /home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8.
+WSL commands require exec_command require_escalated; already authorized workflow.
+All current drivers coordinate a common flock in that runtime. Do not run an R1
+driver or a CPU-heavy feature/scoring/plot task alongside MPC timings.
+
+COMPLETED ENGINEERING COMPARISON
+Virtual-epoch source SHA0684086af4d2d5a79e4f80f30615fb65c7444f296398ea00cca5d4f413c7d8c0.
+It uses stable SECRET handles and derives Pi(epoch_key,h) for template masks;
+it does not transform all padded index copies. Full checks, key-bundle selection,
+DB-row shuffle, every-field share refresh and write remain in the circuit.
+This is a changed representation/update family, NOT bytewise eager R1 state
+equivalence or physical renewal of all logical index values. Fault6 is a no-op
+and is not counted among rejected corruptions. Hidden handles/index are essential.
+Correctness passed atN2D64,N8D512,N128D512;7 meaningful faults and coupled defect9
+reject with correct rollback; indexed controls and accept/reject controls pass.
+
+Fresh alternating input-inclusive controls,5 repetitions each, local5party Shamir:
+N8 eager9.378982s -> virtual4.997960s; global471.837 ->47.3712MB.
+N32 eager14.520360s -> virtual7.551972s; global997.319 ->148.802MB.
+N128 eager48.553580s -> virtual27.197760s; global2717.36 ->597.311MB.
+N128 full-query3 repetitions:9.270817 ->8.180420s; global122.499 ->125.817MB.
+Do not claim query acceleration from3 trials; added locator derivation raises
+query communication2.71%. Run-level bootstrap is not cross-machine evidence.
+Cold fixture uses a trusted-owner input role that knows index/handles; timing
+results do NOT prove privacy from that role. Actual own-share-file loading is
+separately queued and must pass before promoting a deployed-system claim.
+results/improvement_summary.json and REPORT_IMPROVEMENT_RU.txt contain the audit.
+summarize_improvement.py rebuilds them. Source comparisons normalize line endings;
+artifact SHA values use actual bytes. Avoid unqualified byte-identical claims.
+
+COMPLETED INITIAL UTILITY DEVELOPMENT
+run_binary_frontend.py complete, original R1 rank1/rank5 arrays reproduce exactly.
+Training565 extra LFW identities (manifest rows4992:) are disjoint from192 old IDs,
+512calibration+512unknown+3968used distractors. Protocol frozen before fitting.
+N4096 rank1: originalcosine.953125; originalsign512 .93671875;
+centered sign512 .936035; ITQ512 .935254; ITQ256 .911719.
+ITQ gives no closed-set improvement; all methods retained. Centering has a
+secondary empirical DIR increase about2.68pp at the same observed aggregate FPIR,
+but report paired uncertainty and all thresholds, not a guaranteed operating point.
+Primary files results/binary_frontend/summary.json and subject_outcomes.npz.
+Initial ITQ script/protocol remain unchanged; projection evaluator is generated
+separately so the original study remains reproducible.
+
+NEXT UTILITY HYPOTHESIS (FROZEN, NOT RUN YET)
+projection_code_protocol.json: Gaussian hyperplanes,512/1024/2048bits,
+seeds20261030/20261031, original and training-mean-centered embeddings, all16methods
+including native sign/cosine controls. Prefix projections, both seeds retained.
+No claim of novelty for ITQ/random hyperplanes. Longer codes need NEW MPC timings;
+existing512-bit masks/reference support only8word keys and cannot be relabeled.
+SFace protocol is fixed before any SFace feature extraction/score observation;
+FaceNet is development. Do not claim independent identity samples across models.
+
+AES COMPARATOR IMPLEMENTED AND RUNNING
+Session2535. data/aes_128_bristol.txt SHA
+40423a0cdaf5d4d34aba872c12660f115dc25c12eea6e24a9304578e79df6d04.
+Primary Bristol Fashion circuit,6400AND/28176XOR/2087INV. Whole-value reversed
+bit order, key first. Three published AES KATs match independent cryptography
+library AND five-party Shamir arithmetic execution. Complete AES-CTR system
+correctness passed, including faults1..8, coupled9 and stable-handle controls.
+AES counters=(secret_tie_tag-1)*(D/128)+chunk, exactly unique per fresh epoch key.
+Two key fields (AES+locator); key-only circuit gates hoisted once, rows vectorized.
+Both materialized and stable representations are compared, so cipher and index
+materialization costs are not conflated. No lower-bound claim for all AES backends.
+DO NOT regenerate active AES/compact-sort sources during its timing series.
+Files aes_baseline_protocol.json,aes_backend_config.json,prepare_aes_baseline.py,
+aes_input_fixture.py,run_aes_baseline.py; logs and results/aes_baseline_status.json.
+
+NEW PRIVATE-QUERY PROTOTYPE, NOT TESTED YET
+Session25334 waits for AES. Protocol poly_query_protocol.json; generator
+prepare_poly_query.py. Lagrange basis on the known valid distinct-locator support
+replaces each expensive Fermat equality. Balanced product/complement trees are
+processed in batches256. A second variant secretly selects the query bucket in
+each block while still reading all slots, then processes BLOCKS*C occurrences.
+No openings/candidate-count leak; exact candidate flags under valid-state and
+binary-probe preconditions. This is known mathematics, not a new primitive.
+DIAG compares EVERY candidate bit with old exact full-field comparisons; fallback
+alone could hide retrieval errors. Synthetic none/all/selective fixtures are
+correctness-only, clearly tagged; performance uses real frozen CelebA roots.
+N8 all3variants:1warmup+5balanced repetitions. N32/128 optimized-only scale3runs.
+Sources msle_poly_query_system(fccc10...),msle_bucket_poly_query_system(b1b74b...),
+msle_lazy_bucket_poly_query_system(3a76d6...). See source audit and formal note.
+
+SFACE FRONTEND READY TO RUN, NOT EXTRACTED YET
+Session75101 waits for polynomial-query completion/failure. Old SFace sessions
+63024 and66718 were stopped while waiting; no images processed by them.
+Pinned SFace/YuNet weights and licenses downloaded; SHA values match protocol.
+CPU OpenCV4.11.0.86 wheel downloaded from PyPI and hash checked; will install only
+into data/opencv_libs, no global environment modification, under common lock.
+run_sface.py exact images from original LFW192, all5557extended, CelebA192 and
+historical CelebA128 (oneID overlap; never pool). Source CelebA .image bytes are
+already cached in ../revision_v2/data/celeba/selected_images with provenance hashes.
+Select largest YuNet face, confidence/coordinates tie rules, official112BGR
+alignCrop. Detection failures stay in the study using frozen center-square crop.
+Record every fallback and multi-face count; no quality-based exclusions.
+Generated evaluate_float_binary_128.py and evaluate_sface_lfw_extended.py preserve
+the old rules/seeds/cohorts, only native128D/input/output paths change. Remove
+FaceNet outcome-equality assertions because this is a different frontend.
+The SFace runner also evaluates historical CelebA and all frozen projection codes.
+
+SUBSEQUENT QUEUE
+Session61179 run_projection_codes.py --after-sface: FaceNet16methods, all metrics.
+Session24496 run_lazy_persistence.py --after-projection: actual own-share-file
+load, repeatedrekey/query/rollback atN8/128 masked/raw, then5 fresh pairedN128
+stored-state controls with eager and virtual implementations. Generator
+prepare_lazy_persistence.py makes the normalized helpers/tail match the cold
+virtual source; only input loading is borrowed from validated R1 share loader.
+Session72135 run_virtual_scale.py: wait for SUCCESSFUL persisted validation;
+real LFW512/1024 original512-bit roots (B4 capacity checked sufficient), fullstate
+oracle for both methods, then1warmup+3paired rekey/fullquery controls. Rows stay
+in results/lazy_epoch_runs.jsonl under distinct virtual_scale_* tags. Large runs
+may take substantial CPU time; no extrapolated timings are substituted.
+
+SAFE PAUSE
+See ACTIVE_QUEUE_2026-10-30.json. Stop queued drivers from last to first using
+stop_v3_driver.py: virtual_scale, lazy_persistence, projection_codes, sface,
+poly_query, aes_baseline. Then confirm children stopped. No host-wide pkill,
+network setting changes or filesystem deletions. The old8823 scale queue remains
+stopped; never restart it automatically.
+
+REMAINING BEFORE A NEW PAPER PACKAGE
+Inspect/repair failed prototypes and all actual results, validate new privacy
+argument and joint invariant, primary-source novelty audit, isolated latency
+emulation, new measured quality/cost confirmation if a longer code is selected,
+then manuscript/response/evidence matrix/figures and compiled new package.
+Do not claim all six work packages done, paper updated, acceptance guaranteed or
+confident novelty established. Notes/VIRTUAL_EPOCH_PRIVACY_DRAFT.txt explicitly
+notes that C-only privacy does not require unpredictable locator evolution;
+generic standard encryption can provide this contract. UTO2017 already maintains
+referential integrity; MUSES2024 rotates private indexes. E1 audit remains material.

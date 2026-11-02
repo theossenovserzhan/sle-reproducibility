@@ -1,0 +1,17 @@
+{
+  "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "versions": {
+    "numpy": "2.5.3",
+    "torch": "2.8.0+cpu",
+    "torchvision": "0.23.0+cpu",
+    "facenet-pytorch": "2.6.0",
+    "Pillow": "12.3.0",
+    "pyarrow": "21.0.0",
+    "scikit-learn": "1.7.2",
+    "matplotlib": "3.11.2",
+    "requests": "2.32.5",
+    "tqdm": "4.67.1"
+  },
+  "note": "Version metadata only; no feature extraction during secure timing"
+}

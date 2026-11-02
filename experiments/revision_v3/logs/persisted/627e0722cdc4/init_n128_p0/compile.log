@@ -1,0 +1,17 @@
+{"argv": ["python3", "compile.py", "-P", "340282366920938463463374607431764574209", "-b", "64", "-M", "msle_share_enrollment", "128", "512", "4", "40", "0"], "cwd": "/home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8"}
+WARNING: --prime/-P activates code that usually isn't the most efficient variant. Consider using --field/-F and set the prime only during the actual computation.
+Default bit length for compilation: 126
+Default security parameter for compilation: 40
+Compiling file Programs/Source/msle_share_enrollment.mpc
+Changed bit length for comparisons etc. to 64
+Changed statistical security for comparison etc. to 80
+Writing to Programs/Schedules/msle_share_enrollment-128-512-4-40-0.sch
+Writing to Programs/Bytecode/msle_share_enrollment-128-512-4-40-0-0.bc
+Hash: f3fe8742da29a6751d54a5021d6a54ef0029606104a3f3020c4ffad7da50b8fa
+Program requires at most:
+      229769 integer inputs from player 0
+      229769 integer inputs from player 1
+      229769 integer inputs from player 2
+      229769 integer inputs from player 3
+      229769 integer inputs from player 4
+       17955 virtual machine rounds

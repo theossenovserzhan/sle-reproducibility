@@ -1,0 +1,32 @@
+{"argv": ["python3", "compile.py", "-P", "340282366920938463463374607431764574209", "-b", "64", "-M", "msle_system", "8", "512", "4", "8", "2", "1", "0", "1", "0", "8", "0", "0"], "cwd": "/home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8"}
+WARNING: --prime/-P activates code that usually isn't the most efficient variant. Consider using --field/-F and set the prime only during the actual computation.
+Default bit length for compilation: 126
+Default security parameter for compilation: 40
+Compiling file Programs/Source/msle_system.mpc
+Changed bit length for comparisons etc. to 64
+Changed statistical security for comparison etc. to 80
+Writing to Programs/Bytecode/msle_system-8-512-4-8-2-1-0-1-0-8-0-0-EQZ(4)_64-1.bc
+Writing to Programs/Bytecode/msle_system-8-512-4-8-2-1-0-1-0-8-0-0-LTZ(8)_65-3.bc
+Writing to Programs/Bytecode/msle_system-8-512-4-8-2-1-0-1-0-8-0-0-EQZ(2)_64-5.bc
+Writing to Programs/Bytecode/msle_system-8-512-4-8-2-1-0-1-0-8-0-0-LTZ(4)_65-6.bc
+Writing to Programs/Bytecode/msle_system-8-512-4-8-2-1-0-1-0-8-0-0-EQZ(1)_64-7.bc
+Writing to Programs/Bytecode/msle_system-8-512-4-8-2-1-0-1-0-8-0-0-LTZ(2)_65-8.bc
+Writing to Programs/Bytecode/msle_system-8-512-4-8-2-1-0-1-0-8-0-0-LTZ(1)_65-9.bc
+Writing to Programs/Schedules/msle_system-8-512-4-8-2-1-0-1-0-8-0-0.sch
+Writing to Programs/Bytecode/msle_system-8-512-4-8-2-1-0-1-0-8-0-0-0.bc
+Hash: cde6caf747a52f442ae902551ef07fba5596ca9064852cdf366f19a3fb356e07
+Program requires at most:
+        4121 integer inputs from player 0
+         514 integer inputs from player 1
+           1 integer inputs from player 2
+           1 integer inputs from player 3
+           1 integer inputs from player 4
+        4125 integer triples
+        4125 integer simple multiplications
+          22 strict edabits of length 128
+          27 integer opens
+        7241 bit triples
+          22 integer dabits
+          88 bit opens
+          15 strict edabits of length 1
+         216 virtual machine rounds

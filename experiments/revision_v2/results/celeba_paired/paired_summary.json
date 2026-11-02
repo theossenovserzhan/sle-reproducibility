@@ -1,0 +1,43 @@
+{
+  "dataset": "CelebA",
+  "input_sha256": "2f995f6d6fab714c4c7f6ca81b1b1e95b40b73bda1e8d5c8f35f950da9dbc01a",
+  "script_sha256": "a20faf00aca9648b8eb064a980f9327a32f5bbe0c85c37bb98876767535ac84f",
+  "numpy": "2.5.3",
+  "n_evaluation": 128,
+  "n_calibration": 32,
+  "n_test_unknown": 32,
+  "splits": 20,
+  "paired": {
+    "rank1": {
+      "binary_minus_float": -0.021679687500000003,
+      "subject_bootstrap_ci95": [
+        -0.02841796875,
+        -0.015234375000000005
+      ],
+      "bootstrap_units": "identities after averaging their repeated splits",
+      "bootstrap_resamples": 5000,
+      "float_mean": 0.8822265625000001,
+      "binary_mean": 0.860546875
+    },
+    "rank5": {
+      "binary_minus_float": -0.007324218749999998,
+      "subject_bootstrap_ci95": [
+        -0.01142578125,
+        -0.003515625000000002
+      ],
+      "bootstrap_units": "identities after averaging their repeated splits",
+      "bootstrap_resamples": 5000,
+      "float_mean": 0.95302734375,
+      "binary_mean": 0.945703125
+    }
+  },
+  "verification_pairs": "all 4 probes per evaluation identity vs each gallery prototype; one genuine and N-1 impostors per probe",
+  "threshold_selection": "identity-disjoint calibration only; discrete thresholds with acceptance score>=threshold",
+  "open_set": "calibration and test unknown cohorts disjoint, both scored against same evaluation gallery",
+  "limitations": [
+    "custom protocols, not official LFW verification",
+    "repeated splits reuse identities and images",
+    "low FAR/FPIR estimates limited by negative counts; rows are correlated within identity",
+    "not evidence of generalization to an unseen recognition backbone"
+  ]
+}

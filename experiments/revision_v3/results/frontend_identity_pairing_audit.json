@@ -1,0 +1,21 @@
+{
+  "all5557_extended_identity_and_image_positions_identical": true,
+  "calibration_rows": [
+    0,
+    512
+  ],
+  "unknown_rows": [
+    512,
+    1024
+  ],
+  "distractor_rows": [
+    1024,
+    4992
+  ],
+  "training_only_rows": [
+    4992,
+    5557
+  ],
+  "sface_selection_sha256": "f8eb35ebe30cb91da6396c3009d94fd56d8d799284401a4bc9be80925a5a71cc",
+  "facenet_selection_sha256": "52fe2f73d0e82543d8d59bd980f159623f3c1a3d9191d946df0f11c697e9da27"
+}

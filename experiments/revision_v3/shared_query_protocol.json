@@ -1,0 +1,12 @@
+{
+  "date":"2026-10-30",
+  "status":"frozen before external-share query results",
+  "purpose":"Validate a deployment interface where none of the five computing parties receives a plaintext probe or threshold",
+  "client":"A trusted external query client deals an independent degree-two polynomial per input field; each computing party gets exactly one evaluation over a private channel",
+  "reconstruction":"Secret-wire weighted sum with public Lagrange weights5,-10,10,-5,1. No reconstructed probe is opened.",
+  "state":"Same actual per-party own-share-file state, stable secret handles, masked templates, full relation check and vectorized private candidate operator",
+  "security_scope":"Fixed at-most-two passive computing-party corruption; honest binary-query client. This is an input-interface refinement, not a new malicious-security claim.",
+  "validation":"All field reconstruction checked by client fixture; N8 transition/indexed membership agreement, exact accept/reject, rollback/reload; N128 whole-state and query oracle",
+  "measurement":"Five alternating N128 stored-state full-query repetitions versus the trusted-owner-input interface, plus one warmup each; same persistent state, no rekey between query trials",
+  "accounting":"Report client dealing time and nominal client-share bytes separately; include all server execution/input costs in VM/wall metrics"
+}

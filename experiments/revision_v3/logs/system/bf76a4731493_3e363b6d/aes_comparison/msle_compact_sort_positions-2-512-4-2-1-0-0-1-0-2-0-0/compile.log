@@ -1,0 +1,28 @@
+{"argv": ["python3", "compile.py", "-P", "340282366920938463463374607431764574209", "-b", "64", "-M", "msle_compact_sort_positions", "2", "512", "4", "2", "1", "0", "0", "1", "0", "2", "0", "0"], "cwd": "/home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8"}
+WARNING: --prime/-P activates code that usually isn't the most efficient variant. Consider using --field/-F and set the prime only during the actual computation.
+Default bit length for compilation: 126
+Default security parameter for compilation: 40
+Compiling file Programs/Source/msle_compact_sort_positions.mpc
+Changed bit length for comparisons etc. to 64
+Changed statistical security for comparison etc. to 80
+Writing to Programs/Schedules/msle_compact_sort_positions-2-512-4-2-1-0-0-1-0-2-0-0.sch
+Writing to Programs/Bytecode/msle_compact_sort_positions-2-512-4-2-1-0-0-1-0-2-0-0-0.bc
+Hash: 5c76470f58544a0a04edc75f1321c7f3d5d4299cc33145822dd538b3be7c5d67
+Program requires at most:
+       38952 integer inputs from player 0
+       29730 integer inputs from player 1
+        9249 integer inputs from player 2
+        9249 integer inputs from player 3
+        9249 integer inputs from player 4
+      742763 integer triples
+      700769 integer simple multiplications
+           6 integer randoms
+          43 integer opens
+         inf bit inverses
+           1 integer shuffle generations
+           1 integer shuffle applications
+          32 strict edabits of length 128
+       20352 bit triples
+        4096 integer dabits
+       16384 bit opens
+        4737 virtual machine rounds

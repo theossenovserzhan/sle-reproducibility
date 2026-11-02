@@ -1,0 +1,5 @@
+mode,n,capacity,index_slots,logical_state_fields,projected_global_mb,max_held_out_relative_error,measurement_status,assumption
+1,1024,264,540672,1608713,18753.462147691356,0.008297485359973121,"projection only, not executed; no runtime prediction","input-inclusive reference only; same field, padding, protocol and batch schedule; out-of-range model uncertainty remains"
+1,4096,1032,2113536,6336521,73729.00939574097,0.008297485359973121,"projection only, not executed; no runtime prediction","input-inclusive reference only; same field, padding, protocol and batch schedule; out-of-range model uncertainty remains"
+2,1024,264,540672,1608713,954.6516642857144,0.015215216061566584,"projection only, not executed; no runtime prediction","input-inclusive reference only; same field, padding, protocol and batch schedule; out-of-range model uncertainty remains"
+2,4096,1032,2113536,6336521,3808.196807142858,0.015215216061566584,"projection only, not executed; no runtime prediction","input-inclusive reference only; same field, padding, protocol and batch schedule; out-of-range model uncertainty remains"

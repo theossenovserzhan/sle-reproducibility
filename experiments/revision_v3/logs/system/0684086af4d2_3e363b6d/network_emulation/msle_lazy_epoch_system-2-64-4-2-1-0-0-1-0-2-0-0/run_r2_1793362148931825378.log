@@ -1,0 +1,273 @@
+{"task_local_tcp_delay": true, "rtt_ms": 0, "program": "msle_lazy_epoch_system-2-64-4-2-1-0-0-1-0-2-0-0", "party_logs": "/mnt/c/Users/ossen/OneDrive/Documents/SmartCity/TBIOM_revision_experiments_2026-10-29/revision_v3/logs/system/0684086af4d2_3e363b6d/network_emulation/msle_lazy_epoch_system-2-64-4-2-1-0-0-1-0-2-0-0/run_r2_1793362148931825378"}
+Maximum resident set size (kbytes): 22768
+
+PARTY0
+Trying to run 128-bit computation (128-bit representation)
+Starting timer 30 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 4.4235e-05
+Starting timer 11 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 1.4887e-05
+Starting timer 12 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 1.5579e-05
+Stopped timer 12 at 3.7629e-05 (0 MB, 0 rounds, 3.9864e-05 CPU seconds)
+Starting timer 13 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 2.3737e-05
+Stopped timer 13 at 2.62718 (0.143632 MB, 985 rounds, 0.952181 CPU seconds)
+Starting timer 14 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 2.5448e-05
+Stopped timer 14 at 1.31844 (0.20192 MB, 514 rounds, 0.458647 CPU seconds)
+Starting timer 15 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 1.8659e-05
+Stopped timer 15 at 0.0114474 (0.037216 MB, 4 rounds, 0.00350743 CPU seconds)
+Starting timer 16 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 4.2745e-05
+Stopped timer 16 at 0.0482746 (0.044 MB, 107 rounds, 0.0322237 CPU seconds)
+Stopped timer 11 at 4.04057 (0.426768 MB, 1610 rounds, 1.45382 CPU seconds)
+Stopped timer 30 at 4.06437 (0.4644 MB, 1631 rounds, 1.47759 CPU seconds)
+MSLE_SYSTEM n=2 d=64 mode=1 protection=0 transition=0 maintenance=1 fault=0 relation=1 accepted=0 identity=-1 state_ok=1 query_ok=1
+Significant amount of unused dabits of Shamir gfp distorting the benchmark. For more accurate benchmarks, consider reducing the batch size with --batch-size.
+The following benchmarks are including preprocessing (offline phase).
+Time = 4.18533 seconds 
+Time11 = 4.04057 seconds (0.426768 MB, 1610 rounds, 1.45382 CPU seconds)
+Time12 = 3.7629e-05 seconds (0 MB, 0 rounds, 3.9864e-05 CPU seconds)
+Time13 = 2.62718 seconds (0.143632 MB, 985 rounds, 0.952181 CPU seconds)
+Time14 = 1.31844 seconds (0.20192 MB, 514 rounds, 0.458647 CPU seconds)
+Time15 = 0.0114474 seconds (0.037216 MB, 4 rounds, 0.00350743 CPU seconds)
+Time16 = 0.0482746 seconds (0.044 MB, 107 rounds, 0.0322237 CPU seconds)
+Time30 = 4.06437 seconds (0.4644 MB, 1631 rounds, 1.47759 CPU seconds)
+Data sent = 0.46472 MB in ~1633 rounds (party 0 only; use '-v' for more details)
+Global data sent = 2.17966 MB (all parties)
+This virtual machine was compiled with GCC. Recompile with 'CXX = clang++' in 'CONFIG.mine' for optimal performance.
+This protocol doesn't scale well with the number of parties, have you considered using ATLAS instead?
+	Command being timed: "/home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8/shamir-party.x 0 msle_lazy_epoch_system-2-64-4-2-1-0-0-1-0-2-0-0 --prime 340282366920938463463374607431764574209 -N 5 -T 2 -ip /mnt/c/Users/ossen/OneDrive/Documents/SmartCity/TBIOM_revision_experiments_2026-10-29/revision_v3/logs/system/0684086af4d2_3e363b6d/network_emulation/msle_lazy_epoch_system-2-64-4-2-1-0-0-1-0-2-0-0/run_r2_1793362148931825378/hosts_P0.txt -pn 57473"
+	User time (seconds): 0.69
+	System time (seconds): 1.05
+	Percent of CPU this job got: 36%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:04.75
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 22356
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 3293
+	Voluntary context switches: 23008
+	Involuntary context switches: 659
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 0
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+
+PARTY1
+Trying to run 128-bit computation (128-bit representation)
+Starting timer 30 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 3.9193e-05
+Starting timer 11 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 1.6933e-05
+Starting timer 12 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 1.5708e-05
+Stopped timer 12 at 3.2711e-05 (0 MB, 0 rounds, 3.5731e-05 CPU seconds)
+Starting timer 13 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 1.5066e-05
+Stopped timer 13 at 2.62702 (0.159264 MB, 985 rounds, 0.94266 CPU seconds)
+Starting timer 14 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 3.7248e-05
+Stopped timer 14 at 1.32119 (0.201632 MB, 514 rounds, 0.439063 CPU seconds)
+Starting timer 15 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 2.7571e-05
+Stopped timer 15 at 0.0113775 (0.037216 MB, 4 rounds, 0.00395197 CPU seconds)
+Starting timer 16 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 3.5411e-05
+Stopped timer 16 at 0.0475898 (0.044 MB, 107 rounds, 0.0238746 CPU seconds)
+Stopped timer 11 at 4.03979 (0.442112 MB, 1610 rounds, 1.41393 CPU seconds)
+Stopped timer 30 at 4.05037 (0.442688 MB, 1631 rounds, 1.4172 CPU seconds)
+Significant amount of unused dabits of Shamir gfp distorting the benchmark. For more accurate benchmarks, consider reducing the batch size with --batch-size.
+The following benchmarks are including preprocessing (offline phase).
+Time = 4.09266 seconds 
+Time11 = 4.03979 seconds (0.442112 MB, 1610 rounds, 1.41393 CPU seconds)
+Time12 = 3.2711e-05 seconds (0 MB, 0 rounds, 3.5731e-05 CPU seconds)
+Time13 = 2.62702 seconds (0.159264 MB, 985 rounds, 0.94266 CPU seconds)
+Time14 = 1.32119 seconds (0.201632 MB, 514 rounds, 0.439063 CPU seconds)
+Time15 = 0.0113775 seconds (0.037216 MB, 4 rounds, 0.00395197 CPU seconds)
+Time16 = 0.0475898 seconds (0.044 MB, 107 rounds, 0.0238746 CPU seconds)
+Time30 = 4.05037 seconds (0.442688 MB, 1631 rounds, 1.4172 CPU seconds)
+Data sent = 0.442768 MB in ~1633 rounds (party 1 only; use '-v' for more details)
+Global data sent = 2.17966 MB (all parties)
+This virtual machine was compiled with GCC. Recompile with 'CXX = clang++' in 'CONFIG.mine' for optimal performance.
+This protocol doesn't scale well with the number of parties, have you considered using ATLAS instead?
+	Command being timed: "/home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8/shamir-party.x 1 msle_lazy_epoch_system-2-64-4-2-1-0-0-1-0-2-0-0 --prime 340282366920938463463374607431764574209 -N 5 -T 2 -ip /mnt/c/Users/ossen/OneDrive/Documents/SmartCity/TBIOM_revision_experiments_2026-10-29/revision_v3/logs/system/0684086af4d2_3e363b6d/network_emulation/msle_lazy_epoch_system-2-64-4-2-1-0-0-1-0-2-0-0/run_r2_1793362148931825378/hosts_P1.txt -pn 36473"
+	User time (seconds): 0.59
+	System time (seconds): 1.03
+	Percent of CPU this job got: 34%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:04.74
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 22768
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 3296
+	Voluntary context switches: 22640
+	Involuntary context switches: 622
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 0
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+
+PARTY2
+Trying to run 128-bit computation (128-bit representation)
+Starting timer 30 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 5.9391e-05
+Starting timer 11 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 2.4947e-05
+Starting timer 12 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 1.5583e-05
+Stopped timer 12 at 3.7545e-05 (0 MB, 0 rounds, 3.9997e-05 CPU seconds)
+Starting timer 13 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 0.00025844
+Stopped timer 13 at 2.6195 (0.159264 MB, 985 rounds, 0.936333 CPU seconds)
+Starting timer 14 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 4.5438e-05
+Stopped timer 14 at 1.31752 (0.201632 MB, 514 rounds, 0.461041 CPU seconds)
+Starting timer 15 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 2.7391e-05
+Stopped timer 15 at 0.0114141 (0.037216 MB, 4 rounds, 0.00542548 CPU seconds)
+Starting timer 16 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 4.0709e-05
+Stopped timer 16 at 0.0495961 (0.044 MB, 107 rounds, 0.0325984 CPU seconds)
+Stopped timer 11 at 4.04152 (0.442112 MB, 1610 rounds, 1.44167 CPU seconds)
+Stopped timer 30 at 4.0553 (0.442688 MB, 1631 rounds, 1.44894 CPU seconds)
+Significant amount of unused dabits of Shamir gfp distorting the benchmark. For more accurate benchmarks, consider reducing the batch size with --batch-size.
+The following benchmarks are including preprocessing (offline phase).
+Time = 4.09274 seconds 
+Time11 = 4.04152 seconds (0.442112 MB, 1610 rounds, 1.44167 CPU seconds)
+Time12 = 3.7545e-05 seconds (0 MB, 0 rounds, 3.9997e-05 CPU seconds)
+Time13 = 2.6195 seconds (0.159264 MB, 985 rounds, 0.936333 CPU seconds)
+Time14 = 1.31752 seconds (0.201632 MB, 514 rounds, 0.461041 CPU seconds)
+Time15 = 0.0114141 seconds (0.037216 MB, 4 rounds, 0.00542548 CPU seconds)
+Time16 = 0.0495961 seconds (0.044 MB, 107 rounds, 0.0325984 CPU seconds)
+Time30 = 4.0553 seconds (0.442688 MB, 1631 rounds, 1.44894 CPU seconds)
+Data sent = 0.442768 MB in ~1633 rounds (party 2 only; use '-v' for more details)
+Global data sent = 2.17966 MB (all parties)
+This virtual machine was compiled with GCC. Recompile with 'CXX = clang++' in 'CONFIG.mine' for optimal performance.
+This protocol doesn't scale well with the number of parties, have you considered using ATLAS instead?
+	Command being timed: "/home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8/shamir-party.x 2 msle_lazy_epoch_system-2-64-4-2-1-0-0-1-0-2-0-0 --prime 340282366920938463463374607431764574209 -N 5 -T 2 -ip /mnt/c/Users/ossen/OneDrive/Documents/SmartCity/TBIOM_revision_experiments_2026-10-29/revision_v3/logs/system/0684086af4d2_3e363b6d/network_emulation/msle_lazy_epoch_system-2-64-4-2-1-0-0-1-0-2-0-0/run_r2_1793362148931825378/hosts_P2.txt -pn 59231"
+	User time (seconds): 0.71
+	System time (seconds): 0.96
+	Percent of CPU this job got: 35%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:04.73
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 22136
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 3288
+	Voluntary context switches: 22635
+	Involuntary context switches: 688
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 0
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+
+PARTY3
+Trying to run 128-bit computation (128-bit representation)
+Starting timer 30 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 6.377e-05
+Starting timer 11 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 1.9618e-05
+Starting timer 12 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 8.845e-06
+Stopped timer 12 at 2.6672e-05 (0 MB, 0 rounds, 2.8887e-05 CPU seconds)
+Starting timer 13 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 2.3729e-05
+Stopped timer 13 at 2.6241 (0.140112 MB, 980 rounds, 0.873407 CPU seconds)
+Starting timer 14 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 1.8478e-05
+Stopped timer 14 at 1.3158 (0.201536 MB, 512 rounds, 0.471454 CPU seconds)
+Starting timer 15 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 1.3677e-05
+Stopped timer 15 at 0.0114702 (0.037216 MB, 4 rounds, 0.00339325 CPU seconds)
+Starting timer 16 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 4.0672e-05
+Stopped timer 16 at 0.0475231 (0.043968 MB, 107 rounds, 0.0256357 CPU seconds)
+Stopped timer 11 at 4.03979 (0.422832 MB, 1603 rounds, 1.37807 CPU seconds)
+Stopped timer 30 at 4.05085 (0.423408 MB, 1624 rounds, 1.38138 CPU seconds)
+Significant amount of unused dabits of Shamir gfp distorting the benchmark. For more accurate benchmarks, consider reducing the batch size with --batch-size.
+The following benchmarks are including preprocessing (offline phase).
+Time = 4.09469 seconds 
+Time11 = 4.03979 seconds (0.422832 MB, 1603 rounds, 1.37807 CPU seconds)
+Time12 = 2.6672e-05 seconds (0 MB, 0 rounds, 2.8887e-05 CPU seconds)
+Time13 = 2.6241 seconds (0.140112 MB, 980 rounds, 0.873407 CPU seconds)
+Time14 = 1.3158 seconds (0.201536 MB, 512 rounds, 0.471454 CPU seconds)
+Time15 = 0.0114702 seconds (0.037216 MB, 4 rounds, 0.00339325 CPU seconds)
+Time16 = 0.0475231 seconds (0.043968 MB, 107 rounds, 0.0256357 CPU seconds)
+Time30 = 4.05085 seconds (0.423408 MB, 1624 rounds, 1.38138 CPU seconds)
+Data sent = 0.423408 MB in ~1625 rounds (party 3 only; use '-v' for more details)
+Global data sent = 2.17966 MB (all parties)
+This virtual machine was compiled with GCC. Recompile with 'CXX = clang++' in 'CONFIG.mine' for optimal performance.
+This protocol doesn't scale well with the number of parties, have you considered using ATLAS instead?
+	Command being timed: "/home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8/shamir-party.x 3 msle_lazy_epoch_system-2-64-4-2-1-0-0-1-0-2-0-0 --prime 340282366920938463463374607431764574209 -N 5 -T 2 -ip /mnt/c/Users/ossen/OneDrive/Documents/SmartCity/TBIOM_revision_experiments_2026-10-29/revision_v3/logs/system/0684086af4d2_3e363b6d/network_emulation/msle_lazy_epoch_system-2-64-4-2-1-0-0-1-0-2-0-0/run_r2_1793362148931825378/hosts_P3.txt -pn 47061"
+	User time (seconds): 0.63
+	System time (seconds): 0.96
+	Percent of CPU this job got: 33%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:04.73
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 22464
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 3307
+	Voluntary context switches: 22568
+	Involuntary context switches: 624
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 0
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+
+PARTY4
+Trying to run 128-bit computation (128-bit representation)
+Starting timer 30 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 2.9622e-05
+Starting timer 11 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 2.4291e-05
+Starting timer 12 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 9.251e-06
+Stopped timer 12 at 7.1047e-05 (0 MB, 0 rounds, 7.5141e-05 CPU seconds)
+Starting timer 13 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 2.3523e-05
+Stopped timer 13 at 2.62028 (0.122704 MB, 980 rounds, 0.986106 CPU seconds)
+Starting timer 14 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 8.2204e-05
+Stopped timer 14 at 1.31473 (0.201536 MB, 512 rounds, 0.505225 CPU seconds)
+Starting timer 15 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 2.1239e-05
+Stopped timer 15 at 0.0115613 (0.037216 MB, 4 rounds, 0.00350211 CPU seconds)
+Starting timer 16 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 4.8077e-05
+Stopped timer 16 at 0.0472766 (0.043968 MB, 107 rounds, 0.0260928 CPU seconds)
+Stopped timer 11 at 4.03973 (0.405424 MB, 1603 rounds, 1.52587 CPU seconds)
+Stopped timer 30 at 4.05024 (0.406 MB, 1624 rounds, 1.53123 CPU seconds)
+Significant amount of unused dabits of Shamir gfp distorting the benchmark. For more accurate benchmarks, consider reducing the batch size with --batch-size.
+The following benchmarks are including preprocessing (offline phase).
+Time = 4.09297 seconds 
+Time11 = 4.03973 seconds (0.405424 MB, 1603 rounds, 1.52587 CPU seconds)
+Time12 = 7.1047e-05 seconds (0 MB, 0 rounds, 7.5141e-05 CPU seconds)
+Time13 = 2.62028 seconds (0.122704 MB, 980 rounds, 0.986106 CPU seconds)
+Time14 = 1.31473 seconds (0.201536 MB, 512 rounds, 0.505225 CPU seconds)
+Time15 = 0.0115613 seconds (0.037216 MB, 4 rounds, 0.00350211 CPU seconds)
+Time16 = 0.0472766 seconds (0.043968 MB, 107 rounds, 0.0260928 CPU seconds)
+Time30 = 4.05024 seconds (0.406 MB, 1624 rounds, 1.53123 CPU seconds)
+Data sent = 0.406 MB in ~1625 rounds (party 4 only; use '-v' for more details)
+Global data sent = 2.17966 MB (all parties)
+This virtual machine was compiled with GCC. Recompile with 'CXX = clang++' in 'CONFIG.mine' for optimal performance.
+This protocol doesn't scale well with the number of parties, have you considered using ATLAS instead?
+	Command being timed: "/home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8/shamir-party.x 4 msle_lazy_epoch_system-2-64-4-2-1-0-0-1-0-2-0-0 --prime 340282366920938463463374607431764574209 -N 5 -T 2 -ip /mnt/c/Users/ossen/OneDrive/Documents/SmartCity/TBIOM_revision_experiments_2026-10-29/revision_v3/logs/system/0684086af4d2_3e363b6d/network_emulation/msle_lazy_epoch_system-2-64-4-2-1-0-0-1-0-2-0-0/run_r2_1793362148931825378/hosts_P4.txt -pn 59259"
+	User time (seconds): 0.67
+	System time (seconds): 1.11
+	Percent of CPU this job got: 37%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:04.72
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 22308
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 3294
+	Voluntary context switches: 22583
+	Involuntary context switches: 686
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 0
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

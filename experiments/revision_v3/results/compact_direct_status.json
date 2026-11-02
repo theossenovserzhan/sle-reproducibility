@@ -1,0 +1,11 @@
+{
+  "source_sha256": "933becc021720ef5ef9163696b7162fe97141e1fedee84d8c5d22a1f64d59ca0",
+  "correctness_passed": true,
+  "completed": [],
+  "finished": false,
+  "current": {
+    "n": 8,
+    "method": "compact_sort",
+    "repeat": 2
+  }
+}

@@ -1,0 +1,34 @@
+{"argv": ["python3", "compile.py", "-P", "340282366920938463463374607431764574209", "-b", "64", "-M", "msle_vector_bucket_poly_query_system", "8", "512", "4", "8", "3", "0", "0", "1", "0", "8", "0", "1"], "cwd": "/home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8"}
+WARNING: --prime/-P activates code that usually isn't the most efficient variant. Consider using --field/-F and set the prime only during the actual computation.
+Default bit length for compilation: 126
+Default security parameter for compilation: 40
+Compiling file Programs/Source/msle_vector_bucket_poly_query_system.mpc
+Changed bit length for comparisons etc. to 64
+Changed statistical security for comparison etc. to 80
+Writing to Programs/Bytecode/msle_vector_bucket_poly_query_system-8-512-4-8-3-0-0-1-0-8-0-1-EQZ(4)_64-1.bc
+Writing to Programs/Bytecode/msle_vector_bucket_poly_query_system-8-512-4-8-3-0-0-1-0-8-0-1-LTZ(13)_65-3.bc
+Writing to Programs/Bytecode/msle_vector_bucket_poly_query_system-8-512-4-8-3-0-0-1-0-8-0-1-EQZ(6)_64-5.bc
+Writing to Programs/Bytecode/msle_vector_bucket_poly_query_system-8-512-4-8-3-0-0-1-0-8-0-1-LTZ(8)_65-6.bc
+Writing to Programs/Bytecode/msle_vector_bucket_poly_query_system-8-512-4-8-3-0-0-1-0-8-0-1-EQZ(3)_64-7.bc
+Writing to Programs/Bytecode/msle_vector_bucket_poly_query_system-8-512-4-8-3-0-0-1-0-8-0-1-LTZ(6)_65-8.bc
+Writing to Programs/Bytecode/msle_vector_bucket_poly_query_system-8-512-4-8-3-0-0-1-0-8-0-1-EQZ(1)_64-9.bc
+Writing to Programs/Bytecode/msle_vector_bucket_poly_query_system-8-512-4-8-3-0-0-1-0-8-0-1-LTZ(2)_65-10.bc
+Writing to Programs/Bytecode/msle_vector_bucket_poly_query_system-8-512-4-8-3-0-0-1-0-8-0-1-LTZ(1)_65-11.bc
+Writing to Programs/Schedules/msle_vector_bucket_poly_query_system-8-512-4-8-3-0-0-1-0-8-0-1.sch
+Writing to Programs/Bytecode/msle_vector_bucket_poly_query_system-8-512-4-8-3-0-0-1-0-8-0-1-0.bc
+Hash: f15ae7d30e9697d6f2884d8542b825995e44bb36301946cefb69ce621b0daf1e
+Program requires at most:
+       36900 integer inputs from player 0
+         522 integer inputs from player 1
+           9 integer inputs from player 2
+           9 integer inputs from player 3
+           9 integer inputs from player 4
+    31055279 integer triples
+    31055279 integer simple multiplications
+         111 strict edabits of length 128
+         117 integer opens
+       56440 bit triples
+        8239 integer dabits
+        8336 bit opens
+          31 strict edabits of length 1
+       25466 virtual machine rounds

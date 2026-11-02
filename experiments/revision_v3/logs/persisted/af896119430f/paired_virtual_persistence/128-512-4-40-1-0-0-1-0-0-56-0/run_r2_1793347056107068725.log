@@ -1,0 +1,61 @@
+{"argv": ["/usr/bin/time", "-v", "bash", "Scripts/shamir.sh", "msle_lazy_persistent_system-128-512-4-40-1-0-0-1-0-0-56-0", "--prime", "340282366920938463463374607431764574209"], "cwd": "/home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8"}
+Running /home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8/Scripts/../shamir-party.x 0 msle_lazy_persistent_system-128-512-4-40-1-0-0-1-0-0-56-0 --prime 340282366920938463463374607431764574209 -T 2 -pn 14716 -h localhost -N 5
+Running /home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8/Scripts/../shamir-party.x 1 msle_lazy_persistent_system-128-512-4-40-1-0-0-1-0-0-56-0 --prime 340282366920938463463374607431764574209 -T 2 -pn 14716 -h localhost -N 5
+Running /home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8/Scripts/../shamir-party.x 2 msle_lazy_persistent_system-128-512-4-40-1-0-0-1-0-0-56-0 --prime 340282366920938463463374607431764574209 -T 2 -pn 14716 -h localhost -N 5
+Running /home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8/Scripts/../shamir-party.x 3 msle_lazy_persistent_system-128-512-4-40-1-0-0-1-0-0-56-0 --prime 340282366920938463463374607431764574209 -T 2 -pn 14716 -h localhost -N 5
+Running /home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8/Scripts/../shamir-party.x 4 msle_lazy_persistent_system-128-512-4-40-1-0-0-1-0-0-56-0 --prime 340282366920938463463374607431764574209 -T 2 -pn 14716 -h localhost -N 5
+Trying to run 128-bit computation (128-bit representation)
+Starting timer 30 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 2.6749e-05
+Starting timer 31 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 3.422e-06
+Stopped timer 31 at 0.048463 (0 MB, 0 rounds, 0.0496286 CPU seconds)
+Starting timer 11 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 1.1913e-05
+Starting timer 12 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 3.91e-06
+Stopped timer 12 at 0.0039821 (0 MB, 0 rounds, 0.0040918 CPU seconds)
+Starting timer 13 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 3.871e-06
+Stopped timer 13 at 5.65453 (44.979 MB, 6789 rounds, 5.18587 CPU seconds)
+Starting timer 14 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 4.895e-06
+Stopped timer 14 at 0.953137 (21.0936 MB, 595 rounds, 0.908275 CPU seconds)
+Starting timer 15 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 4.399e-06
+Stopped timer 15 at 0.230383 (7.34442 MB, 58 rounds, 0.220162 CPU seconds)
+Starting timer 16 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 5.683e-06
+Stopped timer 16 at 5.19225 (45.3968 MB, 18003 rounds, 4.03317 CPU seconds)
+Stopped timer 11 at 12.0347 (118.814 MB, 25445 rounds, 10.352 CPU seconds)
+Stopped timer 30 at 12.0906 (118.814 MB, 25446 rounds, 10.4028 CPU seconds)
+MSLE_SYSTEM n=128 d=512 mode=1 protection=0 transition=0 maintenance=1 fault=0 relation=1 accepted=0 identity=-1 state_ok=1 query_ok=1
+The following benchmarks are including preprocessing (offline phase).
+Time = 12.102 seconds 
+Time11 = 12.0347 seconds (118.814 MB, 25445 rounds, 10.352 CPU seconds)
+Time12 = 0.0039821 seconds (0 MB, 0 rounds, 0.0040918 CPU seconds)
+Time13 = 5.65453 seconds (44.979 MB, 6789 rounds, 5.18587 CPU seconds)
+Time14 = 0.953137 seconds (21.0936 MB, 595 rounds, 0.908275 CPU seconds)
+Time15 = 0.230383 seconds (7.34442 MB, 58 rounds, 0.220162 CPU seconds)
+Time16 = 5.19225 seconds (45.3968 MB, 18003 rounds, 4.03317 CPU seconds)
+Time30 = 12.0906 seconds (118.814 MB, 25446 rounds, 10.4028 CPU seconds)
+Time31 = 0.048463 seconds (0 MB, 0 rounds, 0.0496286 CPU seconds)
+Data sent = 118.814 MB in ~25448 rounds (party 0 only; use '-v' for more details)
+Global data sent = 589.957 MB (all parties)
+This virtual machine was compiled with GCC. Recompile with 'CXX = clang++' in 'CONFIG.mine' for optimal performance.
+This protocol doesn't scale well with the number of parties, have you considered using ATLAS instead?
+	Command being timed: "bash Scripts/shamir.sh msle_lazy_persistent_system-128-512-4-40-1-0-0-1-0-0-56-0 --prime 340282366920938463463374607431764574209"
+	User time (seconds): 30.95
+	System time (seconds): 23.76
+	Percent of CPU this job got: 430%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:12.71
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 140260
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 223703
+	Voluntary context switches: 803735
+	Involuntary context switches: 55541
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 0
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

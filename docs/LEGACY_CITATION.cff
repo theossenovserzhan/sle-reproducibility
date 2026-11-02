@@ -1,0 +1,24 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite the associated article and this release."
+title: "Synchronized Locator Evolution: Reproducibility Package"
+type: software
+version: 1.0.0
+date-released: 2026-08-09
+authors:
+  - family-names: Amirgaliyev
+    given-names: Beibut
+    affiliation: Astana IT University
+  - family-names: Ossenov
+    given-names: Serzhan
+    affiliation: Astana IT University
+repository-code: "REPLACE_WITH_PUBLIC_REPOSITORY_URL"
+abstract: >-
+  Executable MP-SPDZ programs, Colab notebooks, and aggregate results for
+  Synchronized Locator Evolution in privacy-preserving biometric
+  identification.
+keywords:
+  - secure multiparty computation
+  - biometric identification
+  - oblivious RAM
+  - template protection
+  - epoch transition

@@ -1,0 +1,5 @@
+{
+  "base_sha256": "d5bc7958417b9e34d13fe7b1f8b0410b60f402bd5694969b01195a85238fdc22",
+  "generated_sha256": "c56cd8b5b63d4c45851041f34af7f98cbeedfd7456f0c9cc00c045ad74037007",
+  "changes": "Only feature/reference/protocol/output paths and native width; all predefined score/calibration/uncertainty calculations retained."
+}

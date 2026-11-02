@@ -1,0 +1,39 @@
+{"argv": ["python3", "compile.py", "-P", "340282366920938463463374607431764574209", "-b", "64", "-M", "msle_shared_query_system", "8", "512", "4", "8", "4", "0", "0", "1", "0", "8", "0", "1"], "cwd": "/home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8"}
+WARNING: --prime/-P activates code that usually isn't the most efficient variant. Consider using --field/-F and set the prime only during the actual computation.
+Default bit length for compilation: 126
+Default security parameter for compilation: 40
+Compiling file Programs/Source/msle_shared_query_system.mpc
+Changed bit length for comparisons etc. to 64
+Changed statistical security for comparison etc. to 80
+Compiled 100000 lines at Fri Oct 30 15:17:34 2026
+Writing to Programs/Bytecode/msle_shared_query_system-8-512-4-8-4-0-0-1-0-8-0-1-EQZ(4)_64-1.bc
+Writing to Programs/Bytecode/msle_shared_query_system-8-512-4-8-4-0-0-1-0-8-0-1-LTZ(13)_65-3.bc
+Writing to Programs/Bytecode/msle_shared_query_system-8-512-4-8-4-0-0-1-0-8-0-1-EQZ(6)_64-5.bc
+Writing to Programs/Bytecode/msle_shared_query_system-8-512-4-8-4-0-0-1-0-8-0-1-LTZ(8)_65-6.bc
+Writing to Programs/Bytecode/msle_shared_query_system-8-512-4-8-4-0-0-1-0-8-0-1-EQZ(3)_64-7.bc
+Writing to Programs/Bytecode/msle_shared_query_system-8-512-4-8-4-0-0-1-0-8-0-1-LTZ(6)_65-8.bc
+Writing to Programs/Bytecode/msle_shared_query_system-8-512-4-8-4-0-0-1-0-8-0-1-EQZ(1)_64-9.bc
+Writing to Programs/Bytecode/msle_shared_query_system-8-512-4-8-4-0-0-1-0-8-0-1-LTZ(2)_65-10.bc
+Writing to Programs/Bytecode/msle_shared_query_system-8-512-4-8-4-0-0-1-0-8-0-1-LTZ(1)_65-11.bc
+Writing to Programs/Schedules/msle_shared_query_system-8-512-4-8-4-0-0-1-0-8-0-1.sch
+Writing to Programs/Bytecode/msle_shared_query_system-8-512-4-8-4-0-0-1-0-8-0-1-0.bc
+Hash: f44aa9b704b856cf3f9dc261da568335a5d29e8f095481c2c2d63d0ff1b4083e
+Program requires at most:
+      139831 integer inputs from player 0
+      135724 integer inputs from player 1
+       37419 integer inputs from player 2
+       37419 integer inputs from player 3
+       37419 integer inputs from player 4
+    31433643 integer triples
+    31219489 integer simple multiplications
+           6 integer randoms
+         251 integer opens
+         inf bit inverses
+           1 integer shuffle generations
+           1 integer shuffle applications
+         239 strict edabits of length 128
+      137848 bit triples
+       24623 integer dabits
+       24720 bit opens
+          31 strict edabits of length 1
+       32175 virtual machine rounds

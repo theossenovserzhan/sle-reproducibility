@@ -1,0 +1,517 @@
+"""Experimental virtual-epoch system: stored secret handles, derived semantic locators.
+
+Args: N D B C MODE PROTECTION TRANSITION MAINTENANCE FAULT SRC DST DIAG
+MODE 0=transition+fresh query, 1=transition only, 2=standalone query,
+     3=standalone private indexed fixed-scan query, 4=transition+indexed query.
+PROTECTION 0=masked state, 1=shared raw-root ablation.
+TRANSITION argument retained for driver compatibility; handles stay secret/stable.
+MAINTENANCE 1=secret DB row shuffle + fresh zero sharings of all state.
+FAULT 0=none, 1=omission,2=duplication,3=misplacement,4=locator corruption,
+      5=wrong index transform,6=NO-OP in this representation,7=template bit flip,8=stale template.
+DIAG 1 adds independent oracle inputs and opens correctness bits only.
+
+Persistent state and query execution use only public-size fixed scans. Modes
+3/4 retrieve a hidden candidate set and select a certified exhaustive fallback.
+No indexed-query speedup or ORAM implementation is claimed by this backend.
+"""
+import json
+from pathlib import Path
+from Compiler import sorting
+from Compiler.library import tree_reduce
+
+cfg = json.loads(Path("msle_parameters.json").read_text())
+PRIME = int(cfg["prime"])
+CONSTANTS = list(map(int, cfg["round_constants"]))
+N, D, B, C, MODE, PROTECTION, TRANSITION, MAINTENANCE, FAULT, SRC, DST, DIAG = map(int, program.args[1:])
+assert N >= 2 and D % 64 == 0 and D % B == 0
+assert 0 <= MODE <= 4 and PROTECTION in (0,1) and TRANSITION in (0,1)
+DO_TRANSITION = MODE in (0,1,4)
+INDEXED = MODE in (3,4)
+KEY_COUNT = 1 if PROTECTION else 9
+BLOCKS, VALUES = D // B, 2 ** B
+M = BLOCKS * VALUES * C
+ROW_WIDTH = D + 3
+DB_SIZE = N * ROW_WIDTH
+STATE_SIZE = DB_SIZE + 2*M + KEY_COUNT
+program.set_bit_length(64)
+program.set_security(80)
+program.use_edabit(True)
+program.memory_budget = 512
+VECTOR_BATCH = 4096
+MASK_BATCH = 64
+
+
+def permute(x, key):
+    for constant in CONSTANTS:
+        x = (x + key + constant) ** 3
+    return x + key
+
+
+def field_zero(x):
+    return 1 - x ** (PRIME-1)
+
+
+def permute_array(array,key):
+    length=len(array)
+    result=sint.Array(length)
+    full=length//VECTOR_BATCH
+    if full:
+        @for_range(full)
+        def _(batch):
+            base=batch*VECTOR_BATCH
+            result.assign_vector(permute(array.get_vector(base=base,size=VECTOR_BATCH),key),base=base)
+    remainder=length%VECTOR_BATCH
+    if remainder:
+        result.assign_vector(permute(array.get_vector(base=full*VECTOR_BATCH,size=remainder),key),base=full*VECTOR_BATCH)
+    return result
+
+
+def xor(a,b):
+    return a+b-2*a*b
+
+
+def product_vector(vector):
+    width = len(vector)
+    padded = 1 << (width-1).bit_length()
+    array = sint.Array(padded)
+    array.assign_all(1)
+    array.assign_vector(vector)
+    while padded > 1:
+        current = array.get_vector(size=padded)
+        half = padded // 2
+        left = current.get_vector(size=half, skip=2)
+        right = current.get_vector(base=1, size=half, skip=2)
+        array.assign_vector(left*right)
+        padded = half
+    return array[0]
+
+
+def mask_at_semantic_locators(keys, locators):
+    result = sint.Array(N*D)
+    if PROTECTION:
+        result.assign_all(0)
+    else:
+        word_keys=sint.Array(D//64)
+        for chunk in range(D//64):
+            word_keys[chunk]=keys[chunk+1]
+        # Public runtime loop: do not expand eight canonical full-field bit
+        # decompositions in the compiler. Independent keys remain unchanged.
+        @for_range(D//64)
+        def _(chunk):
+            full=N//MASK_BATCH
+            if full:
+                @for_range(full)
+                def _(batch):
+                    base=batch*MASK_BATCH
+                    word=permute(locators.get_vector(base=base,size=MASK_BATCH),word_keys[chunk])
+                    bits=word.bit_decompose(128)
+                    for bit in range(64):
+                        result.assign_vector(bits[bit],base=(64*chunk+bit)*N+base)
+            remainder=N%MASK_BATCH
+            if remainder:
+                base=full*MASK_BATCH
+                word=permute(locators.get_vector(base=base,size=remainder),word_keys[chunk])
+                bits=word.bit_decompose(128)
+                for bit in range(64):
+                    result.assign_vector(bits[bit],base=(64*chunk+bit)*N+base)
+    return result
+
+
+def mask_array(keys, handles):
+    if PROTECTION:
+        return mask_at_semantic_locators(keys,handles)
+    semantic=permute_array(handles,keys[0])
+    return mask_at_semantic_locators(keys,semantic)
+
+
+def known_support_flags(handles,index_values,query_flags):
+    # The invariant ensures that every flagged slot is in the distinct handle
+    # support. Lagrange basis values are therefore exact membership bits.
+    length=len(index_values)
+    batch_size=256
+    leaves=1<<(N-1).bit_length()
+    denominators=[]
+    for row in range(N):
+        factors=sint.Array(N)
+        factors.assign_vector(handles.get_vector()-handles[row])
+        factors[row]=1
+        denominators.append(factors.get_vector())
+    inverse=tree_reduce(lambda a,b:a*b,denominators)**(PRIME-2)
+    inverse_array=sint.Array(N)
+    inverse_array.assign_vector(inverse)
+    padded=((length+batch_size-1)//batch_size)*batch_size
+    packed_index,packed_flags=sint.Array(padded),sint.Array(padded)
+    packed_index.assign_all(0)
+    packed_flags.assign_all(0)
+    packed_index.assign_vector(index_values.get_vector())
+    packed_flags.assign_vector(query_flags.get_vector())
+    tree=sint.Array(2*leaves*batch_size)
+    complement=sint.Array(2*leaves*batch_size)
+    row_factors=sint.Array(N*batch_size)
+    no_hit=sint.Array(N)
+    no_hit.assign_all(1)
+    @for_range(padded//batch_size)
+    def _(batch):
+        start=batch*batch_size
+        slots=packed_index.get_vector(base=start,size=batch_size)
+        flags=packed_flags.get_vector(base=start,size=batch_size)
+        for row in range(leaves):
+            value=slots-handles[row] if row<N else sint(1,size=batch_size)
+            tree.assign_vector(value,base=(leaves+row)*batch_size)
+        for node in range(leaves-1,0,-1):
+            left=tree.get_vector(base=2*node*batch_size,size=batch_size)
+            right=tree.get_vector(base=(2*node+1)*batch_size,size=batch_size)
+            tree.assign_vector(left*right,base=node*batch_size)
+        complement.assign_vector(sint(1,size=batch_size),base=batch_size)
+        for node in range(1,leaves):
+            outer=complement.get_vector(base=node*batch_size,size=batch_size)
+            left=tree.get_vector(base=2*node*batch_size,size=batch_size)
+            right=tree.get_vector(base=(2*node+1)*batch_size,size=batch_size)
+            complement.assign_vector(outer*right,base=2*node*batch_size)
+            complement.assign_vector(outer*left,base=(2*node+1)*batch_size)
+        for row in range(N):
+            basis=complement.get_vector(base=(leaves+row)*batch_size,size=batch_size)*inverse_array[row]
+            row_factors.assign_vector(1-basis*flags,base=row*batch_size)
+        width=batch_size
+        while width>1:
+            vector=row_factors.get_vector(size=N*width)
+            half_count=N*width//2
+            row_factors.assign_vector(vector.get_vector(size=half_count,skip=2)*vector.get_vector(base=1,size=half_count,skip=2))
+            width//=2
+        no_hit.assign_vector(no_hit.get_vector()*row_factors.get_vector(size=N))
+    result=sint.Array(N)
+    result.assign_vector(1-no_hit.get_vector())
+    return result
+
+
+def select_query_buckets(index_values,valid,bucket_flags):
+    # Slot-major output; OR membership is independent of slot order.
+    selected_index,selected_flags=sint.Array(BLOCKS*C),sint.Array(BLOCKS*C)
+    index_vector=index_values.get_vector()
+    valid_vector=valid.get_vector()
+    bucket_vector=bucket_flags.get_vector()
+    for offset in range(C):
+        locators=sint(0,size=BLOCKS)
+        flags=sint(0,size=BLOCKS)
+        for value in range(VALUES):
+            choose=bucket_vector.get_vector(base=value,size=BLOCKS,skip=VALUES)
+            locators+=choose*index_vector.get_vector(base=value*C+offset,size=BLOCKS,skip=VALUES*C)
+            flags+=choose*valid_vector.get_vector(base=value*C+offset,size=BLOCKS,skip=VALUES*C)
+        selected_index.assign_vector(locators,base=offset*BLOCKS)
+        selected_flags.assign_vector(flags,base=offset*BLOCKS)
+    return selected_index,selected_flags
+
+
+def select_arrays(bit,left,right):
+    """Bound scalar broadcasting as well as secret multiplication batches."""
+    length=len(left)
+    assert len(right)==length
+    result=sint.Array(length)
+    full=length//VECTOR_BATCH
+    if full:
+        @for_range(full)
+        def _(batch):
+            base=batch*VECTOR_BATCH
+            result.assign_vector(bit.if_else(left.get_vector(base=base,size=VECTOR_BATCH),right.get_vector(base=base,size=VECTOR_BATCH)),base=base)
+    remainder=length%VECTOR_BATCH
+    if remainder:
+        base=full*VECTOR_BATCH
+        result.assign_vector(bit.if_else(left.get_vector(base=base,size=remainder),right.get_vector(base=base,size=remainder)),base=base)
+    return result
+
+
+def radix_translate(old_db, old_index, valid, new_db):
+    length = N+M
+    records = sint.Matrix(length, 6)
+    keys = sint.Array(length)
+    # Stable sort preserves DB-before-index for equal old locators. No
+    # multiplication by 2 packs a 129-bit key into a 128-bit field.
+    @for_range(N)
+    def _(i):
+        records[i][0] = old_db[i]
+        records[i][1] = new_db[i]
+        records[i][2] = 1
+        records[i][3] = 0
+        records[i][4] = M+i
+        records[i][5] = 0
+        keys[i] = old_db[i]
+    @for_range(M)
+    def _(i):
+        row = N+i
+        records[row][0] = old_index[i]
+        records[row][1] = 0
+        records[row][2] = 0
+        records[row][3] = 1
+        records[row][4] = i
+        records[row][5] = valid[i]
+        keys[row] = old_index[i]
+    sorting.radix_sort(keys, records, n_bits=128, signed=False,n_threads=1)
+    sorted_keys = records.get_column(0)
+    boundaries = sint.Array(length)
+    boundaries[0] = 1
+    adjacent = sorted_keys.get_vector(base=1,size=length-1) - sorted_keys.get_vector(size=length-1)
+    boundaries.assign_vector(1-field_zero(adjacent), base=1)
+    group = boundaries.get_vector().prefix_sum()
+    carried = records.get_column(1)
+    has_source = records.get_column(2)
+    stride = 1
+    while stride < length:
+        count = length-stride
+        same = group.get_vector(base=stride,size=count) == group.get_vector(size=count)
+        left_has = has_source.get_vector(size=count)
+        right_has = has_source.get_vector(base=stride,size=count)
+        take = same*left_has*(1-right_has)
+        new_carried = sint.Array(length)
+        new_has = sint.Array(length)
+        new_carried.assign_vector(carried.get_vector(size=stride))
+        new_has.assign_vector(has_source.get_vector(size=stride))
+        new_carried.assign_vector(take.if_else(carried.get_vector(size=count),carried.get_vector(base=stride,size=count)),base=stride)
+        new_has.assign_vector(right_has+take,base=stride)
+        carried,has_source = new_carried.get_vector(),new_has.get_vector()
+        stride *= 2
+    index_rows, validity = records.get_column(3),records.get_column(5)
+    join_ok = product_vector(1-index_rows*validity*(1-has_source))
+    random_dummy = sint.get_random(size=length)
+    records.set_column(1, validity.if_else(carried,random_dummy))
+    restore = sint.Array(length)
+    restore.assign_vector(records.get_column(4))
+    sorting.radix_sort(restore,records,n_bits=(length-1).bit_length(),signed=False,n_threads=1)
+    result = sint.Array(M)
+    result.assign_vector(records.get_column(1).get_vector(size=M))
+    return result,join_ok
+
+
+start_timer(30)
+old_locs = sint.Array(N)
+old_c = sint.Array(N*D)
+old_locs.input_from(0)
+old_c.input_from(0)
+if DO_TRANSITION or INDEXED:
+    old_index, valid = sint.Array(M),sint.Array(M)
+    old_index.input_from(0)
+    valid.input_from(0)
+labels,ties = sint.Array(N),sint.Array(N)
+labels.input_from(0)
+ties.input_from(0)
+old_keys = [sint(0) for _ in range(KEY_COUNT)]
+new_keys = [sint(0) for _ in range(KEY_COUNT)]
+for party in range(5):
+    for j in range(KEY_COUNT):
+        old_keys[j] += sint.get_input_from(party)
+    if DO_TRANSITION:
+        for j in range(KEY_COUNT):
+            new_keys[j] += sint.get_input_from(party)
+if MODE != 1:
+    probe = sint.Array(D)
+    probe.input_from(1)
+    threshold = sint.get_input_from(1)
+if DIAG:
+    if DO_TRANSITION:
+        oracle_locs,oracle_c = sint.Array(N),sint.Array(N*D)
+        oracle_locs.input_from(0)
+        oracle_c.input_from(0)
+    oracle_label = sint.get_input_from(0)
+    oracle_distance = sint.get_input_from(0)
+    oracle_relation = sint.get_input_from(0)
+
+current_locs,current_c,current_labels,current_ties = old_locs,old_c,labels,ties
+current_keys = old_keys
+if INDEXED:
+    current_index,current_valid=old_index,valid
+relation_ok = sint(1)
+state_ok = sint(1)
+
+if DO_TRANSITION:
+    start_timer(11)
+    start_timer(12)
+    # Stored locators are stable secret handles. Their semantic epoch
+    # locators are derived with the selected global key when masking.
+    next_locs=sint.Array(N)
+    next_locs.assign_vector(old_locs.get_vector())
+    next_index=sint.Array(M)
+    next_index.assign_vector(old_index.get_vector())
+    join_ok=sint(1)
+    next_valid = sint.Array(M)
+    next_valid.assign_vector(valid.get_vector())
+    stop_timer(12)
+
+    start_timer(13)
+    if PROTECTION:
+        transient_roots=old_c.get_vector()
+        expected_c=transient_roots
+    else:
+        old_mask,new_mask = mask_array(old_keys,old_locs),mask_array(new_keys,next_locs)
+        transient_roots = xor(old_c.get_vector(),old_mask.get_vector())
+        expected_c = xor(transient_roots,new_mask.get_vector())
+    candidate_c = sint.Array(N*D)
+    candidate_c.assign_vector(expected_c)
+    stop_timer(13)
+
+    if FAULT == 1:
+        next_valid[SRC] = 0
+    elif FAULT == 2:
+        next_index[DST],next_valid[DST] = next_index[SRC],sint(1)
+    elif FAULT == 3:
+        next_index[DST],next_valid[DST],next_valid[SRC] = next_index[SRC],sint(1),sint(0)
+    elif FAULT == 4:
+        next_index[SRC] += 1
+    elif FAULT == 5:
+        next_index = permute_array(old_index,new_keys[0]+1)
+    elif FAULT == 6:
+        next_index[SRC] = old_index[SRC]
+    elif FAULT == 7:
+        candidate_c[0] = 1-candidate_c[0]
+    elif FAULT == 8:
+        for bit in range(D):
+            candidate_c[bit*N] = old_c[bit*N]
+
+    start_timer(14)
+    template_ok = product_vector(1-xor(candidate_c.get_vector(),expected_c))
+    # Expected relation is derived from the PROPOSED protected state, binding
+    # templates to index rows rather than checking only the previous roots.
+    proposed_roots = candidate_c.get_vector() if PROTECTION else xor(candidate_c.get_vector(),new_mask.get_vector())
+    fingerprints = []
+    for check in range(2):
+        r,alpha,beta = [sint.get_random().reveal() for _ in range(3)]
+        expected_factors = sint.Array(N*BLOCKS)
+        for block in range(BLOCKS):
+            bucket = sint(0,size=N)
+            for bit in range(B):
+                bucket += proposed_roots.get_vector(base=(block*B+bit)*N,size=N) * (2**bit)
+            expected_factors.assign_vector(r-next_locs.get_vector()-alpha*block-beta*bucket,base=block*N)
+        actual_factors=sint.Array(M)
+        def fill_factors(base,size):
+            positions=regint.inc(size)+base
+            slot_block=cint(positions//(C*VALUES))
+            slot_bucket=cint((positions//C)%VALUES)
+            factor=r-next_index.get_vector(base=base,size=size)-alpha*slot_block-beta*slot_bucket
+            actual_factors.assign_vector(next_valid.get_vector(base=base,size=size)*(factor-1)+1,base=base)
+        full=M//VECTOR_BATCH
+        if full:
+            @for_range(full)
+            def _(batch):
+                fill_factors(batch*VECTOR_BATCH,VECTOR_BATCH)
+        if M%VECTOR_BATCH:
+            fill_factors(full*VECTOR_BATCH,M%VECTOR_BATCH)
+        fingerprints.append(field_zero(product_vector(expected_factors.get_vector())-product_vector(actual_factors.get_vector())))
+    relation_ok = template_ok*join_ok*fingerprints[0]*fingerprints[1]
+    stop_timer(14)
+
+    start_timer(15)
+    current_locs=select_arrays(relation_ok,next_locs,old_locs)
+    current_c=select_arrays(relation_ok,candidate_c,old_c)
+    current_index=select_arrays(relation_ok,next_index,old_index)
+    current_valid=select_arrays(relation_ok,next_valid,valid)
+    current_keys = [relation_ok.if_else(new_keys[j],old_keys[j]) for j in range(KEY_COUNT)]
+    if DIAG:
+        want_locs=select_arrays(oracle_relation,oracle_locs,old_locs)
+        want_c=select_arrays(oracle_relation,oracle_c,old_c)
+        state_ok = product_vector(field_zero(current_locs.get_vector()-want_locs.get_vector())) * product_vector(1-xor(current_c.get_vector(),want_c.get_vector()))
+        if FAULT:
+            state_ok *= product_vector(field_zero(current_index.get_vector()-old_index.get_vector()))
+            state_ok *= product_vector(1-xor(current_valid.get_vector(),valid.get_vector()))
+            state_ok *= tree_reduce(lambda a,b:a*b,[field_zero(current_keys[j]-old_keys[j]) for j in range(KEY_COUNT)])
+    stop_timer(15)
+
+    start_timer(16)
+    db = sint.Matrix(N,ROW_WIDTH)
+    db.set_column(0,current_locs.get_vector())
+    db.set_column(1,labels.get_vector())
+    db.set_column(2,ties.get_vector())
+    for bit in range(D):
+        db.set_column(3+bit,current_c.get_vector(base=bit*N,size=N))
+    if MAINTENANCE:
+        db.assign_vector(db.get_vector().secure_shuffle(unit_size=ROW_WIDTH))
+    state = sint.Array(STATE_SIZE)
+    state.assign_vector(db.get_vector())
+    state.assign_vector(current_index.get_vector(),base=DB_SIZE)
+    state.assign_vector(current_valid.get_vector(),base=DB_SIZE+M)
+    for j in range(KEY_COUNT):
+        state[DB_SIZE+2*M+j] = current_keys[j]
+    if MAINTENANCE:
+        # Each honest party privately inputs a freshly randomized sharing of
+        # zero. Sum of these zero polynomials refreshes every state share.
+        refreshed = state.get_vector()
+        for party in range(5):
+            zero_sharing = sint.Array(STATE_SIZE)
+            zero_sharing.input_from(party)
+            refreshed += zero_sharing.get_vector()
+        state.assign_vector(refreshed)
+    # One complete logical state bundle. Durable crash-atomic publication is
+    # handled by an epoch manifest outside the circuit, not assumed from this
+    # write instruction alone.
+    state.write_to_file(0)
+    db.assign_vector(state.get_vector(size=DB_SIZE))
+    current_locs.assign_vector(db.get_column(0))
+    current_labels,current_ties = db.get_column(1),db.get_column(2)
+    for bit in range(D):
+        current_c.assign_vector(db.get_column(3+bit),base=bit*N)
+    current_keys = [state[DB_SIZE+2*M+j] for j in range(KEY_COUNT)]
+    current_index.assign_vector(state.get_vector(base=DB_SIZE,size=M))
+    current_valid.assign_vector(state.get_vector(base=DB_SIZE+M,size=M))
+    stop_timer(16)
+    stop_timer(11)
+
+query_ok = sint(1)
+candidate_membership_ok = sint(1)
+decision = sint(-1)
+accepted = sint(0)
+if MODE != 1:
+    start_timer(20)
+    if INDEXED:
+        start_timer(23)
+        bucket_flags=sint.Array(BLOCKS*VALUES)
+        for block in range(BLOCKS):
+            for value in range(VALUES):
+                terms=[probe[block*B+b] if (value>>b)&1 else 1-probe[block*B+b] for b in range(B)]
+                bucket_flags[block*VALUES+value]=tree_reduce(lambda a,b:a*b,terms)
+        if DIAG:
+            slot_flags=sint.Array(M)
+            @for_range(M)
+            def _(position):
+                slot_flags[position]=bucket_flags[position//C]*current_valid[position]
+        lookup_index,lookup_flags=select_query_buckets(current_index,current_valid,bucket_flags)
+        candidate_flags=known_support_flags(current_locs,lookup_index,lookup_flags)
+        if DIAG:
+            original_flags=sint.Array(N)
+            @for_range(N)
+            def _(row):
+                matches=field_zero(current_index.get_vector()-current_locs[row])*slot_flags.get_vector()
+                original_flags[row]=1-product_vector(1-matches)
+            candidate_membership_ok=product_vector(1-xor(candidate_flags.get_vector(),original_flags.get_vector()))
+        stop_timer(23)
+    start_timer(21)
+    # Standalone query generates masks from persistent state; it does not
+    # reuse the old/new masks computed during a preceding transition.
+    if not PROTECTION:
+        query_mask = mask_array(current_keys,current_locs)
+    stop_timer(21)
+    start_timer(22)
+    distances = sint(0,size=N)
+    for bit in range(D):
+        protected_probe = probe[bit] if PROTECTION else xor(probe[bit],query_mask.get_vector(base=bit*N,size=N))
+        distances += xor(current_c.get_vector(base=bit*N,size=N),protected_probe)
+    def best(left,right):
+        better = (right[0]<left[0]) + (right[0]==left[0])*(right[2]<left[2])
+        return tuple(better.if_else(r,l) for l,r in zip(left,right))
+    distance,label,tie = tree_reduce(best,[(distances[i],current_labels[i],current_ties[i]) for i in range(N)])
+    if INDEXED:
+        candidate_distance,candidate_label,candidate_tie=tree_reduce(best,[(candidate_flags[i].if_else(distances[i],sint(D+1)),current_labels[i],current_ties[i]) for i in range(N)])
+        count=sum(candidate_flags)
+        fallback=(count<N)*(candidate_distance>=BLOCKS)
+        distance=fallback.if_else(distance,candidate_distance)
+        label=fallback.if_else(label,candidate_label)
+    accepted = distance <= threshold
+    decision = accepted.if_else(label,sint(-1))
+    if DIAG:
+        query_ok = field_zero(decision-oracle_label) * (distance==oracle_distance)
+    stop_timer(22)
+    stop_timer(20)
+if DIAG:
+    state_ok *= (relation_ok==oracle_relation)
+stop_timer(30)
+print_ln("MSLE_SYSTEM n=%s d=%s mode=%s protection=%s transition=%s maintenance=%s fault=%s relation=%s accepted=%s identity=%s state_ok=%s query_ok=%s",
+         N,D,MODE,PROTECTION,TRANSITION,MAINTENANCE,FAULT,relation_ok.reveal(),accepted.reveal(),decision.reveal(),state_ok.reveal(),query_ok.reveal())
+
+if DIAG and INDEXED:
+    print_ln('MSLE_CANDIDATES exact_membership_ok=%s',candidate_membership_ok.reveal())

@@ -1,0 +1,31 @@
+{"argv": ["python3", "compile.py", "-P", "340282366920938463463374607431764574209", "-b", "64", "-M", "msle_persistent_system", "128", "512", "4", "40", "1", "0", "0", "1", "0", "0", "56", "0"], "cwd": "/home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8"}
+WARNING: --prime/-P activates code that usually isn't the most efficient variant. Consider using --field/-F and set the prime only during the actual computation.
+Default bit length for compilation: 126
+Default security parameter for compilation: 40
+Compiling file Programs/Source/msle_persistent_system.mpc
+Changed bit length for comparisons etc. to 64
+Changed statistical security for comparison etc. to 80
+Compiled 100000 lines at Fri Oct 30 00:04:56 2026
+Compiled 200000 lines at Fri Oct 30 00:04:57 2026
+Compiled 300000 lines at Fri Oct 30 00:04:59 2026
+Writing to Programs/Schedules/msle_persistent_system-128-512-4-40-1-0-0-1-0-0-56-0.sch
+Writing to Programs/Bytecode/msle_persistent_system-128-512-4-40-1-0-0-1-0-0-56-0-0.bc
+Hash: 7db68af5cce67a44fd5d4e3e424236a6a4ce723c273b0b5aa24b43bfebdbc1bd
+Program requires at most:
+     2326931 integer inputs from player 0
+     2326931 integer inputs from player 1
+      229778 integer inputs from player 2
+      229778 integer inputs from player 3
+      229778 integer inputs from player 4
+    19627877 integer triples
+    14639963 integer simple multiplications
+           6 integer randoms
+        2059 integer opens
+         inf bit inverses
+           1 integer shuffle generations
+           1 integer shuffle applications
+        2048 strict edabits of length 128
+     1302528 bit triples
+      262144 integer dabits
+       32768 bit opens
+       28026 virtual machine rounds

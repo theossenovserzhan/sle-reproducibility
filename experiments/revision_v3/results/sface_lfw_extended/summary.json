@@ -1,0 +1,675 @@
+{
+  "protocol_sha256": "706635b94aeea8bbaa28e745578d160c9b5b31bdf9cac6ce01ea2178070f8354",
+  "script_sha256": "31f859b3bac0df67e243a18340c2434e65aca138a590f841a003794763ffe2e8",
+  "extended_features_sha256": "33987aad4cd1f0359572153e6d066e9cabf06e2a00a283bc5908192ff16e2acc",
+  "numpy": "2.4.3",
+  "calibration_identities": 512,
+  "fresh_test_unknown_identities": 512,
+  "test_unknown_image_count_strata": {
+    "one_image": 365,
+    "two_to_five": 134,
+    "six_or_more": 13
+  },
+  "historical_comparison": "Different frontend; no equality to FaceNet outcomes is required",
+  "closed_set": [
+    {
+      "n_gallery": 128,
+      "float_rank1": 0.9888671875,
+      "binary_rank1": 0.966015625,
+      "float_rank5": 0.99140625,
+      "binary_rank5": 0.98740234375,
+      "binary_minus_float_rank1": {
+        "mean": -0.0228515625,
+        "ci95": [
+          -0.030273437500000003,
+          -0.016113281249999997
+        ],
+        "units": 128,
+        "bootstrap_resamples": 5000
+      }
+    },
+    {
+      "n_gallery": 256,
+      "float_rank1": 0.98779296875,
+      "binary_rank1": 0.9595703125,
+      "float_rank5": 0.9912109375,
+      "binary_rank5": 0.985546875,
+      "binary_minus_float_rank1": {
+        "mean": -0.02822265624999999,
+        "ci95": [
+          -0.03749999999999999,
+          -0.019824218749999997
+        ],
+        "units": 128,
+        "bootstrap_resamples": 5000
+      }
+    },
+    {
+      "n_gallery": 512,
+      "float_rank1": 0.9876953125,
+      "binary_rank1": 0.9513671875,
+      "float_rank5": 0.9900390625,
+      "binary_rank5": 0.98076171875,
+      "binary_minus_float_rank1": {
+        "mean": -0.036328124999999996,
+        "ci95": [
+          -0.046972656249999994,
+          -0.026464843749999994
+        ],
+        "units": 128,
+        "bootstrap_resamples": 5000
+      }
+    },
+    {
+      "n_gallery": 1024,
+      "float_rank1": 0.9875,
+      "binary_rank1": 0.9396484375,
+      "float_rank5": 0.9896484375,
+      "binary_rank5": 0.97734375,
+      "binary_minus_float_rank1": {
+        "mean": -0.047851562499999986,
+        "ci95": [
+          -0.060058593749999986,
+          -0.03603515624999999
+        ],
+        "units": 128,
+        "bootstrap_resamples": 5000
+      }
+    },
+    {
+      "n_gallery": 2048,
+      "float_rank1": 0.9867187500000001,
+      "binary_rank1": 0.9261718750000001,
+      "float_rank5": 0.9892578125,
+      "binary_rank5": 0.9693359375,
+      "binary_minus_float_rank1": {
+        "mean": -0.060546874999999986,
+        "ci95": [
+          -0.07499999999999998,
+          -0.04736328124999999
+        ],
+        "units": 128,
+        "bootstrap_resamples": 5000
+      }
+    },
+    {
+      "n_gallery": 4096,
+      "float_rank1": 0.98603515625,
+      "binary_rank1": 0.91044921875,
+      "float_rank5": 0.9888671875,
+      "binary_rank5": 0.95830078125,
+      "binary_minus_float_rank1": {
+        "mean": -0.07558593749999999,
+        "ci95": [
+          -0.09326416015625,
+          -0.058691406249999994
+        ],
+        "units": 128,
+        "bootstrap_resamples": 5000
+      }
+    }
+  ],
+  "open_set": [
+    {
+      "n_gallery": 128,
+      "representation": "float_cosine",
+      "rule": "empirical",
+      "test_fpir": {
+        "mean": 0.01044921875,
+        "ci95": [
+          0.005859375,
+          0.0162109375
+        ],
+        "units": 512,
+        "bootstrap_resamples": 5000
+      },
+      "test_dir": {
+        "mean": 0.98212890625,
+        "ci95": [
+          0.9712890625,
+          0.99130859375
+        ],
+        "units": 128,
+        "bootstrap_resamples": 5000
+      }
+    },
+    {
+      "n_gallery": 128,
+      "representation": "float_cosine",
+      "rule": "conservative_iid_order_statistic",
+      "test_fpir": {
+        "mean": 0.003125,
+        "ci95": [
+          0.00087890625,
+          0.0059570312500000005
+        ],
+        "units": 512,
+        "bootstrap_resamples": 5000
+      },
+      "test_dir": {
+        "mean": 0.9771484375000001,
+        "ci95": [
+          0.96445068359375,
+          0.98798828125
+        ],
+        "units": 128,
+        "bootstrap_resamples": 5000
+      }
+    },
+    {
+      "n_gallery": 128,
+      "representation": "binary_hamming",
+      "rule": "empirical",
+      "test_fpir": {
+        "mean": 0.00546875,
+        "ci95": [
+          0.0035156250000000005,
+          0.00771484375
+        ],
+        "units": 512,
+        "bootstrap_resamples": 5000
+      },
+      "test_dir": {
+        "mean": 0.8418945312499999,
+        "ci95": [
+          0.81376708984375,
+          0.8682641601562501
+        ],
+        "units": 128,
+        "bootstrap_resamples": 5000
+      }
+    },
+    {
+      "n_gallery": 128,
+      "representation": "binary_hamming",
+      "rule": "conservative_iid_order_statistic",
+      "test_fpir": {
+        "mean": 0.0009765625,
+        "ci95": [
+          0.00029296875000000004,
+          0.0017578125
+        ],
+        "units": 512,
+        "bootstrap_resamples": 5000
+      },
+      "test_dir": {
+        "mean": 0.78779296875,
+        "ci95": [
+          0.75556640625,
+          0.81953369140625
+        ],
+        "units": 128,
+        "bootstrap_resamples": 5000
+      }
+    },
+    {
+      "n_gallery": 256,
+      "representation": "float_cosine",
+      "rule": "empirical",
+      "test_fpir": {
+        "mean": 0.009375,
+        "ci95": [
+          0.004296875,
+          0.01591796875
+        ],
+        "units": 512,
+        "bootstrap_resamples": 5000
+      },
+      "test_dir": {
+        "mean": 0.9802734375,
+        "ci95": [
+          0.96913818359375,
+          0.9898437499999999
+        ],
+        "units": 128,
+        "bootstrap_resamples": 5000
+      }
+    },
+    {
+      "n_gallery": 256,
+      "representation": "float_cosine",
+      "rule": "conservative_iid_order_statistic",
+      "test_fpir": {
+        "mean": 0.0044921875,
+        "ci95": [
+          0.00107421875,
+          0.009179687499999999
+        ],
+        "units": 512,
+        "bootstrap_resamples": 5000
+      },
+      "test_dir": {
+        "mean": 0.9767578125,
+        "ci95": [
+          0.9639648437499999,
+          0.98720703125
+        ],
+        "units": 128,
+        "bootstrap_resamples": 5000
+      }
+    },
+    {
+      "n_gallery": 256,
+      "representation": "binary_hamming",
+      "rule": "empirical",
+      "test_fpir": {
+        "mean": 0.00859375,
+        "ci95": [
+          0.0048828125,
+          0.0130859375
+        ],
+        "units": 512,
+        "bootstrap_resamples": 5000
+      },
+      "test_dir": {
+        "mean": 0.84033203125,
+        "ci95": [
+          0.8132812500000001,
+          0.86640625
+        ],
+        "units": 128,
+        "bootstrap_resamples": 5000
+      }
+    },
+    {
+      "n_gallery": 256,
+      "representation": "binary_hamming",
+      "rule": "conservative_iid_order_statistic",
+      "test_fpir": {
+        "mean": 0.0005859375000000001,
+        "ci95": [
+          9.765625e-05,
+          0.0011718750000000002
+        ],
+        "units": 512,
+        "bootstrap_resamples": 5000
+      },
+      "test_dir": {
+        "mean": 0.776953125,
+        "ci95": [
+          0.74345458984375,
+          0.809765625
+        ],
+        "units": 128,
+        "bootstrap_resamples": 5000
+      }
+    },
+    {
+      "n_gallery": 512,
+      "representation": "float_cosine",
+      "rule": "empirical",
+      "test_fpir": {
+        "mean": 0.01416015625,
+        "ci95": [
+          0.00537109375,
+          0.02451171875
+        ],
+        "units": 512,
+        "bootstrap_resamples": 5000
+      },
+      "test_dir": {
+        "mean": 0.97880859375,
+        "ci95": [
+          0.96728515625,
+          0.98896484375
+        ],
+        "units": 128,
+        "bootstrap_resamples": 5000
+      }
+    },
+    {
+      "n_gallery": 512,
+      "representation": "float_cosine",
+      "rule": "conservative_iid_order_statistic",
+      "test_fpir": {
+        "mean": 0.00615234375,
+        "ci95": [
+          0.001953125,
+          0.01162109375
+        ],
+        "units": 512,
+        "bootstrap_resamples": 5000
+      },
+      "test_dir": {
+        "mean": 0.971875,
+        "ci95": [
+          0.9581054687500001,
+          0.9837890625
+        ],
+        "units": 128,
+        "bootstrap_resamples": 5000
+      }
+    },
+    {
+      "n_gallery": 512,
+      "representation": "binary_hamming",
+      "rule": "empirical",
+      "test_fpir": {
+        "mean": 0.0095703125,
+        "ci95": [
+          0.00341796875,
+          0.017578125
+        ],
+        "units": 512,
+        "bootstrap_resamples": 5000
+      },
+      "test_dir": {
+        "mean": 0.80361328125,
+        "ci95": [
+          0.77158203125,
+          0.83340087890625
+        ],
+        "units": 128,
+        "bootstrap_resamples": 5000
+      }
+    },
+    {
+      "n_gallery": 512,
+      "representation": "binary_hamming",
+      "rule": "conservative_iid_order_statistic",
+      "test_fpir": {
+        "mean": 0.0041015625,
+        "ci95": [
+          0.0,
+          0.01015625
+        ],
+        "units": 512,
+        "bootstrap_resamples": 5000
+      },
+      "test_dir": {
+        "mean": 0.7293945312500001,
+        "ci95": [
+          0.6935546875,
+          0.7653320312499999
+        ],
+        "units": 128,
+        "bootstrap_resamples": 5000
+      }
+    },
+    {
+      "n_gallery": 1024,
+      "representation": "float_cosine",
+      "rule": "empirical",
+      "test_fpir": {
+        "mean": 0.0205078125,
+        "ci95": [
+          0.00966796875,
+          0.03261962890624997
+        ],
+        "units": 512,
+        "bootstrap_resamples": 5000
+      },
+      "test_dir": {
+        "mean": 0.97646484375,
+        "ci95": [
+          0.96376953125,
+          0.9870117187499999
+        ],
+        "units": 128,
+        "bootstrap_resamples": 5000
+      }
+    },
+    {
+      "n_gallery": 1024,
+      "representation": "float_cosine",
+      "rule": "conservative_iid_order_statistic",
+      "test_fpir": {
+        "mean": 0.01044921875,
+        "ci95": [
+          0.00263671875,
+          0.0201171875
+        ],
+        "units": 512,
+        "bootstrap_resamples": 5000
+      },
+      "test_dir": {
+        "mean": 0.96806640625,
+        "ci95": [
+          0.95302734375,
+          0.98135009765625
+        ],
+        "units": 128,
+        "bootstrap_resamples": 5000
+      }
+    },
+    {
+      "n_gallery": 1024,
+      "representation": "binary_hamming",
+      "rule": "empirical",
+      "test_fpir": {
+        "mean": 0.0142578125,
+        "ci95": [
+          0.0048803710937500005,
+          0.02578125
+        ],
+        "units": 512,
+        "bootstrap_resamples": 5000
+      },
+      "test_dir": {
+        "mean": 0.7850585937500001,
+        "ci95": [
+          0.75234375,
+          0.8171875
+        ],
+        "units": 128,
+        "bootstrap_resamples": 5000
+      }
+    },
+    {
+      "n_gallery": 1024,
+      "representation": "binary_hamming",
+      "rule": "conservative_iid_order_statistic",
+      "test_fpir": {
+        "mean": 0.0080078125,
+        "ci95": [
+          0.001953125,
+          0.016015625
+        ],
+        "units": 512,
+        "bootstrap_resamples": 5000
+      },
+      "test_dir": {
+        "mean": 0.7293945312500001,
+        "ci95": [
+          0.6927734375000001,
+          0.76533203125
+        ],
+        "units": 128,
+        "bootstrap_resamples": 5000
+      }
+    },
+    {
+      "n_gallery": 2048,
+      "representation": "float_cosine",
+      "rule": "empirical",
+      "test_fpir": {
+        "mean": 0.02080078125,
+        "ci95": [
+          0.00947021484375,
+          0.033984375
+        ],
+        "units": 512,
+        "bootstrap_resamples": 5000
+      },
+      "test_dir": {
+        "mean": 0.96923828125,
+        "ci95": [
+          0.9541015625,
+          0.98212890625
+        ],
+        "units": 128,
+        "bootstrap_resamples": 5000
+      }
+    },
+    {
+      "n_gallery": 2048,
+      "representation": "float_cosine",
+      "rule": "conservative_iid_order_statistic",
+      "test_fpir": {
+        "mean": 0.01171875,
+        "ci95": [
+          0.00390625,
+          0.021484375
+        ],
+        "units": 512,
+        "bootstrap_resamples": 5000
+      },
+      "test_dir": {
+        "mean": 0.9459960937499999,
+        "ci95": [
+          0.92636474609375,
+          0.9643579101562499
+        ],
+        "units": 128,
+        "bootstrap_resamples": 5000
+      }
+    },
+    {
+      "n_gallery": 2048,
+      "representation": "binary_hamming",
+      "rule": "empirical",
+      "test_fpir": {
+        "mean": 0.0138671875,
+        "ci95": [
+          0.0041015625,
+          0.025390625
+        ],
+        "units": 512,
+        "bootstrap_resamples": 5000
+      },
+      "test_dir": {
+        "mean": 0.74443359375,
+        "ci95": [
+          0.70771240234375,
+          0.77949462890625
+        ],
+        "units": 128,
+        "bootstrap_resamples": 5000
+      }
+    },
+    {
+      "n_gallery": 2048,
+      "representation": "binary_hamming",
+      "rule": "conservative_iid_order_statistic",
+      "test_fpir": {
+        "mean": 0.00927734375,
+        "ci95": [
+          0.001953125,
+          0.0181640625
+        ],
+        "units": 512,
+        "bootstrap_resamples": 5000
+      },
+      "test_dir": {
+        "mean": 0.68583984375,
+        "ci95": [
+          0.64443359375,
+          0.72470703125
+        ],
+        "units": 128,
+        "bootstrap_resamples": 5000
+      }
+    },
+    {
+      "n_gallery": 4096,
+      "representation": "float_cosine",
+      "rule": "empirical",
+      "test_fpir": {
+        "mean": 0.025390625,
+        "ci95": [
+          0.013671875,
+          0.0390625
+        ],
+        "units": 512,
+        "bootstrap_resamples": 5000
+      },
+      "test_dir": {
+        "mean": 0.96181640625,
+        "ci95": [
+          0.94560546875,
+          0.9766601562499999
+        ],
+        "units": 128,
+        "bootstrap_resamples": 5000
+      }
+    },
+    {
+      "n_gallery": 4096,
+      "representation": "float_cosine",
+      "rule": "conservative_iid_order_statistic",
+      "test_fpir": {
+        "mean": 0.017578125,
+        "ci95": [
+          0.0078125,
+          0.029296875
+        ],
+        "units": 512,
+        "bootstrap_resamples": 5000
+      },
+      "test_dir": {
+        "mean": 0.9279296875,
+        "ci95": [
+          0.9041015625,
+          0.9496093749999999
+        ],
+        "units": 128,
+        "bootstrap_resamples": 5000
+      }
+    },
+    {
+      "n_gallery": 4096,
+      "representation": "binary_hamming",
+      "rule": "empirical",
+      "test_fpir": {
+        "mean": 0.0181640625,
+        "ci95": [
+          0.00751953125,
+          0.029882812499999998
+        ],
+        "units": 512,
+        "bootstrap_resamples": 5000
+      },
+      "test_dir": {
+        "mean": 0.68583984375,
+        "ci95": [
+          0.646484375,
+          0.7243188476562499
+        ],
+        "units": 128,
+        "bootstrap_resamples": 5000
+      }
+    },
+    {
+      "n_gallery": 4096,
+      "representation": "binary_hamming",
+      "rule": "conservative_iid_order_statistic",
+      "test_fpir": {
+        "mean": 0.00947265625,
+        "ci95": [
+          0.001953125,
+          0.0189453125
+        ],
+        "units": 512,
+        "bootstrap_resamples": 5000
+      },
+      "test_dir": {
+        "mean": 0.63779296875,
+        "ci95": [
+          0.59706787109375,
+          0.6796923828124999
+        ],
+        "units": 128,
+        "bootstrap_resamples": 5000
+      }
+    }
+  ],
+  "limitations": [
+    "custom LFW-derived protocols, not official LFW benchmark",
+    "same 128 query identities across nested galleries and 20 image assignments",
+    "new unknown pool samples all identities with >=1 image; distinct from earlier >=6-image hard pilot",
+    "one image per new identity; conditional on the frozen backbone/preprocessing",
+    "binomial conservative threshold requires IID calibration identity-score assumption; no distribution-shift guarantee",
+    "0.1% FPIR not claimed"
+  ],
+  "elapsed_s": 10.284614473999966
+}

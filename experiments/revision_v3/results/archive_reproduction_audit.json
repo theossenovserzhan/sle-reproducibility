@@ -1,0 +1,19 @@
+{
+  "all_pass": true,
+  "checked_utc": "2026-10-30T12:47:20.249868+00:00",
+  "method": "Fresh ZIP extraction, all-member SHA/CRC, regeneration of all four current TeX table/response files with no biometric data or MPC runtime; exact byte comparison to extracted and working originals.",
+  "tested_tables_and_response_sha256": {
+    "generated_v3_results.tex": "c1b871c0c4e33db2279672e4d556f312d8db7ae93392d1aa6864f846424379bd",
+    "generated_v3_supplement.tex": "d6c582fa922e07b177e35f2aa2516293b0445682a6dc67458adbee1f101689fc",
+    "response_to_reviewers.tex": "fd75169982ec3ffea62a67eeaa6cc28e708507b00e4dd0769de1605b7bee0cf6",
+    "generated_v3_response_values.tex": "c14d15adcf6279c374294908f3582ad11d86b746a329c11d7e59ab3af54f9802"
+  },
+  "tested_pdf_sha256": {
+    "main": "8def2d93aa2223aad596ed80f88c39947e3f100df3e976242d69601a30208140",
+    "supplement": "25217b421229a433bd010bec9be76c677482aa03e932a5352ae43eeb292a43de",
+    "response_to_reviewers": "7ffa69978e8a04c5d3a3d6e60bb0e9808354c8b4929311b1f84a06954e943105"
+  },
+  "private_data_required": false,
+  "scope": "Critical immutable-content hashes remain verified when the archive is repackaged only to add this audit/log; final package manifest separately verifies every final member and ZIP CRC.",
+  "reproduction_stage": "tmp/archive_reproduction_f2sml0fu"
+}

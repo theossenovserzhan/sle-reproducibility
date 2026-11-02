@@ -1,0 +1,10 @@
+{
+  "vectors": 3,
+  "bits": 384,
+  "all_pass": true,
+  "circuit_source_sha256": "40423a0cdaf5d4d34aba872c12660f115dc25c12eea6e24a9304578e79df6d04",
+  "mpc_source_sha256": "ae0473bccadb04e95b4b599c501f94c03693ccd5ac502eab3a5d6b2e4bcd209a",
+  "backend_sha256": "3e363b6dc2b7d2af90b8b0760999c0a759a7083a0694bd12e8912508fe02a7ac",
+  "raw_log": "logs/aes_primitives/run_1793340437596618623.log",
+  "scope": "AES block primitive in five-party Shamir; not yet complete CTR system validation"
+}

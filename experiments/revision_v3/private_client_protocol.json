@@ -1,0 +1,12 @@
+{
+  "created_local_date": "2026-10-30",
+  "status": "fixed before private-output or fused-query execution",
+  "input": "An external honest client independently degree-two shares every binary probe coordinate, threshold, and a fresh uniform Fp output pad. Each of five computing parties inputs one evaluation per field.",
+  "output": "Open only identity+pad in Fp. The client subtracts its pad; p-1 encodes reject. Never separately open acceptance or plaintext identity. DIAG=1 includes trusted correctness oracles and is excluded from the production output privacy claim.",
+  "comparison": ["Full exact scan", "Secret bucket selection plus exact polynomial index membership", "Candidate bits fused into the already computed root/probe mismatch loop"],
+  "fused_argument": "For a valid root/index relation, membership is OR over exact block matches. Reusing mismatch bits preserves exactly the same candidate flags. This is a strong monolithic matcher baseline; it assumes the matcher already has access to protected templates and mask keys, unlike an index-only service.",
+  "correctness": ["N8 real roots, complete rekey plus indexed query and old full-field candidate-bit oracle for both implementations", "Client-only accept and reject decoding", "Failed transition rollback and reload", "N3D512 mixed, no, and all candidate fixtures compared bitwise with the old index oracle", "N128 real-root whole-state and exact-query diagnostic"],
+  "timing": "N128, same persisted already-rekeyed state, original512-bit real CelebA roots, one warmup plus five balanced repetitions per alternative, DIAG=0. Include initialization and client-dealing costs separately. Do not claim index acceleration over full scan unless observed.",
+  "assumptions": ["Passive five-party Shamir, t=2", "Honest binary client and valid enrolled state", "Fresh independent uniform pad for every query", "Private client-to-server and server-to-client channels"],
+  "novelty_scope": "Standard additive one-time pad and standard exact block equality; no new cryptographic primitive or search optimality claim."
+}

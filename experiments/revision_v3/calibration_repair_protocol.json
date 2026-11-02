@@ -1,0 +1,9 @@
+{
+  "created_local_date":"2026-10-30",
+  "trigger":"Native binary Rank1/Rank5 reproduced R1, but open-set flags differed. Reproduced a NumPy2 strict-threshold rounding defect with tied float32 scores.",
+  "correction":"Convert exact integer Hamming scores to float64 before comparison with a nextafter(float64) strict threshold. No model, seed, cohort, score, tie rule, calibration allowed count or unknown selection changes.",
+  "affected":"New binary_frontend ITQ/centering and both FaceNet/SFace projection studies. Frozen R1 and generated SFace native evaluators already use float64 scores and remain unchanged.",
+  "validation":"Every existing closed-set Rank1 and Rank5 flag remains identical. Corrected native float/sign open-set flags must reproduce original R1/SFace native archives exactly for all sizes, splits, rules and identities. Actual calibration acceptance count must never exceed allowed5 or1. Unit boundaries include all-equal scores and independently checked Hamming matrix.",
+  "outputs":"New results/*_corrected directories. Preserve old models, protocols, scripts and outputs as original attempts; never pool unsafe open-set arrays with corrected arrays.",
+  "downstream":"Cross-frontend paired open-set comparisons must use corrected FaceNet/SFace archives. All prior open-set improvement claims from the affected attempts are provisional until corrected, including ITQ/centering DIR deltas. Closed-set accuracy and MPC timings are unaffected."
+}

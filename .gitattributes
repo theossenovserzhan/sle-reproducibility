@@ -1,0 +1,4 @@
+# Preserve the exact frozen-source and verified-paper bytes across checkouts.
+/experiments/** -text
+/paper/** -text
+/publication/** -text

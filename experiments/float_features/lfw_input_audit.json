@@ -1,0 +1,20 @@
+{
+  "archive_sha256": "b47c8422c8cded889dc5a13418c4bc2abbda121092b3533a83306f90d900100a",
+  "archive_jpeg_count": 13233,
+  "eligible_at_least_six": 311,
+  "selected_identities": 192,
+  "selected_images": 1152,
+  "loader": "complete archive; partial extraction/joblib cache bypassed",
+  "reference_loader": "scikit-learn 1.7.2 _lfw.py _fetch_lfw_people and _load_imgs",
+  "ordering": "sorted original file paths then RandomState(42).shuffle",
+  "crop": [
+    78,
+    70,
+    172,
+    195
+  ],
+  "source_resize": [
+    94,
+    125
+  ]
+}

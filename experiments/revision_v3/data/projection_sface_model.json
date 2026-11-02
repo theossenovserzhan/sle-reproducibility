@@ -1,0 +1,12 @@
+{
+  "frontend": "sface",
+  "feature_archive": "/mnt/c/Users/ossen/OneDrive/Documents/SmartCity/TBIOM_revision_experiments_2026-10-29/revision_v3/data/sface_lfw.npz",
+  "baseline_outcomes_archive": "/mnt/c/Users/ossen/OneDrive/Documents/SmartCity/TBIOM_revision_experiments_2026-10-29/revision_v3/results/sface_lfw_extended/subject_outcomes.npz",
+  "model_sha256": "f9baeddaaa2b5f282a7458785c60cc672cb5e4967e2208eb251dd62d708e7cb1",
+  "extended_feature_sha256": "33987aad4cd1f0359572153e6d066e9cabf06e2a00a283bc5908192ff16e2acc",
+  "protocol_sha256": "84114acd8f9a89d4a4c2f4a9cba3de0db3261aa8bbc1eefe9578076206523402",
+  "script_sha256": "a8e920ec43975af7ea2c0c739ae382748605e0a5904581a8bb8854ddaee168df",
+  "numpy": "2.4.3",
+  "input_dimension": 128,
+  "training_identities": 565
+}

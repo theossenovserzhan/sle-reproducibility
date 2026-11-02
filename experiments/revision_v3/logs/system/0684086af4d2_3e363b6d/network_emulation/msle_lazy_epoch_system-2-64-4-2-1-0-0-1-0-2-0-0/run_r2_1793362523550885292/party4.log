@@ -1,0 +1,53 @@
+Trying to run 128-bit computation (128-bit representation)
+Starting timer 30 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 1.8272e-05
+Starting timer 11 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 2.7876e-05
+Starting timer 12 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 9.574e-06
+Stopped timer 12 at 2.6255e-05 (0 MB, 0 rounds, 3.0729e-05 CPU seconds)
+Starting timer 13 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 1.7344e-05
+Stopped timer 13 at 11.8466 (0.122704 MB, 980 rounds, 0.624444 CPU seconds)
+Starting timer 14 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 1.9728e-05
+Stopped timer 14 at 6.09437 (0.201536 MB, 512 rounds, 0.298489 CPU seconds)
+Starting timer 15 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 1.2763e-05
+Stopped timer 15 at 0.047051 (0.037216 MB, 4 rounds, 0.00277082 CPU seconds)
+Starting timer 16 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 1.2307e-05
+Stopped timer 16 at 0.196977 (0.043968 MB, 107 rounds, 0.016181 CPU seconds)
+Stopped timer 11 at 18.1985 (0.405424 MB, 1603 rounds, 0.943291 CPU seconds)
+Stopped timer 30 at 18.2131 (0.406 MB, 1624 rounds, 0.945426 CPU seconds)
+Significant amount of unused dabits of Shamir gfp distorting the benchmark. For more accurate benchmarks, consider reducing the batch size with --batch-size.
+The following benchmarks are including preprocessing (offline phase).
+Time = 18.2608 seconds 
+Time11 = 18.1985 seconds (0.405424 MB, 1603 rounds, 0.943291 CPU seconds)
+Time12 = 2.6255e-05 seconds (0 MB, 0 rounds, 3.0729e-05 CPU seconds)
+Time13 = 11.8466 seconds (0.122704 MB, 980 rounds, 0.624444 CPU seconds)
+Time14 = 6.09437 seconds (0.201536 MB, 512 rounds, 0.298489 CPU seconds)
+Time15 = 0.047051 seconds (0.037216 MB, 4 rounds, 0.00277082 CPU seconds)
+Time16 = 0.196977 seconds (0.043968 MB, 107 rounds, 0.016181 CPU seconds)
+Time30 = 18.2131 seconds (0.406 MB, 1624 rounds, 0.945426 CPU seconds)
+Data sent = 0.406 MB in ~1625 rounds (party 4 only; use '-v' for more details)
+Global data sent = 2.17966 MB (all parties)
+Communication time accounts for more than 95 percent of total time (18.185 seconds). This might be because of the computation and the network setting, but it could also be product of the optimization trade-off during compilation. See https://mp-spdz.readthedocs.io/en/latest/troubleshooting.html#high-number-of-rounds-or-slow-wan-execution
+This virtual machine was compiled with GCC. Recompile with 'CXX = clang++' in 'CONFIG.mine' for optimal performance.
+This protocol doesn't scale well with the number of parties, have you considered using ATLAS instead?
+	Command being timed: "/home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8/shamir-party.x 4 msle_lazy_epoch_system-2-64-4-2-1-0-0-1-0-2-0-0 --prime 340282366920938463463374607431764574209 -N 5 -T 2 -ip /mnt/c/Users/ossen/OneDrive/Documents/SmartCity/TBIOM_revision_experiments_2026-10-29/revision_v3/logs/system/0684086af4d2_3e363b6d/network_emulation/msle_lazy_epoch_system-2-64-4-2-1-0-0-1-0-2-0-0/run_r2_1793362523550885292/hosts_P4.txt -pn 50713"
+	User time (seconds): 0.47
+	System time (seconds): 0.59
+	Percent of CPU this job got: 5%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:20.53
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 22376
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 3303
+	Voluntary context switches: 22894
+	Involuntary context switches: 861
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 0
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

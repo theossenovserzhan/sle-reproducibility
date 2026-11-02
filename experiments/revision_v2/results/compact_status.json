@@ -1,0 +1,19 @@
+{
+  "finished": true,
+  "audit": {
+    "only_translation_function_differs": true,
+    "same_initial_inputs_and_verification_commit_maintenance_query": true,
+    "main_sha256": "bf5086b808432fa86978fe82e0e6042e5144c060f0af162747a75b3c0c648401",
+    "baseline_sha256": "1d72a19be137b9b285cb74cf22a1a1b9fadb9dff890c670e039dfc81c812af8d",
+    "config_sha256": "9b1d248dcb015063ace05567a9f8d9ecf2a23c2e7a972f437a7ca27a971d457c",
+    "same_prefix_sha256": "ea36e1ded02186378b383af9b333d1833d36fe1afb9f574e5a64ccdc83358530",
+    "same_protocol_tail_sha256": "ec38556955d83e72a20099fa7016abf50eb57d5dc45b47664c587c57f350f3a2"
+  },
+  "phase": "all",
+  "completed": [
+    8,
+    16
+  ],
+  "correctness_passed": true,
+  "finished_utc": "2026-10-29T19:35:25Z"
+}

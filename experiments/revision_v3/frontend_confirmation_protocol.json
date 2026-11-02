@@ -1,0 +1,10 @@
+{
+  "created_local_date":"2026-10-30",
+  "status":"Fixed after LFW projection development results and before CelebA RP transfer or secure RP root execution",
+  "model":"Load frozen SFace mean and both Gaussian matrices; no refitting or seed search",
+  "cohorts":"Identical images, identities, gallery positions and held-out probes across FaceNet and SFace on original LFW128eval, CelebA128eval and historical CelebA128. Do not pool datasets or overlapping CelebA cohorts.",
+  "methods":["FaceNet cosine and native512 signs","SFace cosine and native128 signs","SFace raw512 RP both seeds","SFace centered512 RP both seeds"],
+  "uncertainty":"5000 resamples of identity means after averaging20 repeated splits. Large-gallery known/unknown comparisons pair the same128 known/512 unknown identities across frontends. Keep actual FPIR beside DIR; equal calibration rule does not guarantee equal test FPIR.",
+  "secure_confirmation":"Both centered512 seeds, actual own-share-file state/query input and private client output at N8/128. Whole-state transition/query oracle, independent candidate bits at N8, private exact accept/reject controls. Diagnostic timings are not production benchmarks.",
+  "scope":"Quality improvement is a complete frontend change, not a new hash or cipher. Frontend replacement needs feature availability or re-enrollment; protection-epoch renewal preserves a fixed binary root. Cross-dataset identities and pretrained training identities have not been audited for overlap."
+}

@@ -1,0 +1,63 @@
+{"argv": ["python3", "compile.py", "-P", "340282366920938463463374607431764574209", "-b", "64", "-M", "msle_system", "2", "64", "4", "2", "0", "0", "1", "1", "0", "2", "0", "1"], "cwd": "/home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8"}
+WARNING: --prime/-P activates code that usually isn't the most efficient variant. Consider using --field/-F and set the prime only during the actual computation.
+Default bit length for compilation: 126
+Default security parameter for compilation: 40
+Compiling file Programs/Source/msle_system.mpc
+Changed bit length for comparisons etc. to 64
+Changed statistical security for comparison etc. to 80
+Writing to Programs/Bytecode/msle_system-2-64-4-2-0-0-1-1-0-2-0-1-multithread-1.bc
+Writing to Programs/Bytecode/msle_system-2-64-4-2-0-0-1-1-0-2-0-1-multithread-2.bc
+Writing to Programs/Bytecode/msle_system-2-64-4-2-0-0-1-1-0-2-0-1-multithread-3.bc
+Writing to Programs/Bytecode/msle_system-2-64-4-2-0-0-1-1-0-2-0-1-multithread-4.bc
+Writing to Programs/Bytecode/msle_system-2-64-4-2-0-0-1-1-0-2-0-1-multithread-5.bc
+Writing to Programs/Bytecode/msle_system-2-64-4-2-0-0-1-1-0-2-0-1-multithread-6.bc
+Writing to Programs/Bytecode/msle_system-2-64-4-2-0-0-1-1-0-2-0-1-multithread-7.bc
+Writing to Programs/Bytecode/msle_system-2-64-4-2-0-0-1-1-0-2-0-1-multithread-8.bc
+Writing to Programs/Bytecode/msle_system-2-64-4-2-0-0-1-1-0-2-0-1-multithread-9.bc
+Writing to Programs/Bytecode/msle_system-2-64-4-2-0-0-1-1-0-2-0-1-multithread-10.bc
+Writing to Programs/Bytecode/msle_system-2-64-4-2-0-0-1-1-0-2-0-1-multithread-11.bc
+Writing to Programs/Bytecode/msle_system-2-64-4-2-0-0-1-1-0-2-0-1-multithread-12.bc
+Writing to Programs/Bytecode/msle_system-2-64-4-2-0-0-1-1-0-2-0-1-multithread-13.bc
+Writing to Programs/Bytecode/msle_system-2-64-4-2-0-0-1-1-0-2-0-1-multithread-14.bc
+Writing to Programs/Bytecode/msle_system-2-64-4-2-0-0-1-1-0-2-0-1-multithread-15.bc
+Writing to Programs/Bytecode/msle_system-2-64-4-2-0-0-1-1-0-2-0-1-multithread-16.bc
+Writing to Programs/Bytecode/msle_system-2-64-4-2-0-0-1-1-0-2-0-1-multithread-17.bc
+Writing to Programs/Bytecode/msle_system-2-64-4-2-0-0-1-1-0-2-0-1-multithread-18.bc
+Writing to Programs/Bytecode/msle_system-2-64-4-2-0-0-1-1-0-2-0-1-multithread-19.bc
+Writing to Programs/Bytecode/msle_system-2-64-4-2-0-0-1-1-0-2-0-1-multithread-20.bc
+Writing to Programs/Bytecode/msle_system-2-64-4-2-0-0-1-1-0-2-0-1-multithread-21.bc
+Writing to Programs/Bytecode/msle_system-2-64-4-2-0-0-1-1-0-2-0-1-multithread-22.bc
+Writing to Programs/Bytecode/msle_system-2-64-4-2-0-0-1-1-0-2-0-1-multithread-23.bc
+Writing to Programs/Bytecode/msle_system-2-64-4-2-0-0-1-1-0-2-0-1-multithread-24.bc
+Writing to Programs/Bytecode/msle_system-2-64-4-2-0-0-1-1-0-2-0-1-multithread-25.bc
+Writing to Programs/Bytecode/msle_system-2-64-4-2-0-0-1-1-0-2-0-1-multithread-26.bc
+Compiled 100000 lines at Thu Oct 29 16:08:42 2026
+Writing to Programs/Bytecode/msle_system-2-64-4-2-0-0-1-1-0-2-0-1-EQZ(512)_64-27.bc
+Writing to Programs/Bytecode/msle_system-2-64-4-2-0-0-1-1-0-2-0-1-EQZ(21)_64-29.bc
+Writing to Programs/Bytecode/msle_system-2-64-4-2-0-0-1-1-0-2-0-1-EQZ(1)_64-30.bc
+Writing to Programs/Bytecode/msle_system-2-64-4-2-0-0-1-1-0-2-0-1-LTZ(2)_65-31.bc
+Writing to Programs/Bytecode/msle_system-2-64-4-2-0-0-1-1-0-2-0-1-LTZ(1)_65-33.bc
+Writing to Programs/Schedules/msle_system-2-64-4-2-0-0-1-1-0-2-0-1.sch
+Writing to Programs/Bytecode/msle_system-2-64-4-2-0-0-1-1-0-2-0-1-0.bc
+Hash: 338c8fd8f59093b6fc72fa883d8b97c80b12a20a033f58b1ff4659a27ac757dd
+Program requires at most:
+     2548161 integer inputs from player 0
+     2546935 integer inputs from player 1
+        1185 integer inputs from player 2
+        1185 integer inputs from player 3
+        1185 integer inputs from player 4
+    26024241 integer triples
+      212919 integer simple multiplications
+        5157 strict edabits of length 128
+      147032 integer opens
+     2730728 bit triples
+       75823 integer dabits
+       13584 bit opens
+         520 integer randoms
+         inf bit inverses
+           1 integer shuffle generations
+           1 integer shuffle applications
+           3 strict edabits of length 1
+         276 integer shuffle generations
+         562 integer shuffle applications
+        4207 virtual machine rounds

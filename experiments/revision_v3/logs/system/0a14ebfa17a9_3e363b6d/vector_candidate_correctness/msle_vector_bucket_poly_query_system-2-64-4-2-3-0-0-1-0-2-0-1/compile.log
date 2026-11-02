@@ -1,0 +1,28 @@
+{"argv": ["python3", "compile.py", "-P", "340282366920938463463374607431764574209", "-b", "64", "-M", "msle_vector_bucket_poly_query_system", "2", "64", "4", "2", "3", "0", "0", "1", "0", "2", "0", "1"], "cwd": "/home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8"}
+WARNING: --prime/-P activates code that usually isn't the most efficient variant. Consider using --field/-F and set the prime only during the actual computation.
+Default bit length for compilation: 126
+Default security parameter for compilation: 40
+Compiling file Programs/Source/msle_vector_bucket_poly_query_system.mpc
+Changed bit length for comparisons etc. to 64
+Changed statistical security for comparison etc. to 80
+Writing to Programs/Bytecode/msle_vector_bucket_poly_query_system-2-64-4-2-3-0-0-1-0-2-0-1-EQZ(1)_64-1.bc
+Writing to Programs/Bytecode/msle_vector_bucket_poly_query_system-2-64-4-2-3-0-0-1-0-2-0-1-LTZ(4)_65-3.bc
+Writing to Programs/Bytecode/msle_vector_bucket_poly_query_system-2-64-4-2-3-0-0-1-0-2-0-1-LTZ(1)_65-5.bc
+Writing to Programs/Schedules/msle_vector_bucket_poly_query_system-2-64-4-2-3-0-0-1-0-2-0-1.sch
+Writing to Programs/Bytecode/msle_vector_bucket_poly_query_system-2-64-4-2-3-0-0-1-0-2-0-1-0.bc
+Hash: dbf071b130b59593101e38bc3d3ddcd72b7efb0304e88d39fb272d3dfa5feff7
+Program requires at most:
+        1170 integer inputs from player 0
+          74 integer inputs from player 1
+           9 integer inputs from player 2
+           9 integer inputs from player 3
+           9 integer inputs from player 4
+      247601 integer triples
+      247601 integer simple multiplications
+          13 strict edabits of length 128
+          19 integer opens
+        5020 bit triples
+         267 integer dabits
+        1120 bit opens
+           7 strict edabits of length 1
+        2396 virtual machine rounds

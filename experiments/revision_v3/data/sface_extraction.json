@@ -1,0 +1,32 @@
+{
+  "selection_sha256": "f8eb35ebe30cb91da6396c3009d94fd56d8d799284401a4bc9be80925a5a71cc",
+  "features_sha256": "ef82bae72398bbb643d6fba8cbbc2d7dc283739797ff06708e9a3bd9cf4e6ec7",
+  "script_sha256": "401149c2382e6f5bf3bc1d8004d42d2acb35883bb52d823f2cd36da4352f9e8e",
+  "opencv": "4.11.0",
+  "numpy": "2.4.3",
+  "feature_dimension": 128,
+  "entries": 8629,
+  "groups": {
+    "lfw": {
+      "images": 1152,
+      "detection_fallbacks": 6,
+      "multiple_faces": 51
+    },
+    "celeba": {
+      "images": 1152,
+      "detection_fallbacks": 59,
+      "multiple_faces": 1
+    },
+    "celeba_external": {
+      "images": 768,
+      "detection_fallbacks": 27,
+      "multiple_faces": 1
+    },
+    "lfw_extended": {
+      "images": 5557,
+      "detection_fallbacks": 43,
+      "multiple_faces": 250
+    }
+  },
+  "images_excluded": 0
+}

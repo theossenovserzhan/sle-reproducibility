@@ -1,0 +1,42 @@
+{"argv": ["python3", "compile.py", "-P", "340282366920938463463374607431764574209", "-b", "64", "-M", "msle_system", "1024", "512", "4", "264", "1", "0", "0", "1", "0", "0", "432", "0"], "cwd": "/home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8"}
+WARNING: --prime/-P activates code that usually isn't the most efficient variant. Consider using --field/-F and set the prime only during the actual computation.
+Default bit length for compilation: 126
+Default security parameter for compilation: 40
+Compiling file Programs/Source/msle_system.mpc
+Changed bit length for comparisons etc. to 64
+Changed statistical security for comparison etc. to 80
+Compiled 100000 lines at Fri Oct 30 16:12:24 2026
+Compiled 200000 lines at Fri Oct 30 16:12:26 2026
+Compiled 300000 lines at Fri Oct 30 16:12:28 2026
+Compiled 400000 lines at Fri Oct 30 16:12:30 2026
+Compiled 500000 lines at Fri Oct 30 16:12:31 2026
+Compiled 600000 lines at Fri Oct 30 16:12:33 2026
+Compiled 700000 lines at Fri Oct 30 16:12:34 2026
+Compiled 800000 lines at Fri Oct 30 16:12:36 2026
+Compiled 900000 lines at Fri Oct 30 16:12:37 2026
+Compiled 1000000 lines at Fri Oct 30 16:12:38 2026
+Compiled 1100000 lines at Fri Oct 30 16:12:41 2026
+Compiled 1200000 lines at Fri Oct 30 16:12:42 2026
+Compiled 1300000 lines at Fri Oct 30 16:12:43 2026
+Compiled 1400000 lines at Fri Oct 30 16:12:44 2026
+Writing to Programs/Schedules/msle_system-1024-512-4-264-1-0-0-1-0-0-432-0.sch
+Writing to Programs/Bytecode/msle_system-1024-512-4-264-1-0-0-1-0-0-432-0-0.bc
+Hash: c502cb1761cc58a28ed2a13bae0a604c303acdb993f3a5f726626b53213555bc
+Program requires at most:
+    23140380 integer inputs from player 0
+    21531676 integer inputs from player 1
+     1608731 integer inputs from player 2
+     1608731 integer inputs from player 3
+     1608731 integer inputs from player 4
+   147436005 integer triples
+    98078171 integer simple multiplications
+           6 integer randoms
+       16395 integer opens
+         inf bit inverses
+           1 integer shuffle generations
+           1 integer shuffle applications
+       16384 strict edabits of length 128
+    10420224 bit triples
+     2097152 integer dabits
+      262144 bit opens
+      221723 virtual machine rounds

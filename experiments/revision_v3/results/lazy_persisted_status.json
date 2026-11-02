@@ -1,0 +1,32 @@
+{
+  "finished": true,
+  "core_audit": {
+    "helpers_identical": true,
+    "protocol_tail_identical": true,
+    "main_source_sha256": "0684086af4d2d5a79e4f80f30615fb65c7444f296398ea00cca5d4f413c7d8c0",
+    "lazy_persisted_source_sha256": "af896119430fcda5d64cfb38a661b447cac5f61edb35cbfdddb07c58bffa1e42",
+    "common_parts_sha256": [
+      "4d5681b7d8f007395eda40fab5bd774baca15e37f22d9070fe810748b8619a75",
+      "cb56f4c620de36ba04304518600fb372ed9d5896f4514cbfb38cec453ede145e"
+    ]
+  },
+  "completed": [
+    {
+      "n": 8,
+      "protection": 0
+    },
+    {
+      "n": 8,
+      "protection": 1
+    },
+    {
+      "n": 128,
+      "protection": 0
+    },
+    {
+      "n": 128,
+      "protection": 1
+    }
+  ],
+  "current": null
+}

@@ -1,0 +1,11 @@
+# Observed extraction environment, Python 3.12; CPU only.
+# Install facenet-pytorch==2.6.0 separately with --no-deps, as explained in README.
+numpy==2.5.3
+torch==2.8.0
+torchvision==0.23.0
+Pillow==12.3.0
+pyarrow==21.0.0
+scikit-learn==1.7.2
+matplotlib==3.11.2
+requests==2.32.5
+tqdm==4.67.1

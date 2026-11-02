@@ -1,0 +1,12 @@
+{
+  "date":"2026-10-30",
+  "status":"frozen before vectorized variant MPC results",
+  "motivation":"The first polynomial implementation cut communication but retained a scalar for_range(M) multiplication loop for slot flags. Remove that sequential communication bottleneck.",
+  "full_index_variant":"Transpose public slot order to offset-major, compute all bucket flags times validity in vectors, and transpose locator order identically. OR membership is order independent.",
+  "bucket_variant":"Choose index/validity vectors across all blocks using public strides; do not construct a full slot-flag array outside diagnostics.",
+  "security_and_functionality":"Exact same flags and no new openings. Original scalar slot-flag generation and full-field-equality implementation remain the diagnostic oracle.",
+  "validation":"Real N2D64/N8D512 all candidate bits, composed virtual transitionN8, and mixed-bucket syntheticN3D64 to test non-power-of-two support and strided addressing",
+  "timings":"N8 D512 original vs vectorized bucket-polynomial:1warmup and5alternated measurements; full-index vectorized polynomial5measurements; optimized-only N32/N1281warmup+3measurements",
+  "interpretation":"SIMD implementation and known-support polynomial optimization are measured separately from original pointwise equality. No claim that this reference private index beats exhaustive matching until actually measured.",
+  "scheduling":"After the first controlled polynomial series, before all CPU-heavy frontend studies; same runtime lock"
+}

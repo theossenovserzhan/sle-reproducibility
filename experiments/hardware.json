@@ -1,0 +1,15 @@
+{
+  "measured_date": "2026-10-29",
+  "cpu": "11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz",
+  "physical_cores": 4,
+  "logical_processors": 8,
+  "host_physical_memory_bytes": 21154324480,
+  "host_os": "Microsoft Windows 11 Home Single Language",
+  "host_os_version": "10.0.26200",
+  "mpc_environment": "Ubuntu under WSL2, same physical host",
+  "wsl_reported_memory": "9.6 GiB",
+  "mpc_parties": 5,
+  "mpc_threshold": 2,
+  "mpc_network": "localhost loopback, no injected latency or bandwidth cap",
+  "note": "Host CPU contention and WSL cold starts contribute to pilot variability. No WAN performance is established."
+}

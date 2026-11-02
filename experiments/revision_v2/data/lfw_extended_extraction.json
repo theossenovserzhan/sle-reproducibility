@@ -1,0 +1,14 @@
+{
+  "selection_hash": "c11b32a560a7d58d555a593d2d5317695b652f33746899d8b9634b27767a14d3",
+  "features_sha256": "0ef1b9a673110758e94627ffedad7c442b6e77f632407e03b40f31bfc3ba884e",
+  "script_sha256": "4d1aa1a2c516dbfd445e4e05e13816924c0a6c6291d89686145618958c25c96d",
+  "torch": "2.8.0+cpu",
+  "torchvision": "0.23.0+cpu",
+  "numpy": "2.5.3",
+  "device": "cpu",
+  "threads": 2,
+  "new_identities": 5557,
+  "elapsed_this_run_s": 355.76600000000326,
+  "protocol_sha256": "706635b94aeea8bbaa28e745578d160c9b5b31bdf9cac6ce01ea2178070f8354",
+  "first_batch_identities_excluded": 192
+}

@@ -1,0 +1,13 @@
+{
+  "features_sha256": "2f995f6d6fab714c4c7f6ca81b1b1e95b40b73bda1e8d5c8f35f950da9dbc01a",
+  "script_sha256": "70074a7f9a57d69ae9e84d6faf4c91c0aac2c0ed22b8e36f020c74d18a1029b9",
+  "torch": "2.8.0+cpu",
+  "torchvision": "0.23.0+cpu",
+  "numpy": "2.5.3",
+  "selection_sha256": "306f3a7b707707afb85dcc1db091d96ed04de36bb19132c6d2b214e2e9c39b8e",
+  "source_revision": "2d738f56e0e7f925ea36ae7c808ea925264aacec",
+  "frozen_binary_checks": {
+    "gallery_bit_mismatches": 0,
+    "probe_bit_mismatches": 0
+  }
+}

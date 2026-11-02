@@ -1,0 +1,37 @@
+{
+  "finished": true,
+  "correctness_passed": true,
+  "current": null,
+  "last_error": null,
+  "completed": [
+    {
+      "n": 2,
+      "transition": 0
+    },
+    {
+      "n": 8,
+      "transition": 0
+    },
+    {
+      "n": 32,
+      "transition": 0
+    },
+    {
+      "n": 2,
+      "transition": 1
+    },
+    {
+      "n": 8,
+      "transition": 1
+    },
+    {
+      "n": 8,
+      "representation": "stable"
+    },
+    {
+      "n": 32,
+      "representation": "stable"
+    }
+  ],
+  "preceding_frontend_error": null
+}

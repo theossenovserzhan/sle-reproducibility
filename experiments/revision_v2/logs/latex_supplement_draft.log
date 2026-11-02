@@ -1,0 +1,27 @@
+note: Running TeX ...
+Fontconfig error: Cannot load default config file: No such file: (null)
+warning: accessing absolute path `C:/WINDOWS/fonts\timesi.ttf`; build may not be reproducible in other environments
+warning: accessing absolute path `C:/WINDOWS/fonts\timesbd.ttf`; build may not be reproducible in other environments
+warning: accessing absolute path `C:/WINDOWS/fonts\times.ttf`; build may not be reproducible in other environments
+warning: accessing absolute path `C:/WINDOWS/fonts\timesbi.ttf`; build may not be reproducible in other environments
+warning: accessing absolute path `C:/WINDOWS/fonts\arialbd.ttf`; build may not be reproducible in other environments
+warning: accessing absolute path `C:/WINDOWS/fonts\ARIALN.TTF`; build may not be reproducible in other environments
+warning: accessing absolute path `C:/WINDOWS/fonts\ARIALNI.TTF`; build may not be reproducible in other environments
+warning: accessing absolute path `C:/WINDOWS/fonts\ariblk.ttf`; build may not be reproducible in other environments
+warning: accessing absolute path `C:/WINDOWS/fonts\arialbi.ttf`; build may not be reproducible in other environments
+warning: accessing absolute path `C:/WINDOWS/fonts\ARIALNBI.TTF`; build may not be reproducible in other environments
+warning: accessing absolute path `C:/WINDOWS/fonts\ariali.ttf`; build may not be reproducible in other environments
+warning: accessing absolute path `C:/WINDOWS/fonts\arial.ttf`; build may not be reproducible in other environments
+warning: accessing absolute path `C:/WINDOWS/fonts\ARIALNB.TTF`; build may not be reproducible in other environments
+warning: accessing absolute path `C:/WINDOWS/fonts\courbd.ttf`; build may not be reproducible in other environments
+warning: accessing absolute path `C:/WINDOWS/fonts\cour.ttf`; build may not be reproducible in other environments
+warning: accessing absolute path `C:/WINDOWS/fonts\couri.ttf`; build may not be reproducible in other environments
+warning: accessing absolute path `C:/WINDOWS/fonts\courbi.ttf`; build may not be reproducible in other environments
+note: Running BibTeX on supplement.aux ...
+note: Rerunning TeX because bibtex was run ...
+note: Rerunning TeX because "supplement.aux" changed ...
+note: Running xdvipdfmx ...
+note: Writing `output\pdf\supplement.log` (23.1875 KiB)
+note: Writing `output\pdf\supplement.blg` (385 B)
+note: Writing `output\pdf\supplement.pdf` (118.0751953125 KiB)
+note: Skipped writing 3 intermediate files (use --keep-intermediates to keep them)

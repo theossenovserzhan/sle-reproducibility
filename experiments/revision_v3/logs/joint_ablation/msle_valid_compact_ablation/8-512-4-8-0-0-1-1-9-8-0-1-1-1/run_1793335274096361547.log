@@ -1,0 +1,10 @@
+{"argv": ["/usr/bin/time", "-v", "bash", "Scripts/shamir.sh", "msle_valid_compact_ablation-8-512-4-8-0-0-1-1-9-8-0-1-1-1", "--prime", "340282366920938463463374607431764574209"], "cwd": "/home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8"}
+Running /home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8/Scripts/../shamir-party.x 0 msle_valid_compact_ablation-8-512-4-8-0-0-1-1-9-8-0-1-1-1 --prime 340282366920938463463374607431764574209 -T 2 -pn 17196 -h localhost -N 5
+Running /home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8/Scripts/../shamir-party.x 1 msle_valid_compact_ablation-8-512-4-8-0-0-1-1-9-8-0-1-1-1 --prime 340282366920938463463374607431764574209 -T 2 -pn 17196 -h localhost -N 5
+Running /home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8/Scripts/../shamir-party.x 2 msle_valid_compact_ablation-8-512-4-8-0-0-1-1-9-8-0-1-1-1 --prime 340282366920938463463374607431764574209 -T 2 -pn 17196 -h localhost -N 5
+Running /home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8/Scripts/../shamir-party.x 3 msle_valid_compact_ablation-8-512-4-8-0-0-1-1-9-8-0-1-1-1 --prime 340282366920938463463374607431764574209 -T 2 -pn 17196 -h localhost -N 5
+Running /home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8/Scripts/../shamir-party.x 4 msle_valid_compact_ablation-8-512-4-8-0-0-1-1-9-8-0-1-1-1 --prime 340282366920938463463374607431764574209 -T 2 -pn 17196 -h localhost -N 5
+Trying to run 128-bit computation (128-bit representation)
+Starting timer 30 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 1.3017e-05
+Starting timer 11 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 0.000818458
+Starting timer 12 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 3.457e-06

@@ -1,0 +1,33 @@
+{"argv": ["python3", "compile.py", "-P", "340282366920938463463374607431764574209", "-b", "64", "-M", "msle_aes_system", "8", "512", "4", "8", "2", "0", "0", "1", "0", "8", "0", "1"], "cwd": "/home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8"}
+WARNING: --prime/-P activates code that usually isn't the most efficient variant. Consider using --field/-F and set the prime only during the actual computation.
+Default bit length for compilation: 126
+Default security parameter for compilation: 40
+Compiling file Programs/Source/msle_aes_system.mpc
+Changed bit length for comparisons etc. to 64
+Changed statistical security for comparison etc. to 80
+Compiled 100000 lines at Fri Oct 30 11:22:42 2026
+Writing to Programs/Bytecode/msle_aes_system-8-512-4-8-2-0-0-1-0-8-0-1-EQZ(4)_64-1.bc
+Writing to Programs/Bytecode/msle_aes_system-8-512-4-8-2-0-0-1-0-8-0-1-LTZ(8)_65-3.bc
+Writing to Programs/Bytecode/msle_aes_system-8-512-4-8-2-0-0-1-0-8-0-1-EQZ(2)_64-5.bc
+Writing to Programs/Bytecode/msle_aes_system-8-512-4-8-2-0-0-1-0-8-0-1-LTZ(4)_65-6.bc
+Writing to Programs/Bytecode/msle_aes_system-8-512-4-8-2-0-0-1-0-8-0-1-EQZ(1)_64-7.bc
+Writing to Programs/Bytecode/msle_aes_system-8-512-4-8-2-0-0-1-0-8-0-1-LTZ(2)_65-8.bc
+Writing to Programs/Bytecode/msle_aes_system-8-512-4-8-2-0-0-1-0-8-0-1-LTZ(1)_65-9.bc
+Writing to Programs/Schedules/msle_aes_system-8-512-4-8-2-0-0-1-0-8-0-1.sch
+Writing to Programs/Bytecode/msle_aes_system-8-512-4-8-2-0-0-1-0-8-0-1-0.bc
+Hash: 2d87965c286b3054afa4040a8c5320192397b74554df5c6506ba8108965db4f5
+Program requires at most:
+        4125 integer inputs from player 0
+         515 integer inputs from player 1
+           2 integer inputs from player 2
+           2 integer inputs from player 3
+           2 integer inputs from player 4
+          33 strict edabits of length 128
+          38 integer opens
+       13971 bit triples
+         176 integer dabits
+        1152 bit opens
+      763069 integer triples
+      763069 integer simple multiplications
+          15 strict edabits of length 1
+         854 virtual machine rounds

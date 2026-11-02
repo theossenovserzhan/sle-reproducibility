@@ -1,0 +1,305 @@
+\subsection{Complete Repetition and Phase Tables}\label{suppsec:generated_supplement:1}
+
+\begin{table}[H]
+\caption{Persisted-state phase means. Read/write executes on all five local share files; traffic is party-zero MB. Mode1 re-keys, mode2 queries.}
+\label{tab:persisted_phases0}\centering\small
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{rlrlrr}
+\toprule
+$N$ & State & Mode & Phase & Seconds & P0 MB \\
+\midrule
+8 & Masked & 1 & Read own shares & 0.009 & 0.000 \\
+8 & Masked & 1 & Locator/index & 5.219 & 84.976 \\
+8 & Masked & 1 & Old/new masks & 3.531 & 3.120 \\
+8 & Masked & 1 & Verification & 0.816 & 2.678 \\
+8 & Masked & 1 & Selection & 0.082 & 1.180 \\
+8 & Masked & 1 & Shuffle/refresh/write & 1.049 & 2.022 \\
+8 & Raw & 1 & Read own shares & 0.009 & 0.000 \\
+8 & Raw & 1 & Locator/index & 5.880 & 84.976 \\
+8 & Raw & 1 & Old/new masks & 0.000 & 0.000 \\
+8 & Raw & 1 & Verification & 0.750 & 2.547 \\
+8 & Raw & 1 & Selection & 0.060 & 1.180 \\
+8 & Raw & 1 & Shuffle/refresh/write & 1.120 & 2.022 \\
+8 & Masked & 2 & Read own shares & 0.011 & 0.000 \\
+8 & Masked & 2 & Fresh query masks & 2.040 & 1.852 \\
+8 & Masked & 2 & Hamming/ArgMin & 0.183 & 0.280 \\
+8 & Raw & 2 & Read own shares & 0.009 & 0.000 \\
+8 & Raw & 2 & Hamming/ArgMin & 0.385 & 0.182 \\
+128 & Masked & 1 & Read own shares & 0.073 & 0.000 \\
+128 & Masked & 1 & Locator/index & 24.408 & 425.337 \\
+128 & Masked & 1 & Old/new masks & 7.168 & 43.652 \\
+128 & Masked & 1 & Verification & 1.686 & 21.094 \\
+128 & Masked & 1 & Selection & 0.347 & 7.344 \\
+128 & Masked & 1 & Shuffle/refresh/write & 7.029 & 45.397 \\
+128 & Raw & 1 & Read own shares & 0.089 & 0.000 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\caption{Persisted-state phase means. Read/write executes on all five local share files; traffic is party-zero MB. Mode1 re-keys, mode2 queries.}
+\label{tab:persisted_phases24}\centering\small
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{rlrlrr}
+\toprule
+$N$ & State & Mode & Phase & Seconds & P0 MB \\
+\midrule
+128 & Raw & 1 & Locator/index & 21.852 & 425.337 \\
+128 & Raw & 1 & Old/new masks & 0.001 & 0.000 \\
+128 & Raw & 1 & Verification & 1.227 & 18.996 \\
+128 & Raw & 1 & Selection & 0.309 & 7.344 \\
+128 & Raw & 1 & Shuffle/refresh/write & 6.839 & 45.397 \\
+128 & Masked & 2 & Read own shares & 0.061 & 0.000 \\
+128 & Masked & 2 & Fresh query masks & 5.854 & 20.045 \\
+128 & Masked & 2 & Hamming/ArgMin & 0.701 & 4.509 \\
+128 & Raw & 2 & Read own shares & 0.117 & 0.000 \\
+128 & Raw & 2 & Hamming/ArgMin & 1.083 & 2.976 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\caption{Persisted-state memory and launcher-inclusive timing; largest-child RSS is not aggregate memory.}
+\label{tab:persisted_memory}\centering\small
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{rlrrrr}
+\toprule
+$N$ & State & Mode & Wall s & Peak RSS MiB & State MiB \\
+\midrule
+8 & Masked & 1 & 11.815 & 39.58 & 0.563 \\
+8 & Raw & 1 & 8.853 & 33.65 & 0.563 \\
+8 & Masked & 2 & 2.974 & 28.61 & 0.563 \\
+8 & Raw & 2 & 1.179 & 22.43 & 0.563 \\
+128 & Masked & 1 & 42.736 & 137.49 & 3.506 \\
+128 & Raw & 1 & 31.660 & 102.80 & 3.506 \\
+128 & Masked & 2 & 7.975 & 68.00 & 3.506 \\
+128 & Raw & 2 & 2.280 & 41.52 & 3.506 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\caption{Valid-compacted full-width sort/merge: repetition range, wall time and memory. Three measured runs after a warmup; input-inclusive family.}
+\label{tab:compact_memory}\centering\small
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{rrrrrr}
+\toprule
+$N$ & Wall s & VM range s & Rounds & Peak RSS MiB & State MiB \\
+\midrule
+8 & 94.86 & 74.82--118.72 & 54793 & 151.62 & 0.563 \\
+16 & 128.35 & 123.99--132.54 & 66300 & 193.19 & 0.876 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\caption{Valid-compacted sort/merge phase means; traffic is party-zero MB.}
+\label{tab:compact_phases}\centering\small
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{rlrr}
+\toprule
+$N$ & Phase & Seconds & P0 MB \\
+\midrule
+8 & Compact/sort/translate/restore & 90.782 & 1541.040 \\
+8 & Old/new masks & 1.659 & 2.782 \\
+8 & Verification & 0.404 & 2.571 \\
+8 & Selection & 0.042 & 1.180 \\
+8 & Shuffle/refresh/write & 0.804 & 2.022 \\
+16 & Compact/sort/translate/restore & 124.512 & 3345.350 \\
+16 & Old/new masks & 1.193 & 4.584 \\
+16 & Verification & 0.347 & 4.603 \\
+16 & Selection & 0.056 & 1.836 \\
+16 & Shuffle/refresh/write & 0.971 & 4.261 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\caption{Repetition range, launcher-inclusive mean wall time, party-zero rounds and nominal persistent state per party. Runtime tables use MB as printed by MP-SPDZ.}
+\label{tab:supp_perf}\centering\small
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{rllrrrrr}
+\toprule
+$N$ & Design & Operation & Runs & Wall s & VM range s & Rounds & State MiB \\
+\midrule
+8 & Masked & Re-key & 3 & 10.57 & 8.36--10.85 & 8181 & 0.563 \\
+8 & Raw & Re-key & 3 & 6.39 & 5.44--5.94 & 4855 & 0.563 \\
+8 & Masked & Query & 3 & 3.06 & 2.22--2.32 & 2038 & 0.563 \\
+8 & Raw & Query & 3 & 1.15 & 0.35--0.66 & 541 & 0.563 \\
+8 & Masked & Indexed query & 3 & 43.86 & 42.58--44.24 & 25080 & 0.563 \\
+16 & Masked & Re-key & 3 & 10.78 & 9.72--10.42 & 10453 & 0.876 \\
+16 & Masked & Query & 3 & 2.42 & 1.51--2.00 & 2150 & 0.876 \\
+32 & Masked & Re-key & 3 & 13.15 & 11.32--14.13 & 13117 & 1.252 \\
+32 & Raw & Re-key & 3 & 11.68 & 10.07--12.31 & 9771 & 1.251 \\
+32 & Masked & Query & 3 & 2.73 & 1.85--2.54 & 2330 & 1.252 \\
+32 & Raw & Query & 3 & 1.06 & 0.46--0.52 & 821 & 1.251 \\
+64 & Masked & Re-key & 3 & 17.56 & 16.55--16.89 & 18438 & 2.003 \\
+64 & Masked & Query & 3 & 3.06 & 2.24--2.38 & 2642 & 2.003 \\
+128 & Masked & Re-key & 3 & 29.58 & 25.81--30.09 & 32116 & 3.506 \\
+128 & Raw & Re-key & 3 & 23.19 & 22.05--23.09 & 25650 & 3.506 \\
+128 & Masked & Query & 3 & 4.80 & 3.81--4.49 & 4746 & 3.506 \\
+128 & Raw & Query & 3 & 1.51 & 0.87--0.96 & 1681 & 3.506 \\
+256 & Masked & Re-key & 3 & 45.21 & 43.68--44.30 & 59455 & 6.512 \\
+256 & Masked & Query & 3 & 9.12 & 8.01--8.82 & 8916 & 6.512 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\caption{Phase means; communication is party-zero traffic, not global traffic. Mode 1 is re-key, 2 full-scan query, 3 private indexed query.}
+\label{tab:phases0}\centering\small
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{rlrlrr}
+\toprule
+$N$ & Design & Mode & Phase & Seconds & P0 MB \\
+\midrule
+8 & Masked & 1 & Locators/index & 4.697 & 84.976 \\
+8 & Masked & 1 & Old/new masks & 3.236 & 3.120 \\
+8 & Masked & 1 & Verification & 0.563 & 2.678 \\
+8 & Masked & 1 & Selection & 0.055 & 1.180 \\
+8 & Masked & 1 & Shuffle/refresh/write & 1.058 & 2.022 \\
+8 & Raw & 1 & Locators/index & 4.217 & 84.976 \\
+8 & Raw & 1 & Verification & 0.424 & 2.547 \\
+8 & Raw & 1 & Selection & 0.046 & 1.180 \\
+8 & Raw & 1 & Shuffle/refresh/write & 0.852 & 2.022 \\
+8 & Masked & 2 & Fresh query masks & 2.085 & 1.852 \\
+8 & Masked & 2 & Hamming/ArgMin & 0.162 & 0.280 \\
+8 & Raw & 2 & Hamming/ArgMin & 0.471 & 0.182 \\
+8 & Masked & 3 & Fresh query masks & 0.654 & 1.875 \\
+8 & Masked & 3 & Hamming/ArgMin & 0.077 & 0.299 \\
+8 & Masked & 3 & Private candidate retrieval & 42.396 & 990.576 \\
+128 & Masked & 1 & Locators/index & 16.222 & 425.337 \\
+128 & Masked & 1 & Old/new masks & 5.169 & 43.652 \\
+128 & Masked & 1 & Verification & 0.931 & 21.094 \\
+128 & Masked & 1 & Selection & 0.257 & 7.344 \\
+128 & Masked & 1 & Shuffle/refresh/write & 4.852 & 45.397 \\
+128 & Raw & 1 & Locators/index & 16.008 & 425.337 \\
+128 & Raw & 1 & Old/new masks & 0.001 & 0.000 \\
+128 & Raw & 1 & Verification & 0.764 & 18.996 \\
+128 & Raw & 1 & Selection & 0.217 & 7.344 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\caption{Phase means; communication is party-zero traffic, not global traffic. Mode 1 is re-key, 2 full-scan query, 3 private indexed query.}
+\label{tab:phases24}\centering\small
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{rlrlrr}
+\toprule
+$N$ & Design & Mode & Phase & Seconds & P0 MB \\
+\midrule
+128 & Raw & 1 & Shuffle/refresh/write & 4.342 & 45.397 \\
+128 & Masked & 2 & Fresh query masks & 3.385 & 20.045 \\
+128 & Masked & 2 & Hamming/ArgMin & 0.398 & 4.509 \\
+128 & Raw & 2 & Hamming/ArgMin & 0.551 & 2.976 \\
+256 & Masked & 1 & Locators/index & 25.508 & 765.739 \\
+256 & Masked & 1 & Old/new masks & 6.904 & 87.004 \\
+256 & Masked & 1 & Verification & 1.338 & 41.017 \\
+256 & Masked & 1 & Selection & 0.388 & 13.640 \\
+256 & Masked & 1 & Shuffle/refresh/write & 7.889 & 102.360 \\
+256 & Masked & 2 & Fresh query masks & 7.100 & 40.092 \\
+256 & Masked & 2 & Hamming/ArgMin & 0.562 & 9.019 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\caption{Input-inclusive held-out cost-model validation. Training sizes are always 8,16,32. No held-out result is refitted; persisted-file loading is outside this model.}
+\label{tab:model}\centering\small
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{rlrrrr}
+\toprule
+Mode & Metric & Held-out $N$ & Predicted & Measured & Error (\%) \\
+\midrule
+1 & VM s & 64 & 15.020 & 16.768 & 10.43 \\
+1 & VM s & 128 & 20.801 & 28.539 & 27.11 \\
+1 & VM s & 256 & 32.364 & 44.021 & 26.48 \\
+1 & Traffic MB & 64 & 1573.604 & 1564.010 & 0.61 \\
+1 & Traffic MB & 128 & 2718.928 & 2717.360 & 0.06 \\
+1 & Traffic MB & 256 & 5009.575 & 5051.490 & 0.83 \\
+2 & VM s & 64 & 1.847 & 2.297 & 19.62 \\
+2 & VM s & 128 & 1.597 & 4.087 & 60.93 \\
+2 & VM s & 256 & 1.097 & 8.346 & 86.86 \\
+2 & Traffic MB & 64 & 62.919 & 63.413 & 0.78 \\
+2 & Traffic MB & 128 & 122.368 & 122.499 & 0.11 \\
+2 & Traffic MB & 256 & 241.265 & 244.993 & 1.52 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\caption{Input-inclusive communication projections only, not executed MPC measurements. Runtime is not extrapolated. Padding, field and batch policy are held fixed.}
+\label{tab:projections}\centering\small
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{rrrrr}
+\toprule
+Mode & Gallery $N$ & Capacity & Index slots & Projected MB \\
+\midrule
+1 & 1024 & 264 & 540672 & 18753.5 \\
+1 & 4096 & 1032 & 2113536 & 73729.0 \\
+2 & 1024 & 264 & 540672 & 954.7 \\
+2 & 4096 & 1032 & 2113536 & 3808.2 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+These projections use only the communication model that passed held-out validation below 5\% relative error. Their out-of-range uncertainty remains unmeasured. They do not predict indexed-query cost, latency, throughput or a different ORAM backend.
+
+\subsection{CelebA Recovery Outcome}\label{suppsec:generated_supplement:2}
+
+The recovered gallery has 0 binary bit differences and the recovered probes have 0 relative to the frozen NPZ. These counts determine whether the historical fixed split is exactly reproduced; the paired float/binary experiment always uses identical reconstructed images. Source and feature hashes remain in the artifact.
+
+The distinct historical portability cohort reproduces both Rank-1 and Rank-5 exactly in 20 of 20 splits. All per-split comparisons are recorded; any mismatch is retained. The two CelebA populations are not pooled.
+
+\begin{table}[H]
+\caption{Separate CelebA 20-split paired cohorts; intervals resample 128 identities. Delta is binary minus float Rank-1 in percentage points.}
+\label{tab:celeba_cohorts}\centering\small
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{lrrr}
+\toprule
+Cohort & Float R1 & Binary R1 & Delta [95\% CI] \\
+\midrule
+Fixed cohort, new splits & 0.8822 & 0.8605 & -2.168 [-2.842, -1.523] \\
+Historical portability & 0.8762 & 0.8515 & -2.471 [-3.281, -1.729] \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\caption{Observed test FPIR and DIR with identity-bootstrap 95\% intervals, in percentages.}
+\label{tab:open_ci}\centering\small
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{rllrr}
+\toprule
+Gallery & Root & Rule & FPIR [95\% CI] & DIR [95\% CI] \\
+\midrule
+128 & Float & Emp. & 1.602 [0.869, 2.461] & 89.26 [86.42, 91.87] \\
+128 & Float & Cons. & 0.371 [0.068, 0.762] & 79.92 [75.93, 83.73] \\
+128 & Binary & Emp. & 1.885 [1.152, 2.715] & 87.76 [84.67, 90.66] \\
+128 & Binary & Cons. & 0.537 [0.225, 0.957] & 80.01 [76.20, 83.68] \\
+4096 & Float & Emp. & 1.953 [0.781, 3.320] & 71.70 [67.33, 76.03] \\
+4096 & Float & Cons. & 0.420 [0.000, 1.006] & 53.83 [48.95, 58.81] \\
+4096 & Binary & Emp. & 1.172 [0.391, 2.148] & 59.12 [54.39, 63.73] \\
+4096 & Binary & Cons. & 0.391 [0.000, 0.947] & 46.33 [41.58, 51.24] \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The fresh unknown cohort contains 365 identities with one source image, 134 with two to five, and 13 with at least six. Image-count-stratified FPIR is exported for every split in the CSV. The strata are descriptive and were not used to tune thresholds.
+
+\begin{table}[H]
+\caption{Descriptive test FPIR at gallery 128 by source identity image count, in percentages. The strata have 365, 134 and 13 identities; the small final stratum does not support a low-FPIR guarantee.}
+\label{tab:unknown_strata}\centering\small
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{llrrr}
+\toprule
+Root & Rule & One & Two--five & Six or more \\
+\midrule
+Float & Emp. & 1.644 & 1.642 & 0.000 \\
+Float & Cons. & 0.205 & 0.858 & 0.000 \\
+Binary & Emp. & 1.575 & 2.799 & 1.154 \\
+Binary & Cons. & 0.370 & 1.045 & 0.000 \\
+\bottomrule
+\end{tabular}
+\end{table}

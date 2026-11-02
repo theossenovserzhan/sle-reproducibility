@@ -1,0 +1,3 @@
+# Lightweight public-snapshot validation; tested with Python 3.12.
+numpy==2.3.5
+pypdf==6.10.0

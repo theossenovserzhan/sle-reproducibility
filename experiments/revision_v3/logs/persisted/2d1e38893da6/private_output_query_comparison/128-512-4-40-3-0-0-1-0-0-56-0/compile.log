@@ -1,0 +1,43 @@
+{"argv": ["python3", "compile.py", "-P", "340282366920938463463374607431764574209", "-b", "64", "-M", "msle_private_fused_system", "128", "512", "4", "40", "3", "0", "0", "1", "0", "0", "56", "0"], "cwd": "/home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8"}
+WARNING: --prime/-P activates code that usually isn't the most efficient variant. Consider using --field/-F and set the prime only during the actual computation.
+Default bit length for compilation: 126
+Default security parameter for compilation: 40
+Compiling file Programs/Source/msle_private_fused_system.mpc
+Changed bit length for comparisons etc. to 64
+Changed statistical security for comparison etc. to 80
+Writing to Programs/Bytecode/msle_private_fused_system-128-512-4-40-3-0-0-1-0-0-56-0-EQZ(64)_64-1.bc
+Writing to Programs/Bytecode/msle_private_fused_system-128-512-4-40-3-0-0-1-0-0-56-0-LTZ(193)_65-3.bc
+Writing to Programs/Bytecode/msle_private_fused_system-128-512-4-40-3-0-0-1-0-0-56-0-EQZ(96)_64-5.bc
+Writing to Programs/Bytecode/msle_private_fused_system-128-512-4-40-3-0-0-1-0-0-56-0-LTZ(128)_65-6.bc
+Writing to Programs/Bytecode/msle_private_fused_system-128-512-4-40-3-0-0-1-0-0-56-0-EQZ(48)_64-7.bc
+Writing to Programs/Bytecode/msle_private_fused_system-128-512-4-40-3-0-0-1-0-0-56-0-LTZ(96)_65-8.bc
+Writing to Programs/Bytecode/msle_private_fused_system-128-512-4-40-3-0-0-1-0-0-56-0-EQZ(24)_64-9.bc
+Writing to Programs/Bytecode/msle_private_fused_system-128-512-4-40-3-0-0-1-0-0-56-0-LTZ(48)_65-10.bc
+Writing to Programs/Bytecode/msle_private_fused_system-128-512-4-40-3-0-0-1-0-0-56-0-EQZ(12)_64-11.bc
+Writing to Programs/Bytecode/msle_private_fused_system-128-512-4-40-3-0-0-1-0-0-56-0-LTZ(24)_65-12.bc
+Writing to Programs/Bytecode/msle_private_fused_system-128-512-4-40-3-0-0-1-0-0-56-0-EQZ(6)_64-13.bc
+Writing to Programs/Bytecode/msle_private_fused_system-128-512-4-40-3-0-0-1-0-0-56-0-LTZ(12)_65-14.bc
+Writing to Programs/Bytecode/msle_private_fused_system-128-512-4-40-3-0-0-1-0-0-56-0-EQZ(3)_64-15.bc
+Writing to Programs/Bytecode/msle_private_fused_system-128-512-4-40-3-0-0-1-0-0-56-0-LTZ(6)_65-16.bc
+Compiled 100000 lines at Fri Oct 30 16:49:49 2026
+Writing to Programs/Bytecode/msle_private_fused_system-128-512-4-40-3-0-0-1-0-0-56-0-EQZ(1)_64-17.bc
+Writing to Programs/Bytecode/msle_private_fused_system-128-512-4-40-3-0-0-1-0-0-56-0-LTZ(2)_65-18.bc
+Writing to Programs/Bytecode/msle_private_fused_system-128-512-4-40-3-0-0-1-0-0-56-0-LTZ(1)_65-19.bc
+Writing to Programs/Schedules/msle_private_fused_system-128-512-4-40-3-0-0-1-0-0-56-0.sch
+Writing to Programs/Bytecode/msle_private_fused_system-128-512-4-40-3-0-0-1-0-0-56-0-0.bc
+Hash: ec1bc70924be296cdd5043c5f4a367b98bc417b2e410b7be94899445fc55548e
+Program requires at most:
+         514 integer inputs from player 0
+         514 integer inputs from player 1
+         514 integer inputs from player 2
+         514 integer inputs from player 3
+         514 integer inputs from player 4
+      400764 integer triples
+      400764 integer simple multiplications
+        1789 strict edabits of length 128
+        1793 integer opens
+      905754 bit triples
+      131837 integer dabits
+       16696 bit opens
+         511 strict edabits of length 1
+        3711 virtual machine rounds

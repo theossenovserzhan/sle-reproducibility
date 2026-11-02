@@ -1,0 +1,43 @@
+{
+  "dataset": "LFW",
+  "input_sha256": "4eba32ac090607b0fa1e2c83649a2cf2c86f95ffd5f44b43d6cd999b59211cfd",
+  "script_sha256": "a20faf00aca9648b8eb064a980f9327a32f5bbe0c85c37bb98876767535ac84f",
+  "numpy": "2.5.3",
+  "n_evaluation": 128,
+  "n_calibration": 32,
+  "n_test_unknown": 32,
+  "splits": 20,
+  "paired": {
+    "rank1": {
+      "binary_minus_float": -0.00419921875,
+      "subject_bootstrap_ci95": [
+        -0.008105468749999999,
+        -0.0006835937500000002
+      ],
+      "bootstrap_units": "identities after averaging their repeated splits",
+      "bootstrap_resamples": 5000,
+      "float_mean": 0.9890625,
+      "binary_mean": 0.98486328125
+    },
+    "rank5": {
+      "binary_minus_float": -0.0013671874999999995,
+      "subject_bootstrap_ci95": [
+        -0.0031249999999999976,
+        -9.765624999999879e-05
+      ],
+      "bootstrap_units": "identities after averaging their repeated splits",
+      "bootstrap_resamples": 5000,
+      "float_mean": 0.9978515625,
+      "binary_mean": 0.9964843750000001
+    }
+  },
+  "verification_pairs": "all 4 probes per evaluation identity vs each gallery prototype; one genuine and N-1 impostors per probe",
+  "threshold_selection": "identity-disjoint calibration only; discrete thresholds with acceptance score>=threshold",
+  "open_set": "calibration and test unknown cohorts disjoint, both scored against same evaluation gallery",
+  "limitations": [
+    "custom protocols, not official LFW verification",
+    "repeated splits reuse identities and images",
+    "low FAR/FPIR estimates limited by negative counts; rows are correlated within identity",
+    "not evidence of generalization to an unseen recognition backbone"
+  ]
+}

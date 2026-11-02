@@ -1,0 +1,19 @@
+{
+  "source_url": "https://nigelsmart.github.io/MPC-Circuits/aes_128.txt",
+  "source_sha256": "40423a0cdaf5d4d34aba872c12660f115dc25c12eea6e24a9304578e79df6d04",
+  "gates": 36663,
+  "wires": 36919,
+  "gate_counts": {
+    "XOR": 28176,
+    "AND": 6400,
+    "INV": 2087
+  },
+  "orientation": {
+    "key_first": true,
+    "input_order": "whole_reverse",
+    "output_order": "whole_reverse"
+  },
+  "published_known_answer_vectors_passed": 3,
+  "independent_oracle": "cryptography AES ECB; block primitive for CTR",
+  "mpc_tested": false
+}

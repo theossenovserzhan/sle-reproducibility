@@ -1,0 +1,22 @@
+{
+  "status": "design frozen before AES baseline implementation/metrics",
+  "date": "2026-10-30",
+  "purpose": "Test whether conventional encryption with an ordinary private transaction provides the same useful functionality",
+  "cipher": "AES-128 in CTR mode, following NIST SP800-38A",
+  "source": "https://csrc.nist.gov/pubs/sp/800/38/a/final",
+  "counter_assignment": "Counter=(stable_secret_tie_tag-1)*(D/128)+block; block0..D/128-1; big-endian128-bit encoding",
+  "counter_uniqueness": "Tags are unique1..N and D/128 is public. All counters are distinct under one epoch AES key and fit128bits. Every accepted epoch uses an independent fresh key. No probabilistic nonce overlap assumption is needed.",
+  "metadata": "Stable unique tie tags already exist as secret shared state in R1 for deterministic ranking; they are not opened or stored with public ciphertexts",
+  "key_bundle": "One locator-permutation key plus one AES key, independently sampled. Canonical128-bit encoding of uniform Fp AES key has statistical distance (2^128-p)/2^128 from uniform128-bit keys; report this explicitly.",
+  "plaintext_packing": "Pack root coordinate bits MSB-first into bytes; XOR AES-CTR keystream. Masks and decryption are computed only on secret wires in MPC.",
+  "transition": "Decode old ciphertext transiently in MPC, encrypt under new epoch key, update private index using full-width compact sort/merge; verify same old/new-root and proposed-index invariant, then same selection/shuffle/share-refresh/persistence",
+  "additional_control": "AES with the direct locator update isolates mask-generation costs from index-translation costs. Before all secure AES metrics, add the same stable-secret-handle representation to AES and MiMC atN8/32: encryption comparisons must not conflate cipher cost with physical-index rewriting. The same two-field global key bundle is retained; the virtual locator key defines the semantic interpretation without per-slot evaluation.",
+  "same_candidate_query": "Compute ordinary decryption/Hamming inside MPC, or equivalent probe masking; assert exact scores against an independent AES oracle",
+  "authentication_scope": "CTR supplies confidentiality. The same separate application consistency checker supplies the compared transition-integrity contract under passive MPC. This is not an AES-GCM or malicious-MPC claim.",
+  "implementation_plan": "Use a primary Bristol Fashion AES circuit with arithmetic-shared bit gates, preserving the five-party degree-two Shamir backend. Verify NIST known-answer vectors and bit order first; precompute key-only wire expressions once per mask call where possible.",
+  "circuit_source": "https://nigelsmart.github.io/MPC-Circuits/",
+  "independent_oracle": "A separate standard AES library; do not reuse the circuit evaluator as the only reference",
+  "initial_sizes": [2,8,32],
+  "root_bits": 512,
+  "interpretation": "This is a representative standard-encryption implementation under the chosen arithmetic MPC backend, not a lower bound on all AES implementations. Equivalent functionality or better cost is retained and may narrow the M-SLE novelty claim."
+}

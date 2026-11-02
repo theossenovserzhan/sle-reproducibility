@@ -1,9 +1,9 @@
 cff-version: 1.2.0
-message: "If you use this software, please cite the associated article and this release."
-title: "Synchronized Locator Evolution: Reproducibility Package"
+message: "If you use these reproducibility materials, please cite this software artifact."
+title: "Masked Synchronized Locator Evolution: Reproducibility Materials"
 type: software
-version: 1.0.0
-date-released: 2026-08-09
+version: 2.0.0
+date-released: 2026-11-02
 authors:
   - family-names: Amirgaliyev
     given-names: Beibut
@@ -11,11 +11,12 @@ authors:
   - family-names: Ossenov
     given-names: Serzhan
     affiliation: Astana IT University
-repository-code: "REPLACE_WITH_PUBLIC_REPOSITORY_URL"
+repository-code: "https://github.com/theossenovserzhan/sle-reproducibility"
 abstract: >-
-  Executable MP-SPDZ programs, Colab notebooks, and aggregate results for
-  Synchronized Locator Evolution in privacy-preserving biometric
-  identification.
+  Current M-SLE manuscript and supplementary material, MP-SPDZ programs,
+  complete-system measurements, paired biometric results, and frozen
+  provenance for re-keyable private face identification. Legacy unmasked
+  SLE materials are preserved as an internal unpublished baseline.
 keywords:
   - secure multiparty computation
   - biometric identification

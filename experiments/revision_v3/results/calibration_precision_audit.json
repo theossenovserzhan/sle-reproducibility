@@ -1,0 +1,78 @@
+{
+  "binary_frontend": {
+    "open_rows": 1920,
+    "rows_exceeding_allowed": 960,
+    "max_calibration_accepts": 10,
+    "examples": [
+      {
+        "method": "original_sign_512",
+        "split": "0",
+        "n_gallery": "128",
+        "rule": "empirical",
+        "calibration_allowed_accepts": "5",
+        "calibration_fpir": "0.013671875",
+        "threshold": "-136.99999999999997"
+      },
+      {
+        "method": "original_sign_512",
+        "split": "0",
+        "n_gallery": "128",
+        "rule": "conservative_iid_order_statistic",
+        "calibration_allowed_accepts": "1",
+        "calibration_fpir": "0.00390625",
+        "threshold": "-127.99999999999999"
+      }
+    ]
+  },
+  "projection_facenet": {
+    "open_rows": 3840,
+    "rows_exceeding_allowed": 3360,
+    "max_calibration_accepts": 9,
+    "examples": [
+      {
+        "method": "original_sign_512",
+        "split": "0",
+        "n_gallery": "128",
+        "rule": "empirical",
+        "calibration_allowed_accepts": "5",
+        "calibration_fpir": "0.013671875",
+        "threshold": "-136.99999999999997"
+      },
+      {
+        "method": "original_sign_512",
+        "split": "0",
+        "n_gallery": "128",
+        "rule": "conservative_iid_order_statistic",
+        "calibration_allowed_accepts": "1",
+        "calibration_fpir": "0.00390625",
+        "threshold": "-127.99999999999999"
+      }
+    ]
+  },
+  "projection_sface": {
+    "open_rows": 3840,
+    "rows_exceeding_allowed": 3360,
+    "max_calibration_accepts": 24,
+    "examples": [
+      {
+        "method": "original_sign_128",
+        "split": "0",
+        "n_gallery": "128",
+        "rule": "empirical",
+        "calibration_allowed_accepts": "5",
+        "calibration_fpir": "0.017578125",
+        "threshold": "-38.99999999999999"
+      },
+      {
+        "method": "original_sign_128",
+        "split": "0",
+        "n_gallery": "128",
+        "rule": "conservative_iid_order_statistic",
+        "calibration_allowed_accepts": "1",
+        "calibration_fpir": "0.00390625",
+        "threshold": "-37.99999999999999"
+      }
+    ]
+  },
+  "scope": "These original new-study open-set attempts are superseded by *_corrected; frozen models, closed-set flags and MPC timings unaffected."
+}

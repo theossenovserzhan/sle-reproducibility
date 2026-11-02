@@ -1,0 +1,10 @@
+{
+  "all_aggregate_fields_reproduced": true,
+  "absolute_float_tolerance": 1e-12,
+  "differences": {},
+  "original_source_sha256": "7e619e59ac271d835ff30418308d26611fa30d828ef46343286d8bffd62a2d9b",
+  "bounded_source_sha256": "6c0e2024ad0de5b190e5a51df9712f5a50a327b7ede552dcaf24f7a29176c966",
+  "expected_summary_sha256": "d8bd3663a27cc57e509f674f33fb3667917ef64748a1ae367d7381a26a9aa51e",
+  "actual_summary_sha256": "d8bd3663a27cc57e509f674f33fb3667917ef64748a1ae367d7381a26a9aa51e",
+  "change": "equivalent integer-population sampling, no materialized 16-GiB range; no cryptographic parameter change"
+}

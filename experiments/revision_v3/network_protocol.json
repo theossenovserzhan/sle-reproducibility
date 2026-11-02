@@ -1,0 +1,13 @@
+{
+  "created_local_date":"2026-10-30",
+  "status":"fixed before all stream-delay and network MPC results",
+  "mechanism":"Per-party host:port files in pinned MP-SPDZ. Each party's own listening port is direct; all other peers route through task-owned loopback TCP relays. Both stream directions release received chunks at arrival+RTT/2. Separate receive/deadline-send tasks prevent serial sleep per chunk. No host network setting changes.",
+  "requested_added_rtt_ms":[0,1,20,50],
+  "calibration":"22 sequential64-byte echoes per delay, first2 discarded; retain all20 RTTs. Check median>=0.9*target and <=target+max(15ms,0.25*target).",
+  "buffer":"128 queued64KiB chunks per direction; record high-water bytes and backpressure events. Any backpressure is a measured additional limitation, not silently unlimited bandwidth.",
+  "correctness":"Zero-delay complete N2D64 state transition and query for eager/virtual kernels, full reference oracle",
+  "benchmarks":["N2D64 rekey","N8D512 full-scan query"],
+  "repetitions":"One warmup plus3 balanced alternating repetitions per method/delay/benchmark; DIAG0. Timeout900seconds per attempt, preserve failures and logs.",
+  "scope":"User-space stream-delay emulation with all five parties on one host; no physical WAN, packet loss or explicit bandwidth model. Small rekey size selected for bounded runtime before delay results; do not extrapolate it to real512-bit galleries. Cold trusted-owner input interface only; private client-output correctness tested separately.",
+  "metrics":"Full VM/wall time, global communication, party0 rounds, maximum single-party RSS, relay controller CPU/bytes/queue, all party logs and source/config/input hashes."
+}

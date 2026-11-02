@@ -1,0 +1,110 @@
+{
+  "witness": {
+    "64": {
+      "full_checker_rejects": true,
+      "relation_only_accepts_wrong_root": true
+    },
+    "512": {
+      "full_checker_rejects": true,
+      "relation_only_accepts_wrong_root": true
+    }
+  },
+  "performance": [
+    {
+      "n": 8,
+      "family": "performance",
+      "method": "full_direct",
+      "repetitions": 3,
+      "source_sha256": "bf5086b808432fa86978fe82e0e6042e5144c060f0af162747a75b3c0c648401",
+      "full_vm_seconds_mean": 11.62528,
+      "full_vm_seconds_sd": 3.2157383633000993,
+      "wall_seconds_mean": 12.771619020333313,
+      "wall_seconds_sd": 3.3241980669147297,
+      "global_communication_mb_mean": 471.837,
+      "global_communication_mb_sd": 0.0,
+      "timer12_seconds_mean": 6.037116666666667,
+      "timer12_seconds_sd": 1.5249566126724174,
+      "timer13_seconds_mean": 3.41689,
+      "timer13_seconds_sd": 1.0551196748710545,
+      "max_rss_single_child_kib_mean": 39601.333333333336,
+      "max_rss_single_child_kib_sd": 122.65942007580719
+    },
+    {
+      "n": 8,
+      "family": "performance",
+      "method": "matrix_compact_direct",
+      "repetitions": 3,
+      "source_sha256": "933becc021720ef5ef9163696b7162fe97141e1fedee84d8c5d22a1f64d59ca0",
+      "full_vm_seconds_mean": 17.165633333333332,
+      "full_vm_seconds_sd": 0.7872379712217484,
+      "wall_seconds_mean": 18.187906115666653,
+      "wall_seconds_sd": 0.8454198353677519,
+      "global_communication_mb_mean": 1168.08,
+      "global_communication_mb_sd": 0.0,
+      "timer12_seconds_mean": 12.4748,
+      "timer12_seconds_sd": 0.9440173038668301,
+      "timer13_seconds_mean": 2.74366,
+      "timer13_seconds_sd": 0.6594774350195767,
+      "max_rss_single_child_kib_mean": 86690.66666666667,
+      "max_rss_single_child_kib_sd": 165.71461412118526
+    },
+    {
+      "n": 8,
+      "family": "performance",
+      "method": "matrix_compact_sort",
+      "repetitions": 2,
+      "source_sha256": "ef1c310976c280a9d6faf041bd24a0502831a26f55fbfcb05604d55ed0648489",
+      "full_vm_seconds_mean": 83.1903,
+      "full_vm_seconds_sd": 7.9767301772092045,
+      "wall_seconds_mean": 84.48771159150002,
+      "wall_seconds_sd": 8.088806717285626,
+      "global_communication_mb_mean": 7060.67,
+      "global_communication_mb_sd": 0.0,
+      "timer12_seconds_mean": 80.74465000000001,
+      "timer12_seconds_sd": 8.003388102859928,
+      "timer13_seconds_mean": 1.232735,
+      "timer13_seconds_sd": 0.150903658173021,
+      "max_rss_single_child_kib_mean": 128408.0,
+      "max_rss_single_child_kib_sd": 50.91168824543142
+    },
+    {
+      "n": 8,
+      "family": "position_comparison",
+      "method": "full_direct",
+      "repetitions": 1,
+      "source_sha256": "bf5086b808432fa86978fe82e0e6042e5144c060f0af162747a75b3c0c648401",
+      "full_vm_seconds_mean": 9.5158,
+      "full_vm_seconds_sd": null,
+      "wall_seconds_mean": 10.415501401000029,
+      "wall_seconds_sd": null,
+      "global_communication_mb_mean": 471.837,
+      "global_communication_mb_sd": null,
+      "timer12_seconds_mean": 4.54173,
+      "timer12_seconds_sd": null,
+      "timer13_seconds_mean": 3.24358,
+      "timer13_seconds_sd": null,
+      "max_rss_single_child_kib_mean": 39556.0,
+      "max_rss_single_child_kib_sd": null
+    },
+    {
+      "n": 8,
+      "family": "position_comparison",
+      "method": "position_compact_direct",
+      "repetitions": 1,
+      "source_sha256": "e8b07202933940ac086e912910877aa368b7d14048ccbdfc83ff2ff39d0e6f8d",
+      "full_vm_seconds_mean": 9.44977,
+      "full_vm_seconds_sd": null,
+      "wall_seconds_mean": 10.647426104000033,
+      "wall_seconds_sd": null,
+      "global_communication_mb_mean": 529.887,
+      "global_communication_mb_sd": null,
+      "timer12_seconds_mean": 5.54084,
+      "timer12_seconds_sd": null,
+      "timer13_seconds_mean": 2.18509,
+      "timer13_seconds_sd": null,
+      "max_rss_single_child_kib_mean": 84296.0,
+      "max_rss_single_child_kib_sd": null
+    }
+  ],
+  "frozen_r1_unchanged": true
+}

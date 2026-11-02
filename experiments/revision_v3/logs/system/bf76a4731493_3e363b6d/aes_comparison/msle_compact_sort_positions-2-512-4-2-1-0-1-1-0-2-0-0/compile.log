@@ -1,0 +1,60 @@
+{"argv": ["python3", "compile.py", "-P", "340282366920938463463374607431764574209", "-b", "64", "-M", "msle_compact_sort_positions", "2", "512", "4", "2", "1", "0", "1", "1", "0", "2", "0", "0"], "cwd": "/home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8"}
+WARNING: --prime/-P activates code that usually isn't the most efficient variant. Consider using --field/-F and set the prime only during the actual computation.
+Default bit length for compilation: 126
+Default security parameter for compilation: 40
+Compiling file Programs/Source/msle_compact_sort_positions.mpc
+Changed bit length for comparisons etc. to 64
+Changed statistical security for comparison etc. to 80
+Writing to Programs/Bytecode/msle_compact_sort_positions-2-512-4-2-1-0-1-1-0-2-0-0-multithread-1.bc
+Writing to Programs/Bytecode/msle_compact_sort_positions-2-512-4-2-1-0-1-1-0-2-0-0-multithread-2.bc
+Writing to Programs/Bytecode/msle_compact_sort_positions-2-512-4-2-1-0-1-1-0-2-0-0-multithread-3.bc
+Writing to Programs/Bytecode/msle_compact_sort_positions-2-512-4-2-1-0-1-1-0-2-0-0-multithread-4.bc
+Writing to Programs/Bytecode/msle_compact_sort_positions-2-512-4-2-1-0-1-1-0-2-0-0-multithread-5.bc
+Writing to Programs/Bytecode/msle_compact_sort_positions-2-512-4-2-1-0-1-1-0-2-0-0-multithread-6.bc
+Writing to Programs/Bytecode/msle_compact_sort_positions-2-512-4-2-1-0-1-1-0-2-0-0-multithread-7.bc
+Writing to Programs/Bytecode/msle_compact_sort_positions-2-512-4-2-1-0-1-1-0-2-0-0-multithread-8.bc
+Writing to Programs/Bytecode/msle_compact_sort_positions-2-512-4-2-1-0-1-1-0-2-0-0-multithread-9.bc
+Writing to Programs/Bytecode/msle_compact_sort_positions-2-512-4-2-1-0-1-1-0-2-0-0-multithread-10.bc
+Writing to Programs/Bytecode/msle_compact_sort_positions-2-512-4-2-1-0-1-1-0-2-0-0-multithread-11.bc
+Writing to Programs/Bytecode/msle_compact_sort_positions-2-512-4-2-1-0-1-1-0-2-0-0-multithread-12.bc
+Writing to Programs/Bytecode/msle_compact_sort_positions-2-512-4-2-1-0-1-1-0-2-0-0-multithread-13.bc
+Writing to Programs/Bytecode/msle_compact_sort_positions-2-512-4-2-1-0-1-1-0-2-0-0-multithread-14.bc
+Writing to Programs/Bytecode/msle_compact_sort_positions-2-512-4-2-1-0-1-1-0-2-0-0-multithread-15.bc
+Writing to Programs/Bytecode/msle_compact_sort_positions-2-512-4-2-1-0-1-1-0-2-0-0-multithread-16.bc
+Writing to Programs/Bytecode/msle_compact_sort_positions-2-512-4-2-1-0-1-1-0-2-0-0-multithread-17.bc
+Writing to Programs/Bytecode/msle_compact_sort_positions-2-512-4-2-1-0-1-1-0-2-0-0-multithread-18.bc
+Writing to Programs/Bytecode/msle_compact_sort_positions-2-512-4-2-1-0-1-1-0-2-0-0-multithread-19.bc
+Writing to Programs/Bytecode/msle_compact_sort_positions-2-512-4-2-1-0-1-1-0-2-0-0-multithread-20.bc
+Writing to Programs/Bytecode/msle_compact_sort_positions-2-512-4-2-1-0-1-1-0-2-0-0-multithread-21.bc
+Writing to Programs/Bytecode/msle_compact_sort_positions-2-512-4-2-1-0-1-1-0-2-0-0-multithread-22.bc
+Writing to Programs/Bytecode/msle_compact_sort_positions-2-512-4-2-1-0-1-1-0-2-0-0-multithread-23.bc
+Writing to Programs/Bytecode/msle_compact_sort_positions-2-512-4-2-1-0-1-1-0-2-0-0-multithread-24.bc
+Writing to Programs/Bytecode/msle_compact_sort_positions-2-512-4-2-1-0-1-1-0-2-0-0-multithread-25.bc
+Compiled 100000 lines at Fri Oct 30 11:40:56 2026
+Writing to Programs/Bytecode/msle_compact_sort_positions-2-512-4-2-1-0-1-1-0-2-0-0-EQZ(512)_64-26.bc
+Writing to Programs/Bytecode/msle_compact_sort_positions-2-512-4-2-1-0-1-1-0-2-0-0-EQZ(275)_64-28.bc
+Writing to Programs/Schedules/msle_compact_sort_positions-2-512-4-2-1-0-1-1-0-2-0-0.sch
+Writing to Programs/Bytecode/msle_compact_sort_positions-2-512-4-2-1-0-1-1-0-2-0-0-0.bc
+Hash: 5c88bd8153a5c1fe763023cd7e175074ff6affab04e275f7ee120b956668f05c
+Program requires at most:
+     1181995 integer inputs from player 0
+     1172773 integer inputs from player 1
+        9249 integer inputs from player 2
+        9249 integer inputs from player 3
+        9249 integer inputs from player 4
+    11417276 integer triples
+      141428 integer simple multiplications
+         inf bit inverses
+           2 integer shuffle generations
+           4 integer shuffle applications
+        2101 strict edabits of length 128
+       76610 integer opens
+     1095373 bit triples
+       38931 integer dabits
+       21736 bit opens
+        4104 integer randoms
+         257 integer shuffle generations
+         524 integer shuffle applications
+           1 integer shuffle generations
+           1 integer shuffle applications
+        6255 virtual machine rounds

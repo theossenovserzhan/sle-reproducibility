@@ -1,0 +1,59 @@
+{"argv": ["python3", "compile.py", "-P", "340282366920938463463374607431764574209", "-b", "64", "-M", "msle_system", "8", "512", "4", "8", "1", "0", "1", "1", "0", "8", "0", "0"], "cwd": "/home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8"}
+WARNING: --prime/-P activates code that usually isn't the most efficient variant. Consider using --field/-F and set the prime only during the actual computation.
+Default bit length for compilation: 126
+Default security parameter for compilation: 40
+Compiling file Programs/Source/msle_system.mpc
+Changed bit length for comparisons etc. to 64
+Changed statistical security for comparison etc. to 80
+Writing to Programs/Bytecode/msle_system-8-512-4-8-1-0-1-1-0-8-0-0-multithread-1.bc
+Writing to Programs/Bytecode/msle_system-8-512-4-8-1-0-1-1-0-8-0-0-multithread-2.bc
+Writing to Programs/Bytecode/msle_system-8-512-4-8-1-0-1-1-0-8-0-0-multithread-3.bc
+Writing to Programs/Bytecode/msle_system-8-512-4-8-1-0-1-1-0-8-0-0-multithread-4.bc
+Writing to Programs/Bytecode/msle_system-8-512-4-8-1-0-1-1-0-8-0-0-multithread-5.bc
+Writing to Programs/Bytecode/msle_system-8-512-4-8-1-0-1-1-0-8-0-0-multithread-6.bc
+Writing to Programs/Bytecode/msle_system-8-512-4-8-1-0-1-1-0-8-0-0-multithread-7.bc
+Writing to Programs/Bytecode/msle_system-8-512-4-8-1-0-1-1-0-8-0-0-multithread-8.bc
+Writing to Programs/Bytecode/msle_system-8-512-4-8-1-0-1-1-0-8-0-0-multithread-9.bc
+Writing to Programs/Bytecode/msle_system-8-512-4-8-1-0-1-1-0-8-0-0-multithread-10.bc
+Writing to Programs/Bytecode/msle_system-8-512-4-8-1-0-1-1-0-8-0-0-multithread-11.bc
+Writing to Programs/Bytecode/msle_system-8-512-4-8-1-0-1-1-0-8-0-0-multithread-12.bc
+Writing to Programs/Bytecode/msle_system-8-512-4-8-1-0-1-1-0-8-0-0-multithread-13.bc
+Writing to Programs/Bytecode/msle_system-8-512-4-8-1-0-1-1-0-8-0-0-multithread-14.bc
+Writing to Programs/Bytecode/msle_system-8-512-4-8-1-0-1-1-0-8-0-0-multithread-15.bc
+Writing to Programs/Bytecode/msle_system-8-512-4-8-1-0-1-1-0-8-0-0-multithread-16.bc
+Writing to Programs/Bytecode/msle_system-8-512-4-8-1-0-1-1-0-8-0-0-multithread-17.bc
+Writing to Programs/Bytecode/msle_system-8-512-4-8-1-0-1-1-0-8-0-0-multithread-18.bc
+Writing to Programs/Bytecode/msle_system-8-512-4-8-1-0-1-1-0-8-0-0-multithread-19.bc
+Writing to Programs/Bytecode/msle_system-8-512-4-8-1-0-1-1-0-8-0-0-multithread-20.bc
+Writing to Programs/Bytecode/msle_system-8-512-4-8-1-0-1-1-0-8-0-0-multithread-21.bc
+Writing to Programs/Bytecode/msle_system-8-512-4-8-1-0-1-1-0-8-0-0-multithread-22.bc
+Writing to Programs/Bytecode/msle_system-8-512-4-8-1-0-1-1-0-8-0-0-multithread-23.bc
+Writing to Programs/Bytecode/msle_system-8-512-4-8-1-0-1-1-0-8-0-0-multithread-24.bc
+Writing to Programs/Bytecode/msle_system-8-512-4-8-1-0-1-1-0-8-0-0-multithread-25.bc
+Writing to Programs/Bytecode/msle_system-8-512-4-8-1-0-1-1-0-8-0-0-multithread-26.bc
+Compiled 100000 lines at Thu Oct 29 18:13:39 2026
+Writing to Programs/Bytecode/msle_system-8-512-4-8-1-0-1-1-0-8-0-0-EQZ(512)_64-27.bc
+Writing to Programs/Bytecode/msle_system-8-512-4-8-1-0-1-1-0-8-0-0-EQZ(121)_64-29.bc
+Writing to Programs/Schedules/msle_system-8-512-4-8-1-0-1-1-0-8-0-0.sch
+Writing to Programs/Bytecode/msle_system-8-512-4-8-1-0-1-1-0-8-0-0-0.bc
+Hash: e7f45baa58b0cb529a6a35e76f58a00cc50c4c0839c1fe903f0bfc779b0d4633
+Program requires at most:
+   131375466 integer inputs from player 0
+   131338578 integer inputs from player 1
+       36915 integer inputs from player 2
+       36915 integer inputs from player 3
+       36915 integer inputs from player 4
+  1337646129 integer triples
+     7048275 integer simple multiplications
+      246025 strict edabits of length 128
+     4934148 integer opens
+   128127871 bit triples
+     2573553 integer dabits
+      337032 bit opens
+       16398 integer randoms
+         inf bit inverses
+           1 integer shuffle generations
+           1 integer shuffle applications
+         286 integer shuffle generations
+         582 integer shuffle applications
+       42689 virtual machine rounds

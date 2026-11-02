@@ -1,0 +1,10 @@
+{
+  "helpers_identical": true,
+  "protocol_tail_identical": true,
+  "main_source_sha256": "2dab214ad3d3a6a39438ebfc01a4220a14cbd4643ba7709afde9875091de48f3",
+  "shared_query_source_sha256": "0c1ca8ccdb565a329fdbeb44f04175a809a86f1cddf3c67d50c856fc6840121d",
+  "common_parts_sha256": [
+    "cd783c6caa1f8c0663af9a6db9a50e3d81e2e1a0754480e713e46f2c92bb2dee",
+    "b34e98d5738cbbb9aaa7528101ae51553bf8232c39ba3da275471954cb185bee"
+  ]
+}

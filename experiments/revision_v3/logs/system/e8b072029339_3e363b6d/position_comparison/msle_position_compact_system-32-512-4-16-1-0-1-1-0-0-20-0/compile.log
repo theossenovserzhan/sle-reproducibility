@@ -1,0 +1,40 @@
+{"argv": ["python3", "compile.py", "-P", "340282366920938463463374607431764574209", "-b", "64", "-M", "msle_position_compact_system", "32", "512", "4", "16", "1", "0", "1", "1", "0", "0", "20", "0"], "cwd": "/home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8"}
+WARNING: --prime/-P activates code that usually isn't the most efficient variant. Consider using --field/-F and set the prime only during the actual computation.
+Default bit length for compilation: 126
+Default security parameter for compilation: 40
+Compiling file Programs/Source/msle_position_compact_system.mpc
+Changed bit length for comparisons etc. to 64
+Changed statistical security for comparison etc. to 80
+Writing to Programs/Bytecode/msle_position_compact_system-32-512-4-16-1-0-1-1-0-0-20-0-multithread-1.bc
+Writing to Programs/Bytecode/msle_position_compact_system-32-512-4-16-1-0-1-1-0-0-20-0-multithread-2.bc
+Writing to Programs/Bytecode/msle_position_compact_system-32-512-4-16-1-0-1-1-0-0-20-0-multithread-3.bc
+Writing to Programs/Bytecode/msle_position_compact_system-32-512-4-16-1-0-1-1-0-0-20-0-multithread-4.bc
+Writing to Programs/Bytecode/msle_position_compact_system-32-512-4-16-1-0-1-1-0-0-20-0-multithread-5.bc
+Writing to Programs/Bytecode/msle_position_compact_system-32-512-4-16-1-0-1-1-0-0-20-0-multithread-6.bc
+Writing to Programs/Bytecode/msle_position_compact_system-32-512-4-16-1-0-1-1-0-0-20-0-multithread-7.bc
+Writing to Programs/Bytecode/msle_position_compact_system-32-512-4-16-1-0-1-1-0-0-20-0-multithread-8.bc
+Writing to Programs/Bytecode/msle_position_compact_system-32-512-4-16-1-0-1-1-0-0-20-0-multithread-9.bc
+Compiled 100000 lines at Fri Oct 30 10:16:41 2026
+Writing to Programs/Schedules/msle_position_compact_system-32-512-4-16-1-0-1-1-0-0-20-0.sch
+Writing to Programs/Bytecode/msle_position_compact_system-32-512-4-16-1-0-1-1-0-0-20-0-0.bc
+Hash: 8f445c0c1bdb503971c6628da761a355107ded8d3b2c3a51cc990edc93629a74
+Program requires at most:
+     1540318 integer inputs from player 0
+     1458302 integer inputs from player 1
+       82043 integer inputs from player 2
+       82043 integer inputs from player 3
+       82043 integer inputs from player 4
+     7643963 integer triples
+     1088293 integer simple multiplications
+         inf bit inverses
+           2 integer shuffle generations
+           4 integer shuffle applications
+       28678 integer randoms
+       66059 integer opens
+           1 integer shuffle generations
+           1 integer shuffle applications
+         512 strict edabits of length 128
+      325632 bit triples
+       65536 integer dabits
+       16384 bit opens
+       11974 virtual machine rounds

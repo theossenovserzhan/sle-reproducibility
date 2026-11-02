@@ -1,0 +1,60 @@
+{
+  "method": "Masked Synchronized Locator Evolution (M-SLE)",
+  "dataset": "CelebA identity subset with saved FaceNet/VGGFace2 binary roots",
+  "identities": 128,
+  "gallery_templates": 128,
+  "probe_templates": 512,
+  "root_bits": 512,
+  "epochs": 20,
+  "seed": 20260818,
+  "raw_rank1": 0.8515625,
+  "raw_rank5": 0.9375,
+  "protected_rank1": 0.8515625,
+  "protected_rank5": 0.9375,
+  "all_rekeys_exact": true,
+  "all_epoch_rank1_equal_raw": true,
+  "cross_epoch_auc_mean": 0.4948401984267347,
+  "cross_epoch_auc_ci95": [
+    0.4824073626317694,
+    0.5072730342217
+  ],
+  "global_link_mean": 0.006640625,
+  "global_link_ci95": [
+    0.0027485602959692666,
+    0.010532689704030733
+  ],
+  "relational_link_mean": 0.008203125,
+  "relational_link_ci95": [
+    0.004783654112976111,
+    0.01162259588702389
+  ],
+  "global_link_chance": 0.0078125,
+  "global_mask_pairwise_auc_mean": 0.588505782480315,
+  "global_mask_pairwise_auc_ci95": [
+    0.4693988105410488,
+    0.7076127544195813
+  ],
+  "global_mask_relational_link_mean": 1.0,
+  "global_mask_relational_link_ci95": [
+    1.0,
+    1.0
+  ],
+  "cross_key_rank1_mean": 0.00625,
+  "cross_key_rank1_ci95": [
+    0.004395286900755304,
+    0.008104713099244697
+  ],
+  "identification_chance": 0.0078125,
+  "root_attack_mean": 0.5241546630859375,
+  "root_attack_ci95": [
+    0.5199344588628726,
+    0.5283748673090024
+  ],
+  "root_prior_mean": 0.562744140625,
+  "known_key_root_recovery": 1.0,
+  "stable_template_auc_control": 1.0,
+  "proactive_refresh_preserves_secret": true,
+  "same_epoch_three_share_recovery_fraction": 1.0,
+  "cross_epoch_mixed_share_recovery_fraction": 1.52587890625e-05,
+  "claim_boundary": "The experiment validates exact matching, re-key correctness, tested cross-epoch attacks, and proactive-share semantics. It does not replace a proof for the PRF, MPC, ORAM, secure-erasure, or active-adversary assumptions."
+}

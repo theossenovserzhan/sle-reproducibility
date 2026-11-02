@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520">
+<rect width="100%" height="100%" fill="white"/>
+<style>text{font-family:Arial,Helvetica,sans-serif;fill:#111}.title{font-size:24px;font-weight:700}.label{font-size:18px}.value{font-size:17px;font-weight:700}.axis{font-size:14px;fill:#444}</style>
+<text x="560" y="32" text-anchor="middle" class="title">M-SLE biometric utility and lifecycle privacy</text>
+<line x1="300.0" y1="48" x2="300.0" y2="448" stroke="#d6d6d6" stroke-width="1"/>
+<text x="300.0" y="472" text-anchor="middle" class="axis">0.0</text>
+<line x1="448.0" y1="48" x2="448.0" y2="448" stroke="#d6d6d6" stroke-width="1"/>
+<text x="448.0" y="472" text-anchor="middle" class="axis">0.2</text>
+<line x1="596.0" y1="48" x2="596.0" y2="448" stroke="#d6d6d6" stroke-width="1"/>
+<text x="596.0" y="472" text-anchor="middle" class="axis">0.4</text>
+<line x1="744.0" y1="48" x2="744.0" y2="448" stroke="#d6d6d6" stroke-width="1"/>
+<text x="744.0" y="472" text-anchor="middle" class="axis">0.6</text>
+<line x1="892.0" y1="48" x2="892.0" y2="448" stroke="#d6d6d6" stroke-width="1"/>
+<text x="892.0" y="472" text-anchor="middle" class="axis">0.8</text>
+<line x1="1040.0" y1="48" x2="1040.0" y2="448" stroke="#d6d6d6" stroke-width="1"/>
+<text x="1040.0" y="472" text-anchor="middle" class="axis">1.0</text>
+<text x="286" y="87" text-anchor="end" class="label">Raw Rank-1</text>
+<rect x="300" y="67" width="630.2" height="30" fill="#2f5597"/>
+<text x="940.2" y="89" class="value">0.8516</text>
+<text x="286" y="151" text-anchor="end" class="label">M-SLE Rank-1</text>
+<rect x="300" y="131" width="630.2" height="30" fill="#2f5597"/>
+<text x="940.2" y="153" class="value">0.8516</text>
+<text x="286" y="215" text-anchor="end" class="label">Cross-epoch AUC</text>
+<rect x="300" y="195" width="366.2" height="30" fill="#777777"/>
+<text x="676.2" y="217" class="value">0.4948</text>
+<text x="286" y="279" text-anchor="end" class="label">Assignment accuracy</text>
+<rect x="300" y="259" width="4.9" height="30" fill="#777777"/>
+<text x="314.9" y="281" class="value">0.0066</text>
+<text x="286" y="343" text-anchor="end" class="label">Cross-key Rank-1</text>
+<rect x="300" y="323" width="4.6" height="30" fill="#b45f06"/>
+<text x="314.6" y="345" class="value">0.0063</text>
+<text x="286" y="407" text-anchor="end" class="label">Root attack accuracy</text>
+<rect x="300" y="387" width="387.9" height="30" fill="#777777"/>
+<text x="697.9" y="409" class="value">0.5242</text>
+<text x="560" y="505" text-anchor="middle" class="axis">Probability / accuracy (lower is better for the four lifecycle-privacy attack metrics)</text>
+</svg>

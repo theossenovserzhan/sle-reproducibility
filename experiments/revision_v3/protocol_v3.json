@@ -1,0 +1,43 @@
+{
+  "created_local_date": "2026-10-30",
+  "purpose": "Strengthen novelty, necessity of joint invariant, fair baselines and complete-system evaluation",
+  "prior_revision_package_sha256": "eb0b7411fe238e3dd7c1728b3311d23f8cb78e7f6b7e68a0f2f52796185a587c",
+  "device": "CPU",
+  "field_and_security": "Unchanged from revision_v2: near-128-bit prime, 81-round MiMC, passive five-party degree-two Shamir, statistical parameter 80",
+  "performance_comparison_sizes": [
+    8,
+    32,
+    128
+  ],
+  "measured_repetitions_key_comparisons": 5,
+  "measured_repetitions_scale": 3,
+  "warmups_per_method_and_size": 1,
+  "public_run_order_seed": 20261030,
+  "key_randomness": "Operating-system randomness, independent fresh keys; public run-order seed never generates cryptographic keys",
+  "scale_sizes": [
+    512,
+    1024
+  ],
+  "strong_sort_sizes": [
+    32,
+    64
+  ],
+  "timing_policy": "Sequential MPC runs only, alternate method order; no feature extraction during timing; retain every attempt",
+  "emulated_rtt_ms": [
+    1,
+    20,
+    50
+  ],
+  "network_scope": "Isolated task processes or containers only; no modification of host-wide network settings",
+  "outcome_policy": "Retain null, adverse and failed results; no claim of speedup or novelty before comparison",
+  "state_semantics": "Valid index tuples, decoded roots, labels/tie tags and selected key bundle. Invalid locators may be freshly randomized under a fixed public-size access schedule.",
+  "phase_status": {
+    "E1": "targeted primary-source audit in progress",
+    "E2": "14 base diagnostic cases complete; full invariant draft saved",
+    "E3": "AES-CTR arithmetic implementation passes3 secure KATs and complete system correctness; controlled performance running, including both locator representations",
+    "E4": "position-only compactor series finished; virtual-epoch correctness and5 paired comparisons N8/32/128 complete; persisted validation queued",
+    "E5": "new virtual/eager512-bit N512/1024 confirmation queued after successful persisted validation; original old scale queue remains stopped; WAN emulation pending",
+    "E6": "ITQ development complete without closed-set gain; allSFace assets pinned/downloaded; independent frontend and fixed two-seed projection-code studies queued after MPC timing",
+    "E7": "new exact polynomial candidate-membership and secret bucket-selection variants prepared; complete candidate-flag checks and timings queued after AES"
+  }
+}

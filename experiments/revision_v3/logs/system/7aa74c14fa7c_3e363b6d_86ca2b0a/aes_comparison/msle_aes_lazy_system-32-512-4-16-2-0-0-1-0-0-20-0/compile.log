@@ -1,0 +1,38 @@
+{"argv": ["python3", "compile.py", "-P", "340282366920938463463374607431764574209", "-b", "64", "-M", "msle_aes_lazy_system", "32", "512", "4", "16", "2", "0", "0", "1", "0", "0", "20", "0"], "cwd": "/home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8"}
+WARNING: --prime/-P activates code that usually isn't the most efficient variant. Consider using --field/-F and set the prime only during the actual computation.
+Default bit length for compilation: 126
+Default security parameter for compilation: 40
+Compiling file Programs/Source/msle_aes_lazy_system.mpc
+Changed bit length for comparisons etc. to 64
+Changed statistical security for comparison etc. to 80
+Compiled 100000 lines at Fri Oct 30 12:07:27 2026
+Writing to Programs/Bytecode/msle_aes_lazy_system-32-512-4-16-2-0-0-1-0-0-20-0-EQZ(16)_64-1.bc
+Writing to Programs/Bytecode/msle_aes_lazy_system-32-512-4-16-2-0-0-1-0-0-20-0-LTZ(32)_65-3.bc
+Writing to Programs/Bytecode/msle_aes_lazy_system-32-512-4-16-2-0-0-1-0-0-20-0-EQZ(8)_64-5.bc
+Writing to Programs/Bytecode/msle_aes_lazy_system-32-512-4-16-2-0-0-1-0-0-20-0-LTZ(16)_65-6.bc
+Writing to Programs/Bytecode/msle_aes_lazy_system-32-512-4-16-2-0-0-1-0-0-20-0-EQZ(4)_64-7.bc
+Writing to Programs/Bytecode/msle_aes_lazy_system-32-512-4-16-2-0-0-1-0-0-20-0-LTZ(8)_65-8.bc
+Writing to Programs/Bytecode/msle_aes_lazy_system-32-512-4-16-2-0-0-1-0-0-20-0-EQZ(2)_64-9.bc
+Writing to Programs/Bytecode/msle_aes_lazy_system-32-512-4-16-2-0-0-1-0-0-20-0-LTZ(4)_65-10.bc
+Writing to Programs/Bytecode/msle_aes_lazy_system-32-512-4-16-2-0-0-1-0-0-20-0-EQZ(1)_64-11.bc
+Writing to Programs/Bytecode/msle_aes_lazy_system-32-512-4-16-2-0-0-1-0-0-20-0-LTZ(2)_65-12.bc
+Writing to Programs/Bytecode/msle_aes_lazy_system-32-512-4-16-2-0-0-1-0-0-20-0-LTZ(1)_65-13.bc
+Compiled 200000 lines at Fri Oct 30 12:07:38 2026
+Writing to Programs/Schedules/msle_aes_lazy_system-32-512-4-16-2-0-0-1-0-0-20-0.sch
+Writing to Programs/Bytecode/msle_aes_lazy_system-32-512-4-16-2-0-0-1-0-0-20-0-0.bc
+Hash: 907752dbfc539745ca799169187f0c15d8b2e201875ef8289307450757d77417
+Program requires at most:
+       16482 integer inputs from player 0
+         515 integer inputs from player 1
+           2 integer inputs from player 2
+           2 integer inputs from player 3
+           2 integer inputs from player 4
+         127 strict edabits of length 128
+         132 integer opens
+       52205 bit triples
+         382 integer dabits
+        1200 bit opens
+     3018064 integer triples
+     3018064 integer simple multiplications
+          63 strict edabits of length 1
+         836 virtual machine rounds

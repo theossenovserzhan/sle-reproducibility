@@ -1,0 +1,58 @@
+{"argv": ["python3", "compile.py", "-P", "340282366920938463463374607431764574209", "-b", "64", "-M", "msle_system", "128", "512", "4", "40", "1", "0", "0", "1", "0", "0", "56", "0"], "cwd": "/home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8"}
+WARNING: --prime/-P activates code that usually isn't the most efficient variant. Consider using --field/-F and set the prime only during the actual computation.
+Default bit length for compilation: 126
+Default security parameter for compilation: 40
+Compiling file Programs/Source/msle_system.mpc
+Changed bit length for comparisons etc. to 64
+Changed statistical security for comparison etc. to 80
+Compiled 100000 lines at Thu Oct 29 16:51:07 2026
+Compiled 200000 lines at Thu Oct 29 16:51:29 2026
+Compiled 300000 lines at Thu Oct 29 16:51:47 2026
+Compiled 400000 lines at Thu Oct 29 16:51:56 2026
+Compiled 500000 lines at Thu Oct 29 16:52:06 2026
+Compiled 600000 lines at Thu Oct 29 16:52:22 2026
+Compiled 700000 lines at Thu Oct 29 16:52:40 2026
+Compiled 800000 lines at Thu Oct 29 16:54:11 2026
+Compiled 900000 lines at Thu Oct 29 16:54:30 2026
+Traceback (most recent call last):
+  File "/home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8/compile.py", line 41, in <module>
+    main(compiler)
+  File "/home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8/compile.py", line 36, in main
+    compilation(compiler)
+  File "/home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8/compile.py", line 19, in compilation
+    prog = compiler.compile_file()
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8/Compiler/compilerLib.py", line 537, in compile_file
+    exec(compile(infile.read(), infile.name, "exec"), self.VARS)
+  File "Programs/Source/msle_system.mpc", line 220, in <module>
+    old_mask,new_mask = mask_array(old_keys,old_locs),mask_array(new_keys,next_locs)
+                                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "Programs/Source/msle_system.mpc", line 95, in mask_array
+    bits = word.bit_decompose(128)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8/Compiler/types.py", line 151, in vectorized_operation
+    res = operation(self, *args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8/Compiler/types.py", line 3016, in bit_decompose
+    return program.non_linear.bit_dec(self, bit_length, bit_length,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8/Compiler/non_linear.py", line 135, in bit_dec
+    bits = BitDecFull(a, m, maybe_mixed=maybe_mixed)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8/Compiler/floatingpoint.py", line 767, in BitDecFull
+    g = [q.if_else(fbar[i], fbard[i]) for i in range(n_bits)]
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8/Compiler/GC/types.py", line 281, in if_else
+    return result_conv(x, y)(self & (x ^ y) ^ y)
+                                     ~~^~~
+  File "/home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8/Compiler/types.py", line 229, in read_mem_operation
+    return operation(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8/Compiler/GC/types.py", line 251, in __xor__
+    return self._xor(other)
+           ^^^^^^^^^^^^^^^^
+  File "/home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8/Compiler/GC/types.py", line 378, in _xor
+    inst.xorcb(res.n, res, self, other)
+  File "/home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8/Compiler/instructions_base.py", line 1047, in __init__
+    raise CompilerError(
+Compiler.exceptions.CompilerError: Compilation timeout reached. If you need more time for your program, you can add 'program.unlimited_compilation()' at the beginning. However, we would appreciate receiving the backtrace above on GitHub to investigate potential inefficencies.

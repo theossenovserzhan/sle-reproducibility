@@ -1,0 +1,165 @@
+{
+  "comparison_scope": "new resplits on the fixed main-paper cohort versus the distinct historical external cohort; equality is not expected across different populations",
+  "all_20_split_binary_rank1_rank5_exact": false,
+  "splits": [
+    {
+      "split": 0,
+      "rank1_exact": false,
+      "rank5_exact": false,
+      "new_rank1": 0.859375,
+      "historical_rank1": 0.84765625
+    },
+    {
+      "split": 1,
+      "rank1_exact": true,
+      "rank5_exact": false,
+      "new_rank1": 0.853515625,
+      "historical_rank1": 0.853515625
+    },
+    {
+      "split": 2,
+      "rank1_exact": false,
+      "rank5_exact": false,
+      "new_rank1": 0.85546875,
+      "historical_rank1": 0.84765625
+    },
+    {
+      "split": 3,
+      "rank1_exact": false,
+      "rank5_exact": false,
+      "new_rank1": 0.85546875,
+      "historical_rank1": 0.8359375
+    },
+    {
+      "split": 4,
+      "rank1_exact": false,
+      "rank5_exact": false,
+      "new_rank1": 0.859375,
+      "historical_rank1": 0.8515625
+    },
+    {
+      "split": 5,
+      "rank1_exact": false,
+      "rank5_exact": false,
+      "new_rank1": 0.8515625,
+      "historical_rank1": 0.859375
+    },
+    {
+      "split": 6,
+      "rank1_exact": false,
+      "rank5_exact": false,
+      "new_rank1": 0.857421875,
+      "historical_rank1": 0.8515625
+    },
+    {
+      "split": 7,
+      "rank1_exact": false,
+      "rank5_exact": false,
+      "new_rank1": 0.845703125,
+      "historical_rank1": 0.84765625
+    },
+    {
+      "split": 8,
+      "rank1_exact": false,
+      "rank5_exact": false,
+      "new_rank1": 0.87109375,
+      "historical_rank1": 0.873046875
+    },
+    {
+      "split": 9,
+      "rank1_exact": false,
+      "rank5_exact": false,
+      "new_rank1": 0.875,
+      "historical_rank1": 0.841796875
+    },
+    {
+      "split": 10,
+      "rank1_exact": false,
+      "rank5_exact": false,
+      "new_rank1": 0.859375,
+      "historical_rank1": 0.8515625
+    },
+    {
+      "split": 11,
+      "rank1_exact": false,
+      "rank5_exact": false,
+      "new_rank1": 0.859375,
+      "historical_rank1": 0.841796875
+    },
+    {
+      "split": 12,
+      "rank1_exact": false,
+      "rank5_exact": true,
+      "new_rank1": 0.87109375,
+      "historical_rank1": 0.8515625
+    },
+    {
+      "split": 13,
+      "rank1_exact": false,
+      "rank5_exact": false,
+      "new_rank1": 0.8515625,
+      "historical_rank1": 0.845703125
+    },
+    {
+      "split": 14,
+      "rank1_exact": false,
+      "rank5_exact": false,
+      "new_rank1": 0.873046875,
+      "historical_rank1": 0.84765625
+    },
+    {
+      "split": 15,
+      "rank1_exact": false,
+      "rank5_exact": false,
+      "new_rank1": 0.853515625,
+      "historical_rank1": 0.859375
+    },
+    {
+      "split": 16,
+      "rank1_exact": true,
+      "rank5_exact": false,
+      "new_rank1": 0.865234375,
+      "historical_rank1": 0.865234375
+    },
+    {
+      "split": 17,
+      "rank1_exact": false,
+      "rank5_exact": false,
+      "new_rank1": 0.861328125,
+      "historical_rank1": 0.857421875
+    },
+    {
+      "split": 18,
+      "rank1_exact": false,
+      "rank5_exact": false,
+      "new_rank1": 0.857421875,
+      "historical_rank1": 0.833984375
+    },
+    {
+      "split": 19,
+      "rank1_exact": false,
+      "rank5_exact": false,
+      "new_rank1": 0.875,
+      "historical_rank1": 0.865234375
+    }
+  ],
+  "fixed_original_two_gallery_four_probe": {
+    "float_cosine": {
+      "rank1": 0.869140625,
+      "rank5": 0.947265625
+    },
+    "binary_hamming": {
+      "rank1": 0.8515625,
+      "rank5": 0.9375
+    },
+    "paired_delta_rank1": {
+      "binary_minus_float": -0.017578125,
+      "subject_bootstrap_ci95": [
+        -0.037109375,
+        0.001953125
+      ],
+      "bootstrap_units": "identities after averaging their repeated splits",
+      "bootstrap_resamples": 5000
+    }
+  }
+}

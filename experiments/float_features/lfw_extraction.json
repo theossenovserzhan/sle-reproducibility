@@ -1,0 +1,25 @@
+{
+  "dataset": "LFW",
+  "archive_sha256": "4eba32ac090607b0fa1e2c83649a2cf2c86f95ffd5f44b43d6cd999b59211cfd",
+  "script_sha256": "395a237f200391ab412ad16ddf5b159326903922a895961b63ecbc7c3c3e6eb2",
+  "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+  "torch": "2.8.0+cpu",
+  "torchvision": "0.23.0+cpu",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "device": "cpu",
+  "extraction_wall_s": 114.625,
+  "shape": [
+    192,
+    6,
+    512
+  ],
+  "n_eval": 128,
+  "n_calibration": 32,
+  "n_unknown": 32,
+  "identity_selection": "evaluation first, then calibration, then unknown; disjoint",
+  "backbone": "InceptionResnetV1 pretrained vggface2",
+  "preprocessing": "Resize160x160, ToTensor, Normalize(0.5,0.5); no added detector or alignment",
+  "model_checkpoints": {
+    "20180402-114759-vggface2.pt": "281cebca8662831adb987a874bdcb36e73f5b1c6dc5ee5878f305e985625d99b"
+  }
+}

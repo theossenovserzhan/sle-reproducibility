@@ -1,0 +1,31 @@
+{"argv": ["python3", "compile.py", "-P", "340282366920938463463374607431764574209", "-b", "64", "-M", "msle_aes_lazy_system", "8", "512", "4", "8", "1", "0", "0", "1", "0", "8", "0", "0"], "cwd": "/home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8"}
+WARNING: --prime/-P activates code that usually isn't the most efficient variant. Consider using --field/-F and set the prime only during the actual computation.
+Default bit length for compilation: 126
+Default security parameter for compilation: 40
+Compiling file Programs/Source/msle_aes_lazy_system.mpc
+Changed bit length for comparisons etc. to 64
+Changed statistical security for comparison etc. to 80
+Compiled 100000 lines at Fri Oct 30 12:02:05 2026
+Compiled 200000 lines at Fri Oct 30 12:02:07 2026
+Compiled 300000 lines at Fri Oct 30 12:02:10 2026
+Writing to Programs/Schedules/msle_aes_lazy_system-8-512-4-8-1-0-0-1-0-8-0-0.sch
+Writing to Programs/Bytecode/msle_aes_lazy_system-8-512-4-8-1-0-0-1-0-8-0-0-0.bc
+Hash: abaab40678cb1b90b4947c7bc6f155b70e2ad78105a07a789ae81fc69a492e08
+Program requires at most:
+      172087 integer inputs from player 0
+      135199 integer inputs from player 1
+       36894 integer inputs from player 2
+       36894 integer inputs from player 3
+       36894 integer inputs from player 4
+          18 strict edabits of length 128
+          29 integer opens
+         304 integer dabits
+       11448 bit triples
+        2096 bit opens
+     1848782 integer triples
+     1634628 integer simple multiplications
+           6 integer randoms
+         inf bit inverses
+           1 integer shuffle generations
+           1 integer shuffle applications
+        4676 virtual machine rounds

@@ -1,0 +1,14 @@
+{
+  "circuit_sha256": "40423a0cdaf5d4d34aba872c12660f115dc25c12eea6e24a9304578e79df6d04",
+  "source_url": "https://nigelsmart.github.io/MPC-Circuits/aes_128.txt",
+  "orientation": {
+    "key_first": true,
+    "input_order": "whole_reverse",
+    "output_order": "whole_reverse"
+  },
+  "field_backend_unchanged": true,
+  "key_schedule": "Key-only gates hoisted once per mask call; all row/counter instances vectorized",
+  "aes_key_count": 1,
+  "locator_key_count": 1,
+  "scope": "Arithmetic shared-bit implementation, not a lower bound on AES across backends"
+}

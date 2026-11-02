@@ -1,0 +1,58 @@
+{"argv": ["/usr/bin/time", "-v", "bash", "Scripts/shamir.sh", "msle_system-64-512-4-24-1-0-0-1-0-0-34-0", "--prime", "340282366920938463463374607431764574209"], "cwd": "/home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8"}
+Running /home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8/Scripts/../shamir-party.x 0 msle_system-64-512-4-24-1-0-0-1-0-0-34-0 --prime 340282366920938463463374607431764574209 -T 2 -pn 12385 -h localhost -N 5
+Running /home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8/Scripts/../shamir-party.x 1 msle_system-64-512-4-24-1-0-0-1-0-0-34-0 --prime 340282366920938463463374607431764574209 -T 2 -pn 12385 -h localhost -N 5
+Running /home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8/Scripts/../shamir-party.x 2 msle_system-64-512-4-24-1-0-0-1-0-0-34-0 --prime 340282366920938463463374607431764574209 -T 2 -pn 12385 -h localhost -N 5
+Running /home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8/Scripts/../shamir-party.x 3 msle_system-64-512-4-24-1-0-0-1-0-0-34-0 --prime 340282366920938463463374607431764574209 -T 2 -pn 12385 -h localhost -N 5
+Running /home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8/Scripts/../shamir-party.x 4 msle_system-64-512-4-24-1-0-0-1-0-0-34-0 --prime 340282366920938463463374607431764574209 -T 2 -pn 12385 -h localhost -N 5
+Trying to run 128-bit computation (128-bit representation)
+Starting timer 30 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 3.4083e-05
+Starting timer 11 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 1.2839e-05
+Starting timer 12 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 3.197e-06
+Stopped timer 12 at 8.05561 (255.136 MB, 2106 rounds, 7.36603 CPU seconds)
+Starting timer 13 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 5.091e-06
+Stopped timer 13 at 1.88203 (21.8261 MB, 3369 rounds, 1.88322 CPU seconds)
+Starting timer 14 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 3.506e-06
+Stopped timer 14 at 0.44565 (11.1321 MB, 574 rounds, 0.432476 CPU seconds)
+Starting timer 15 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 2.492e-06
+Stopped timer 15 at 0.1116 (4.19664 MB, 34 rounds, 0.100976 CPU seconds)
+Starting timer 16 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 5.326e-06
+Stopped timer 16 at 2.11392 (20.0814 MB, 10302 rounds, 1.66661 CPU seconds)
+Stopped timer 11 at 12.6091 (312.372 MB, 16385 rounds, 11.4497 CPU seconds)
+Stopped timer 30 at 13.0203 (316.573 MB, 18436 rounds, 12.1611 CPU seconds)
+MSLE_SYSTEM n=64 d=512 mode=1 protection=0 transition=0 maintenance=1 fault=0 relation=1 accepted=0 identity=-1 state_ok=1 query_ok=1
+The following benchmarks are including preprocessing (offline phase).
+Time = 13.0231 seconds 
+Time11 = 12.6091 seconds (312.372 MB, 16385 rounds, 11.4497 CPU seconds)
+Time12 = 8.05561 seconds (255.136 MB, 2106 rounds, 7.36603 CPU seconds)
+Time13 = 1.88203 seconds (21.8261 MB, 3369 rounds, 1.88322 CPU seconds)
+Time14 = 0.44565 seconds (11.1321 MB, 574 rounds, 0.432476 CPU seconds)
+Time15 = 0.1116 seconds (4.19664 MB, 34 rounds, 0.100976 CPU seconds)
+Time16 = 2.11392 seconds (20.0814 MB, 10302 rounds, 1.66661 CPU seconds)
+Time30 = 13.0203 seconds (316.573 MB, 18436 rounds, 12.1611 CPU seconds)
+Data sent = 316.573 MB in ~18438 rounds (party 0 only; use '-v' for more details)
+Global data sent = 1564.01 MB (all parties)
+This virtual machine was compiled with GCC. Recompile with 'CXX = clang++' in 'CONFIG.mine' for optimal performance.
+This protocol doesn't scale well with the number of parties, have you considered using ATLAS instead?
+	Command being timed: "bash Scripts/shamir.sh msle_system-64-512-4-24-1-0-0-1-0-0-34-0 --prime 340282366920938463463374607431764574209"
+	User time (seconds): 46.58
+	System time (seconds): 13.96
+	Percent of CPU this job got: 450%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:13.44
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 95352
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 137735
+	Voluntary context switches: 620907
+	Involuntary context switches: 55094
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 0
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

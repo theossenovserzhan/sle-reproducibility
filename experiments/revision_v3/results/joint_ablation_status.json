@@ -1,0 +1,103 @@
+{
+  "finished": true,
+  "completed": [
+    {
+      "n": 4,
+      "bits": 64,
+      "fault": 0,
+      "check_template": 1,
+      "check_index": 1
+    },
+    {
+      "n": 4,
+      "bits": 64,
+      "fault": 0,
+      "check_template": 0,
+      "check_index": 1
+    },
+    {
+      "n": 4,
+      "bits": 64,
+      "fault": 0,
+      "check_template": 1,
+      "check_index": 0
+    },
+    {
+      "n": 4,
+      "bits": 64,
+      "fault": 0,
+      "check_template": 0,
+      "check_index": 0
+    },
+    {
+      "n": 4,
+      "bits": 64,
+      "fault": 1,
+      "check_template": 1,
+      "check_index": 1
+    },
+    {
+      "n": 4,
+      "bits": 64,
+      "fault": 1,
+      "check_template": 0,
+      "check_index": 1
+    },
+    {
+      "n": 4,
+      "bits": 64,
+      "fault": 1,
+      "check_template": 1,
+      "check_index": 0
+    },
+    {
+      "n": 4,
+      "bits": 64,
+      "fault": 1,
+      "check_template": 0,
+      "check_index": 0
+    },
+    {
+      "n": 4,
+      "bits": 64,
+      "fault": 9,
+      "check_template": 1,
+      "check_index": 1
+    },
+    {
+      "n": 4,
+      "bits": 64,
+      "fault": 9,
+      "check_template": 0,
+      "check_index": 1
+    },
+    {
+      "n": 4,
+      "bits": 64,
+      "fault": 9,
+      "check_template": 1,
+      "check_index": 0
+    },
+    {
+      "n": 4,
+      "bits": 64,
+      "fault": 9,
+      "check_template": 0,
+      "check_index": 0
+    },
+    {
+      "n": 8,
+      "bits": 512,
+      "fault": 9,
+      "check_template": 1,
+      "check_index": 1
+    },
+    {
+      "n": 8,
+      "bits": 512,
+      "fault": 9,
+      "check_template": 0,
+      "check_index": 1
+    }
+  ]
+}

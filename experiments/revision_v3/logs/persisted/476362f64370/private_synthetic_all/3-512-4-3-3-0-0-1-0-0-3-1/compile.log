@@ -1,0 +1,31 @@
+{"argv": ["python3", "compile.py", "-P", "340282366920938463463374607431764574209", "-b", "64", "-M", "msle_private_client_system", "3", "512", "4", "3", "3", "0", "0", "1", "0", "0", "3", "1"], "cwd": "/home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8"}
+WARNING: --prime/-P activates code that usually isn't the most efficient variant. Consider using --field/-F and set the prime only during the actual computation.
+Default bit length for compilation: 126
+Default security parameter for compilation: 40
+Compiling file Programs/Source/msle_private_client_system.mpc
+Changed bit length for comparisons etc. to 64
+Changed statistical security for comparison etc. to 80
+Writing to Programs/Bytecode/msle_private_client_system-3-512-4-3-3-0-0-1-0-0-3-1-EQZ(1)_64-1.bc
+Writing to Programs/Bytecode/msle_private_client_system-3-512-4-3-3-0-0-1-0-0-3-1-LTZ(4)_65-3.bc
+Writing to Programs/Bytecode/msle_private_client_system-3-512-4-3-3-0-0-1-0-0-3-1-LTZ(3)_65-5.bc
+Writing to Programs/Bytecode/msle_private_client_system-3-512-4-3-3-0-0-1-0-0-3-1-EQZ(2)_64-6.bc
+Writing to Programs/Bytecode/msle_private_client_system-3-512-4-3-3-0-0-1-0-0-3-1-LTZ(2)_65-7.bc
+Writing to Programs/Bytecode/msle_private_client_system-3-512-4-3-3-0-0-1-0-0-3-1-LTZ(1)_65-8.bc
+Writing to Programs/Schedules/msle_private_client_system-3-512-4-3-3-0-0-1-0-0-3-1.sch
+Writing to Programs/Bytecode/msle_private_client_system-3-512-4-3-3-0-0-1-0-0-3-1-0.bc
+Hash: 24af9e2612a21304d8b914e38464af068935d37b5ec95905919acb3c4b8bee7a
+Program requires at most:
+         517 integer inputs from player 0
+         514 integer inputs from player 1
+         514 integer inputs from player 2
+         514 integer inputs from player 3
+         514 integer inputs from player 4
+     4398346 integer triples
+     4398346 integer simple multiplications
+          41 strict edabits of length 128
+          46 integer opens
+       21010 bit triples
+        3089 integer dabits
+        8312 bit opens
+          11 strict edabits of length 1
+       13439 virtual machine rounds

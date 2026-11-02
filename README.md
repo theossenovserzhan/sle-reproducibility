@@ -1,135 +1,102 @@
-# Synchronized Locator Evolution (SLE)
+# M-SLE: Re-Keyable Private Face Identification
 
-Reproducibility package for **Synchronized Locator Evolution: Verifiable
-Epoch Transitions for Privacy-Preserving Biometric Identification**.
+Reproducibility materials for **Masked Synchronized Locator Evolution for
+Re-Keyable Private Face Identification**, by Beibut Amirgaliyev and Serzhan
+Ossenov. The current manuscript and public evidence snapshot are dated
+**2 November 2026**. This repository does not claim that the manuscript has
+been accepted or published.
 
-SLE is the epoch-transition component of a private indexed 1:N biometric
-identification system. It evolves independently shared semantic locators in a
-protected database and its padded candidate index, verifies the hidden
-database-index relation, and atomically commits or rolls back the candidate
-state without materializing an old-to-new pointer map.
+## Start here
 
-## Scope of this artifact
+- [Current manuscript, PDF](paper/manuscript.pdf)
+- [Supplementary material, PDF](paper/supplement.pdf)
+- [LaTeX sources](paper/)
+- [Current experiment summaries](experiments/revision_v3/results/current_results.json)
+- [Detailed reproduction instructions](docs/REPRODUCE_MSLE.md)
+- [Frozen experiment instructions](experiments/revision_v3/README_REPRODUCE_V3.txt)
+- [Public-snapshot provenance and file hashes](publication/manifest.json)
 
-The package supports four evidence layers used in the paper:
+The current construction checks both faithful renewal of enrolled binary
+templates and consistency of their private index. It includes materialized
+and virtual locator representations, private client input/output, persisted
+shares, a conventional AES-CTR control, shared-root controls and complete
+private-query measurements.
 
-1. biometric utility, epoch semantics, fault rejection, and cross-epoch
-   linkability;
-2. external biometric validation and claim auditing;
-3. same-backend transition comparisons against ORAM reindexing, oblivious
-   sort/join, and pointer translation, plus an exact PRAC artifact check;
-4. an integrated 128-identity, 512-bit-root, 64-bit-locator validation,
-   transition scaling through N=128, and a controlled logical-message-delay
-   experiment.
+## Reading the evidence
 
-The artifact does **not** claim a production biometric service, an actively
-secure MPC deployment, or universal end-to-end query superiority. The direct
-runtime ratios compare implementations of the same verified epoch-transition
-contract under one MP-SPDZ backend.
+| Question | Main evidence |
+|---|---|
+| Are both renewal checks necessary? | [Coupled mutation and missing-slot tests](experiments/revision_v3/results/joint_ablation_runs.jsonl) |
+| What is the cost of a complete private query? | [Fused-query runs](experiments/revision_v3/results/private_fused_runs.jsonl), [summary](experiments/revision_v3/results/current_results.json) |
+| Does virtual representation reduce complete renewal work? | [Persisted, scale and cipher comparisons](experiments/revision_v3/results/current_results.json) |
+| How much utility does binarization lose? | [Paired frontend confirmation](experiments/revision_v3/results/frontend_confirmation/summary.json) |
+| Are open-set thresholds numerically correct? | [Calibration audit](experiments/revision_v3/results/calibration_precision_audit.json), `*_corrected` result directories |
+| What are the cryptographic parameters? | [Parameters](experiments/revision_v3/parameters.json), [backend](experiments/revision_v3/backend_config.json), [protocol](experiments/revision_v3/protocol_v3.json) |
+
+Current secure measurements use five colocated passive Shamir parties,
+degree-two sharing, the explicit prime `2^128 - 3637247`, and an 80-bit
+statistical parameter. The concrete MiMC assumption is stated separately;
+field size alone is not an unconditional security-level proof.
+
+Complete 512-bit-root MPC runs extend to 1024 records. The separate biometric
+study extends galleries to 4096 entries while retaining the same 128 query
+identities. The index does **not** demonstrate a useful complete-query
+speedup. Renewal savings must not be presented as search acceleration.
+
+Use only the `*_corrected` ITQ/projection open-set outputs for current
+claims. Less favorable development variants and earlier outputs remain for
+provenance. The legacy 32-bit locator-core speedup is not a complete M-SLE
+speedup and is not comparable to the current full-system timings.
 
 ## Repository layout
 
 ```text
-Programs/Source/   MP-SPDZ programs for SLE, matching, and baselines
-scripts/           Input generation and output verification utilities
-notebooks/         Self-contained Google Colab experiment notebooks
-docs/              Formal protocol, threat model, and claim boundaries
-results/           Curated aggregate outputs used by the paper
+paper/                       Current paper, supplement and their source dependencies
+experiments/revision_v3/      Current experiment programs, manifests, logs and results
+experiments/revision_v2/      Matched reference and reconstruction dependencies
+publication/                 Public-snapshot manifest and original archive hashes
+docs/REPRODUCE_MSLE.md        Reproduction guide for this public subset
+Programs/, notebooks/,       Preserved legacy unmasked SLE artifact
+scripts/, results/           Legacy tools/results plus current snapshot validators
 ```
 
-No raw CelebA or LFW images, floating-point face embeddings, biometric-root
-archives, epoch keys, MP-SPDZ `Player-Data`, credentials, or downloaded
-third-party source trees are distributed.
+The unmasked SLE implementation is an internal, unpublished baseline.
+Legacy files are preserved for provenance, rather than presented as a
+separate peer-reviewed contribution. The former top-level README and
+citation metadata are preserved under `docs/LEGACY_*`.
 
-## Paper-to-artifact map
+## Verify the public snapshot without biometric data
 
-| Paper evidence | Notebook | Curated output directory |
-|---|---|---|
-| Biometric utility, 20 epochs, faults, attacks, metadata ablation | `notebooks/01_journal_biometric_security_validation.ipynb` | `results/journal_validation/` |
-| CelebA/LFW randomized splits and claim audit | `notebooks/02_external_biometric_validation.ipynb` | `results/external_validation/` |
-| SLE, ORAM, sort/join, pointer translation, and PRAC context | `notebooks/03_same_backend_and_sota_validation.ipynb` | `results/sota_same_backend/` |
-| 512-bit integration, N=128, locator width, and delayed messages | `notebooks/04_full_width_scaling_and_network_validation.ipynb` | `results/technical_validation/` |
-| Small cryptographic wiring check | `notebooks/00_mpc_smoke_test.ipynb` | generated by the notebook |
-
-## Recommended execution order
-
-The notebooks are designed for Google Colab and install their own system and
-Python dependencies.
-
-1. Run `00_mpc_smoke_test.ipynb` on a CPU runtime.
-2. Run `01_journal_biometric_security_validation.ipynb` with a GPU for FaceNet
-   extraction; the attack analysis is CPU-based.
-3. Run `02_external_biometric_validation.ipynb` for randomized CelebA/LFW
-   splits and the claim audit.
-4. Run `03_same_backend_and_sota_validation.ipynb` on CPU. Paper mode is
-   computationally expensive; start with the quick configuration.
-5. Run `04_full_width_scaling_and_network_validation.ipynb` on CPU for the
-   integrated MPC and transition validation.
-
-The secure experiments use five Shamir parties with threshold t=2. The paper
-run records MP-SPDZ commit:
-
-```text
-9d809599ea6ce627216a389ca7d984fbb75d0cb9
-```
-
-## Local Python environment
-
-The MPC programs require MP-SPDZ and are most easily executed through the
-notebooks. For local analysis of the exported CSV files:
+With Python 3.12:
 
 ```bash
-python -m venv .venv
-source .venv/bin/activate        # Windows: .venv\Scripts\activate
-python -m pip install -r requirements.txt
-```
-
-## Data access
-
-CelebA and LFW must be obtained from their respective providers and used under
-their terms. The notebooks download or stream only the subsets needed for the
-configured experiment. Raw face images are not written to this repository.
-Complete floating-point embeddings are deleted after binary-root construction
-in the biometric workflow.
-
-## Security model
-
-The executable backend is passive/semi-honest Shamir sharing. Roots, probes,
-distances, candidates, locators, epoch keys, and transition relations remain
-secret-shared. Only the identification/reject decision or transition
-accept/reject bit is opened. See `docs/SLE_FORMAL_PROTOCOL.md` for the formal
-state, algorithm, assumptions, and falsifiable hypotheses.
-
-## Reproducing reported values
-
-Each notebook exports raw measurements, summary tables, a run manifest, and a
-ZIP archive. Compare a fresh run with the curated CSV files in `results/`.
-Hardware, Colab image changes, dependency changes, and network conditions can
-change absolute runtime. Semantic decisions, relation checks, fault outcomes,
-and the ordering of same-backend methods are the primary reproducibility
-targets.
-
-Run the lightweight package audit before creating a release:
-
-```bash
+python -m pip install -r requirements-validation.txt
 python scripts/validate_artifact.py
+python scripts/verify_msle_snapshot.py
 python scripts/build_checksums.py
 ```
 
-`SHA256SUMS.txt` records the content hashes of the curated release files and
-allows reviewers to confirm that an extracted package was not modified.
+These commands check source hashes, outcome-array schemas, current document
+hashes, relative links and numerical primitive tests. They do not download
+images, refit models or launch MPC benchmarks. See the reproduction guide
+before running the resource-intensive experiments.
 
-## Third-party software
+## Data and correspondence
 
-The notebooks fetch MP-SPDZ and, where explicitly stated, official comparison
-artifacts from their upstream repositories. Those projects retain their own
-licenses. Their source trees are not vendored in this package.
+No dataset face images, embeddings, biometric-root arrays, model weights,
+learned transform matrices, epoch keys or private party state are included.
+The narrowly allowed `subject_outcomes.npz` files contain only deidentified
+0/1 classification outcomes for interval reproduction; their exact schemas
+and hashes are checked. Dataset-selection metadata and public source-image
+identifiers support reconstruction under the providers' access conditions.
 
-## License and release status
+Editorial correspondence, reviewer responses and superseded PDF exports
+are excluded from this public snapshot. The current paper sources include
+author biographies and portraits. See [data availability](DATA_AVAILABILITY.md).
 
-No reuse license is granted by this draft package. Before public release, the
-authors must confirm software ownership and the intended license with Astana
-IT University and the BR24992852 project administration. After approval, add
-the selected `LICENSE`, create a versioned release, archive it in Zenodo, and
-replace the placeholder in `CITATION.cff` with the repository URL and DOI.
+## Citation and license
 
+Use [CITATION.cff](CITATION.cff) for the software artifact. No paper DOI or
+acceptance status is implied. The existing [license notice](LICENSE_NOTICE.md)
+remains in effect; this update does not grant a new open-source license.
+Third-party software retains its upstream license and is not vendored here.

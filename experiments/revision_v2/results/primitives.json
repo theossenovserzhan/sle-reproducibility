@@ -1,0 +1,17 @@
+{
+  "all_pass": true,
+  "test_values": 16,
+  "mask_bits_checked": 1024,
+  "prime": "340282366920938463463374607431764574209",
+  "field_bits": 128,
+  "rounds": 81,
+  "parameters_sha256": "85d0decda66ff4615807ed86a5349100640a74e59e6ab9ebf67d67625566bed0",
+  "reference_sha256": "db92e95929ecb7038857a06923d10c9f283492ab63624cfc6e54e5b7750baf40",
+  "circuit_sha256": "45498fd13518f519c2e0c59dc4676815de22cce38793f413c608023072ae26a6",
+  "checks": [
+    "full-field MiMC oracle agreement",
+    "canonical bit extraction including >2^64",
+    "full-field exact zero test",
+    "secret row shuffle association and multiset"
+  ]
+}

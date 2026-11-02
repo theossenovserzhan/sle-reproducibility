@@ -1,0 +1,445 @@
+{
+  "comparison_family": "input-inclusive local five-party Shamir prototype; cold fixture, not persisted-state load or WAN",
+  "ingestion_scope": "The cold fixture uses a trusted-owner input role with plaintext locators/index; these timings are not evidence of hiding that fixture from its own input owner. The real per-computing-party own-share-file lifecycle is a separate required validation.",
+  "time_ci_scope": "Run-level bootstrap describes this measured environment; five/three timing pairs do not establish cross-machine performance",
+  "mpc_comparisons": [
+    {
+      "n": 8,
+      "mode": 1,
+      "paired_repetitions": 5,
+      "eager_mean_seconds": 9.378982,
+      "virtual_mean_seconds": 4.99796,
+      "time_ratio_eager_over_virtual": 1.876562037311223,
+      "paired_run_bootstrap_ratio_ci95": [
+        1.622847357902929,
+        2.262768944317677
+      ],
+      "eager_mean_global_mb": 471.837,
+      "virtual_mean_global_mb": 47.3712,
+      "communication_ratio_eager_over_virtual": 9.960418988752659,
+      "virtual_communication_change_percent": -89.96026170054489,
+      "eager_source_sha256": "bf5086b808432fa86978fe82e0e6042e5144c060f0af162747a75b3c0c648401",
+      "virtual_source_sha256": "0684086af4d2d5a79e4f80f30615fb65c7444f296398ea00cca5d4f413c7d8c0"
+    },
+    {
+      "n": 32,
+      "mode": 1,
+      "paired_repetitions": 5,
+      "eager_mean_seconds": 14.52036,
+      "virtual_mean_seconds": 7.551972000000001,
+      "time_ratio_eager_over_virtual": 1.9227242897616672,
+      "paired_run_bootstrap_ratio_ci95": [
+        1.5549179148616463,
+        2.36446330610482
+      ],
+      "eager_mean_global_mb": 997.319,
+      "virtual_mean_global_mb": 148.802,
+      "communication_ratio_eager_over_virtual": 6.702322549428099,
+      "virtual_communication_change_percent": -85.07979894096071,
+      "eager_source_sha256": "bf5086b808432fa86978fe82e0e6042e5144c060f0af162747a75b3c0c648401",
+      "virtual_source_sha256": "0684086af4d2d5a79e4f80f30615fb65c7444f296398ea00cca5d4f413c7d8c0"
+    },
+    {
+      "n": 128,
+      "mode": 1,
+      "paired_repetitions": 5,
+      "eager_mean_seconds": 48.55358,
+      "virtual_mean_seconds": 27.19776,
+      "time_ratio_eager_over_virtual": 1.7852051051263045,
+      "paired_run_bootstrap_ratio_ci95": [
+        1.593188170817183,
+        1.998158770113086
+      ],
+      "eager_mean_global_mb": 2717.36,
+      "virtual_mean_global_mb": 597.311,
+      "communication_ratio_eager_over_virtual": 4.549321877547877,
+      "virtual_communication_change_percent": -78.01870197544676,
+      "eager_source_sha256": "bf5086b808432fa86978fe82e0e6042e5144c060f0af162747a75b3c0c648401",
+      "virtual_source_sha256": "0684086af4d2d5a79e4f80f30615fb65c7444f296398ea00cca5d4f413c7d8c0"
+    },
+    {
+      "n": 128,
+      "mode": 2,
+      "paired_repetitions": 3,
+      "eager_mean_seconds": 9.270816666666667,
+      "virtual_mean_seconds": 8.18042,
+      "time_ratio_eager_over_virtual": 1.1332934820787524,
+      "paired_run_bootstrap_ratio_ci95": [
+        1.0032348796604555,
+        1.3836330896021212
+      ],
+      "eager_mean_global_mb": 122.499,
+      "virtual_mean_global_mb": 125.817,
+      "communication_ratio_eager_over_virtual": 0.9736283650063187,
+      "virtual_communication_change_percent": 2.7085935395390948,
+      "eager_source_sha256": "bf5086b808432fa86978fe82e0e6042e5144c060f0af162747a75b3c0c648401",
+      "virtual_source_sha256": "0684086af4d2d5a79e4f80f30615fb65c7444f296398ea00cca5d4f413c7d8c0"
+    }
+  ],
+  "biometric_n4096_all_methods": [
+    {
+      "method": "original_cosine",
+      "n_gallery": 4096,
+      "rank1": 0.953125,
+      "paired_rank1_delta_vs_original_sign": {
+        "mean": 0.01640625,
+        "ci95": [
+          0.00859375,
+          0.02470703125
+        ],
+        "units": 128
+      },
+      "empirical_DIR_delta": {
+        "mean": 0.11201171874999999,
+        "ci95": [
+          0.0951171875,
+          0.130078125
+        ],
+        "units": 128
+      },
+      "empirical_FPIR_delta": {
+        "mean": 0.005859375,
+        "ci95": [
+          -0.001953125,
+          0.015625
+        ],
+        "units": 512
+      },
+      "conservative_DIR_delta": {
+        "mean": 0.05927734375,
+        "ci95": [
+          0.04267578125,
+          0.07587890624999999
+        ],
+        "units": 128
+      },
+      "conservative_FPIR_delta": {
+        "mean": -0.00126953125,
+        "ci95": [
+          -0.00712890625,
+          0.00458984375
+        ],
+        "units": 512
+      }
+    },
+    {
+      "method": "original_sign_512",
+      "n_gallery": 4096,
+      "rank1": 0.93671875,
+      "paired_rank1_delta_vs_original_sign": {
+        "mean": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "units": 128
+      },
+      "empirical_DIR_delta": {
+        "mean": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "units": 128
+      },
+      "empirical_FPIR_delta": {
+        "mean": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "units": 512
+      },
+      "conservative_DIR_delta": {
+        "mean": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "units": 128
+      },
+      "conservative_FPIR_delta": {
+        "mean": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "units": 512
+      }
+    },
+    {
+      "method": "centered_cosine",
+      "n_gallery": 4096,
+      "rank1": 0.95400390625,
+      "paired_rank1_delta_vs_original_sign": {
+        "mean": 0.017285156250000003,
+        "ci95": [
+          0.00888671875,
+          0.0259765625
+        ],
+        "units": 128
+      },
+      "empirical_DIR_delta": {
+        "mean": 0.14619140625,
+        "ci95": [
+          0.123828125,
+          0.169140625
+        ],
+        "units": 128
+      },
+      "empirical_FPIR_delta": {
+        "mean": 0.0078125,
+        "ci95": [
+          0.0,
+          0.017578125
+        ],
+        "units": 512
+      },
+      "conservative_DIR_delta": {
+        "mean": 0.11298828124999999,
+        "ci95": [
+          0.0927734375,
+          0.13398681640624996
+        ],
+        "units": 128
+      },
+      "conservative_FPIR_delta": {
+        "mean": 0.00068359375,
+        "ci95": [
+          -0.0038085937500000003,
+          0.005859375
+        ],
+        "units": 512
+      }
+    },
+    {
+      "method": "centered_sign_512",
+      "n_gallery": 4096,
+      "rank1": 0.93603515625,
+      "paired_rank1_delta_vs_original_sign": {
+        "mean": -0.00068359375,
+        "ci95": [
+          -0.007617187500000001,
+          0.00625
+        ],
+        "units": 128
+      },
+      "empirical_DIR_delta": {
+        "mean": 0.026757812499999995,
+        "ci95": [
+          0.010351562499999994,
+          0.04345947265624996
+        ],
+        "units": 128
+      },
+      "empirical_FPIR_delta": {
+        "mean": 0.0,
+        "ci95": [
+          -0.005859375,
+          0.005859375
+        ],
+        "units": 512
+      },
+      "conservative_DIR_delta": {
+        "mean": 0.002636718750000001,
+        "ci95": [
+          -0.012890625000000003,
+          0.017187499999999998
+        ],
+        "units": 128
+      },
+      "conservative_FPIR_delta": {
+        "mean": -0.0015625,
+        "ci95": [
+          -0.008203125,
+          0.004296875
+        ],
+        "units": 512
+      }
+    },
+    {
+      "method": "PCA512_cosine",
+      "n_gallery": 4096,
+      "rank1": 0.95400390625,
+      "paired_rank1_delta_vs_original_sign": {
+        "mean": 0.017285156250000003,
+        "ci95": [
+          0.0087890625,
+          0.0259765625
+        ],
+        "units": 128
+      },
+      "empirical_DIR_delta": {
+        "mean": 0.14619140625,
+        "ci95": [
+          0.12392578124999999,
+          0.16933593749999998
+        ],
+        "units": 128
+      },
+      "empirical_FPIR_delta": {
+        "mean": 0.0078125,
+        "ci95": [
+          0.0,
+          0.017578125
+        ],
+        "units": 512
+      },
+      "conservative_DIR_delta": {
+        "mean": 0.11298828124999999,
+        "ci95": [
+          0.0927734375,
+          0.1341796875
+        ],
+        "units": 128
+      },
+      "conservative_FPIR_delta": {
+        "mean": 0.00068359375,
+        "ci95": [
+          -0.0038085937500000003,
+          0.005859375
+        ],
+        "units": 512
+      }
+    },
+    {
+      "method": "PCA_ITQ_512",
+      "n_gallery": 4096,
+      "rank1": 0.93525390625,
+      "paired_rank1_delta_vs_original_sign": {
+        "mean": -0.0014648437499999991,
+        "ci95": [
+          -0.011914062500000001,
+          0.008984375
+        ],
+        "units": 128
+      },
+      "empirical_DIR_delta": {
+        "mean": 0.02578125,
+        "ci95": [
+          0.002441406250000008,
+          0.0490234375
+        ],
+        "units": 128
+      },
+      "empirical_FPIR_delta": {
+        "mean": 0.013671875,
+        "ci95": [
+          0.001953125,
+          0.02734375
+        ],
+        "units": 512
+      },
+      "conservative_DIR_delta": {
+        "mean": 0.008007812499999992,
+        "ci95": [
+          -0.015625000000000003,
+          0.031835937499999994
+        ],
+        "units": 128
+      },
+      "conservative_FPIR_delta": {
+        "mean": 0.0017578124999999998,
+        "ci95": [
+          0.0,
+          0.0052734374999999995
+        ],
+        "units": 512
+      }
+    },
+    {
+      "method": "PCA256_cosine",
+      "n_gallery": 4096,
+      "rank1": 0.95400390625,
+      "paired_rank1_delta_vs_original_sign": {
+        "mean": 0.017285156250000003,
+        "ci95": [
+          0.00908203125,
+          0.026269531250000002
+        ],
+        "units": 128
+      },
+      "empirical_DIR_delta": {
+        "mean": 0.14619140625,
+        "ci95": [
+          0.12421875,
+          0.1697265625
+        ],
+        "units": 128
+      },
+      "empirical_FPIR_delta": {
+        "mean": 0.0078125,
+        "ci95": [
+          -0.001953125,
+          0.017578125
+        ],
+        "units": 512
+      },
+      "conservative_DIR_delta": {
+        "mean": 0.11298828124999999,
+        "ci95": [
+          0.09267578124999998,
+          0.13388916015624996
+        ],
+        "units": 128
+      },
+      "conservative_FPIR_delta": {
+        "mean": 0.00068359375,
+        "ci95": [
+          -0.0038085937500000003,
+          0.005859375
+        ],
+        "units": 512
+      }
+    },
+    {
+      "method": "PCA_ITQ_256",
+      "n_gallery": 4096,
+      "rank1": 0.91171875,
+      "paired_rank1_delta_vs_original_sign": {
+        "mean": -0.025,
+        "ci95": [
+          -0.036328125,
+          -0.01396484375
+        ],
+        "units": 128
+      },
+      "empirical_DIR_delta": {
+        "mean": -0.05283203125000001,
+        "ci95": [
+          -0.0798828125,
+          -0.026269531250000006
+        ],
+        "units": 128
+      },
+      "empirical_FPIR_delta": {
+        "mean": 0.00751953125,
+        "ci95": [
+          -0.0012695312499999998,
+          0.017578125
+        ],
+        "units": 512
+      },
+      "conservative_DIR_delta": {
+        "mean": -0.06953124999999999,
+        "ci95": [
+          -0.09609619140625,
+          -0.0431640625
+        ],
+        "units": 128
+      },
+      "conservative_FPIR_delta": {
+        "mean": 0.00712890625,
+        "ci95": [
+          0.0005859374999999998,
+          0.015625
+        ],
+        "units": 512
+      }
+    }
+  ],
+  "biometric_scope": "Predefined development study; repeated image splits averaged by identity. Intervals are not adjusted for multiple comparisons; ITQ did not improve closed-set rank1.",
+  "functional_validation": "N2/N8/N128 state and queries; meaningful fault cases and coupled defect reject; private indexed control passes",
+  "claim_boundary": "Stored handles stay secret and logically stable. Virtual semantic locator renewal differs from eager physical locator replacement. No security claim after logical handle exposure. Formal C-only privacy argument and persisted lifecycle still require completion.",
+  "R1_package_unchanged": true
+}

@@ -1,0 +1,22 @@
+{
+  "date": "2026-10-30",
+  "status": "new architectural candidate; no performance claim before validation",
+  "motivation": "Remove expensive PRP evaluation on every padded index slot rather than paying for oblivious compaction",
+  "stored_locators": "Distinct stable secret handles h_i in database and index copies; labels and stable tie tags remain secret as in R1",
+  "semantic_locator": "ell_i^e=Pi(k_locator_e,h_i), derived only where necessary",
+  "mask": "Same independent MiMC mask-word keys, applied to semantic epoch locators",
+  "rekey": "Refresh locator and mask keys; re-mask templates using old/new semantic locators; preserve handle values; verify binding and root/index relation; shuffle complete DB rows and refresh every persistent field share",
+  "relation_check": "Check tuples(h,block,decoded_value). A global injective Pi maps this multiset bijectively to tuples(ell,block,decoded_value), so equality of handle relations is equivalent to equality of semantic-locator relations",
+  "privacy_boundary": "Handles, index contents, labels, tags and mask keys remain secret. Same below-threshold passive MPC and exposed-masked-template snapshot boundary as R1. No stronger claim when logical handle values are exposed.",
+  "functional_difference": "Changes representation/materialization schedule and locator update family. It is not bytewise state equivalence to R1's recursive Pi_new(old_locator). Virtual semantic epochs and physical slot rewriting are reported separately.",
+  "scope_of_claim": "Candidate design with a written simulation/functional argument pending review. No post-compromise, malicious-MPC, OS-erasure or crash-atomicity extension.",
+  "fault_semantics": "Missing/duplicated/misplaced/corrupted handle, wrong index transformation, wrong/stale template, coupled changed-root/index defect. An unchanged physical handle is correct in this representation, so R1 stale-index-value injection6 is not a corruption test here and must not be counted as rejected.",
+  "cost_hypothesis": "Two N-record locator derivations per re-key instead of PRP on N+M records; full relation checks, share refresh and write costs retained. Query gains one N-record locator derivation. Both costs must be measured.",
+  "key_comparison_sizes": [8,32,128],
+  "rekey_measured_repetitions": 5,
+  "query_measured_repetitions": 3,
+  "public_order_seed": 20261030,
+  "nonce_and_key_generation": "Unchanged OS-random full-field independent contributions as R1",
+  "invariant_requirement": "Bit-valid templates and validity; unchanged metadata association; identical Hamming results; one selected complete key/template/index bundle",
+  "decision_rule": "Use only if its functional/privacy boundary is justified and measured end-to-end benefit is useful. Retain the eager design and all failed variants as controls."
+}

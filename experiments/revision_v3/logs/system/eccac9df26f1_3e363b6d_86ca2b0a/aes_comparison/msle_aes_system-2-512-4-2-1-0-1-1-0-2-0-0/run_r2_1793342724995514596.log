@@ -1,0 +1,61 @@
+{"argv": ["/usr/bin/time", "-v", "bash", "Scripts/shamir.sh", "msle_aes_system-2-512-4-2-1-0-1-1-0-2-0-0", "--prime", "340282366920938463463374607431764574209"], "cwd": "/home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8"}
+Running /home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8/Scripts/../shamir-party.x 0 msle_aes_system-2-512-4-2-1-0-1-1-0-2-0-0 --prime 340282366920938463463374607431764574209 -T 2 -pn 19535 -h localhost -N 5
+Running /home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8/Scripts/../shamir-party.x 1 msle_aes_system-2-512-4-2-1-0-1-1-0-2-0-0 --prime 340282366920938463463374607431764574209 -T 2 -pn 19535 -h localhost -N 5
+Running /home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8/Scripts/../shamir-party.x 2 msle_aes_system-2-512-4-2-1-0-1-1-0-2-0-0 --prime 340282366920938463463374607431764574209 -T 2 -pn 19535 -h localhost -N 5
+Running /home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8/Scripts/../shamir-party.x 3 msle_aes_system-2-512-4-2-1-0-1-1-0-2-0-0 --prime 340282366920938463463374607431764574209 -T 2 -pn 19535 -h localhost -N 5
+Running /home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8/Scripts/../shamir-party.x 4 msle_aes_system-2-512-4-2-1-0-1-1-0-2-0-0 --prime 340282366920938463463374607431764574209 -T 2 -pn 19535 -h localhost -N 5
+Trying to run 128-bit computation (128-bit representation)
+Starting timer 30 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 3.0864e-05
+Starting timer 11 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 1.4625e-05
+Starting timer 12 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 4.046e-06
+Stopped timer 12 at 31.1823 (277.504 MB, 32314 rounds, 27.4317 CPU seconds)
+Starting timer 13 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 5.507e-06
+Stopped timer 13 at 0.714355 (12.6841 MB, 658 rounds, 0.687473 CPU seconds)
+Starting timer 14 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 4.036e-06
+Stopped timer 14 at 0.247001 (0.654272 MB, 527 rounds, 0.246292 CPU seconds)
+Starting timer 15 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 4.384e-06
+Stopped timer 15 at 0.0107457 (0.29504 MB, 5 rounds, 0.0111766 CPU seconds)
+Starting timer 16 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 5.797e-06
+Stopped timer 16 at 0.17293 (0.344832 MB, 737 rounds, 0.123388 CPU seconds)
+Stopped timer 11 at 32.3277 (291.482 MB, 34241 rounds, 28.5003 CPU seconds)
+Stopped timer 30 at 32.402 (291.777 MB, 34388 rounds, 28.5874 CPU seconds)
+MSLE_SYSTEM n=2 d=512 mode=1 protection=0 transition=1 maintenance=1 fault=0 relation=1 accepted=0 identity=-1 state_ok=1 query_ok=1
+Significant amount of unused dabits of Shamir gfp distorting the benchmark. For more accurate benchmarks, consider reducing the batch size with --batch-size.
+Significant amount of unused edaBits of size 128. For more accurate benchmarks, consider reducing the batch size with --batch-size.
+Significant amount of unused dabits of Shamir gfp distorting the benchmark. For more accurate benchmarks, consider reducing the batch size with --batch-size.
+The following benchmarks are including preprocessing (offline phase).
+Time = 32.4092 seconds 
+Time11 = 32.3277 seconds (291.482 MB, 34241 rounds, 28.5003 CPU seconds)
+Time12 = 31.1823 seconds (277.504 MB, 32314 rounds, 27.4317 CPU seconds)
+Time13 = 0.714355 seconds (12.6841 MB, 658 rounds, 0.687473 CPU seconds)
+Time14 = 0.247001 seconds (0.654272 MB, 527 rounds, 0.246292 CPU seconds)
+Time15 = 0.0107457 seconds (0.29504 MB, 5 rounds, 0.0111766 CPU seconds)
+Time16 = 0.17293 seconds (0.344832 MB, 737 rounds, 0.123388 CPU seconds)
+Time30 = 32.402 seconds (291.777 MB, 34388 rounds, 28.5874 CPU seconds)
+Data sent = 291.778 MB in ~34390 rounds (party 0 only; rounds counted double due to multi-threading; use '-v' for more details)
+Global data sent = 1365.73 MB (all parties)
+This virtual machine was compiled with GCC. Recompile with 'CXX = clang++' in 'CONFIG.mine' for optimal performance.
+This protocol doesn't scale well with the number of parties, have you considered using ATLAS instead?
+	Command being timed: "bash Scripts/shamir.sh msle_aes_system-2-512-4-2-1-0-1-1-0-2-0-0 --prime 340282366920938463463374607431764574209"
+	User time (seconds): 74.11
+	System time (seconds): 70.58
+	Percent of CPU this job got: 426%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:33.91
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 112196
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 214805
+	Voluntary context switches: 2117633
+	Involuntary context switches: 243855
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 0
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

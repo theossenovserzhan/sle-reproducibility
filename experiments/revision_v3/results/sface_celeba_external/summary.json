@@ -1,0 +1,30 @@
+{
+  "frontend": "SFace128D+YuNet alignment",
+  "cohort": "separate frozen historical CelebA128; one identity overlaps the main fixed cohort, do not pool uncertainty",
+  "rank1": {
+    "float": 0.9369140625,
+    "binary": 0.8701171875,
+    "binary_minus_float": {
+      "mean": -0.066796875,
+      "ci95": [
+        -0.08349609375,
+        -0.05097412109375004
+      ],
+      "units": 128,
+      "bootstrap_resamples": 5000
+    }
+  },
+  "rank5": {
+    "float": 0.96298828125,
+    "binary": 0.9336914062500001,
+    "binary_minus_float": {
+      "mean": -0.029296875,
+      "ci95": [
+        -0.04052734374999999,
+        -0.0189453125
+      ],
+      "units": 128,
+      "bootstrap_resamples": 5000
+    }
+  }
+}

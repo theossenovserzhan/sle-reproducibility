@@ -1,0 +1,58 @@
+{"argv": ["/usr/bin/time", "-v", "bash", "Scripts/shamir.sh", "msle_position_compact_system-128-512-4-40-1-0-1-1-0-0-56-0", "--prime", "340282366920938463463374607431764574209"], "cwd": "/home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8"}
+Running /home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8/Scripts/../shamir-party.x 0 msle_position_compact_system-128-512-4-40-1-0-1-1-0-0-56-0 --prime 340282366920938463463374607431764574209 -T 2 -pn 14536 -h localhost -N 5
+Running /home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8/Scripts/../shamir-party.x 1 msle_position_compact_system-128-512-4-40-1-0-1-1-0-0-56-0 --prime 340282366920938463463374607431764574209 -T 2 -pn 14536 -h localhost -N 5
+Running /home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8/Scripts/../shamir-party.x 2 msle_position_compact_system-128-512-4-40-1-0-1-1-0-0-56-0 --prime 340282366920938463463374607431764574209 -T 2 -pn 14536 -h localhost -N 5
+Running /home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8/Scripts/../shamir-party.x 3 msle_position_compact_system-128-512-4-40-1-0-1-1-0-0-56-0 --prime 340282366920938463463374607431764574209 -T 2 -pn 14536 -h localhost -N 5
+Running /home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8/Scripts/../shamir-party.x 4 msle_position_compact_system-128-512-4-40-1-0-1-1-0-0-56-0 --prime 340282366920938463463374607431764574209 -T 2 -pn 14536 -h localhost -N 5
+Trying to run 128-bit computation (128-bit representation)
+Starting timer 30 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 1.484e-05
+Starting timer 11 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 1.438e-05
+Starting timer 12 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 3.898e-06
+Stopped timer 12 at 92.466 (1038.98 MB, 2113 rounds, 63.3274 CPU seconds)
+Starting timer 13 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 1.6779e-05
+Stopped timer 13 at 15.2622 (43.6519 MB, 6465 rounds, 9.54609 CPU seconds)
+Starting timer 14 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 1.1902e-05
+Stopped timer 14 at 2.33638 (20.9868 MB, 593 rounds, 2.09881 CPU seconds)
+Starting timer 15 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 4.761e-06
+Stopped timer 15 at 0.552747 (7.34442 MB, 58 rounds, 0.46218 CPU seconds)
+Starting timer 16 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 5.876e-06
+Stopped timer 16 at 14.7222 (45.3968 MB, 18003 rounds, 10.6772 CPU seconds)
+Stopped timer 11 at 125.343 (1156.36 MB, 27232 rounds, 86.1149 CPU seconds)
+Stopped timer 30 at 127.018 (1163.72 MB, 30823 rounds, 88.31 CPU seconds)
+MSLE_SYSTEM n=128 d=512 mode=1 protection=0 transition=1 maintenance=1 fault=0 relation=1 accepted=0 identity=-1 state_ok=1 query_ok=1
+The following benchmarks are including preprocessing (offline phase).
+Time = 127.092 seconds 
+Time11 = 125.343 seconds (1156.36 MB, 27232 rounds, 86.1149 CPU seconds)
+Time12 = 92.466 seconds (1038.98 MB, 2113 rounds, 63.3274 CPU seconds)
+Time13 = 15.2622 seconds (43.6519 MB, 6465 rounds, 9.54609 CPU seconds)
+Time14 = 2.33638 seconds (20.9868 MB, 593 rounds, 2.09881 CPU seconds)
+Time15 = 0.552747 seconds (7.34442 MB, 58 rounds, 0.46218 CPU seconds)
+Time16 = 14.7222 seconds (45.3968 MB, 18003 rounds, 10.6772 CPU seconds)
+Time30 = 127.018 seconds (1163.72 MB, 30823 rounds, 88.31 CPU seconds)
+Data sent = 1163.72 MB in ~30825 rounds (party 0 only; rounds counted double due to multi-threading; use '-v' for more details)
+Global data sent = 5479.93 MB (all parties)
+This virtual machine was compiled with GCC. Recompile with 'CXX = clang++' in 'CONFIG.mine' for optimal performance.
+This protocol doesn't scale well with the number of parties, have you considered using ATLAS instead?
+	Command being timed: "bash Scripts/shamir.sh msle_position_compact_system-128-512-4-40-1-0-1-1-0-0-56-0 --prime 340282366920938463463374607431764574209"
+	User time (seconds): 336.31
+	System time (seconds): 89.22
+	Percent of CPU this job got: 329%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 2:09.32
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 490944
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 805289
+	Voluntary context switches: 954051
+	Involuntary context switches: 76884
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 0
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

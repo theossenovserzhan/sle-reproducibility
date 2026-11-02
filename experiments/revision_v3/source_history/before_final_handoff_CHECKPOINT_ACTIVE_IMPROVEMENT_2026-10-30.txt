@@ -1,0 +1,83 @@
+AUTHORITATIVE CHECKPOINT updated2026-10-30. Supersedes older live-queue paragraphs.
+Workspace TBIOM_revision_experiments_2026-10-29/revision_v3. Read live status JSON.
+User authorizes improving method and all reviewer experiments; no subagents,
+external messages/submission/push/purchase. CPU only. WSL authorized.
+Runtime /home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8. All heavy jobs
+must hold .msle_v3_driver.lock. No R1 driver/heavy scoring during MPC timing.
+Frozen R1 ZIP SHA eb0b7411fe238e3dd7c1728b3311d23f8cb78e7f6b7e68a0f2f52796185a587c.
+No v3 paper/response/package produced yet. Do not call revision complete.
+
+LIVE QUEUE: run_virtual_scale.py session55411, N512 entire series complete,
+N1024 full-state correctness/performance underway. run_private_client.py38605
+waits for scale finished/error and shared-input validation. Stop helper supports
+both and kills only their own descendants. Do not restart completed drivers.
+
+COMPLETED: joint ablation; adverse compaction pilots; virtual cold comparisons;
+AES session2535; polynomial25334; vector29164; SFace finish13047; FaceNet RP61179;
+actual persisted24496; shared external query73507. All status correctness passed.
+Earlier SFace path/import and vector Array API errors repaired, histories kept.
+Do not rerun SFace extraction or refit/overwrite saved projection models.
+
+Virtual source0684086af4d2d5a79e4f80f30615fb65c7444f296398ea00cca5d4f413c7d8c0.
+Stable SECRET handles h, semantic Pi(epoch_key,h); full checks/bundle select,
+row shuffle, all-field refresh/write retained. Changed representation/update
+family, NOT physical renewal of every logical index value. Fault6 is a no-op.
+Hidden handles/index essential. Cold N128 five paired rekeys48.55358->27.19776s,
+2717.36->597.311MB. Actual own-share-file N128 five paired rekeys27.80672->12.80256s,
+2710.01->589.957MB, tagpaired_virtual_persistence. Do not mix older controls.
+Actual N8/128 masked/raw lifecycle, accept/reject/indexed/rollback checks pass.
+
+Shared client probe input0c1ca8ccdb56... COMPLETE. Every computing server receives
+one degree-two evaluation per probe bit/threshold. N8 candidate oracle/rollback,
+N128 whole state/query and five paired input-interface timings complete. This
+version still opens identity/acceptance. New private-output variant removes it.
+
+Private output/fused generated and py_compile passes; MPC NOT YET EXECUTED.
+Sources476362f64370... and2d1e38893da6... audited in private_client_source_audit.json.
+Client shares fresh uniform Fp pad, only masked identity opened. Client decodes
+reject=-1; no separate acceptance opening. DIAG1 trusted oracle excluded from
+production privacy claim. Full scan mandatory strong baseline. Candidate flags
+can be fused from already computed Hamming mismatch bits; polynomial lookup is
+an index-only operator improvement, not automatically best complete matching.
+Runner: N8 composed/state/accept/reject/rollback, N3 mixed/no/all candidate sets,
+N128 state then same-state five balanced fullscan/polynomial/fused queries.
+
+Vector query complete: N8 original56.64198s/4965.02MB, fullvector9.052876s/134.032MB,
+bucketvector7.833934s/26.0618MB. Candidate bits independently checked against old
+full-field oracle; synthetic fixtures correctness-only. N32/128 optimized3runs.
+Known Lagrange math, valid-state/bit-probe/distinct-handle preconditions.
+AES stableN32 MiMC6.8512s/148.802MB vs AES10.9695s/1053.17MB. N2 AES faster retained.
+All secure KATs/system faults pass. Generic CTR supports same useful contract;
+backend/implementation comparison only, no universal AES lower bound.
+
+QUALITY: ITQ complete, original baselines exactly reproduced, no closed-set gain.
+Both predefined RP seeds20261030/20261031, all widths512/1024/2048 raw/centered
+retained. Protocol before scores/all SFace extraction. Public angular LSH, not
+crypto novelty. SFace8629 entries extracted, no exclusion; YuNet fallback counts
+in data/sface_extraction.json. Pinned weights/OpenCV private environment.
+N4096 FaceNet512 .93671875. SFace float.986035, native128 .910449,
+rawRP512 .971875/.967480, centered512 .972949/.968945 (mean.970947, +3.423pp vs
+FaceNet512). Whole model/alignment/hash frontend comparison. Same512bit width,
+not yet new-root secure confirmation. B4 public capacity fits both centered512
+seeds atN128/512/1024/4096, but candidate fraction near.999: no pruning claim.
+2048bit crypto cost NOT measured. Frontend upgrade requires features/re-enrollment,
+not root-free rekey of old roots. LFW/CelebA/pretraining identity overlap unknown.
+Next queue SFace512 transfer/secure confirmation and paired identity CIs.
+
+NEXT: isolated user-space latency emulation; current prior-art/full claim audit;
+complete response/paper revision, compile/render PDFs, build fresh package.
+New primary Pura2025/PFIP2025/model renewal2025 read; save notes. BioZKFHE2026
+abstract only, full page blocked, comparison unresolved. No novelty guarantee.
+Use older source/protocol audits and archived checkpoint for detailed hashes.
+
+QUEUE UPDATE: frontend_confirmation.py session87055 now queued after private output success; network_study.py85474 queued after frontend completion/error. Both use common runtime lock. Network protocol frozen before any echo/MPC delay result, RTT0/1/20/50ms, N2D64 rekey and N8D512 query, one warmup+3pairs, task-local TCP relays, all parties same host. New scripts py_compile passes; not yet executed. Stop in reverse queue order. summarize_current.py generates CURRENT_RESULTS_RU.txt/results/current_results.json without heavy scoring.
+
+LITERATURE UPDATE: BioZKFHE full author text found https://arxiv.org/html/2607.22065v1; read III-B/IV-C5/V-C/VI-C. Earlier abstract-only note is obsolete. CryptoFace full text and official venue, PFIP publisher metadata also verified. Saved notes/PRIOR_ART_2025_2026_UPDATE.txt. REVIEWER_CLOSURE_V3_RU.txt records all reviewer points and exact remaining work, including higher SFace FPIR. Frontend pairing audit verifies all5557 extended identities/images match across models.
+
+CRITICAL NUMERIC CORRECTION: original ITQ/projection binary scores float32 compared with Python float nextafter64 cutoffs rounded the cutoff and accepted tied scores. Reproduced on NumPy2.3.5; independent boundary/Hamming self-tests pass after casting scores to64. Rank1/Rank5 and MPC unaffected; frozenR1 and SFace native original evaluator already float64. NEVER use affected original open-set outputs as final. New repair_frontend_thresholds.py session16553 waits private-client completion/error, then recomputes ALL3studies from unchanged frozen models into *_corrected. Asserts all closed flags unchanged, native float/sign open flags exactly reproduce R1/SFace baseline, cal count<=allowed. No refit. Frontend34374 restarted after stopping old87055 while waiting (no descendants); now gates successful repair and uses corrected arrays. Network85474 unchanged waits frontend. Queue order scale55411 -> private38605 -> repair16553 -> frontend34374 -> network85474. Prior closure-report SFace FPIR numbers and initial ITQ DIR gain are PROVISIONAL until corrected; retain old attempts. Protocol calibration_repair_protocol.json.
+
+MANUSCRIPT WORKING DRAFT: prepare_manuscript_v3.py executed, creates manuscript_v3 separately from frozenR1; refuses overwrite on rerun. Added virtual representation, strong query baseline, external private input/padded output protocol, scoped key-collision term, second frontend and primary citations. build_v3_tables.py generates new tables from completed rows; current draft deliberately omits pending open/private tables. DRAFT_STATUS.json marks unfinished and no PDF compiled yet. Do not call this submission-ready. R1 ZIP reverified unchanged. Current main abstract has valid closed-set and completed N512 numbers only. New notes/PRIOR_ART_CONTRACT_TABLE.csv and PARAMETER_REVIEW_20261030.txt preserve comparison boundaries.
+
+CURRENT COMPLETIONS: full scale55411 now finished atN512/N1024, no errors. N1024 rekey means202.8103->113.1467s, global19389.7->5402.05MB; query means26.8004->26.2320s, traffic1019.05->1045.59MB. Query timings nonmonotonic across gallery sizes/high variability; no scaling latency law. Private client38605 finished all correctness and5balanced N128 fullscan/polynomial/fused query comparisons; use actual row means from current_results. Calibration repair16553 finished all3studies and exact native open/closed flag reproduction; use *_corrected only. Frontend34374 transfer/paired CIs computed; secure checks ongoing. CelebA main centered512 both seeds89.951/90.381% vs86.055% FaceNet; historical91.846/91.768 vs85.146%; LFW4096 gain3.623/3.223pp with paired95%CI[1.729,5.449]/[1.514,4.922]pp. Unchanged code width, whole frontend change, no independent identity claim. Corrected SFace conservative FPIR still1.758/1.563% vs FaceNet0.391%; no equal-FPIR superiority claim. PDFskill read and announced. load_workspace_dependencies called. run_pdf_build.py34351 waits frontend then holds common lock while Windows compile_v3_draft.ps1 copies cache into v3, marks3PDFs exactly once and compiles/renders. No PDF delivered yet. Network85474 stopped while waiting (no children), restarted after adding PDF/calibration gates; update session from tool result. Marker tmp/pdf_artifact_operation_started.json records first PDF authoring. Do not rerun marker independently. Stophelper still needs run_pdf_build.py added. update_response_v3.py generates separate draft response/macros with live pending status, never overwrites frozenR1.
+
+LATEST QUEUE: all frontend34374 secure checks at8/128 and both seeds COMPLETE, no errors. Initial PDF build34351 COMPLETE (9main/9supp/6response); all9MAIN pages visually inspected with no clipping, but these are now OUTDATED after compact integration source edits. Network1734 active, correctness passed, RTT0/1/20 complete, RTT50 underway. finalize_v3_draft.py17342 queued after network completion/error, holds common lock, runs Windows plot_v3.py then compile_v3_draft.ps1 -RenderSubfolder final_qa. Windows bundled Python lacks Matplotlib; plot script now bootstraps pinned matplotlib3.10.7/numpy2.3.5 into data/plot_libs under lock, leaves global env unchanged, report captured; PyPI version verified. Existingv2python_libs denied to Windows; no reliance. No installation/plotting during network timings. compile_v3_draft.ps1 now calls build_v3_final_tables.py, which reorganizes main by topic and MOVES the3old timing tables into supplement; adds paired CIs, private-I/O/virtual proof notes and network rows. Final main should be shorter; no new final PDF yet. First9page main reviewed only as initial iteration, not final QA. Final worker MUST be checked for pip/plot/compile errors, then latest final_qa pages ALL reviewed, source/claim audit done, final archive rebuilt. tmp/pdf_artifact_operation_started.json exists: marker already successfully executed once for3PDFs; never repeat separately. Final document renderfolder separate to avoid stale removed-page PNGs. update_response_v3.py source remains generated from frozen response plus live values; final script clears network pending only when network finished. Current source table/response wording was tidied; no crypto kernel/config changed. No parallel-mask optimization implemented; it remains an optional future idea. Stophelper now supports PDF/finalize names (native Windows child shutdown may need its own task PID verification if interrupted).

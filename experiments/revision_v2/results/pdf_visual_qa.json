@@ -1,0 +1,45 @@
+{
+  "all_pages_reviewed": true,
+  "render_dpi": 110,
+  "method": "Every final page rendered with Poppler and visually inspected; no clipping, overlaps, missing citations or table overflow observed.",
+  "pdfs": {
+    "main": {
+      "pages": 7,
+      "sha256": "5a2443576861909a4ae05edbfc530e739b49368394b8728b0cc269a87baf750a",
+      "visually_reviewed_pages": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ]
+    },
+    "supplement": {
+      "pages": 8,
+      "sha256": "5975a11f5ba167cd1a70e30e8cecb418c5657b8fed156c4e43a44e1fe532fabf",
+      "visually_reviewed_pages": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ]
+    },
+    "response_to_reviewers": {
+      "pages": 5,
+      "sha256": "1fce914a493a24b1d38c5c610b9715cd0e4218b91531809f2304ce65f32d0bfc",
+      "visually_reviewed_pages": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    }
+  }
+}

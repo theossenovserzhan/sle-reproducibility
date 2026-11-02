@@ -1,0 +1,53 @@
+{"argv": ["/usr/bin/time", "-v", "bash", "Scripts/shamir.sh", "msle_system-8-512-4-8-3-0-0-1-0-8-0-0", "--prime", "340282366920938463463374607431764574209"], "cwd": "/home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8"}
+Running /home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8/Scripts/../shamir-party.x 0 msle_system-8-512-4-8-3-0-0-1-0-8-0-0 --prime 340282366920938463463374607431764574209 -T 2 -pn 11095 -h localhost -N 5
+Running /home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8/Scripts/../shamir-party.x 1 msle_system-8-512-4-8-3-0-0-1-0-8-0-0 --prime 340282366920938463463374607431764574209 -T 2 -pn 11095 -h localhost -N 5
+Running /home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8/Scripts/../shamir-party.x 2 msle_system-8-512-4-8-3-0-0-1-0-8-0-0 --prime 340282366920938463463374607431764574209 -T 2 -pn 11095 -h localhost -N 5
+Running /home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8/Scripts/../shamir-party.x 3 msle_system-8-512-4-8-3-0-0-1-0-8-0-0 --prime 340282366920938463463374607431764574209 -T 2 -pn 11095 -h localhost -N 5
+Running /home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8/Scripts/../shamir-party.x 4 msle_system-8-512-4-8-3-0-0-1-0-8-0-0 --prime 340282366920938463463374607431764574209 -T 2 -pn 11095 -h localhost -N 5
+Trying to run 128-bit computation (128-bit representation)
+Starting timer 30 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 1.0617e-05
+Starting timer 20 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 1.8929e-05
+Starting timer 23 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 3.618e-06
+Stopped timer 23 at 43.4723 (990.576 MB, 22472 rounds, 38.3502 CPU seconds)
+Starting timer 21 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 4.794e-06
+Stopped timer 21 at 0.550285 (1.87501 MB, 1799 rounds, 0.593252 CPU seconds)
+Starting timer 22 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 4.722e-06
+Stopped timer 22 at 0.0710273 (0.299138 MB, 219 rounds, 0.0757248 CPU seconds)
+Stopped timer 20 at 44.0938 (992.751 MB, 24490 rounds, 39.0194 CPU seconds)
+Stopped timer 30 at 44.2331 (993.931 MB, 25078 rounds, 39.242 CPU seconds)
+MSLE_SYSTEM n=8 d=512 mode=3 protection=0 transition=0 maintenance=1 fault=0 relation=1 accepted=1 identity=24 state_ok=1 query_ok=1
+Significant amount of unused dabits of Shamir gfp distorting the benchmark. For more accurate benchmarks, consider reducing the batch size with --batch-size.
+The following benchmarks are including preprocessing (offline phase).
+Time = 44.2367 seconds 
+Time20 = 44.0938 seconds (992.751 MB, 24490 rounds, 39.0194 CPU seconds)
+Time21 = 0.550285 seconds (1.87501 MB, 1799 rounds, 0.593252 CPU seconds)
+Time22 = 0.0710273 seconds (0.299138 MB, 219 rounds, 0.0757248 CPU seconds)
+Time23 = 43.4723 seconds (990.576 MB, 22472 rounds, 38.3502 CPU seconds)
+Time30 = 44.2331 seconds (993.931 MB, 25078 rounds, 39.242 CPU seconds)
+Data sent = 993.932 MB in ~25080 rounds (party 0 only; use '-v' for more details)
+Global data sent = 4965.02 MB (all parties)
+This virtual machine was compiled with GCC. Recompile with 'CXX = clang++' in 'CONFIG.mine' for optimal performance.
+This protocol doesn't scale well with the number of parties, have you considered using ATLAS instead?
+	Command being timed: "bash Scripts/shamir.sh msle_system-8-512-4-8-3-0-0-1-0-8-0-0 --prime 340282366920938463463374607431764574209"
+	User time (seconds): 140.91
+	System time (seconds): 55.13
+	Percent of CPU this job got: 431%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:45.47
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 39716
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 53743
+	Voluntary context switches: 1620969
+	Involuntary context switches: 198785
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 0
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

@@ -1,0 +1,8 @@
+{"argv": ["python3", "compile.py", "-P", "340282366920938463463374607431764574209", "-M", "msle_system", "4", "64", "4", "4", "0", "0", "1", "1", "0", "4", "0", "1"], "cwd": "/home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8"}
+WARNING: --prime/-P activates code that usually isn't the most efficient variant. Consider using --field/-F and set the prime only during the actual computation.
+Default bit length for compilation: 126
+Default security parameter for compilation: 40
+Compiling file Programs/Source/msle_system.mpc
+Changed bit length for comparisons etc. to 64
+Changed statistical security for comparison etc. to 80
+Compiled 100000 lines at Thu Oct 29 15:55:21 2026

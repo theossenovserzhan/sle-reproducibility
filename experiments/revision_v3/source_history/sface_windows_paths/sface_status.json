@@ -1,0 +1,6 @@
+{
+  "finished": false,
+  "current": "waiting_for_vector_query",
+  "last_error": "FileNotFoundError(2, 'No such file or directory')",
+  "preceding_mpc_error": "RuntimeError('/mnt/c/Users/ossen/OneDrive/Documents/SmartCity/TBIOM_revision_experiments_2026-10-29/revision_v3/logs/system/c68f98956eb3_3e363b6d/vector_candidate_correctness/msle_vector_poly_query_system-2-64-4-2-3-0-0-1-0-2-0-1/compile.log')"
+}

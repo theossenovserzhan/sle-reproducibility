@@ -1,0 +1,26 @@
+{"argv": ["python3", "compile.py", "-P", "340282366920938463463374607431764574209", "-b", "64", "-M", "msle_lazy_persistent_system", "128", "512", "4", "40", "1", "1", "0", "1", "0", "0", "56", "0"], "cwd": "/home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8"}
+WARNING: --prime/-P activates code that usually isn't the most efficient variant. Consider using --field/-F and set the prime only during the actual computation.
+Default bit length for compilation: 126
+Default security parameter for compilation: 40
+Compiling file Programs/Source/msle_lazy_persistent_system.mpc
+Changed bit length for comparisons etc. to 64
+Changed statistical security for comparison etc. to 80
+Compiled 100000 lines at Fri Oct 30 12:49:29 2026
+Compiled 200000 lines at Fri Oct 30 12:49:32 2026
+Writing to Programs/Schedules/msle_lazy_persistent_system-128-512-4-40-1-1-0-1-0-0-56-0.sch
+Writing to Programs/Bytecode/msle_lazy_persistent_system-128-512-4-40-1-1-0-1-0-0-56-0-0.bc
+Hash: 48c77f719973bc6367be159955b1515135edbf1773d3aa33f215e0128bc0b1c9
+Program requires at most:
+     2326915 integer inputs from player 0
+     2326915 integer inputs from player 1
+      229762 integer inputs from player 2
+      229762 integer inputs from player 3
+      229762 integer inputs from player 4
+     5807709 integer triples
+      819795 integer simple multiplications
+           6 integer randoms
+          11 integer opens
+         inf bit inverses
+           1 integer shuffle generations
+           1 integer shuffle applications
+       18605 virtual machine rounds

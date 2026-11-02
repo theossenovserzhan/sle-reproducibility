@@ -1,0 +1,352 @@
+{
+  "status": {
+    "finished": true,
+    "correctness_passed": true,
+    "current": null,
+    "last_error": null,
+    "completed": [
+      {
+        "n": 2,
+        "transition": 0
+      },
+      {
+        "n": 8,
+        "transition": 0
+      },
+      {
+        "n": 32,
+        "transition": 0
+      },
+      {
+        "n": 2,
+        "transition": 1
+      },
+      {
+        "n": 8,
+        "transition": 1
+      },
+      {
+        "n": 8,
+        "representation": "stable"
+      },
+      {
+        "n": 32,
+        "representation": "stable"
+      }
+    ],
+    "preceding_frontend_error": null
+  },
+  "secure_AES_vectors_passed": 3,
+  "complete_metrics": [
+    {
+      "n": 2,
+      "mode": 1,
+      "transition": 0,
+      "cipher": "AES_CTR",
+      "repetitions": 5,
+      "mean_vm_seconds": 3.203202,
+      "sd_vm_seconds": 0.5888443403141443,
+      "mean_global_mb": 177.177,
+      "source_sha256": "eccac9df26f1c8272ccb9f16a086dbef3665217e9e71b3f9e8e36ddd00c5cd32"
+    },
+    {
+      "n": 2,
+      "mode": 1,
+      "transition": 0,
+      "cipher": "MiMC_mask",
+      "repetitions": 5,
+      "mean_vm_seconds": 4.1687080000000005,
+      "sd_vm_seconds": 0.6050627427548321,
+      "mean_global_mb": 118.483,
+      "source_sha256": "bf76a47314930abf93436b8952321719228192ad4a1ff0f8a420c405c433f361"
+    },
+    {
+      "n": 2,
+      "mode": 1,
+      "transition": 1,
+      "cipher": "AES_CTR",
+      "repetitions": 5,
+      "mean_vm_seconds": 31.88296,
+      "sd_vm_seconds": 7.904899597275099,
+      "mean_global_mb": 1365.73,
+      "source_sha256": "eccac9df26f1c8272ccb9f16a086dbef3665217e9e71b3f9e8e36ddd00c5cd32"
+    },
+    {
+      "n": 2,
+      "mode": 1,
+      "transition": 1,
+      "cipher": "MiMC_mask",
+      "repetitions": 5,
+      "mean_vm_seconds": 39.0634,
+      "sd_vm_seconds": 8.315290832255958,
+      "mean_global_mb": 1304.61,
+      "source_sha256": "bf76a47314930abf93436b8952321719228192ad4a1ff0f8a420c405c433f361"
+    },
+    {
+      "n": 8,
+      "mode": 1,
+      "transition": 0,
+      "cipher": "AES_CTR",
+      "repetitions": 5,
+      "mean_vm_seconds": 10.035086,
+      "sd_vm_seconds": 1.508419074057339,
+      "mean_global_mb": 698.684,
+      "source_sha256": "eccac9df26f1c8272ccb9f16a086dbef3665217e9e71b3f9e8e36ddd00c5cd32"
+    },
+    {
+      "n": 8,
+      "mode": 1,
+      "transition": 0,
+      "cipher": "AES_CTR_stable",
+      "repetitions": 5,
+      "mean_vm_seconds": 4.449482,
+      "sd_vm_seconds": 0.4633332189364368,
+      "mean_global_mb": 273.803,
+      "source_sha256": "7aa74c14fa7c1813e2f41e6c742871cecee7c8aa6f02eba762b0db02348e31fe"
+    },
+    {
+      "n": 8,
+      "mode": 1,
+      "transition": 0,
+      "cipher": "MiMC_mask",
+      "repetitions": 5,
+      "mean_vm_seconds": 10.04344,
+      "sd_vm_seconds": 0.8909604234476407,
+      "mean_global_mb": 471.837,
+      "source_sha256": "bf76a47314930abf93436b8952321719228192ad4a1ff0f8a420c405c433f361"
+    },
+    {
+      "n": 8,
+      "mode": 1,
+      "transition": 0,
+      "cipher": "MiMC_mask_stable",
+      "repetitions": 5,
+      "mean_vm_seconds": 4.310132,
+      "sd_vm_seconds": 0.7619557981405484,
+      "mean_global_mb": 47.3712,
+      "source_sha256": "0684086af4d2d5a79e4f80f30615fb65c7444f296398ea00cca5d4f413c7d8c0"
+    },
+    {
+      "n": 8,
+      "mode": 1,
+      "transition": 1,
+      "cipher": "AES_CTR",
+      "repetitions": 5,
+      "mean_vm_seconds": 62.27232,
+      "sd_vm_seconds": 3.3867923153036728,
+      "mean_global_mb": 6651.38,
+      "source_sha256": "eccac9df26f1c8272ccb9f16a086dbef3665217e9e71b3f9e8e36ddd00c5cd32"
+    },
+    {
+      "n": 8,
+      "mode": 1,
+      "transition": 1,
+      "cipher": "MiMC_mask",
+      "repetitions": 5,
+      "mean_vm_seconds": 62.98256,
+      "sd_vm_seconds": 4.026720166959708,
+      "mean_global_mb": 6422.48,
+      "source_sha256": "bf76a47314930abf93436b8952321719228192ad4a1ff0f8a420c405c433f361"
+    },
+    {
+      "n": 32,
+      "mode": 1,
+      "transition": 0,
+      "cipher": "AES_CTR",
+      "repetitions": 5,
+      "mean_vm_seconds": 21.06788,
+      "sd_vm_seconds": 5.8290909194316045,
+      "mean_global_mb": 1903.34,
+      "source_sha256": "eccac9df26f1c8272ccb9f16a086dbef3665217e9e71b3f9e8e36ddd00c5cd32"
+    },
+    {
+      "n": 32,
+      "mode": 1,
+      "transition": 0,
+      "cipher": "AES_CTR_stable",
+      "repetitions": 5,
+      "mean_vm_seconds": 10.969534,
+      "sd_vm_seconds": 1.6195298905176154,
+      "mean_global_mb": 1053.17,
+      "source_sha256": "7aa74c14fa7c1813e2f41e6c742871cecee7c8aa6f02eba762b0db02348e31fe"
+    },
+    {
+      "n": 32,
+      "mode": 1,
+      "transition": 0,
+      "cipher": "MiMC_mask",
+      "repetitions": 5,
+      "mean_vm_seconds": 15.6912,
+      "sd_vm_seconds": 2.1675321600843667,
+      "mean_global_mb": 997.319,
+      "source_sha256": "bf76a47314930abf93436b8952321719228192ad4a1ff0f8a420c405c433f361"
+    },
+    {
+      "n": 32,
+      "mode": 1,
+      "transition": 0,
+      "cipher": "MiMC_mask_stable",
+      "repetitions": 5,
+      "mean_vm_seconds": 6.85118,
+      "sd_vm_seconds": 2.5893822263524555,
+      "mean_global_mb": 148.802,
+      "source_sha256": "0684086af4d2d5a79e4f80f30615fb65c7444f296398ea00cca5d4f413c7d8c0"
+    },
+    {
+      "n": 32,
+      "mode": 2,
+      "transition": 0,
+      "cipher": "AES_CTR",
+      "repetitions": 3,
+      "mean_vm_seconds": 4.0832733333333335,
+      "sd_vm_seconds": 0.8826319229629833,
+      "mean_global_mb": 484.916,
+      "source_sha256": "eccac9df26f1c8272ccb9f16a086dbef3665217e9e71b3f9e8e36ddd00c5cd32"
+    },
+    {
+      "n": 32,
+      "mode": 2,
+      "transition": 0,
+      "cipher": "AES_CTR_stable",
+      "repetitions": 3,
+      "mean_vm_seconds": 4.4709699999999994,
+      "sd_vm_seconds": 1.9720273256473906,
+      "mean_global_mb": 484.916,
+      "source_sha256": "7aa74c14fa7c1813e2f41e6c742871cecee7c8aa6f02eba762b0db02348e31fe"
+    },
+    {
+      "n": 32,
+      "mode": 2,
+      "transition": 0,
+      "cipher": "MiMC_mask",
+      "repetitions": 3,
+      "mean_vm_seconds": 1.6830866666666666,
+      "sd_vm_seconds": 0.7000797311973354,
+      "mean_global_mb": 33.1944,
+      "source_sha256": "bf76a47314930abf93436b8952321719228192ad4a1ff0f8a420c405c433f361"
+    },
+    {
+      "n": 32,
+      "mode": 2,
+      "transition": 0,
+      "cipher": "MiMC_mask_stable",
+      "repetitions": 3,
+      "mean_vm_seconds": 1.6520666666666666,
+      "sd_vm_seconds": 0.2211686691946519,
+      "mean_global_mb": 34.0238,
+      "source_sha256": "0684086af4d2d5a79e4f80f30615fb65c7444f296398ea00cca5d4f413c7d8c0"
+    }
+  ],
+  "paired_comparisons": [
+    {
+      "n": 2,
+      "mode": 1,
+      "transition": 0,
+      "representation": "materialized",
+      "time_ratio_AES_over_MiMC": 0.7683920293769676,
+      "paired_run_bootstrap_ci95": [
+        0.6944793742703445,
+        0.8485443856365342
+      ],
+      "traffic_ratio_AES_over_MiMC": 1.4953790839192118
+    },
+    {
+      "n": 2,
+      "mode": 1,
+      "transition": 1,
+      "representation": "materialized",
+      "time_ratio_AES_over_MiMC": 0.8161849710982662,
+      "paired_run_bootstrap_ci95": [
+        0.704405213776066,
+        0.934587824484402
+      ],
+      "traffic_ratio_AES_over_MiMC": 1.0468492499674233
+    },
+    {
+      "n": 8,
+      "mode": 1,
+      "transition": 0,
+      "representation": "materialized",
+      "time_ratio_AES_over_MiMC": 0.9991682132815053,
+      "paired_run_bootstrap_ci95": [
+        0.9429064489857132,
+        1.0532661007231447
+      ],
+      "traffic_ratio_AES_over_MiMC": 1.4807740808796257
+    },
+    {
+      "n": 8,
+      "mode": 1,
+      "transition": 0,
+      "representation": "stable",
+      "time_ratio_AES_over_MiMC": 1.0323307963654014,
+      "paired_run_bootstrap_ci95": [
+        0.9068055176747187,
+        1.1747909293974554
+      ],
+      "traffic_ratio_AES_over_MiMC": 5.7799464653629204
+    },
+    {
+      "n": 8,
+      "mode": 1,
+      "transition": 1,
+      "representation": "materialized",
+      "time_ratio_AES_over_MiMC": 0.9887232275093296,
+      "paired_run_bootstrap_ci95": [
+        0.9461803521146348,
+        1.0405260612662741
+      ],
+      "traffic_ratio_AES_over_MiMC": 1.0356404379616597
+    },
+    {
+      "n": 32,
+      "mode": 1,
+      "transition": 0,
+      "representation": "materialized",
+      "time_ratio_AES_over_MiMC": 1.342655756092587,
+      "paired_run_bootstrap_ci95": [
+        1.2046394072000146,
+        1.5089381847849193
+      ],
+      "traffic_ratio_AES_over_MiMC": 1.9084565720697189
+    },
+    {
+      "n": 32,
+      "mode": 1,
+      "transition": 0,
+      "representation": "stable",
+      "time_ratio_AES_over_MiMC": 1.6011160121322168,
+      "paired_run_bootstrap_ci95": [
+        1.3023158314007464,
+        2.0335889674098486
+      ],
+      "traffic_ratio_AES_over_MiMC": 7.077660246502064
+    },
+    {
+      "n": 32,
+      "mode": 2,
+      "transition": 0,
+      "representation": "materialized",
+      "time_ratio_AES_over_MiMC": 2.4260624329109612,
+      "paired_run_bootstrap_ci95": [
+        1.6957930506559311,
+        3.376547455295736
+      ],
+      "traffic_ratio_AES_over_MiMC": 14.608367676475549
+    },
+    {
+      "n": 32,
+      "mode": 2,
+      "transition": 0,
+      "representation": "stable",
+      "time_ratio_AES_over_MiMC": 2.706289092449861,
+      "paired_run_bootstrap_ci95": [
+        1.8065959992775218,
+        4.827132476643877
+      ],
+      "traffic_ratio_AES_over_MiMC": 14.252258713018533
+    }
+  ],
+  "scope": "Input-inclusive local five-party arithmetic-Shamir circuit implementations; both locator representations and same checks/maintenance. No universal AES lower-bound, malicious-security or persisted AES lifecycle claim.",
+  "small_size_result": "AES is faster atN2; near-equal atN8 in some controls. Retain these outcomes alongside larger-size MiMC advantages."
+}

@@ -1,0 +1,53 @@
+{"argv": ["/usr/bin/time", "-v", "bash", "Scripts/shamir.sh", "msle_bucket_poly_query_system-32-512-4-16-3-0-0-1-0-0-20-0", "--prime", "340282366920938463463374607431764574209"], "cwd": "/home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8"}
+Running /home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8/Scripts/../shamir-party.x 0 msle_bucket_poly_query_system-32-512-4-16-3-0-0-1-0-0-20-0 --prime 340282366920938463463374607431764574209 -T 2 -pn 19579 -h localhost -N 5
+Running /home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8/Scripts/../shamir-party.x 1 msle_bucket_poly_query_system-32-512-4-16-3-0-0-1-0-0-20-0 --prime 340282366920938463463374607431764574209 -T 2 -pn 19579 -h localhost -N 5
+Running /home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8/Scripts/../shamir-party.x 2 msle_bucket_poly_query_system-32-512-4-16-3-0-0-1-0-0-20-0 --prime 340282366920938463463374607431764574209 -T 2 -pn 19579 -h localhost -N 5
+Running /home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8/Scripts/../shamir-party.x 3 msle_bucket_poly_query_system-32-512-4-16-3-0-0-1-0-0-20-0 --prime 340282366920938463463374607431764574209 -T 2 -pn 19579 -h localhost -N 5
+Running /home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8/Scripts/../shamir-party.x 4 msle_bucket_poly_query_system-32-512-4-16-3-0-0-1-0-0-20-0 --prime 340282366920938463463374607431764574209 -T 2 -pn 19579 -h localhost -N 5
+Trying to run 128-bit computation (128-bit representation)
+Starting timer 30 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 2.0661e-05
+Starting timer 20 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 0.000182309
+Starting timer 23 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 1.6839e-05
+Stopped timer 23 at 26.8308 (14.9658 MB, 38325 rounds, 23.7518 CPU seconds)
+Starting timer 21 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 4.242e-06
+Stopped timer 21 at 1.37513 (5.64625 MB, 1811 rounds, 1.29672 CPU seconds)
+Starting timer 22 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 4.971e-06
+Stopped timer 22 at 0.286769 (1.2049 MB, 307 rounds, 0.262745 CPU seconds)
+Stopped timer 20 at 28.4929 (21.8169 MB, 40443 rounds, 25.3115 CPU seconds)
+Stopped timer 30 at 29.0099 (24.4417 MB, 41735 rounds, 26.0482 CPU seconds)
+MSLE_SYSTEM n=32 d=512 mode=3 protection=0 transition=0 maintenance=1 fault=0 relation=1 accepted=1 identity=24 state_ok=1 query_ok=1
+Significant amount of unused dabits of Shamir gfp distorting the benchmark. For more accurate benchmarks, consider reducing the batch size with --batch-size.
+The following benchmarks are including preprocessing (offline phase).
+Time = 29.015 seconds 
+Time20 = 28.4929 seconds (21.8169 MB, 40443 rounds, 25.3115 CPU seconds)
+Time21 = 1.37513 seconds (5.64625 MB, 1811 rounds, 1.29672 CPU seconds)
+Time22 = 0.286769 seconds (1.2049 MB, 307 rounds, 0.262745 CPU seconds)
+Time23 = 26.8308 seconds (14.9658 MB, 38325 rounds, 23.7518 CPU seconds)
+Time30 = 29.0099 seconds (24.4417 MB, 41735 rounds, 26.0482 CPU seconds)
+Data sent = 24.442 MB in ~41737 rounds (party 0 only; use '-v' for more details)
+Global data sent = 110.868 MB (all parties)
+This virtual machine was compiled with GCC. Recompile with 'CXX = clang++' in 'CONFIG.mine' for optimal performance.
+This protocol doesn't scale well with the number of parties, have you considered using ATLAS instead?
+	Command being timed: "bash Scripts/shamir.sh msle_bucket_poly_query_system-32-512-4-16-3-0-0-1-0-0-20-0 --prime 340282366920938463463374607431764574209"
+	User time (seconds): 42.36
+	System time (seconds): 86.77
+	Percent of CPU this job got: 429%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:30.03
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 48040
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 79399
+	Voluntary context switches: 2641423
+	Involuntary context switches: 289514
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 0
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

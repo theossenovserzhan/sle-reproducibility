@@ -1,0 +1,8 @@
+C:\Users\ossen\OneDrive\Documents\SmartCity\TBIOM_revision_experiments_2026-10-29\revision_v3\build_v3_tables.py:72: SyntaxWarning: invalid escape sequence '\_'
+  supplement=[r"\section{New Implementation and Evidence Audit}","The new sources and manifests are in revision\_v3. The reference and all development attempts remain available. Warmups and diagnostic oracles are excluded from production timings. Cold protected-owner inputs, actual per-party state shares and external private query shares are distinct interfaces."]
+V3_DRAFT_TABLES_GENERATED; not a submission-ready package
+V3_RESPONSE_WORKING_DRAFT_UPDATED; pending statements must be cleared before finalization
+DRAFT_PDF_RENDERED main
+DRAFT_PDF_RENDERED supplement
+DRAFT_PDF_RENDERED response_to_reviewers
+ALL_DRAFT_PDFS_RENDERED; visual review and final network integration remain

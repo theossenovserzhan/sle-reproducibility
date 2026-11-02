@@ -1,0 +1,10 @@
+{
+  "name": "valid-compacted full-128-bit oblivious sort/merge",
+  "public_valid_count": "L=N*(D/B), exact for a valid current index",
+  "compaction": "stable oblivious one-bit radix sort on 1-valid; count checked privately",
+  "translation": "stable full-128-bit radix sort of N+L rows; segmented doubling join",
+  "restoration": "perfect-permutation reveal_sort both within join and to original padded slots",
+  "padding": "unchanged public capacity and all M slots restored; invalid entries freshly randomized",
+  "core": "same masking, template binding, fingerprints, logical commit, shuffle and refresh as main circuit",
+  "primary_circuit_sha256": "bf5086b808432fa86978fe82e0e6042e5144c060f0af162747a75b3c0c648401"
+}

@@ -1,0 +1,53 @@
+{"argv": ["/usr/bin/time", "-v", "bash", "Scripts/shamir.sh", "msle_lazy_epoch_system-8-512-4-8-3-0-0-1-0-8-0-1", "--prime", "340282366920938463463374607431764574209"], "cwd": "/home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8"}
+Running /home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8/Scripts/../shamir-party.x 0 msle_lazy_epoch_system-8-512-4-8-3-0-0-1-0-8-0-1 --prime 340282366920938463463374607431764574209 -T 2 -pn 12822 -h localhost -N 5
+Running /home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8/Scripts/../shamir-party.x 1 msle_lazy_epoch_system-8-512-4-8-3-0-0-1-0-8-0-1 --prime 340282366920938463463374607431764574209 -T 2 -pn 12822 -h localhost -N 5
+Running /home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8/Scripts/../shamir-party.x 2 msle_lazy_epoch_system-8-512-4-8-3-0-0-1-0-8-0-1 --prime 340282366920938463463374607431764574209 -T 2 -pn 12822 -h localhost -N 5
+Running /home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8/Scripts/../shamir-party.x 3 msle_lazy_epoch_system-8-512-4-8-3-0-0-1-0-8-0-1 --prime 340282366920938463463374607431764574209 -T 2 -pn 12822 -h localhost -N 5
+Running /home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8/Scripts/../shamir-party.x 4 msle_lazy_epoch_system-8-512-4-8-3-0-0-1-0-8-0-1 --prime 340282366920938463463374607431764574209 -T 2 -pn 12822 -h localhost -N 5
+Trying to run 128-bit computation (128-bit representation)
+Starting timer 30 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 6.5683e-05
+Starting timer 20 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 1.5846e-05
+Starting timer 23 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 3.917e-06
+Stopped timer 23 at 57.5291 (990.576 MB, 22472 rounds, 52.1602 CPU seconds)
+Starting timer 21 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 5.245e-06
+Stopped timer 21 at 1.00829 (1.91847 MB, 1961 rounds, 0.96719 CPU seconds)
+Starting timer 22 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 4.718e-06
+Stopped timer 22 at 0.237351 (0.307732 MB, 484 rounds, 0.228696 CPU seconds)
+Stopped timer 20 at 58.775 (992.803 MB, 24917 rounds, 53.3562 CPU seconds)
+Stopped timer 30 at 59.1079 (993.984 MB, 25536 rounds, 53.8076 CPU seconds)
+MSLE_SYSTEM n=8 d=512 mode=3 protection=0 transition=0 maintenance=1 fault=0 relation=1 accepted=1 identity=24 state_ok=1 query_ok=1
+Significant amount of unused dabits of Shamir gfp distorting the benchmark. For more accurate benchmarks, consider reducing the batch size with --batch-size.
+The following benchmarks are including preprocessing (offline phase).
+Time = 59.1164 seconds 
+Time20 = 58.775 seconds (992.803 MB, 24917 rounds, 53.3562 CPU seconds)
+Time21 = 1.00829 seconds (1.91847 MB, 1961 rounds, 0.96719 CPU seconds)
+Time22 = 0.237351 seconds (0.307732 MB, 484 rounds, 0.228696 CPU seconds)
+Time23 = 57.5291 seconds (990.576 MB, 22472 rounds, 52.1602 CPU seconds)
+Time30 = 59.1079 seconds (993.984 MB, 25536 rounds, 53.8076 CPU seconds)
+Data sent = 993.985 MB in ~25538 rounds (party 0 only; use '-v' for more details)
+Global data sent = 4965.28 MB (all parties)
+This virtual machine was compiled with GCC. Recompile with 'CXX = clang++' in 'CONFIG.mine' for optimal performance.
+This protocol doesn't scale well with the number of parties, have you considered using ATLAS instead?
+	Command being timed: "bash Scripts/shamir.sh msle_lazy_epoch_system-8-512-4-8-3-0-0-1-0-8-0-1 --prime 340282366920938463463374607431764574209"
+	User time (seconds): 190.85
+	System time (seconds): 81.63
+	Percent of CPU this job got: 457%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:59.57
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 39812
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 54554
+	Voluntary context switches: 1645685
+	Involuntary context switches: 182374
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 0
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

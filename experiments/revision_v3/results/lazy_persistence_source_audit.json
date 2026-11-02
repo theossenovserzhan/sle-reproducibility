@@ -1,0 +1,8 @@
+{
+  "virtual_source_sha256": "0684086af4d2d5a79e4f80f30615fb65c7444f296398ea00cca5d4f413c7d8c0",
+  "persisted_source_sha256": "af896119430fcda5d64cfb38a661b447cac5f61edb35cbfdddb07c58bffa1e42",
+  "driver_sha256": "1fb3269c22f4352d07000db8cfe297e2ba8b681959caa79411ffc7bd8a221802",
+  "input_block_from_frozen_share_loader": true,
+  "helpers_and_transition_query_tail_identical_to_virtual_source": true,
+  "semantic_change": "Stable secret handles; independent clear oracle derives Pi(key,handle) for masks; actual own-share-file load remains unchanged"
+}

@@ -1,0 +1,29 @@
+{"argv": ["python3", "compile.py", "-P", "340282366920938463463374607431764574209", "-b", "64", "-M", "msle_lazy_epoch_system", "32", "512", "4", "16", "1", "0", "0", "1", "0", "0", "20", "0"], "cwd": "/home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8"}
+WARNING: --prime/-P activates code that usually isn't the most efficient variant. Consider using --field/-F and set the prime only during the actual computation.
+Default bit length for compilation: 126
+Default security parameter for compilation: 40
+Compiling file Programs/Source/msle_lazy_epoch_system.mpc
+Changed bit length for comparisons etc. to 64
+Changed statistical security for comparison etc. to 80
+Compiled 100000 lines at Fri Oct 30 10:50:35 2026
+Writing to Programs/Schedules/msle_lazy_epoch_system-32-512-4-16-1-0-0-1-0-0-20-0.sch
+Writing to Programs/Bytecode/msle_lazy_epoch_system-32-512-4-16-1-0-0-1-0-0-20-0-0.bc
+Hash: 00afd82037ecddecf9f10a4b5c16348f5a79dd2e76dd5b3b5806a0abd0ef82b8
+Program requires at most:
+      622812 integer inputs from player 0
+      540796 integer inputs from player 1
+       82043 integer inputs from player 2
+       82043 integer inputs from player 3
+       82043 integer inputs from player 4
+     1447557 integer triples
+      396923 integer simple multiplications
+           6 integer randoms
+         523 integer opens
+         inf bit inverses
+           1 integer shuffle generations
+           1 integer shuffle applications
+         512 strict edabits of length 128
+      325632 bit triples
+       65536 integer dabits
+       16384 bit opens
+       11607 virtual machine rounds

@@ -1,0 +1,26 @@
+"""Trusted external capture fixture gives each party one Shamir input share.
+
+Args: N D B C PROTECTION. No computing party receives the plaintext state.
+Private re-sharing + interpolation installs a fresh sharing in persistence.
+"""
+from Compiler.library import runtime_error_if
+N,D,B,C,PROTECTION=map(int,program.args[1:])
+assert N>=2 and D%64==0
+KEY_COUNT=1 if PROTECTION else 9
+M=(D//B)*(2**B)*C
+STATE_SIZE=N*(D+3)+2*M+KEY_COUNT
+program.set_bit_length(64)
+program.set_security(80)
+program.memory_budget=512
+start_timer(30)
+state=sint.Array(STATE_SIZE)
+state.assign_all(0)
+# Lagrange coefficients at zero for x=1,...,5. The capture fixture samples
+# degree-two polynomials; these five-point coefficients also reconstruct them.
+for party,weight in enumerate((5,-10,10,-5,1)):
+    client_shares=sint.Array(STATE_SIZE)
+    client_shares.input_from(party)
+    state.assign_vector(state.get_vector()+weight*client_shares.get_vector())
+state.write_to_file(0)
+stop_timer(30)
+print_ln('MSLE_SHARE_ENROLL n=%s d=%s protection=%s fields=%s',N,D,PROTECTION,STATE_SIZE)

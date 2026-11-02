@@ -1,0 +1,9 @@
+{
+  "finished": false,
+  "started_utc": "2026-10-30T05:01:05Z",
+  "current": "deferred_until_method_improvement_gate",
+  "completed": [],
+  "last_error": null,
+  "queue_active": false,
+  "reason": "User requests prioritizing method improvement. Reorder larger baseline measurements after the next algorithm-design/profile gate; no completed results removed."
+}

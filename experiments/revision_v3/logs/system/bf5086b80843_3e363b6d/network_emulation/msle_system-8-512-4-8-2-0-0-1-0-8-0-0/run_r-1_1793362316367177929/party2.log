@@ -1,0 +1,43 @@
+Trying to run 128-bit computation (128-bit representation)
+Starting timer 30 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 2.0049e-05
+Starting timer 20 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 1.7713e-05
+Starting timer 21 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 1.3766e-05
+Stopped timer 21 at 4.64959 (2.10284 MB, 1799 rounds, 1.35628 CPU seconds)
+Starting timer 22 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 1.4489e-05
+Stopped timer 22 at 0.412044 (0.278881 MB, 161 rounds, 0.130083 CPU seconds)
+Stopped timer 20 at 5.06762 (2.38172 MB, 1960 rounds, 1.48855 CPU seconds)
+Stopped timer 30 at 5.09041 (2.38201 MB, 2036 rounds, 1.49852 CPU seconds)
+Significant amount of unused dabits of Shamir gfp distorting the benchmark. For more accurate benchmarks, consider reducing the batch size with --batch-size.
+The following benchmarks are including preprocessing (offline phase).
+Time = 5.15676 seconds 
+Time20 = 5.06762 seconds (2.38172 MB, 1960 rounds, 1.48855 CPU seconds)
+Time21 = 4.64959 seconds (2.10284 MB, 1799 rounds, 1.35628 CPU seconds)
+Time22 = 0.412044 seconds (0.278881 MB, 161 rounds, 0.130083 CPU seconds)
+Time30 = 5.09041 seconds (2.38201 MB, 2036 rounds, 1.49852 CPU seconds)
+Data sent = 2.38209 MB in ~2038 rounds (party 2 only; use '-v' for more details)
+Global data sent = 10.9011 MB (all parties)
+This virtual machine was compiled with GCC. Recompile with 'CXX = clang++' in 'CONFIG.mine' for optimal performance.
+This protocol doesn't scale well with the number of parties, have you considered using ATLAS instead?
+	Command being timed: "/home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8/shamir-party.x 2 msle_system-8-512-4-8-2-0-0-1-0-8-0-0 --prime 340282366920938463463374607431764574209 -N 5 -T 2 -ip /mnt/c/Users/ossen/OneDrive/Documents/SmartCity/TBIOM_revision_experiments_2026-10-29/revision_v3/logs/system/bf5086b80843_3e363b6d/network_emulation/msle_system-8-512-4-8-2-0-0-1-0-8-0-0/run_r-1_1793362316367177929/hosts_P2.txt -pn 47531"
+	User time (seconds): 0.66
+	System time (seconds): 0.98
+	Percent of CPU this job got: 29%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:05.64
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 27720
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 5538
+	Voluntary context switches: 28788
+	Involuntary context switches: 741
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 0
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

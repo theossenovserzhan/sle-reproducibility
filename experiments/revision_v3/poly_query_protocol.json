@@ -1,0 +1,17 @@
+{
+  "date": "2026-10-30",
+  "status": "frozen before implementation measurements",
+  "motivation": "Replace repeated full-field Fermat equality tests in the private fixed-scan index query with exact membership indicators on the known valid locator support",
+  "precondition": "Valid starting state: N distinct database locators; each valid index occurrence equals one of them; invalid occurrences have zero slot flag. Probe coordinates are bits, so each block has exactly one secret one-hot bucket flag. The existing state invariant and trusted binary query interface establish these conditions.",
+  "identity": "L_j(x)=product_{i!=j}(x-h_i)/product_{i!=j}(h_j-h_i). On the valid locator set, this is exactly1 at h_j and0 at other h_i. Invalid-slot factors are suppressed by the zero flag.",
+  "algorithm": "Compute nonzero denominator inverses once per query by exact exponentp-2. Use a balanced product tree and its complementary products for all leave-one-out products on public-size slot batches. Reduce factors1-slot_flag*L_j(x) per database row.",
+  "variants": ["full padded index, polynomial membership", "secretly select the query bucket in every block, then polynomial membership on BLOCKS*C slots", "compose bucket selection with the virtual-epoch transition"],
+  "bucket_selection": "Read every original padded slot; choose one bucket per block by secret one-hot flags. Public-size oblivious arithmetic; no access-pattern or candidate-count opening.",
+  "correctness": "Compare complete candidate flags with the original exact field-equality implementation inside DIAG, plus independent Hamming/label oracle. Include synthetic no-match, all-match/tie and selective-match fixtures as correctness-only tests, and real frozen CelebA roots for performance.",
+  "key_comparison": "N8 D512; eager original vs full-index polynomial vs bucket-selected polynomial; one warmup and five repetitions in balanced order",
+  "scale": "Bucket-selected variant N32/N128 D512, one warmup/three repetitions. These are measured scale points without a baseline speedup claim at those sizes.",
+  "batch_slots": 256,
+  "security_boundary": "Same passive five-party Shamir and hidden index/locators. No new openings. Distinct-handle and valid-state preconditions must be explicit; this is not malicious-input validation.",
+  "claim": "Lagrange interpolation/product trees are established mathematics. Any novelty claim must concern the useful system contract and evaluation, not invention of polynomial membership.",
+  "scheduling": "After current AES series, before CPU-heavy frontend work, using the shared runtime lock"
+}

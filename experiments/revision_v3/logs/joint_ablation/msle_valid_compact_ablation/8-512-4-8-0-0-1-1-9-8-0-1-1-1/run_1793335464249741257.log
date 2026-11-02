@@ -1,0 +1,69 @@
+{"argv": ["/usr/bin/time", "-v", "bash", "Scripts/shamir.sh", "msle_valid_compact_ablation-8-512-4-8-0-0-1-1-9-8-0-1-1-1", "--prime", "340282366920938463463374607431764574209"], "cwd": "/home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8"}
+Running /home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8/Scripts/../shamir-party.x 0 msle_valid_compact_ablation-8-512-4-8-0-0-1-1-9-8-0-1-1-1 --prime 340282366920938463463374607431764574209 -T 2 -pn 18482 -h localhost -N 5
+Running /home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8/Scripts/../shamir-party.x 1 msle_valid_compact_ablation-8-512-4-8-0-0-1-1-9-8-0-1-1-1 --prime 340282366920938463463374607431764574209 -T 2 -pn 18482 -h localhost -N 5
+Running /home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8/Scripts/../shamir-party.x 2 msle_valid_compact_ablation-8-512-4-8-0-0-1-1-9-8-0-1-1-1 --prime 340282366920938463463374607431764574209 -T 2 -pn 18482 -h localhost -N 5
+Running /home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8/Scripts/../shamir-party.x 3 msle_valid_compact_ablation-8-512-4-8-0-0-1-1-9-8-0-1-1-1 --prime 340282366920938463463374607431764574209 -T 2 -pn 18482 -h localhost -N 5
+Running /home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8/Scripts/../shamir-party.x 4 msle_valid_compact_ablation-8-512-4-8-0-0-1-1-9-8-0-1-1-1 --prime 340282366920938463463374607431764574209 -T 2 -pn 18482 -h localhost -N 5
+Trying to run 128-bit computation (128-bit representation)
+Starting timer 30 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 8.121e-06
+Starting timer 11 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 1.2665e-05
+Starting timer 12 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 3.736e-06
+Stopped timer 12 at 7.43665 (234.712 MB, 1402 rounds, 6.29927 CPU seconds)
+Starting timer 13 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 6.476e-06
+Stopped timer 13 at 1.36522 (3.31031 MB, 3325 rounds, 1.32118 CPU seconds)
+Starting timer 14 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 2.7171e-05
+Stopped timer 14 at 0.218765 (2.5712 MB, 544 rounds, 0.214768 CPU seconds)
+Starting timer 15 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 3.018e-06
+Stopped timer 15 at 3.10439 (125.958 MB, 750 rounds, 2.77085 CPU seconds)
+Starting timer 16 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 3.854e-06
+Stopped timer 16 at 0.501505 (2.02192 MB, 2909 rounds, 0.361127 CPU seconds)
+Stopped timer 11 at 14.2167 (369.82 MB, 13391 rounds, 12.5203 CPU seconds)
+Starting timer 20 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 2.321e-06
+Starting timer 21 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 1.41e-06
+Stopped timer 21 at 0.433565 (1.25786 MB, 1524 rounds, 0.464011 CPU seconds)
+Starting timer 22 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 3.41e-06
+Stopped timer 22 at 0.116503 (0.288822 MB, 426 rounds, 0.125212 CPU seconds)
+Stopped timer 20 at 0.550173 (1.54668 MB, 1950 rounds, 0.589325 CPU seconds)
+Stopped timer 30 at 14.9366 (372.68 MB, 16026 rounds, 13.3692 CPU seconds)
+MSLE_SYSTEM n=8 d=512 mode=0 protection=0 transition=1 maintenance=1 fault=9 relation=0 accepted=1 identity=24 state_ok=1 query_ok=1
+MSLE_COMPONENTS template_ok=0 index_ok=1 check_template=1 check_index=1
+Significant amount of unused dabits of Shamir gfp distorting the benchmark. For more accurate benchmarks, consider reducing the batch size with --batch-size.
+The following benchmarks are including preprocessing (offline phase).
+Time = 14.9417 seconds 
+Time11 = 14.2167 seconds (369.82 MB, 13391 rounds, 12.5203 CPU seconds)
+Time12 = 7.43665 seconds (234.712 MB, 1402 rounds, 6.29927 CPU seconds)
+Time13 = 1.36522 seconds (3.31031 MB, 3325 rounds, 1.32118 CPU seconds)
+Time14 = 0.218765 seconds (2.5712 MB, 544 rounds, 0.214768 CPU seconds)
+Time15 = 3.10439 seconds (125.958 MB, 750 rounds, 2.77085 CPU seconds)
+Time16 = 0.501505 seconds (2.02192 MB, 2909 rounds, 0.361127 CPU seconds)
+Time20 = 0.550173 seconds (1.54668 MB, 1950 rounds, 0.589325 CPU seconds)
+Time21 = 0.433565 seconds (1.25786 MB, 1524 rounds, 0.464011 CPU seconds)
+Time22 = 0.116503 seconds (0.288822 MB, 426 rounds, 0.125212 CPU seconds)
+Time30 = 14.9366 seconds (372.68 MB, 16026 rounds, 13.3692 CPU seconds)
+Data sent = 372.681 MB in ~16028 rounds (party 0 only; rounds counted double due to multi-threading; use '-v' for more details)
+Global data sent = 1806.18 MB (all parties)
+This virtual machine was compiled with GCC. Recompile with 'CXX = clang++' in 'CONFIG.mine' for optimal performance.
+This protocol doesn't scale well with the number of parties, have you considered using ATLAS instead?
+	Command being timed: "bash Scripts/shamir.sh msle_valid_compact_ablation-8-512-4-8-0-0-1-1-9-8-0-1-1-1 --prime 340282366920938463463374607431764574209"
+	User time (seconds): 48.63
+	System time (seconds): 18.46
+	Percent of CPU this job got: 436%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:15.35
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 92852
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 136286
+	Voluntary context switches: 827574
+	Involuntary context switches: 93508
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 0
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

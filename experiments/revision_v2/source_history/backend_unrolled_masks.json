@@ -1,0 +1,12 @@
+{
+  "vector_batch_locators": 4096,
+  "sort_compiler_budget": 64,
+  "compiler_memory_budget": 512,
+  "sort_worker_threads": 1,
+  "access_backend": "secret-shared fixed scan; no data-dependent addresses",
+  "row_metadata": "secret shuffle of complete DB rows, labels/tie tags included; all persistent shares refreshed",
+  "indexed_reference": "fixed scan of all padded slots for every record, exact field equality, secret OR deduplication and secret certified fallback",
+  "baseline": "stable full-128-bit radix sort/merge; no truncated sort keys; no quadratic pointer join as main comparator",
+  "public_capacity_policy_b4": "min(N,8+ceil(N/4)); reject enrollment if insufficient",
+  "limitations": ["all five parties on one host for measurement", "passive backend", "logical atomic selection is separate from durable crash-atomic epoch publication"]
+}

@@ -1,0 +1,45 @@
+Trying to run 128-bit computation (128-bit representation)
+Starting timer 30 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 2.3354e-05
+Starting timer 20 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 1.029e-05
+Starting timer 21 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 8.465e-06
+Stopped timer 21 at 23.1351 (1.89372 MB, 1961 rounds, 1.15185 CPU seconds)
+Starting timer 22 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 1.2156e-05
+Stopped timer 22 at 1.96013 (0.280228 MB, 161 rounds, 0.110612 CPU seconds)
+Stopped timer 20 at 25.0981 (2.17394 MB, 2122 rounds, 1.26283 CPU seconds)
+Stopped timer 30 at 25.1484 (2.30607 MB, 2198 rounds, 1.28325 CPU seconds)
+MSLE_SYSTEM n=8 d=512 mode=2 protection=0 transition=0 maintenance=1 fault=0 relation=1 accepted=1 identity=24 state_ok=1 query_ok=1
+Significant amount of unused dabits of Shamir gfp distorting the benchmark. For more accurate benchmarks, consider reducing the batch size with --batch-size.
+The following benchmarks are including preprocessing (offline phase).
+Time = 25.2095 seconds 
+Time20 = 25.0981 seconds (2.17394 MB, 2122 rounds, 1.26283 CPU seconds)
+Time21 = 23.1351 seconds (1.89372 MB, 1961 rounds, 1.15185 CPU seconds)
+Time22 = 1.96013 seconds (0.280228 MB, 161 rounds, 0.110612 CPU seconds)
+Time30 = 25.1484 seconds (2.30607 MB, 2198 rounds, 1.28325 CPU seconds)
+Data sent = 2.30639 MB in ~2200 rounds (party 0 only; use '-v' for more details)
+Global data sent = 11.1085 MB (all parties)
+Communication time accounts for more than 95 percent of total time (25.0273 seconds). This might be because of the computation and the network setting, but it could also be product of the optimization trade-off during compilation. See https://mp-spdz.readthedocs.io/en/latest/troubleshooting.html#high-number-of-rounds-or-slow-wan-execution
+This virtual machine was compiled with GCC. Recompile with 'CXX = clang++' in 'CONFIG.mine' for optimal performance.
+This protocol doesn't scale well with the number of parties, have you considered using ATLAS instead?
+	Command being timed: "/home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8/shamir-party.x 0 msle_lazy_epoch_system-8-512-4-8-2-0-0-1-0-8-0-0 --prime 340282366920938463463374607431764574209 -N 5 -T 2 -ip /mnt/c/Users/ossen/OneDrive/Documents/SmartCity/TBIOM_revision_experiments_2026-10-29/revision_v3/logs/system/0684086af4d2_3e363b6d/network_emulation/msle_lazy_epoch_system-8-512-4-8-2-0-0-1-0-8-0-0/run_r0_1793362631960922619/hosts_P0.txt -pn 52703"
+	User time (seconds): 0.62
+	System time (seconds): 0.77
+	Percent of CPU this job got: 5%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:26.39
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 28600
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 5713
+	Voluntary context switches: 31683
+	Involuntary context switches: 1157
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 0
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

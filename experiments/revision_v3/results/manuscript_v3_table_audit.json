@@ -1,0 +1,221 @@
+{
+  "working_draft_only": true,
+  "corrected_open_set_used": true,
+  "scale_cells": [
+    {
+      "n": 1024,
+      "mode": 1,
+      "repetitions": 3
+    },
+    {
+      "n": 1024,
+      "mode": 1,
+      "repetitions": 3
+    },
+    {
+      "n": 1024,
+      "mode": 2,
+      "repetitions": 3
+    },
+    {
+      "n": 1024,
+      "mode": 2,
+      "repetitions": 3
+    },
+    {
+      "n": 512,
+      "mode": 1,
+      "repetitions": 3
+    },
+    {
+      "n": 512,
+      "mode": 1,
+      "repetitions": 3
+    },
+    {
+      "n": 512,
+      "mode": 2,
+      "repetitions": 3
+    },
+    {
+      "n": 512,
+      "mode": 2,
+      "repetitions": 3
+    }
+  ],
+  "statuses": {
+    "aes_baseline": {
+      "finished": true,
+      "correctness_passed": true,
+      "current": null,
+      "last_error": null,
+      "completed": [
+        {
+          "n": 2,
+          "transition": 0
+        },
+        {
+          "n": 8,
+          "transition": 0
+        },
+        {
+          "n": 32,
+          "transition": 0
+        },
+        {
+          "n": 2,
+          "transition": 1
+        },
+        {
+          "n": 8,
+          "transition": 1
+        },
+        {
+          "n": 8,
+          "representation": "stable"
+        },
+        {
+          "n": 32,
+          "representation": "stable"
+        }
+      ],
+      "preceding_frontend_error": null
+    },
+    "poly_query": {
+      "finished": true,
+      "correctness_passed": true,
+      "current": null,
+      "last_error": null,
+      "preceding_aes_error": null
+    },
+    "vector_query": {
+      "finished": true,
+      "correctness_passed": true,
+      "current": null,
+      "last_error": null,
+      "preceding_poly_error": null
+    },
+    "sface": {
+      "finished": true,
+      "current": null,
+      "last_error": null,
+      "resume_from_frozen_features": true,
+      "preceding_mpc_error": null
+    },
+    "projection_facenet": {
+      "frontend": "facenet",
+      "finished": true,
+      "current": null,
+      "last_error": null
+    },
+    "projection_sface": {
+      "frontend": "sface",
+      "finished": true,
+      "current": null,
+      "last_error": null
+    },
+    "lazy_persistence": {
+      "finished": true,
+      "current": null,
+      "correctness_passed": true,
+      "last_error": null,
+      "preceding_projection_error": null
+    },
+    "shared_query": {
+      "finished": true,
+      "correctness_passed": true,
+      "current": null,
+      "last_error": null
+    },
+    "virtual_scale": {
+      "finished": true,
+      "current": null,
+      "completed": [
+        512,
+        1024
+      ],
+      "last_error": null
+    },
+    "private_client": {
+      "finished": true,
+      "correctness_passed": true,
+      "current": null,
+      "last_error": null,
+      "preceding_scale_error": null
+    },
+    "calibration_repair": {
+      "finished": true,
+      "correctness_passed": true,
+      "current": null,
+      "last_error": null,
+      "completed": [
+        {
+          "study": "binary_frontend",
+          "script_sha256": "da3b195d3176c7bcedc6f4d870519d3a3aae837c1e5ba4568bb6ac8cf53b2419",
+          "numeric_helper_sha256": "d71afee57a50f96b2fdf796df97dfa899a9da2029b13649b1832ac35174ce086",
+          "protocol_sha256": "1f10df8e9a319002ad36415762d68655f0bac33d1fac7ff519414195510b6928",
+          "frozen_model_sha256": "be388d139a1cc67a5f862dd867b24ea29c15b47672f8994cf3836cb3f2bf4a84",
+          "original_summary_sha256": "04fe19981706c3a2b345f930f0b8da0225063f54acafb3ae47cb01ee72af58b7",
+          "closed_set_all_flags_unchanged": true,
+          "original_float_and_sign_open_set_all_flags_reproduced_exactly": true,
+          "all_calibration_accept_counts_within_allowed": true,
+          "cause": "NumPy2 weak scalar promotion rounded float64 nextafter cutoff when compared to float32 binary scores; convert exact integer scores to float64 before thresholding",
+          "original_attempts_retained": "results/binary_frontend",
+          "changed_unknown_flags": 664,
+          "changed_known_accepted_flags": 7479
+        },
+        {
+          "study": "projection_facenet",
+          "script_sha256": "da3b195d3176c7bcedc6f4d870519d3a3aae837c1e5ba4568bb6ac8cf53b2419",
+          "numeric_helper_sha256": "d71afee57a50f96b2fdf796df97dfa899a9da2029b13649b1832ac35174ce086",
+          "protocol_sha256": "1f10df8e9a319002ad36415762d68655f0bac33d1fac7ff519414195510b6928",
+          "frozen_model_sha256": "bb445413e70a580d4e37bb3a04f791adac2ca74cff3f0ddab6b7d319b8b9d40c",
+          "original_summary_sha256": "d7415f8b2afedb866a52986c531430e156c164a1fe5d81176b549c3d09668ed5",
+          "closed_set_all_flags_unchanged": true,
+          "original_float_and_sign_open_set_all_flags_reproduced_exactly": true,
+          "all_calibration_accept_counts_within_allowed": true,
+          "cause": "NumPy2 weak scalar promotion rounded float64 nextafter cutoff when compared to float32 binary scores; convert exact integer scores to float64 before thresholding",
+          "original_attempts_retained": "results/projection_facenet",
+          "changed_unknown_flags": 1141,
+          "changed_known_accepted_flags": 12908
+        },
+        {
+          "study": "projection_sface",
+          "script_sha256": "da3b195d3176c7bcedc6f4d870519d3a3aae837c1e5ba4568bb6ac8cf53b2419",
+          "numeric_helper_sha256": "d71afee57a50f96b2fdf796df97dfa899a9da2029b13649b1832ac35174ce086",
+          "protocol_sha256": "1f10df8e9a319002ad36415762d68655f0bac33d1fac7ff519414195510b6928",
+          "frozen_model_sha256": "f9baeddaaa2b5f282a7458785c60cc672cb5e4967e2208eb251dd62d708e7cb1",
+          "original_summary_sha256": "b34e6d7a2e616e1e8e123cfd1dede4c9e96831ba455bf574caf103b01aa071a0",
+          "closed_set_all_flags_unchanged": true,
+          "original_float_and_sign_open_set_all_flags_reproduced_exactly": true,
+          "all_calibration_accept_counts_within_allowed": true,
+          "cause": "NumPy2 weak scalar promotion rounded float64 nextafter cutoff when compared to float32 binary scores; convert exact integer scores to float64 before thresholding",
+          "original_attempts_retained": "results/projection_sface",
+          "changed_unknown_flags": 3337,
+          "changed_known_accepted_flags": 12401
+        }
+      ],
+      "preceding_private_client_error": null,
+      "numeric_self_test": {
+        "strict_boundary": true,
+        "all_tied_boundary": true,
+        "independent_hamming_matrix": true,
+        "numpy": "2.4.3"
+      }
+    },
+    "frontend_confirmation": {
+      "finished": true,
+      "current": null,
+      "last_error": null
+    },
+    "network": {
+      "finished": true,
+      "correctness_passed": true,
+      "current": null,
+      "last_error": null,
+      "preceding_frontend_error": null,
+      "preceding_pdf_error": null,
+      "preceding_calibration_error": null
+    }
+  }
+}

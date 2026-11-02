@@ -1,0 +1,45 @@
+{"argv": ["python3", "compile.py", "-P", "340282366920938463463374607431764574209", "-b", "64", "-M", "msle_system", "512", "512", "4", "136", "2", "0", "0", "1", "0", "0", "229", "0"], "cwd": "/home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8"}
+WARNING: --prime/-P activates code that usually isn't the most efficient variant. Consider using --field/-F and set the prime only during the actual computation.
+Default bit length for compilation: 126
+Default security parameter for compilation: 40
+Compiling file Programs/Source/msle_system.mpc
+Changed bit length for comparisons etc. to 64
+Changed statistical security for comparison etc. to 80
+Writing to Programs/Bytecode/msle_system-512-512-4-136-2-0-0-1-0-0-229-0-EQZ(256)_64-1.bc
+Writing to Programs/Bytecode/msle_system-512-512-4-136-2-0-0-1-0-0-229-0-LTZ(512)_65-3.bc
+Writing to Programs/Bytecode/msle_system-512-512-4-136-2-0-0-1-0-0-229-0-EQZ(128)_64-5.bc
+Writing to Programs/Bytecode/msle_system-512-512-4-136-2-0-0-1-0-0-229-0-LTZ(256)_65-6.bc
+Writing to Programs/Bytecode/msle_system-512-512-4-136-2-0-0-1-0-0-229-0-EQZ(64)_64-7.bc
+Writing to Programs/Bytecode/msle_system-512-512-4-136-2-0-0-1-0-0-229-0-LTZ(128)_65-8.bc
+Writing to Programs/Bytecode/msle_system-512-512-4-136-2-0-0-1-0-0-229-0-EQZ(32)_64-9.bc
+Writing to Programs/Bytecode/msle_system-512-512-4-136-2-0-0-1-0-0-229-0-LTZ(64)_65-10.bc
+Writing to Programs/Bytecode/msle_system-512-512-4-136-2-0-0-1-0-0-229-0-EQZ(16)_64-11.bc
+Writing to Programs/Bytecode/msle_system-512-512-4-136-2-0-0-1-0-0-229-0-LTZ(32)_65-12.bc
+Writing to Programs/Bytecode/msle_system-512-512-4-136-2-0-0-1-0-0-229-0-EQZ(8)_64-13.bc
+Writing to Programs/Bytecode/msle_system-512-512-4-136-2-0-0-1-0-0-229-0-LTZ(16)_65-14.bc
+Writing to Programs/Bytecode/msle_system-512-512-4-136-2-0-0-1-0-0-229-0-EQZ(4)_64-15.bc
+Writing to Programs/Bytecode/msle_system-512-512-4-136-2-0-0-1-0-0-229-0-LTZ(8)_65-16.bc
+Compiled 100000 lines at Fri Oct 30 15:48:26 2026
+Writing to Programs/Bytecode/msle_system-512-512-4-136-2-0-0-1-0-0-229-0-EQZ(2)_64-17.bc
+Writing to Programs/Bytecode/msle_system-512-512-4-136-2-0-0-1-0-0-229-0-LTZ(4)_65-18.bc
+Writing to Programs/Bytecode/msle_system-512-512-4-136-2-0-0-1-0-0-229-0-EQZ(1)_64-19.bc
+Writing to Programs/Bytecode/msle_system-512-512-4-136-2-0-0-1-0-0-229-0-LTZ(2)_65-20.bc
+Writing to Programs/Bytecode/msle_system-512-512-4-136-2-0-0-1-0-0-229-0-LTZ(1)_65-21.bc
+Writing to Programs/Schedules/msle_system-512-512-4-136-2-0-0-1-0-0-229-0.sch
+Writing to Programs/Bytecode/msle_system-512-512-4-136-2-0-0-1-0-0-229-0-0.bc
+Hash: 7f476f8133319634afef0001b506dc1d394fe51a33599f32dd747aef619e5283
+Program requires at most:
+      263689 integer inputs from player 0
+         522 integer inputs from player 1
+           9 integer inputs from player 2
+           9 integer inputs from player 3
+           9 integer inputs from player 4
+     1189885 integer triples
+     1189885 integer simple multiplications
+        5630 strict edabits of length 128
+        5635 integer opens
+     3115793 bit triples
+      525822 integer dabits
+       65976 bit opens
+        1023 strict edabits of length 1
+       16555 virtual machine rounds

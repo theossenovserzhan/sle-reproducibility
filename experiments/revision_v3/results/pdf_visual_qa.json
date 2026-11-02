@@ -1,0 +1,168 @@
+{
+  "reviewed_utc": "2026-10-30T12:43:30.255839+00:00",
+  "all_pages_reviewed": true,
+  "render_dpi": 110,
+  "render_folder": "tmp/pdfs/final_qa",
+  "method": "Every current rendered page inspected visually; text/table/formula boundaries, figure labels, references and pagination reviewed. No clipping, overlap or unresolved citation placeholders.",
+  "pdfs": {
+    "main": {
+      "sha256": "8def2d93aa2223aad596ed80f88c39947e3f100df3e976242d69601a30208140",
+      "pages": 9,
+      "visually_reviewed_pages": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "rendered_pages": [
+        {
+          "page": 1,
+          "png_sha256": "d4feea2c55a7b6ed8ab854b15908aa2dae24ef90e94fbbacd9219f3bafe63b05"
+        },
+        {
+          "page": 2,
+          "png_sha256": "d4e1143991983681e86b7c280a761d722da911405ca63f7222cf28b47b7a4a41"
+        },
+        {
+          "page": 3,
+          "png_sha256": "7629751c0eefa2aa6d09ac868076083154e2740befefa0e971058f1e8721d418"
+        },
+        {
+          "page": 4,
+          "png_sha256": "38aba71409225fa23fb99af097d4f34a3372a9407073131d574936b944946af6"
+        },
+        {
+          "page": 5,
+          "png_sha256": "7e3c626278de92c3c46e816973eaef6d06f3278d72aa217401700689cf1d3d5c"
+        },
+        {
+          "page": 6,
+          "png_sha256": "b33483d5b36cf5d5a19a20a65a2f5a955e0a26b78aee4f09e039498c176adcfc"
+        },
+        {
+          "page": 7,
+          "png_sha256": "45ddba813e9d0630644fc93a56726516e1c8eefc3a3217468d1825bed2eb8ace"
+        },
+        {
+          "page": 8,
+          "png_sha256": "100852c5e708a0924cab0c634bb57c413348fdb0e17e07dc744ec5106d5790d6"
+        },
+        {
+          "page": 9,
+          "png_sha256": "c4eb26fd1f8f0fcf21671e51a06366dda0946eaf06bec82cb8bfe341705fc909"
+        }
+      ]
+    },
+    "supplement": {
+      "sha256": "25217b421229a433bd010bec9be76c677482aa03e932a5352ae43eeb292a43de",
+      "pages": 12,
+      "visually_reviewed_pages": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "rendered_pages": [
+        {
+          "page": 1,
+          "png_sha256": "5048329b5556a18a8269992f70ea8d0bf60c13fe066ce922a92cddf3781473a9"
+        },
+        {
+          "page": 2,
+          "png_sha256": "df09b6e0832a97f85fcb60b289c947c1b6b506a0eac1df26ae1e9f2fd0d4f999"
+        },
+        {
+          "page": 3,
+          "png_sha256": "5c8c44920d22c07d3d8ee004350191c6fcd16c68414a6fcacfe3632e3d9f37a0"
+        },
+        {
+          "page": 4,
+          "png_sha256": "6300b532a8bab41a220eee50b373ade0c4b15c9559ea701f4cfe7d0c7bb721d1"
+        },
+        {
+          "page": 5,
+          "png_sha256": "0911bb10d5cafe0ccca765ee847efe4fc219d7be25fc6a58839c18428d81489e"
+        },
+        {
+          "page": 6,
+          "png_sha256": "f657f534115dcc2f73a7c1d67563ad14d47e4d703b0db38c4e8813ae1a5e079b"
+        },
+        {
+          "page": 7,
+          "png_sha256": "67b91da811b2d3790e6c41097ca5a75c73b9ed971e9231d162ad865dea8cf52a"
+        },
+        {
+          "page": 8,
+          "png_sha256": "017c99aa77ec6a4a2f6661445b964cc94e31563c549093c8048d8e935886bad9"
+        },
+        {
+          "page": 9,
+          "png_sha256": "330a69f30b32fb2aee633e5c4329ae2a2478ae619ec7dcccf7bdc6215b6d837b"
+        },
+        {
+          "page": 10,
+          "png_sha256": "a086fc36293d6a70a20cc2e1cd40e0bd7c863895220f1e5a4e0a3e6b82b7b622"
+        },
+        {
+          "page": 11,
+          "png_sha256": "2a0da704cb3e7d1c54cd0ef241f3a77e2a4bdb16be234dab6027b6e21af1b8bc"
+        },
+        {
+          "page": 12,
+          "png_sha256": "9b4450d60715ad9eeda7cf7239a4139cc52f779909e0ac496ea5aa0ce29c2589"
+        }
+      ]
+    },
+    "response_to_reviewers": {
+      "sha256": "7ffa69978e8a04c5d3a3d6e60bb0e9808354c8b4929311b1f84a06954e943105",
+      "pages": 6,
+      "visually_reviewed_pages": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "rendered_pages": [
+        {
+          "page": 1,
+          "png_sha256": "96ccbe2647543e3579b7f5fbf73060e1b3eaa78524fcc310835adc955ee1f52b"
+        },
+        {
+          "page": 2,
+          "png_sha256": "12cd48c4f40242cea8720d9522e92b81184be2631e98aae901b977b744c740ea"
+        },
+        {
+          "page": 3,
+          "png_sha256": "45f136ffd6eaaf41b5d47fb07826b418ef12724909819ca16a2b635e3a699bf6"
+        },
+        {
+          "page": 4,
+          "png_sha256": "6d4af454140dbbff8093e5850a52baaadf291e928a7faeb4d49cdd5ff31ee376"
+        },
+        {
+          "page": 5,
+          "png_sha256": "8faca3faddd634a6755f9e6986a978de9ac4ff7699c5d0d2ce1c4defa9075a67"
+        },
+        {
+          "page": 6,
+          "png_sha256": "bb85d77bcfaa26e00d33f85c7e213c6606abb0ac5152b27dfdfdf48b469b63fe"
+        }
+      ]
+    }
+  }
+}

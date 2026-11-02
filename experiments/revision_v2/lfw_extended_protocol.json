@@ -1,0 +1,20 @@
+{
+  "version": "prospective extension after first-batch exploratory open-set pilot",
+  "frozen_before_extended_feature_extraction": "2026-10-29",
+  "selection_seed": 20261030,
+  "source": "same complete funneled LFW archive used by first batch",
+  "evaluation_identities": "the same frozen 128 identities with six images each",
+  "excluded_from_new_calibration_and_unknown": "all 192 first-batch identities",
+  "new_calibration_identities": 512,
+  "new_test_unknown_identities": 512,
+  "selection": "uniform random permutation of all remaining identities with at least one image; first 512 calibration, next 512 test unknown, remainder distractor pool",
+  "image_selection": "one uniformly sampled image per new identity, using the frozen seed; no quality or recognition based selection",
+  "gallery_sizes": [128, 256, 512, 1024, 2048, 4096],
+  "gallery_construction": "128 original enrolled prototypes plus a nested prefix of disjoint distractor identities; never enroll calibration or test unknown identities",
+  "paired_splits": 20,
+  "operating_targets": [0.01],
+  "threshold_rules": ["empirical calibration FPIR <= target", "conservative one-sided binomial order statistic at confidence .95 under IID identity sampling"],
+  "do_not_claim": ["0.1% FPIR reliably estimated from 512 unknown identities", "independence of repeated image splits", "official LFW protocol", "performance-based identity selection", "that the old frequent-identity hard pilot and the new all-identity population are interchangeable"],
+  "retain_old_hard_pilot": true,
+  "report": ["observed test FPIR and DIR", "identity-level uncertainty", "unknown source image-count strata", "float vs binary paired utility", "index candidate recall and exhaustive agreement", "capacity and fallback"]
+}

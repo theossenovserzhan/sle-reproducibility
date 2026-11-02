@@ -1,0 +1,19 @@
+{
+  "created_local_date": "2026-10-30",
+  "status": "frozen before fitting or observing transformed scores",
+  "purpose": "Reduce binary quantization loss and investigate a 256-bit accuracy/cost tradeoff",
+  "feature_source": "Frozen FaceNet VGGFace2 embeddings already used in R1",
+  "training_selection": "revision_v2/data/lfw_extended_selection.json subjects[4992:] and matching embedding rows; 4992=512 calibration+512 unknown+3968 maximum-gallery distractors",
+  "expected_training_identities": 565,
+  "training_observations": "One previously selected embedding per identity, all remaining identities used without recognition-based selection",
+  "exclusions": "All 192 original LFW identities, all 512 calibration identities, all 512 unknown test identities, and every distractor used in galleries up to 4096",
+  "methods": ["original_sign_512", "training_centered_sign_512", "PCA_ITQ_512", "PCA_ITQ_256"],
+  "normalization": "Normalize source embeddings before fitting; enrollment averages the same frozen two images and normalizes the prototype; transform gallery/probe/calibration/test with the same training-only mean and projection",
+  "ITQ": {"initialization_seed": 20261030, "iterations": 50, "centering": "training mean", "projection": "PCA eigenvectors of centered training covariance, descending eigenvalue order", "rotation": "random orthogonal initialization, alternate sign codes and orthogonal Procrustes updates", "zero_tie": "nonnegative maps to 1", "hyperparameter_tuning": "none"},
+  "float_controls": ["original cosine", "centered cosine", "PCA-projected cosine for each code width"],
+  "metrics": ["paired rank1 and rank5 over all 20 existing image assignments and all frozen gallery sizes", "calibration-only thresholds and observed unknown-test FPIR/DIR", "identity-level confidence intervals", "candidate recall, certified fallback, and public capacity sufficiency on frozen split0, block widths4/8", "code length and estimated MPC mask/score work, distinguished from measured MPC timings"],
+  "reporting": "Keep every predefined method. Treat this as a development extension because original benchmark outcomes have already been inspected. A selected variant needs frozen subsequent confirmation; do not label repeated images as independent identities.",
+  "attribution": "ITQ is an established preprocessing method, not our novelty; separate its effect from protected-template score preservation.",
+  "primary_sources": ["https://slazebni.cs.illinois.edu/publications/cvpr11_small_code.pdf", "https://slazebni.cs.illinois.edu/publications/ITQ.pdf"],
+  "scheduling": "No training or heavy scoring during MPC timing measurements"
+}

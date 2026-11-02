@@ -1,0 +1,48 @@
+{"argv": ["python3", "compile.py", "-P", "340282366920938463463374607431764574209", "-b", "64", "-M", "msle_position_compact_system", "8", "512", "4", "8", "0", "0", "1", "1", "0", "8", "0", "1"], "cwd": "/home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8"}
+WARNING: --prime/-P activates code that usually isn't the most efficient variant. Consider using --field/-F and set the prime only during the actual computation.
+Default bit length for compilation: 126
+Default security parameter for compilation: 40
+Compiling file Programs/Source/msle_position_compact_system.mpc
+Changed bit length for comparisons etc. to 64
+Changed statistical security for comparison etc. to 80
+Writing to Programs/Bytecode/msle_position_compact_system-8-512-4-8-0-0-1-1-0-8-0-1-multithread-1.bc
+Writing to Programs/Bytecode/msle_position_compact_system-8-512-4-8-0-0-1-1-0-8-0-1-multithread-2.bc
+Writing to Programs/Bytecode/msle_position_compact_system-8-512-4-8-0-0-1-1-0-8-0-1-multithread-3.bc
+Writing to Programs/Bytecode/msle_position_compact_system-8-512-4-8-0-0-1-1-0-8-0-1-multithread-4.bc
+Writing to Programs/Bytecode/msle_position_compact_system-8-512-4-8-0-0-1-1-0-8-0-1-multithread-5.bc
+Writing to Programs/Bytecode/msle_position_compact_system-8-512-4-8-0-0-1-1-0-8-0-1-multithread-6.bc
+Writing to Programs/Bytecode/msle_position_compact_system-8-512-4-8-0-0-1-1-0-8-0-1-multithread-7.bc
+Writing to Programs/Bytecode/msle_position_compact_system-8-512-4-8-0-0-1-1-0-8-0-1-multithread-8.bc
+Writing to Programs/Bytecode/msle_position_compact_system-8-512-4-8-0-0-1-1-0-8-0-1-multithread-9.bc
+Compiled 100000 lines at Fri Oct 30 09:56:14 2026
+Writing to Programs/Bytecode/msle_position_compact_system-8-512-4-8-0-0-1-1-0-8-0-1-EQZ(4)_64-10.bc
+Writing to Programs/Bytecode/msle_position_compact_system-8-512-4-8-0-0-1-1-0-8-0-1-LTZ(8)_65-12.bc
+Writing to Programs/Bytecode/msle_position_compact_system-8-512-4-8-0-0-1-1-0-8-0-1-EQZ(2)_64-14.bc
+Writing to Programs/Bytecode/msle_position_compact_system-8-512-4-8-0-0-1-1-0-8-0-1-LTZ(4)_65-15.bc
+Writing to Programs/Bytecode/msle_position_compact_system-8-512-4-8-0-0-1-1-0-8-0-1-EQZ(1)_64-16.bc
+Writing to Programs/Bytecode/msle_position_compact_system-8-512-4-8-0-0-1-1-0-8-0-1-LTZ(2)_65-17.bc
+Writing to Programs/Bytecode/msle_position_compact_system-8-512-4-8-0-0-1-1-0-8-0-1-LTZ(1)_65-18.bc
+Writing to Programs/Schedules/msle_position_compact_system-8-512-4-8-0-0-1-1-0-8-0-1.sch
+Writing to Programs/Bytecode/msle_position_compact_system-8-512-4-8-0-0-1-1-0-8-0-1-0.bc
+Hash: 331f8081704c77fb1e5368893e1cee3bb37dc6b66fcc98fcc362914e739163dc
+Program requires at most:
+      602201 integer inputs from player 0
+      561719 integer inputs from player 1
+       36915 integer inputs from player 2
+       36915 integer inputs from player 3
+       36915 integer inputs from player 4
+     3133019 integer triples
+      362949 integer simple multiplications
+         inf bit inverses
+           2 integer shuffle generations
+           4 integer shuffle applications
+       15366 integer randoms
+       32995 integer opens
+           1 integer shuffle generations
+           1 integer shuffle applications
+         216 strict edabits of length 128
+      130359 bit triples
+       24600 integer dabits
+       24680 bit opens
+          15 strict edabits of length 1
+        9757 virtual machine rounds

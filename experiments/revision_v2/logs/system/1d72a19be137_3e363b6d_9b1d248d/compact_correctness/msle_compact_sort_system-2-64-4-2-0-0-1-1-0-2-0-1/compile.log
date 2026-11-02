@@ -1,0 +1,69 @@
+{"argv": ["python3", "compile.py", "-P", "340282366920938463463374607431764574209", "-b", "64", "-M", "msle_compact_sort_system", "2", "64", "4", "2", "0", "0", "1", "1", "0", "2", "0", "1"], "cwd": "/home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8"}
+WARNING: --prime/-P activates code that usually isn't the most efficient variant. Consider using --field/-F and set the prime only during the actual computation.
+Default bit length for compilation: 126
+Default security parameter for compilation: 40
+Compiling file Programs/Source/msle_compact_sort_system.mpc
+Changed bit length for comparisons etc. to 64
+Changed statistical security for comparison etc. to 80
+Writing to Programs/Bytecode/msle_compact_sort_system-2-64-4-2-0-0-1-1-0-2-0-1-multithread-1.bc
+Writing to Programs/Bytecode/msle_compact_sort_system-2-64-4-2-0-0-1-1-0-2-0-1-multithread-2.bc
+Writing to Programs/Bytecode/msle_compact_sort_system-2-64-4-2-0-0-1-1-0-2-0-1-multithread-3.bc
+Writing to Programs/Bytecode/msle_compact_sort_system-2-64-4-2-0-0-1-1-0-2-0-1-multithread-4.bc
+Writing to Programs/Bytecode/msle_compact_sort_system-2-64-4-2-0-0-1-1-0-2-0-1-multithread-5.bc
+Writing to Programs/Bytecode/msle_compact_sort_system-2-64-4-2-0-0-1-1-0-2-0-1-multithread-6.bc
+Writing to Programs/Bytecode/msle_compact_sort_system-2-64-4-2-0-0-1-1-0-2-0-1-multithread-7.bc
+Writing to Programs/Bytecode/msle_compact_sort_system-2-64-4-2-0-0-1-1-0-2-0-1-multithread-8.bc
+Writing to Programs/Bytecode/msle_compact_sort_system-2-64-4-2-0-0-1-1-0-2-0-1-multithread-9.bc
+Writing to Programs/Bytecode/msle_compact_sort_system-2-64-4-2-0-0-1-1-0-2-0-1-multithread-10.bc
+Writing to Programs/Bytecode/msle_compact_sort_system-2-64-4-2-0-0-1-1-0-2-0-1-multithread-11.bc
+Writing to Programs/Bytecode/msle_compact_sort_system-2-64-4-2-0-0-1-1-0-2-0-1-multithread-12.bc
+Writing to Programs/Bytecode/msle_compact_sort_system-2-64-4-2-0-0-1-1-0-2-0-1-multithread-13.bc
+Writing to Programs/Bytecode/msle_compact_sort_system-2-64-4-2-0-0-1-1-0-2-0-1-multithread-14.bc
+Writing to Programs/Bytecode/msle_compact_sort_system-2-64-4-2-0-0-1-1-0-2-0-1-multithread-15.bc
+Writing to Programs/Bytecode/msle_compact_sort_system-2-64-4-2-0-0-1-1-0-2-0-1-multithread-16.bc
+Writing to Programs/Bytecode/msle_compact_sort_system-2-64-4-2-0-0-1-1-0-2-0-1-multithread-17.bc
+Writing to Programs/Bytecode/msle_compact_sort_system-2-64-4-2-0-0-1-1-0-2-0-1-multithread-18.bc
+Writing to Programs/Bytecode/msle_compact_sort_system-2-64-4-2-0-0-1-1-0-2-0-1-multithread-19.bc
+Writing to Programs/Bytecode/msle_compact_sort_system-2-64-4-2-0-0-1-1-0-2-0-1-multithread-20.bc
+Writing to Programs/Bytecode/msle_compact_sort_system-2-64-4-2-0-0-1-1-0-2-0-1-multithread-21.bc
+Writing to Programs/Bytecode/msle_compact_sort_system-2-64-4-2-0-0-1-1-0-2-0-1-multithread-22.bc
+Writing to Programs/Bytecode/msle_compact_sort_system-2-64-4-2-0-0-1-1-0-2-0-1-multithread-23.bc
+Writing to Programs/Bytecode/msle_compact_sort_system-2-64-4-2-0-0-1-1-0-2-0-1-multithread-24.bc
+Writing to Programs/Bytecode/msle_compact_sort_system-2-64-4-2-0-0-1-1-0-2-0-1-multithread-25.bc
+Writing to Programs/Bytecode/msle_compact_sort_system-2-64-4-2-0-0-1-1-0-2-0-1-multithread-26.bc
+Writing to Programs/Bytecode/msle_compact_sort_system-2-64-4-2-0-0-1-1-0-2-0-1-multithread-27.bc
+Writing to Programs/Bytecode/msle_compact_sort_system-2-64-4-2-0-0-1-1-0-2-0-1-multithread-28.bc
+Writing to Programs/Bytecode/msle_compact_sort_system-2-64-4-2-0-0-1-1-0-2-0-1-multithread-29.bc
+Writing to Programs/Bytecode/msle_compact_sort_system-2-64-4-2-0-0-1-1-0-2-0-1-multithread-30.bc
+Writing to Programs/Bytecode/msle_compact_sort_system-2-64-4-2-0-0-1-1-0-2-0-1-multithread-31.bc
+Writing to Programs/Bytecode/msle_compact_sort_system-2-64-4-2-0-0-1-1-0-2-0-1-multithread-32.bc
+Writing to Programs/Bytecode/msle_compact_sort_system-2-64-4-2-0-0-1-1-0-2-0-1-EQZ(141)_64-33.bc
+Writing to Programs/Bytecode/msle_compact_sort_system-2-64-4-2-0-0-1-1-0-2-0-1-EQZ(1)_64-35.bc
+Writing to Programs/Bytecode/msle_compact_sort_system-2-64-4-2-0-0-1-1-0-2-0-1-LTZ(2)_65-36.bc
+Writing to Programs/Bytecode/msle_compact_sort_system-2-64-4-2-0-0-1-1-0-2-0-1-LTZ(1)_65-38.bc
+Writing to Programs/Schedules/msle_compact_sort_system-2-64-4-2-0-0-1-1-0-2-0-1.sch
+Writing to Programs/Bytecode/msle_compact_sort_system-2-64-4-2-0-0-1-1-0-2-0-1-0.bc
+Hash: 210999281b90f173469c84f57d56aba0fd6294ca65fc3c0ee4cbafa2b1178407
+Program requires at most:
+       99057 integer inputs from player 0
+       97831 integer inputs from player 1
+        1185 integer inputs from player 2
+        1185 integer inputs from player 3
+        1185 integer inputs from player 4
+      968801 integer triples
+       20747 integer simple multiplications
+         699 strict edabits of length 128
+       10984 integer opens
+      424248 bit triples
+        5779 integer dabits
+        4240 bit opens
+         520 integer randoms
+         inf bit inverses
+         257 integer shuffle generations
+         524 integer shuffle applications
+           3 integer shuffle generations
+          10 integer shuffle applications
+           1 integer shuffle generations
+           1 integer shuffle applications
+           3 strict edabits of length 1
+        3399 virtual machine rounds

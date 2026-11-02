@@ -1,0 +1,15 @@
+{
+  "sources": {
+    "msle_private_client_system": "476362f6437093a9c5208e5e6a5e21777085640b4087af8eaf83c069e1d952ac",
+    "msle_private_fused_system": "2d1e38893da6fd224aa7bb388e1846f55b2f1000b1731da6b64c77afdbf2ca33"
+  },
+  "drivers": {
+    "private_client": "75703de247045eb1c27bab55ad3df5e8a2fba5cca8aa842c4bccc26d8b5b2c42",
+    "private_fused": "7e718921d44511f05490ae63efd6768e95d917bfd978e7123cf188459003278c"
+  },
+  "new_plaintext_outcome_reveals": false,
+  "private_and_fused_input_loader_identical": true,
+  "private_and_fused_transition_identical": true,
+  "output_protocol": "External client shares a fresh uniformFp additive pad together with its private probe; only masked identity is opened. Client subtracts its pad; reject is encoded as-1. Acceptance is inferred by the client, never separately opened.",
+  "fused_scope": "With a valid stored root/index relation, candidate flags equal OR over exact block matches. Reuse the already computed secret Hamming mismatch bits. This is a strong baseline for a full-scan matcher, not an index-only service."
+}

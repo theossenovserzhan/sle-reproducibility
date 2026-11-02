@@ -1,0 +1,21 @@
+{"argv": ["python3", "compile.py", "-P", "340282366920938463463374607431764574209", "-b", "64", "-M", "msle_vector_poly_query_system", "2", "64", "4", "2", "3", "0", "0", "1", "0", "2", "0", "1"], "cwd": "/home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8"}
+WARNING: --prime/-P activates code that usually isn't the most efficient variant. Consider using --field/-F and set the prime only during the actual computation.
+Default bit length for compilation: 126
+Default security parameter for compilation: 40
+Compiling file Programs/Source/msle_vector_poly_query_system.mpc
+Changed bit length for comparisons etc. to 64
+Changed statistical security for comparison etc. to 80
+Traceback (most recent call last):
+  File "/home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8/compile.py", line 41, in <module>
+    main(compiler)
+  File "/home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8/compile.py", line 36, in main
+    compilation(compiler)
+  File "/home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8/compile.py", line 19, in compilation
+    prog = compiler.compile_file()
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8/Compiler/compilerLib.py", line 537, in compile_file
+    exec(compile(infile.read(), infile.name, "exec"), self.VARS)
+  File "Programs/Source/msle_vector_poly_query_system.mpc", line 460, in <module>
+    slot_flags.assign_vector(bucket_flags.get_vector()*current_valid.get_vector(base=offset,size=bucket_count,skip=C),base=offset*bucket_count)
+                                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: Array.get_vector() got an unexpected keyword argument 'skip'

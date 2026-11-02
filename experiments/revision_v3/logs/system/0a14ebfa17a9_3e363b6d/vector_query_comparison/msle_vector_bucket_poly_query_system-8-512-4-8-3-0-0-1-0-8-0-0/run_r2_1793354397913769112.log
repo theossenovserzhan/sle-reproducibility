@@ -1,0 +1,54 @@
+{"argv": ["/usr/bin/time", "-v", "bash", "Scripts/shamir.sh", "msle_vector_bucket_poly_query_system-8-512-4-8-3-0-0-1-0-8-0-0", "--prime", "340282366920938463463374607431764574209"], "cwd": "/home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8"}
+Running /home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8/Scripts/../shamir-party.x 0 msle_vector_bucket_poly_query_system-8-512-4-8-3-0-0-1-0-8-0-0 --prime 340282366920938463463374607431764574209 -T 2 -pn 17257 -h localhost -N 5
+Running /home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8/Scripts/../shamir-party.x 1 msle_vector_bucket_poly_query_system-8-512-4-8-3-0-0-1-0-8-0-0 --prime 340282366920938463463374607431764574209 -T 2 -pn 17257 -h localhost -N 5
+Running /home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8/Scripts/../shamir-party.x 2 msle_vector_bucket_poly_query_system-8-512-4-8-3-0-0-1-0-8-0-0 --prime 340282366920938463463374607431764574209 -T 2 -pn 17257 -h localhost -N 5
+Running /home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8/Scripts/../shamir-party.x 3 msle_vector_bucket_poly_query_system-8-512-4-8-3-0-0-1-0-8-0-0 --prime 340282366920938463463374607431764574209 -T 2 -pn 17257 -h localhost -N 5
+Running /home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8/Scripts/../shamir-party.x 4 msle_vector_bucket_poly_query_system-8-512-4-8-3-0-0-1-0-8-0-0 --prime 340282366920938463463374607431764574209 -T 2 -pn 17257 -h localhost -N 5
+Trying to run 128-bit computation (128-bit representation)
+Starting timer 30 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 1.0629e-05
+Starting timer 20 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 1.051e-05
+Starting timer 23 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 2.367e-06
+Stopped timer 23 at 4.85185 (2.78502 MB, 4504 rounds, 2.93183 CPU seconds)
+Starting timer 21 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 4.837e-06
+Stopped timer 21 at 2.23719 (1.87501 MB, 1799 rounds, 1.47831 CPU seconds)
+Starting timer 22 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 4.453e-06
+Stopped timer 22 at 0.225447 (0.299138 MB, 219 rounds, 0.139368 CPU seconds)
+Stopped timer 20 at 7.31466 (4.95918 MB, 6522 rounds, 4.54968 CPU seconds)
+Stopped timer 30 at 7.47601 (6.13988 MB, 7110 rounds, 4.80438 CPU seconds)
+MSLE_SYSTEM n=8 d=512 mode=3 protection=0 transition=0 maintenance=1 fault=0 relation=1 accepted=1 identity=24 state_ok=1 query_ok=1
+Significant amount of unused dabits of Shamir gfp distorting the benchmark. For more accurate benchmarks, consider reducing the batch size with --batch-size.
+The following benchmarks are including preprocessing (offline phase).
+Time = 7.47866 seconds 
+Time20 = 7.31466 seconds (4.95918 MB, 6522 rounds, 4.54968 CPU seconds)
+Time21 = 2.23719 seconds (1.87501 MB, 1799 rounds, 1.47831 CPU seconds)
+Time22 = 0.225447 seconds (0.299138 MB, 219 rounds, 0.139368 CPU seconds)
+Time23 = 4.85185 seconds (2.78502 MB, 4504 rounds, 2.93183 CPU seconds)
+Time30 = 7.47601 seconds (6.13988 MB, 7110 rounds, 4.80438 CPU seconds)
+Data sent = 6.1402 MB in ~7112 rounds (party 0 only; use '-v' for more details)
+Global data sent = 26.0618 MB (all parties)
+Communication time accounts for more than 95 percent of total time (7.13968 seconds). This might be because of the computation and the network setting, but it could also be product of the optimization trade-off during compilation. See https://mp-spdz.readthedocs.io/en/latest/troubleshooting.html#high-number-of-rounds-or-slow-wan-execution
+This virtual machine was compiled with GCC. Recompile with 'CXX = clang++' in 'CONFIG.mine' for optimal performance.
+This protocol doesn't scale well with the number of parties, have you considered using ATLAS instead?
+	Command being timed: "bash Scripts/shamir.sh msle_vector_bucket_poly_query_system-8-512-4-8-3-0-0-1-0-8-0-0 --prime 340282366920938463463374607431764574209"
+	User time (seconds): 7.32
+	System time (seconds): 16.80
+	Percent of CPU this job got: 311%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:07.73
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 42064
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 56979
+	Voluntary context switches: 425319
+	Involuntary context switches: 36888
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 0
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

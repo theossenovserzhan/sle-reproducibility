@@ -1,0 +1,7 @@
+{
+  "parent_kernel_sha256": "2dab214ad3d3a6a39438ebfc01a4220a14cbd4643ba7709afde9875091de48f3",
+  "new_source_sha256": "0c1ca8ccdb565a329fdbeb44f04175a809a86f1cddf3c67d50c856fc6840121d",
+  "new_driver_sha256": "883960963642908d309f13b8750d5fa4d14ff5da43088dd45d9a96c7d148253a",
+  "changes": "Only query/threshold ingestion and own-share-file state loading; normalized helpers and transition/query tail match the validated vectorized virtual kernel.",
+  "privacy_scope": "Trusted external client deals degree-two shares over private channels; at most2 passive computing parties; honest bit-valued query interface. Not malicious-input validation."
+}

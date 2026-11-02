@@ -1,0 +1,23 @@
+[
+  {
+    "source": "msle_vector_poly_query_system",
+    "source_sha256": "c68f98956eb336154e15f1cd51fc7960f0f094c7950b5added1d00816c1e7e0e",
+    "parent": "msle_poly_query_system",
+    "parent_sha256": "fccc10c9a5d4652d7e3c939bedbeedebf17f2d87a09355af00138e82b087683e",
+    "operation": "Public SIMD transpose/strided selection; remove scalar per-slot interaction; same exact known-support membership; original scalar diagnostic oracle retained."
+  },
+  {
+    "source": "msle_vector_bucket_poly_query_system",
+    "source_sha256": "168a4f242e7373a4a0b8946cd7b39e32ecdf7a8ce0ef48e738ffe7909f86bcd0",
+    "parent": "msle_bucket_poly_query_system",
+    "parent_sha256": "b1b74baf0b24a8bed70cafb3c6e33a93a1aa68e800579eb5e735fe4b5971d891",
+    "operation": "Public SIMD transpose/strided selection; remove scalar per-slot interaction; same exact known-support membership; original scalar diagnostic oracle retained."
+  },
+  {
+    "source": "msle_vector_lazy_bucket_poly_query_system",
+    "source_sha256": "1044d42f3bc369b705b551db30a89ce07da2196c94dc8bd42a1b022478f226c7",
+    "parent": "msle_lazy_bucket_poly_query_system",
+    "parent_sha256": "3a76d6a921e2eb005c0e86ae5794a2cafee49ebbcd7c9c56af55372bdb41b67f",
+    "operation": "Public SIMD transpose/strided selection; remove scalar per-slot interaction; same exact known-support membership; original scalar diagnostic oracle retained."
+  }
+]

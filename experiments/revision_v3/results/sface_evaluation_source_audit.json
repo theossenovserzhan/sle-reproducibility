@@ -1,0 +1,7 @@
+{
+  "base_paired_sha256": "a20faf00aca9648b8eb064a980f9327a32f5bbe0c85c37bb98876767535ac84f",
+  "generated_paired_sha256": "5e731b877c6ef2f71e99fb8dce2fb029f4005e02e71d5ae821917e3b7a9b6822",
+  "base_extended_sha256": "11132754112335f8281c504fa9f15502424829025d2fe6f475c88576c48c2e0d",
+  "generated_extended_sha256": "31f859b3bac0df67e243a18340c2434e65aca138a590f841a003794763ffe2e8",
+  "adaptations": "Feature dimension128 and SFace input/output paths only; same cohort sizes, seeds, means, scores, calibration and identity uncertainty. Remove equality assertion to the different FaceNet frontend."
+}

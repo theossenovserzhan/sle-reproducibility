@@ -1,0 +1,7 @@
+{
+  "base_sha256": "bf5086b808432fa86978fe82e0e6042e5144c060f0af162747a75b3c0c648401",
+  "candidate_sha256": "0684086af4d2d5a79e4f80f30615fb65c7444f296398ea00cca5d4f413c7d8c0",
+  "diagnostic_sha256": "72bb1f2caa9f2b70eb084b6883f17b9cebe9b9e9cc98d8b98738724e61b8eb41",
+  "proposed_state_verification_commit_refresh_query_tail_identical": true,
+  "changes": "Stored handle semantics; wrapper derives N semantic locators for masks; physical index values preserved. This is a distinct representation candidate, not exact eager-state equality."
+}

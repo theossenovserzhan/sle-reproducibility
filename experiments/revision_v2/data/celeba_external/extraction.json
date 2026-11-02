@@ -1,0 +1,7 @@
+{
+  "features_sha256": "000e8fe86939e54f443883ca328f2e3ea9b66dec4d0d202fac94fc542c2a3e35",
+  "script_sha256": "d6acb511212bafc95b562b8c594c89a25afa319de93c8cd8e4c5314e5999cb65",
+  "torch": "2.8.0+cpu",
+  "torchvision": "0.23.0+cpu",
+  "selection_sha256": "f2d1623a683af4ca2d95d7cde3754779af26d4af3b660a18a5459d4d71e0ab34"
+}

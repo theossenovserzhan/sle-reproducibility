@@ -1,0 +1,26 @@
+[
+  {
+    "name": "msle_poly_query_system",
+    "parent": "msle_system",
+    "source_sha256": "fccc10c9a5d4652d7e3c939bedbeedebf17f2d87a09355af00138e82b087683e",
+    "parent_sha256": "bf5086b808432fa86978fe82e0e6042e5144c060f0af162747a75b3c0c648401",
+    "secret_bucket_selection": false,
+    "changes": "Query candidate construction only, plus diagnostic membership-bit equality; state transition and scoring/fallback definitions retained."
+  },
+  {
+    "name": "msle_bucket_poly_query_system",
+    "parent": "msle_system",
+    "source_sha256": "b1b74baf0b24a8bed70cafb3c6e33a93a1aa68e800579eb5e735fe4b5971d891",
+    "parent_sha256": "bf5086b808432fa86978fe82e0e6042e5144c060f0af162747a75b3c0c648401",
+    "secret_bucket_selection": true,
+    "changes": "Query candidate construction only, plus diagnostic membership-bit equality; state transition and scoring/fallback definitions retained."
+  },
+  {
+    "name": "msle_lazy_bucket_poly_query_system",
+    "parent": "msle_lazy_epoch_system",
+    "source_sha256": "3a76d6a921e2eb005c0e86ae5794a2cafee49ebbcd7c9c56af55372bdb41b67f",
+    "parent_sha256": "0684086af4d2d5a79e4f80f30615fb65c7444f296398ea00cca5d4f413c7d8c0",
+    "secret_bucket_selection": true,
+    "changes": "Query candidate construction only, plus diagnostic membership-bit equality; state transition and scoring/fallback definitions retained."
+  }
+]

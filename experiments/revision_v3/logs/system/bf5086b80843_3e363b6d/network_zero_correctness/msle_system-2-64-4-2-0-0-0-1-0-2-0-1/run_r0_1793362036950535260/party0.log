@@ -1,0 +1,62 @@
+Trying to run 128-bit computation (128-bit representation)
+Starting timer 30 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 8.1355e-05
+Starting timer 11 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 3.3983e-05
+Starting timer 12 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 7.367e-06
+Stopped timer 12 at 0.86603 (2.66458 MB, 324 rounds, 0.386792 CPU seconds)
+Starting timer 13 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 2.4155e-05
+Stopped timer 13 at 1.42308 (0.122428 MB, 657 rounds, 0.513724 CPU seconds)
+Starting timer 14 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 1.8268e-05
+Stopped timer 14 at 1.1922 (0.20192 MB, 514 rounds, 0.433314 CPU seconds)
+Starting timer 15 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 1.8631e-05
+Stopped timer 15 at 0.538237 (0.064576 MB, 250 rounds, 0.196978 CPU seconds)
+Starting timer 16 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 1.34e-05
+Stopped timer 16 at 0.0505214 (0.044 MB, 107 rounds, 0.0306625 CPU seconds)
+Stopped timer 11 at 4.08854 (3.0975 MB, 1852 rounds, 1.56546 CPU seconds)
+Starting timer 20 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 0.000115348
+Starting timer 21 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 1.2413e-05
+Stopped timer 21 at 0.455039 (0.0636 MB, 194 rounds, 0.156817 CPU seconds)
+Starting timer 22 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 0.000125183
+Stopped timer 22 at 0.700136 (0.02005 MB, 338 rounds, 0.247749 CPU seconds)
+Stopped timer 20 at 1.16231 (0.08365 MB, 532 rounds, 0.407082 CPU seconds)
+Stopped timer 30 at 5.36355 (3.22414 MB, 2442 rounds, 2.02385 CPU seconds)
+MSLE_SYSTEM n=2 d=64 mode=0 protection=0 transition=0 maintenance=1 fault=0 relation=1 accepted=1 identity=24 state_ok=1 query_ok=1
+Significant amount of unused dabits of Shamir gfp distorting the benchmark. For more accurate benchmarks, consider reducing the batch size with --batch-size.
+The following benchmarks are including preprocessing (offline phase).
+Time = 5.57229 seconds 
+Time11 = 4.08854 seconds (3.0975 MB, 1852 rounds, 1.56546 CPU seconds)
+Time12 = 0.86603 seconds (2.66458 MB, 324 rounds, 0.386792 CPU seconds)
+Time13 = 1.42308 seconds (0.122428 MB, 657 rounds, 0.513724 CPU seconds)
+Time14 = 1.1922 seconds (0.20192 MB, 514 rounds, 0.433314 CPU seconds)
+Time15 = 0.538237 seconds (0.064576 MB, 250 rounds, 0.196978 CPU seconds)
+Time16 = 0.0505214 seconds (0.044 MB, 107 rounds, 0.0306625 CPU seconds)
+Time20 = 1.16231 seconds (0.08365 MB, 532 rounds, 0.407082 CPU seconds)
+Time21 = 0.455039 seconds (0.0636 MB, 194 rounds, 0.156817 CPU seconds)
+Time22 = 0.700136 seconds (0.02005 MB, 338 rounds, 0.247749 CPU seconds)
+Time30 = 5.36355 seconds (3.22414 MB, 2442 rounds, 2.02385 CPU seconds)
+Data sent = 3.22446 MB in ~2444 rounds (party 0 only; use '-v' for more details)
+Global data sent = 15.9614 MB (all parties)
+This virtual machine was compiled with GCC. Recompile with 'CXX = clang++' in 'CONFIG.mine' for optimal performance.
+This protocol doesn't scale well with the number of parties, have you considered using ATLAS instead?
+	Command being timed: "/home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8/shamir-party.x 0 msle_system-2-64-4-2-0-0-0-1-0-2-0-1 --prime 340282366920938463463374607431764574209 -N 5 -T 2 -ip /mnt/c/Users/ossen/OneDrive/Documents/SmartCity/TBIOM_revision_experiments_2026-10-29/revision_v3/logs/system/bf5086b80843_3e363b6d/network_zero_correctness/msle_system-2-64-4-2-0-0-0-1-0-2-0-1/run_r0_1793362036950535260/hosts_P0.txt -pn 42669"
+	User time (seconds): 1.09
+	System time (seconds): 1.24
+	Percent of CPU this job got: 37%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:06.23
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 25128
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 6569
+	Voluntary context switches: 34301
+	Involuntary context switches: 923
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 0
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

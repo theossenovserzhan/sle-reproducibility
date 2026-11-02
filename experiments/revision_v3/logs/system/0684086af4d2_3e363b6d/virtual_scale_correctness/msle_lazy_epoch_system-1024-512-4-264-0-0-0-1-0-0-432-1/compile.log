@@ -1,0 +1,64 @@
+{"argv": ["python3", "compile.py", "-P", "340282366920938463463374607431764574209", "-b", "64", "-M", "msle_lazy_epoch_system", "1024", "512", "4", "264", "0", "0", "0", "1", "0", "0", "432", "1"], "cwd": "/home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8"}
+WARNING: --prime/-P activates code that usually isn't the most efficient variant. Consider using --field/-F and set the prime only during the actual computation.
+Default bit length for compilation: 126
+Default security parameter for compilation: 40
+Compiling file Programs/Source/msle_lazy_epoch_system.mpc
+Changed bit length for comparisons etc. to 64
+Changed statistical security for comparison etc. to 80
+Compiled 100000 lines at Fri Oct 30 16:02:34 2026
+Compiled 200000 lines at Fri Oct 30 16:02:36 2026
+Compiled 300000 lines at Fri Oct 30 16:02:40 2026
+Compiled 400000 lines at Fri Oct 30 16:02:44 2026
+Compiled 500000 lines at Fri Oct 30 16:02:46 2026
+Compiled 600000 lines at Fri Oct 30 16:02:51 2026
+Compiled 700000 lines at Fri Oct 30 16:02:52 2026
+Compiled 800000 lines at Fri Oct 30 16:02:56 2026
+Compiled 900000 lines at Fri Oct 30 16:02:58 2026
+Compiled 1000000 lines at Fri Oct 30 16:03:00 2026
+Compiled 1100000 lines at Fri Oct 30 16:03:03 2026
+Compiled 1200000 lines at Fri Oct 30 16:03:04 2026
+Compiled 1300000 lines at Fri Oct 30 16:03:05 2026
+Compiled 1400000 lines at Fri Oct 30 16:03:06 2026
+Compiled 1500000 lines at Fri Oct 30 16:03:11 2026
+Writing to Programs/Bytecode/msle_lazy_epoch_system-1024-512-4-264-0-0-0-1-0-0-432-1-EQZ(512)_64-1.bc
+Writing to Programs/Bytecode/msle_lazy_epoch_system-1024-512-4-264-0-0-0-1-0-0-432-1-LTZ(512)_65-3.bc
+Writing to Programs/Bytecode/msle_lazy_epoch_system-1024-512-4-264-0-0-0-1-0-0-432-1-EQZ(256)_64-5.bc
+Writing to Programs/Bytecode/msle_lazy_epoch_system-1024-512-4-264-0-0-0-1-0-0-432-1-EQZ(128)_64-6.bc
+Writing to Programs/Bytecode/msle_lazy_epoch_system-1024-512-4-264-0-0-0-1-0-0-432-1-LTZ(256)_65-7.bc
+Writing to Programs/Bytecode/msle_lazy_epoch_system-1024-512-4-264-0-0-0-1-0-0-432-1-EQZ(64)_64-8.bc
+Writing to Programs/Bytecode/msle_lazy_epoch_system-1024-512-4-264-0-0-0-1-0-0-432-1-LTZ(128)_65-9.bc
+Writing to Programs/Bytecode/msle_lazy_epoch_system-1024-512-4-264-0-0-0-1-0-0-432-1-EQZ(32)_64-10.bc
+Writing to Programs/Bytecode/msle_lazy_epoch_system-1024-512-4-264-0-0-0-1-0-0-432-1-LTZ(64)_65-11.bc
+Writing to Programs/Bytecode/msle_lazy_epoch_system-1024-512-4-264-0-0-0-1-0-0-432-1-EQZ(16)_64-12.bc
+Writing to Programs/Bytecode/msle_lazy_epoch_system-1024-512-4-264-0-0-0-1-0-0-432-1-LTZ(32)_65-13.bc
+Writing to Programs/Bytecode/msle_lazy_epoch_system-1024-512-4-264-0-0-0-1-0-0-432-1-EQZ(8)_64-14.bc
+Writing to Programs/Bytecode/msle_lazy_epoch_system-1024-512-4-264-0-0-0-1-0-0-432-1-LTZ(16)_65-15.bc
+Writing to Programs/Bytecode/msle_lazy_epoch_system-1024-512-4-264-0-0-0-1-0-0-432-1-EQZ(4)_64-16.bc
+Writing to Programs/Bytecode/msle_lazy_epoch_system-1024-512-4-264-0-0-0-1-0-0-432-1-LTZ(8)_65-17.bc
+Writing to Programs/Bytecode/msle_lazy_epoch_system-1024-512-4-264-0-0-0-1-0-0-432-1-EQZ(2)_64-18.bc
+Writing to Programs/Bytecode/msle_lazy_epoch_system-1024-512-4-264-0-0-0-1-0-0-432-1-LTZ(4)_65-19.bc
+Writing to Programs/Bytecode/msle_lazy_epoch_system-1024-512-4-264-0-0-0-1-0-0-432-1-EQZ(1)_64-20.bc
+Writing to Programs/Bytecode/msle_lazy_epoch_system-1024-512-4-264-0-0-0-1-0-0-432-1-LTZ(2)_65-21.bc
+Writing to Programs/Bytecode/msle_lazy_epoch_system-1024-512-4-264-0-0-0-1-0-0-432-1-LTZ(1)_65-22.bc
+Writing to Programs/Schedules/msle_lazy_epoch_system-1024-512-4-264-0-0-0-1-0-0-432-1.sch
+Writing to Programs/Bytecode/msle_lazy_epoch_system-1024-512-4-264-0-0-0-1-0-0-432-1-0.bc
+Hash: e32ac96a4b3309b264677bbea7a0eb281cce92b5f3601936c4e94098bea46e83
+Program requires at most:
+    23665695 integer inputs from player 0
+    21532189 integer inputs from player 1
+     1608731 integer inputs from player 2
+     1608731 integer inputs from player 3
+     1608731 integer inputs from player 4
+    64373453 integer triples
+    15015619 integer simple multiplications
+           6 integer randoms
+       27659 integer opens
+         inf bit inverses
+           1 integer shuffle generations
+           1 integer shuffle applications
+       27648 strict edabits of length 128
+    16653567 bit triples
+     3148800 integer dabits
+      393992 bit opens
+        2047 strict edabits of length 1
+      234076 virtual machine rounds

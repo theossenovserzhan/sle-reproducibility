@@ -1,0 +1,11 @@
+{
+  "frozen_r1_sha256": "bf5086b808432fa86978fe82e0e6042e5144c060f0af162747a75b3c0c648401",
+  "optimized_source_sha256": "933becc021720ef5ef9163696b7162fe97141e1fedee84d8c5d22a1f64d59ca0",
+  "ablation_source_sha256": "99eb8155c0dda553a7d4df2b4050b2064889008fe6b6556c6dfec66cbb3d8b58",
+  "optimized_helpers_before_translation_identical": true,
+  "optimized_state_checks_commit_shuffle_refresh_query_identical": true,
+  "optimized_change": "Already-known validity bit supplied directly to the one-bit radix sorter; L=N*BLOCKS PRP evaluations, fresh dummy values, perfect-permutation restoration. Public state size and validity positions unchanged.",
+  "strong_sort_source_sha256": "ef1c310976c280a9d6faf041bd24a0502831a26f55fbfcb05604d55ed0648489",
+  "strong_sort_receives_same_known_bit_optimization": true,
+  "ablation_scope": "Diagnostic-only public removal of checker components and a coupled root/index defect. Does not establish malicious-party security."
+}

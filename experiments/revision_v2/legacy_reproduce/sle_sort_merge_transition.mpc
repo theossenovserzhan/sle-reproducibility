@@ -1,0 +1,316 @@
+"""
+Oblivious radix-sort/merge baseline for an SLE epoch transition.
+
+This program is a stronger same-backend baseline than the quadratic secret
+pointer join. It treats transition as a generic hidden-key translation:
+
+  1. evolve the N database locators;
+  2. concatenate database mapping rows and M padded index rows;
+  3. obliviously radix-sort the secret rows by old locator;
+  4. propagate the corresponding new locator inside each equal-key segment;
+  5. obliviously restore the original index order;
+  6. run the same hidden relation check and atomic commit used by SLE.
+
+It is deliberately called a SOTA-inspired baseline rather than a reproduction
+of any one published join or shuffle system. The code runs in the same
+five-party Shamir MP-SPDZ environment as SLE, which makes runtime,
+communication, and round measurements directly comparable.
+
+Compile-time arguments:
+    sle_sort_merge_transition <n_records> <root_bits> <block_bits>
+                              <bucket_capacity> <epoch>
+"""
+
+from Compiler import sorting
+from Compiler.library import tree_reduce
+
+program.use_edabit(True)
+program.set_bit_length(64)
+
+if len(program.args) != 6:
+    raise CompilerError(
+        "Usage: sle_sort_merge_transition <n_records> <root_bits> "
+        "<block_bits> <bucket_capacity> <epoch>"
+    )
+
+N_RECORDS = int(program.args[1])
+ROOT_BITS = int(program.args[2])
+BLOCK_BITS = int(program.args[3])
+BUCKET_CAPACITY = int(program.args[4])
+NEW_EPOCH = int(program.args[5])
+
+if N_RECORDS < 2:
+    raise CompilerError("n_records must be at least two")
+if ROOT_BITS % BLOCK_BITS != 0:
+    raise CompilerError("root_bits must be divisible by block_bits")
+
+N_BLOCKS = ROOT_BITS // BLOCK_BITS
+BUCKET_VALUES = 2 ** BLOCK_BITS
+N_BUCKETS = N_BLOCKS * BUCKET_VALUES
+N_INDEX_SLOTS = N_BUCKETS * BUCKET_CAPACITY
+N_COMBINED = N_RECORDS + N_INDEX_SLOTS
+MIMC_ROUNDS = 73
+
+# Input locators are generated as positive 31-bit integers. One extra bit is
+# used to place database rows before index rows for equal old locators.
+JOIN_KEY_BITS = 32
+RESTORE_KEY_BITS = (2 * N_COMBINED - 1).bit_length()
+
+
+old_db_locators = sint.Array(N_RECORDS)
+roots = sint.Matrix(N_RECORDS, ROOT_BITS)
+old_index_locators = sint.Array(N_INDEX_SLOTS)
+index_valid = sint.Array(N_INDEX_SLOTS)
+
+old_db_locators.input_from(0)
+roots.input_from(0)
+old_index_locators.input_from(0)
+index_valid.input_from(0)
+
+# The full epoch key remains distributed across five computing parties.
+epoch_key = sint(0)
+for party in range(5):
+    epoch_key += sint.get_input_from(party)
+
+MIMC_CONSTANTS = [
+    int.from_bytes(
+        __import__("hashlib").sha256(
+            ("SLE-MiMC-round-%d" % round_no).encode()
+        ).digest()[:8],
+        "big",
+    )
+    for round_no in range(MIMC_ROUNDS)
+]
+
+
+def secure_locator_prp_vector(values):
+    """Apply the same MPC-friendly epoch PRP used by SLE."""
+
+    x = values + NEW_EPOCH
+    for constant in MIMC_CONSTANTS:
+        x = (x + epoch_key + constant) ** 3
+    return x + epoch_key
+
+
+def root_bucket_value(root, block):
+    value = sint(0)
+    for bit in range(BLOCK_BITS):
+        value += root[block * BLOCK_BITS + bit] * (2 ** bit)
+    return value
+
+
+def product_tree(factors):
+    if not factors:
+        return sint(1)
+    return tree_reduce(lambda left, right: left * right, factors)
+
+
+start_timer(5)
+
+# Step 1: evolve the canonical database locators.
+new_db_locators = sint.Array(N_RECORDS)
+new_db_locators.assign_vector(
+    secure_locator_prp_vector(old_db_locators.get_vector())
+)
+
+# Record columns:
+#   0 old locator, 1 translated/new locator, 2 has mapping source,
+#   3 row type (0 database, 1 index), 4 original position, 5 index valid.
+records = sint.Matrix(N_COMBINED, 6)
+join_keys = sint.Array(N_COMBINED)
+
+for row in range(N_RECORDS):
+    records[row][0] = old_db_locators[row]
+    records[row][1] = new_db_locators[row]
+    records[row][2] = sint(1)
+    records[row][3] = sint(0)
+    records[row][4] = sint(N_INDEX_SLOTS + row)
+    records[row][5] = sint(0)
+    join_keys[row] = old_db_locators[row] * 2
+
+for position in range(N_INDEX_SLOTS):
+    target = N_RECORDS + position
+    records[target][0] = old_index_locators[position]
+    records[target][1] = sint(0)
+    records[target][2] = sint(0)
+    records[target][3] = sint(1)
+    records[target][4] = sint(position)
+    records[target][5] = index_valid[position]
+    # Database row type 0 sorts before index row type 1 on equal keys.
+    join_keys[target] = old_index_locators[position] * 2 + 1
+
+# Step 2: hidden-key sort. MP-SPDZ radix_sort does not reveal the sorted keys
+# or payload order; its internal revealed permutations are randomized.
+sorting.radix_sort(
+    join_keys,
+    records,
+    n_bits=JOIN_KEY_BITS,
+    signed=False,
+)
+
+# Step 3: segmented parallel prefix propagation. The database mapping is the
+# first row in every real equal-locator segment. Doubling the stride propagates
+# it to all copies in logarithmic dependency depth.
+group_keys = sint.Array(N_COMBINED)
+carried_values = sint.Array(N_COMBINED)
+has_source = sint.Array(N_COMBINED)
+for position in range(N_COMBINED):
+    group_keys[position] = records[position][0]
+    carried_values[position] = records[position][1]
+    has_source[position] = records[position][2]
+
+stride = 1
+while stride < N_COMBINED:
+    next_values = sint.Array(N_COMBINED)
+    next_has_source = sint.Array(N_COMBINED)
+
+    for position in range(N_COMBINED):
+        if position < stride:
+            next_values[position] = carried_values[position]
+            next_has_source[position] = has_source[position]
+        else:
+            same_segment = (
+                group_keys[position] == group_keys[position - stride]
+            )
+            take_left = (
+                same_segment
+                * has_source[position - stride]
+                * (1 - has_source[position])
+            )
+            next_values[position] = take_left.if_else(
+                carried_values[position - stride],
+                carried_values[position],
+            )
+            next_has_source[position] = has_source[position] + take_left
+
+    carried_values = next_values
+    has_source = next_has_source
+    stride *= 2
+
+# Valid index rows must receive exactly one database mapping. Padded dummies
+# must receive none and are re-randomized instead of being linked to a record.
+join_checks = []
+for position in range(N_COMBINED):
+    is_index = records[position][3]
+    valid = records[position][5]
+    source_found = has_source[position]
+    index_row_ok = (
+        valid * source_found
+        + (1 - valid) * (1 - source_found)
+    )
+    join_checks.append(
+        is_index * index_row_ok + (1 - is_index)
+    )
+
+    fresh_dummy = sint.get_random_int(60)
+    translated_index_value = valid.if_else(
+        carried_values[position], fresh_dummy
+    )
+    records[position][1] = is_index.if_else(
+        translated_index_value,
+        records[position][1],
+    )
+
+join_ok = product_tree(join_checks)
+
+# Step 4: obliviously restore original order, placing index rows first.
+restore_keys = sint.Array(N_COMBINED)
+for position in range(N_COMBINED):
+    is_index = records[position][3]
+    restore_keys[position] = (
+        (1 - is_index) * N_COMBINED + records[position][4]
+    )
+
+sorting.radix_sort(
+    restore_keys,
+    records,
+    n_bits=RESTORE_KEY_BITS,
+    signed=False,
+)
+
+new_index_locators = sint.Array(N_INDEX_SLOTS)
+new_index_valid = sint.Array(N_INDEX_SLOTS)
+for position in range(N_INDEX_SLOTS):
+    new_index_locators[position] = records[position][1]
+    new_index_valid[position] = records[position][5]
+
+# Same two-challenge hidden multiset relation gate used by SLE.
+challenge_1 = sint.get_random_int(60).reveal() + 101
+challenge_2 = sint.get_random_int(60).reveal() + 211
+alpha_1 = cint(1_000_003)
+beta_1 = cint(1_000_033)
+alpha_2 = cint(1_000_037)
+beta_2 = cint(1_000_081)
+
+expected_factors_1 = []
+expected_factors_2 = []
+for row in range(N_RECORDS):
+    locator = new_db_locators[row]
+    for block in range(N_BLOCKS):
+        bucket = root_bucket_value(roots[row], block)
+        expected_factors_1.append(
+            challenge_1 - (locator + alpha_1 * block + beta_1 * bucket)
+        )
+        expected_factors_2.append(
+            challenge_2 - (locator + alpha_2 * block + beta_2 * bucket)
+        )
+
+actual_factors_1 = []
+actual_factors_2 = []
+for position in range(N_INDEX_SLOTS):
+    bucket_address = position // BUCKET_CAPACITY
+    block = bucket_address // BUCKET_VALUES
+    bucket = bucket_address % BUCKET_VALUES
+    locator = new_index_locators[position]
+    valid = new_index_valid[position]
+    actual_factors_1.append(
+        valid * (
+            challenge_1 - (locator + alpha_1 * block + beta_1 * bucket)
+        ) + (1 - valid)
+    )
+    actual_factors_2.append(
+        valid * (
+            challenge_2 - (locator + alpha_2 * block + beta_2 * bucket)
+        ) + (1 - valid)
+    )
+
+relation_ok = (
+    join_ok
+    * (product_tree(expected_factors_1) == product_tree(actual_factors_1))
+    * (product_tree(expected_factors_2) == product_tree(actual_factors_2))
+)
+
+# Failed transitions preserve the previous shared state.
+committed_db_locators = sint.Array(N_RECORDS)
+committed_index_locators = sint.Array(N_INDEX_SLOTS)
+committed_index_valid = sint.Array(N_INDEX_SLOTS)
+
+for row in range(N_RECORDS):
+    committed_db_locators[row] = relation_ok.if_else(
+        new_db_locators[row], old_db_locators[row]
+    )
+
+for position in range(N_INDEX_SLOTS):
+    committed_index_locators[position] = relation_ok.if_else(
+        new_index_locators[position], old_index_locators[position]
+    )
+    committed_index_valid[position] = relation_ok.if_else(
+        new_index_valid[position], index_valid[position]
+    )
+
+committed_db_locators.write_to_file()
+committed_index_locators.write_to_file()
+committed_index_valid.write_to_file()
+
+opened_relation_ok = relation_ok.reveal()
+stop_timer(5)
+
+print_ln(
+    "SLE_MPC_RESULT mode=sort_merge epoch=%s relation_ok=%s",
+    NEW_EPOCH,
+    opened_relation_ok,
+)
+print_ln(
+    "SLE_MPC_PRIVATE key=not_opened locators=not_opened "
+    "sort_order=not_opened pointer_map=not_opened"
+)

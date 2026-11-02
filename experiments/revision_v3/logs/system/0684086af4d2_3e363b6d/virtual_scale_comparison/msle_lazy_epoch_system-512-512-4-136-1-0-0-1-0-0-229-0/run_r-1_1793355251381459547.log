@@ -1,0 +1,12 @@
+{"argv": ["/usr/bin/time", "-v", "bash", "Scripts/shamir.sh", "msle_lazy_epoch_system-512-512-4-136-1-0-0-1-0-0-229-0", "--prime", "340282366920938463463374607431764574209"], "cwd": "/home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8"}
+Running /home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8/Scripts/../shamir-party.x 0 msle_lazy_epoch_system-512-512-4-136-1-0-0-1-0-0-229-0 --prime 340282366920938463463374607431764574209 -T 2 -pn 12419 -h localhost -N 5
+Running /home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8/Scripts/../shamir-party.x 1 msle_lazy_epoch_system-512-512-4-136-1-0-0-1-0-0-229-0 --prime 340282366920938463463374607431764574209 -T 2 -pn 12419 -h localhost -N 5
+Running /home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8/Scripts/../shamir-party.x 2 msle_lazy_epoch_system-512-512-4-136-1-0-0-1-0-0-229-0 --prime 340282366920938463463374607431764574209 -T 2 -pn 12419 -h localhost -N 5
+Running /home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8/Scripts/../shamir-party.x 3 msle_lazy_epoch_system-512-512-4-136-1-0-0-1-0-0-229-0 --prime 340282366920938463463374607431764574209 -T 2 -pn 12419 -h localhost -N 5
+Running /home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8/Scripts/../shamir-party.x 4 msle_lazy_epoch_system-512-512-4-136-1-0-0-1-0-0-229-0 --prime 340282366920938463463374607431764574209 -T 2 -pn 12419 -h localhost -N 5
+Trying to run 128-bit computation (128-bit representation)
+Starting timer 30 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 1.1775e-05
+Starting timer 11 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 1.2702e-05
+Starting timer 12 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 3.698e-06
+Stopped timer 12 at 0.0282338 (0 MB, 0 rounds, 0.0290451 CPU seconds)
+Starting timer 13 at 0 (0 MB, 0 rounds, 0 CPU seconds) after 5.061e-06

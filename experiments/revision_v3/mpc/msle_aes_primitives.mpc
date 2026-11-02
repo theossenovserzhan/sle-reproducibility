@@ -1,0 +1,284 @@
+"""Same-contract baseline with oblivious valid-slot compaction before join.
+
+Args: N D B C MODE PROTECTION TRANSITION MAINTENANCE FAULT SRC DST DIAG
+MODE 0=transition+fresh query, 1=transition only, 2=standalone query,
+     3=standalone private indexed fixed-scan query, 4=transition+indexed query.
+PROTECTION 0=masked state, 1=shared raw-root ablation.
+TRANSITION 0=direct locator PRP, 1=oblivious radix sort/merge translation.
+MAINTENANCE 1=secret DB row shuffle + fresh zero sharings of all state.
+FAULT 0=none, 1=omission,2=duplication,3=misplacement,4=locator corruption,
+      5=wrong index key,6=stale index entry,7=template bit flip,8=stale template.
+DIAG 1 adds independent oracle inputs and opens correctness bits only.
+
+Persistent state and query execution use only public-size fixed scans. Modes
+3/4 retrieve a hidden candidate set and select a certified exhaustive fallback.
+No indexed-query speedup or ORAM implementation is claimed by this backend.
+"""
+import json
+from pathlib import Path
+from Compiler import sorting
+from Compiler.library import tree_reduce
+
+cfg = json.loads(Path("msle_parameters.json").read_text())
+PRIME = int(cfg["prime"])
+CONSTANTS = list(map(int, cfg["round_constants"]))
+N,D,B,C,MODE,PROTECTION,TRANSITION,MAINTENANCE,FAULT,SRC,DST,DIAG = 3,128,4,3,2,0,0,1,0,0,0,1
+assert N >= 2 and D % 64 == 0 and D % B == 0
+assert 0 <= MODE <= 4 and PROTECTION in (0,1) and TRANSITION in (0,1)
+DO_TRANSITION = MODE in (0,1,4)
+INDEXED = MODE in (3,4)
+KEY_COUNT = 1 if PROTECTION else 2
+BLOCKS, VALUES = D // B, 2 ** B
+M = BLOCKS * VALUES * C
+ROW_WIDTH = D + 3
+DB_SIZE = N * ROW_WIDTH
+STATE_SIZE = DB_SIZE + 2*M + KEY_COUNT
+program.set_bit_length(64)
+program.set_security(80)
+program.use_edabit(True)
+program.memory_budget = 512
+VECTOR_BATCH = 4096
+MASK_BATCH = 64
+
+
+def permute(x, key):
+    for constant in CONSTANTS:
+        x = (x + key + constant) ** 3
+    return x + key
+
+
+def field_zero(x):
+    return 1 - x ** (PRIME-1)
+
+
+def permute_array(array,key):
+    length=len(array)
+    result=sint.Array(length)
+    full=length//VECTOR_BATCH
+    if full:
+        @for_range(full)
+        def _(batch):
+            base=batch*VECTOR_BATCH
+            result.assign_vector(permute(array.get_vector(base=base,size=VECTOR_BATCH),key),base=base)
+    remainder=length%VECTOR_BATCH
+    if remainder:
+        result.assign_vector(permute(array.get_vector(base=full*VECTOR_BATCH,size=remainder),key),base=full*VECTOR_BATCH)
+    return result
+
+
+def xor(a,b):
+    return a+b-2*a*b
+
+
+def product_vector(vector):
+    width = len(vector)
+    padded = 1 << (width-1).bit_length()
+    array = sint.Array(padded)
+    array.assign_all(1)
+    array.assign_vector(vector)
+    while padded > 1:
+        current = array.get_vector(size=padded)
+        half = padded // 2
+        left = current.get_vector(size=half, skip=2)
+        right = current.get_vector(base=1, size=half, skip=2)
+        array.assign_vector(left*right)
+        padded = half
+    return array[0]
+
+
+# Standard AES circuit, arithmetic-shared bit gates. Circuit source and wire
+# orientation are independently validated; key-only gates are hoisted per call.
+import hashlib as _aes_hashlib
+_aes_text=Path("msle_aes_128_bristol.txt").read_bytes()
+_aes_meta=json.loads(Path("msle_aes_backend.json").read_text())
+assert _aes_hashlib.sha256(_aes_text).hexdigest()==_aes_meta["circuit_sha256"]
+_aes_lines=[line.split() for line in _aes_text.decode().splitlines() if line.strip()]
+_AES_WIRES=int(_aes_lines[0][1])
+_AES_GATES=[]
+for _fields in _aes_lines[3:]:
+    _ni=int(_fields[0])
+    assert int(_fields[1])==1
+    _AES_GATES.append((_fields[-1],tuple(map(int,_fields[2:2+_ni])),int(_fields[2+_ni])))
+
+
+def _aes_gate(op,values,ins):
+    if op=="XOR":
+        a,b=values[ins[0]],values[ins[1]]
+        if isinstance(a,int):return b if a==0 else 1-b
+        if isinstance(b,int):return a if b==0 else 1-a
+        return xor(a,b)
+    if op=="AND":
+        a,b=values[ins[0]],values[ins[1]]
+        if isinstance(a,int):return 0 if a==0 else b
+        if isinstance(b,int):return 0 if b==0 else a
+        return a*b
+    if op=="INV":return 1-values[ins[0]]
+    if op=="EQW":return values[ins[0]]
+    if op=="EQ":return ins[0]
+    raise ValueError(op)
+
+
+def aes_encrypt_bits(key,counter_bits):
+    # Bristol Fashion uses whole-value little-endian wire order for both
+    # inputs and output. Missing high counter bits are known public zeros.
+    width=len(counter_bits)
+    assert 0<width<=128
+    key_bits=key.bit_decompose(128)
+    values=[None]*_AES_WIRES
+    values[:128]=key_bits
+    dependencies=[0]*_AES_WIRES
+    dependencies[:128]=[1]*128
+    for bit in range(128):
+        if bit<width:dependencies[128+bit]=2
+        else:values[128+bit]=0
+    remaining=[]
+    for op,ins,out in _AES_GATES:
+        dep=0
+        if op!="EQ":
+            for wire in ins:dep|=dependencies[wire]
+        dependencies[out]=dep
+        if dep&2:remaining.append((op,ins,out))
+        else:values[out]=_aes_gate(op,values,ins)
+    for bit,value in enumerate(counter_bits):values[128+bit]=value
+    for op,ins,out in remaining:values[out]=_aes_gate(op,values,ins)
+    return values[-128:]
+
+
+def mask_array(keys,locators,tags):
+    result=sint.Array(N*D)
+    if PROTECTION:
+        result.assign_all(0)
+        return result
+    assert D%128==0
+    chunks=D//128
+    assert chunks&(chunks-1)==0
+    shift=(chunks-1).bit_length()
+    width=max(1,(N-1).bit_length())
+    # Enrolled tags are the trusted unique integers1..N, carried with rows.
+    # counter=(tag-1)*chunks+chunk, never reduced modulo the field.
+    assert (N*chunks-1)<PRIME
+    tag_bits=(tags.get_vector()-1).bit_decompose(width)
+    length=N*chunks
+    counter_bits=[]
+    for bit in range(shift):
+        counter_bits.append(cint((regint.inc(length)//(N*(2**bit)))%2))
+    for bit in range(width):
+        expanded=sint.Array(length)
+        for chunk in range(chunks):expanded.assign_vector(tag_bits[bit],base=chunk*N)
+        counter_bits.append(expanded.get_vector())
+    encrypted=aes_encrypt_bits(keys[1],counter_bits)
+    temporary=sint.Array(length)
+    for bit in range(128):
+        temporary.assign_vector(encrypted[127-bit])
+        for chunk in range(chunks):
+            result.assign_vector(temporary.get_vector(base=chunk*N,size=N),base=(chunk*128+bit)*N)
+    return result
+
+
+def select_arrays(bit,left,right):
+    """Bound scalar broadcasting as well as secret multiplication batches."""
+    length=len(left)
+    assert len(right)==length
+    result=sint.Array(length)
+    full=length//VECTOR_BATCH
+    if full:
+        @for_range(full)
+        def _(batch):
+            base=batch*VECTOR_BATCH
+            result.assign_vector(bit.if_else(left.get_vector(base=base,size=VECTOR_BATCH),right.get_vector(base=base,size=VECTOR_BATCH)),base=base)
+    remainder=length%VECTOR_BATCH
+    if remainder:
+        base=full*VECTOR_BATCH
+        result.assign_vector(bit.if_else(left.get_vector(base=base,size=remainder),right.get_vector(base=base,size=remainder)),base=base)
+    return result
+
+
+def radix_translate(old_db, old_index, valid, new_db):
+    L=N*BLOCKS
+    assert L<=M
+    bit_key=sint.Array(M)
+    bit_key.assign_vector(1-valid.get_vector())
+    positions=sint.Array(M)
+    positions.assign_vector(sorting.gen_bit_perm(bit_key,n_threads=1))
+    packed=sint.Array(M)
+    packed.assign_vector(old_index.get_vector())
+    sorting.reveal_sort(positions,packed,n_threads=1)
+    count_ok=field_zero(valid.get_vector().sum()-L)
+    length = N+L
+    records = sint.Matrix(length, 6)
+    keys = sint.Array(length)
+    # Stable sort preserves DB-before-index for equal old locators. No
+    # multiplication by 2 packs a 129-bit key into a 128-bit field.
+    @for_range(N)
+    def _(i):
+        records[i][0] = old_db[i]
+        records[i][1] = new_db[i]
+        records[i][2] = 1
+        records[i][3] = 0
+        records[i][4] = L+i
+        records[i][5] = 0
+        keys[i] = old_db[i]
+    @for_range(L)
+    def _(i):
+        row = N+i
+        records[row][0] = packed[i]
+        records[row][1] = 0
+        records[row][2] = 0
+        records[row][3] = 1
+        records[row][4] = i
+        records[row][5] = sint(1)
+        keys[row] = packed[i]
+    sorting.radix_sort(keys, records, n_bits=128, signed=False,n_threads=1)
+    sorted_keys = records.get_column(0)
+    boundaries = sint.Array(length)
+    boundaries[0] = 1
+    adjacent = sorted_keys.get_vector(base=1,size=length-1) - sorted_keys.get_vector(size=length-1)
+    boundaries.assign_vector(1-field_zero(adjacent), base=1)
+    group = boundaries.get_vector().prefix_sum()
+    carried = records.get_column(1)
+    has_source = records.get_column(2)
+    stride = 1
+    while stride < length:
+        count = length-stride
+        same = group.get_vector(base=stride,size=count) == group.get_vector(size=count)
+        left_has = has_source.get_vector(size=count)
+        right_has = has_source.get_vector(base=stride,size=count)
+        take = same*left_has*(1-right_has)
+        new_carried = sint.Array(length)
+        new_has = sint.Array(length)
+        new_carried.assign_vector(carried.get_vector(size=stride))
+        new_has.assign_vector(has_source.get_vector(size=stride))
+        new_carried.assign_vector(take.if_else(carried.get_vector(size=count),carried.get_vector(base=stride,size=count)),base=stride)
+        new_has.assign_vector(right_has+take,base=stride)
+        carried,has_source = new_carried.get_vector(),new_has.get_vector()
+        stride *= 2
+    index_rows, validity = records.get_column(3),records.get_column(5)
+    join_ok = count_ok*product_vector(1-index_rows*validity*(1-has_source))
+    random_dummy = sint.get_random(size=length)
+    records.set_column(1, validity.if_else(carried,random_dummy))
+    restore = sint.Array(length)
+    restore.assign_vector(records.get_column(4))
+    # This key is exactly a permutation of 0,...,length-1, so use the
+    # specialized oblivious permutation sort instead of another radix sort.
+    sorting.reveal_sort(restore,records,n_threads=1)
+    compact_values=sint.Array(M)
+    compact_values.assign_vector(records.get_column(1).get_vector(size=L))
+    if M>L:
+        compact_values.assign_vector(sint.get_random(size=M-L),base=L)
+    sorting.reveal_sort(positions,compact_values,reverse=True,n_threads=1)
+    return compact_values,join_ok
+
+
+start_timer(30)
+kat_keys,kat_messages=sint.Array(3),sint.Array(3)
+kat_expected=sint.Array(3*128)
+kat_keys.input_from(0)
+kat_messages.input_from(0)
+kat_expected.input_from(0)
+kat_output=aes_encrypt_bits(kat_keys.get_vector(),kat_messages.get_vector().bit_decompose(128))
+kat_checks=sint.Array(128)
+for bit in range(128):
+    kat_checks[bit]=product_vector(1-xor(kat_output[bit],kat_expected.get_vector(base=bit*3,size=3)))
+kat_ok=product_vector(kat_checks.get_vector())
+stop_timer(30)
+print_ln('MSLE_AES_KAT vectors=3 bits=384 ok=%s',kat_ok.reveal())

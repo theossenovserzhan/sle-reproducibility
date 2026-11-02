@@ -1,0 +1,44 @@
+{
+  "frontend": "SFace128D with YuNet alignment",
+  "dataset": "LFW",
+  "input_sha256": "1287051b960aa579acc6d2ce2e50415bed44e3474343dc74f2a221c66398069e",
+  "script_sha256": "5e731b877c6ef2f71e99fb8dce2fb029f4005e02e71d5ae821917e3b7a9b6822",
+  "numpy": "2.4.3",
+  "n_evaluation": 128,
+  "n_calibration": 32,
+  "n_test_unknown": 32,
+  "splits": 20,
+  "paired": {
+    "rank1": {
+      "binary_minus_float": -0.0228515625,
+      "subject_bootstrap_ci95": [
+        -0.03037109375,
+        -0.016113281249999997
+      ],
+      "bootstrap_units": "identities after averaging their repeated splits",
+      "bootstrap_resamples": 5000,
+      "float_mean": 0.9888671875,
+      "binary_mean": 0.966015625
+    },
+    "rank5": {
+      "binary_minus_float": -0.004003906249999996,
+      "subject_bootstrap_ci95": [
+        -0.007031249999999992,
+        -0.001660156249999995
+      ],
+      "bootstrap_units": "identities after averaging their repeated splits",
+      "bootstrap_resamples": 5000,
+      "float_mean": 0.99140625,
+      "binary_mean": 0.9874023437500001
+    }
+  },
+  "verification_pairs": "all 4 probes per evaluation identity vs each gallery prototype; one genuine and N-1 impostors per probe",
+  "threshold_selection": "identity-disjoint calibration only; discrete thresholds with acceptance score>=threshold",
+  "open_set": "calibration and test unknown cohorts disjoint, both scored against same evaluation gallery",
+  "limitations": [
+    "custom protocols, not official LFW verification",
+    "repeated splits reuse identities and images",
+    "low FAR/FPIR estimates limited by negative counts; rows are correlated within identity",
+    "conditional on this SFace frontend and its alignment; do not pool with FaceNet outcomes"
+  ]
+}

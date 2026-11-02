@@ -1,0 +1,337 @@
+"""
+Masked Synchronized Locator Evolution (M-SLE).
+
+This program extends the SLE transition with candidate-conditioned biometric
+root masking.  Persistent state contains only a secret-shared masked root
+
+    c_i^e = b_i XOR G(K_e, ell_i^e),
+
+not the binary biometric root b_i.  A transition computes
+
+    c_i^(e+1) = c_i^e XOR G(K_e, ell_i^e)
+                       XOR G(K_(e+1), ell_i^(e+1))
+
+inside MPC.  The root is therefore not an input to re-keying, is not written
+to persistent storage, and is never opened.  During matching, the current
+candidate mask is applied to the probe, which preserves exact Hamming scores:
+
+    HD(c_i^e, q XOR G(K_e, ell_i^e)) = HD(b_i, q).
+
+The program also evolves every independently shared locator copy, verifies the
+hidden database-index relation, and atomically commits or rolls back the full
+candidate state.  Only relation_ok, accept/reject, and identity/reject open.
+
+Compile-time arguments:
+    msle_integrated_transition_match <n_records> <root_bits> <block_bits>
+                                     <bucket_capacity> <epoch>
+                                     <accept_threshold> <locator_bits>
+                                     [enrollment_mode]
+
+Input order:
+    Player 0: old DB locators, old template state, old index locators,
+              index valid bits, labels, tie tags
+    Players 0..4: one old-key contribution and one fresh-key contribution
+    Player 1: raw binary probe (secret-shared on input)
+"""
+
+from Compiler.library import tree_reduce
+
+program.use_edabit(True)
+program.set_bit_length(64)
+
+if len(program.args) not in (8, 9):
+    raise CompilerError(
+        "Usage: msle_integrated_transition_match <n_records> <root_bits> "
+        "<block_bits> <bucket_capacity> <epoch> <accept_threshold> "
+        "<locator_bits> [enrollment_mode]"
+    )
+
+N_RECORDS = int(program.args[1])
+ROOT_BITS = int(program.args[2])
+BLOCK_BITS = int(program.args[3])
+BUCKET_CAPACITY = int(program.args[4])
+NEW_EPOCH = int(program.args[5])
+ACCEPT_THRESHOLD = int(program.args[6])
+LOCATOR_BITS = int(program.args[7])
+ENROLLMENT_MODE = int(program.args[8]) if len(program.args) == 9 else 0
+
+if N_RECORDS < 2:
+    raise CompilerError("n_records must be at least two")
+if ROOT_BITS < 8 or ROOT_BITS % BLOCK_BITS != 0:
+    raise CompilerError("root_bits must be divisible by block_bits")
+if ROOT_BITS % 64 != 0:
+    raise CompilerError("root_bits must be divisible by 64")
+if BLOCK_BITS < 1 or BLOCK_BITS > 8:
+    raise CompilerError("block_bits must be in [1, 8]")
+if BUCKET_CAPACITY < 1:
+    raise CompilerError("bucket_capacity must be positive")
+if not 0 <= ACCEPT_THRESHOLD <= ROOT_BITS:
+    raise CompilerError("accept_threshold must be in [0, root_bits]")
+if LOCATOR_BITS < 16 or LOCATOR_BITS > 64:
+    raise CompilerError("locator_bits must be in [16, 64]")
+if ENROLLMENT_MODE not in (0, 1):
+    raise CompilerError("enrollment_mode must be 0 or 1")
+
+N_BLOCKS = ROOT_BITS // BLOCK_BITS
+BUCKET_VALUES = 2 ** BLOCK_BITS
+N_BUCKETS = N_BLOCKS * BUCKET_VALUES
+N_INDEX_SLOTS = N_BUCKETS * BUCKET_CAPACITY
+MASK_CHUNKS = ROOT_BITS // 64
+MIMC_ROUNDS = 73
+
+
+old_db_locators = sint.Array(N_RECORDS)
+old_template_state = sint.Matrix(N_RECORDS, ROOT_BITS)
+old_index_locators = sint.Array(N_INDEX_SLOTS)
+index_valid = sint.Array(N_INDEX_SLOTS)
+labels = sint.Array(N_RECORDS)
+tie_tags = sint.Array(N_RECORDS)
+
+old_db_locators.input_from(0)
+old_template_state.input_from(0)
+old_index_locators.input_from(0)
+index_valid.input_from(0)
+labels.input_from(0)
+tie_tags.input_from(0)
+
+
+# Each key is a sum of independently supplied contributions.  At least one
+# honest, erased contribution is required in the stated threshold model.
+old_epoch_key = sint(0)
+new_epoch_key = sint(0)
+for party in range(5):
+    old_epoch_key += sint.get_input_from(party)
+    new_epoch_key += sint.get_input_from(party)
+
+probe = sint.Array(ROOT_BITS)
+probe.input_from(1)
+
+
+MIMC_CONSTANTS = [
+    int.from_bytes(
+        __import__("hashlib").sha256(
+            ("M-SLE-MiMC-round-%d" % round_no).encode()
+        ).digest()[:8],
+        "big",
+    )
+    for round_no in range(MIMC_ROUNDS)
+]
+
+
+def mimc_permute(value, key, domain):
+    x = value + domain
+    for constant in MIMC_CONSTANTS:
+        x = (x + key + constant) ** 3
+    return x + key
+
+
+def secure_locator_prp_vector(values):
+    return mimc_permute(values, new_epoch_key, NEW_EPOCH)
+
+
+def secure_root_mask(key, locator, epoch):
+    """Return ROOT_BITS secret bits from domain-separated MiMC outputs."""
+
+    result = []
+    for chunk in range(MASK_CHUNKS):
+        word = mimc_permute(
+            locator + chunk * 1_000_003,
+            key,
+            epoch * 1_000_033 + chunk,
+        )
+        result.extend(word.bit_decompose(64))
+    return result
+
+
+def xor_bit(left, right):
+    return left + right - 2 * left * right
+
+
+def root_bucket_value(root, block):
+    value = sint(0)
+    for bit in range(BLOCK_BITS):
+        value += root[block * BLOCK_BITS + bit] * (2 ** bit)
+    return value
+
+
+def product_tree(factors):
+    if not factors:
+        return sint(1)
+    return tree_reduce(lambda left, right: left * right, factors)
+
+
+def secure_hamming(left, right):
+    return sum(
+        left[bit] + right[bit] - 2 * left[bit] * right[bit]
+        for bit in range(ROOT_BITS)
+    )
+
+
+# The optional enrollment mode makes the executable artifact self-contained:
+# raw roots enter the protected computation once, are immediately masked, and
+# are never written to persistent output.  Transition-only runs set this flag
+# to zero and provide the already masked state from epoch e instead.
+old_masked_roots = sint.Matrix(N_RECORDS, ROOT_BITS)
+if ENROLLMENT_MODE:
+    for row in range(N_RECORDS):
+        enrollment_mask = secure_root_mask(
+            old_epoch_key, old_db_locators[row], NEW_EPOCH - 1
+        )
+        for bit in range(ROOT_BITS):
+            old_masked_roots[row][bit] = xor_bit(
+                old_template_state[row][bit], enrollment_mask[bit]
+            )
+else:
+    for row in range(N_RECORDS):
+        for bit in range(ROOT_BITS):
+            old_masked_roots[row][bit] = old_template_state[row][bit]
+
+
+start_timer(11)
+
+
+# 1. Evolve locator values independently in the database and padded index.
+new_db_locators = sint.Array(N_RECORDS)
+new_index_locators = sint.Array(N_INDEX_SLOTS)
+new_index_valid = sint.Array(N_INDEX_SLOTS)
+new_db_locators.assign_vector(secure_locator_prp_vector(old_db_locators.get_vector()))
+new_index_locators.assign_vector(secure_locator_prp_vector(old_index_locators.get_vector()))
+new_index_valid.assign_vector(index_valid.get_vector())
+
+
+# 2. Re-key every protected root directly.  old_root_bits are transient circuit
+# wires used to derive the hidden index relation; they are never written/opened.
+new_masked_roots = sint.Matrix(N_RECORDS, ROOT_BITS)
+transient_roots = sint.Matrix(N_RECORDS, ROOT_BITS)
+new_masks = sint.Matrix(N_RECORDS, ROOT_BITS)
+
+for row in range(N_RECORDS):
+    old_mask = secure_root_mask(old_epoch_key, old_db_locators[row], NEW_EPOCH - 1)
+    new_mask = secure_root_mask(new_epoch_key, new_db_locators[row], NEW_EPOCH)
+    for bit in range(ROOT_BITS):
+        root_bit = xor_bit(old_masked_roots[row][bit], old_mask[bit])
+        transient_roots[row][bit] = root_bit
+        new_masks[row][bit] = new_mask[bit]
+        new_masked_roots[row][bit] = xor_bit(root_bit, new_mask[bit])
+
+
+# 3. Verify the complete hidden (locator, block, bucket) relation with two
+# independently sampled post-state challenges.
+# Candidate state is fixed before all clear challenges are sampled.  Fresh
+# alpha/beta values avoid relying on a fixed, potentially colliding tuple
+# packing; the resulting multivariate polynomial test is sound up to the
+# standard Schwartz-Zippel term.
+challenge_1 = sint.get_random_int(60).reveal() + 101
+challenge_2 = sint.get_random_int(60).reveal() + 211
+alpha_1 = sint.get_random_int(60).reveal() + 307
+beta_1 = sint.get_random_int(60).reveal() + 401
+alpha_2 = sint.get_random_int(60).reveal() + 503
+beta_2 = sint.get_random_int(60).reveal() + 601
+
+expected_factors_1 = []
+expected_factors_2 = []
+for row in range(N_RECORDS):
+    locator = new_db_locators[row]
+    for block in range(N_BLOCKS):
+        bucket = root_bucket_value(transient_roots[row], block)
+        expected_factors_1.append(
+            challenge_1 - (locator + alpha_1 * block + beta_1 * bucket)
+        )
+        expected_factors_2.append(
+            challenge_2 - (locator + alpha_2 * block + beta_2 * bucket)
+        )
+
+actual_factors_1 = []
+actual_factors_2 = []
+for position in range(N_INDEX_SLOTS):
+    bucket_address = position // BUCKET_CAPACITY
+    block = bucket_address // BUCKET_VALUES
+    bucket = bucket_address % BUCKET_VALUES
+    locator = new_index_locators[position]
+    valid = new_index_valid[position]
+    actual_factors_1.append(
+        valid * (challenge_1 - (locator + alpha_1 * block + beta_1 * bucket))
+        + (1 - valid)
+    )
+    actual_factors_2.append(
+        valid * (challenge_2 - (locator + alpha_2 * block + beta_2 * bucket))
+        + (1 - valid)
+    )
+
+relation_ok = (
+    (product_tree(expected_factors_1) == product_tree(actual_factors_1))
+    * (product_tree(expected_factors_2) == product_tree(actual_factors_2))
+)
+
+
+# 4. Atomically commit the locator, index, and masked-template state.
+committed_db_locators = sint.Array(N_RECORDS)
+committed_index_locators = sint.Array(N_INDEX_SLOTS)
+committed_index_valid = sint.Array(N_INDEX_SLOTS)
+committed_masked_roots = sint.Matrix(N_RECORDS, ROOT_BITS)
+
+for row in range(N_RECORDS):
+    committed_db_locators[row] = relation_ok.if_else(
+        new_db_locators[row], old_db_locators[row]
+    )
+    for bit in range(ROOT_BITS):
+        committed_masked_roots[row][bit] = relation_ok.if_else(
+            new_masked_roots[row][bit], old_masked_roots[row][bit]
+        )
+
+for position in range(N_INDEX_SLOTS):
+    committed_index_locators[position] = relation_ok.if_else(
+        new_index_locators[position], old_index_locators[position]
+    )
+    committed_index_valid[position] = relation_ok.if_else(
+        new_index_valid[position], index_valid[position]
+    )
+
+committed_db_locators.write_to_file()
+committed_masked_roots.write_to_file()
+committed_index_locators.write_to_file()
+committed_index_valid.write_to_file()
+
+
+# 5. Candidate-conditioned protected-domain 1:N matching.  Applying each
+# candidate's current mask to the same shared probe cancels the stored mask.
+best_distance = sint(ROOT_BITS + 1)
+best_label = sint(-1)
+best_tie_tag = sint(2 ** 31 - 1)
+
+for row in range(N_RECORDS):
+    protected_probe = sint.Array(ROOT_BITS)
+    for bit in range(ROOT_BITS):
+        protected_probe[bit] = xor_bit(probe[bit], new_masks[row][bit])
+    distance = secure_hamming(new_masked_roots[row], protected_probe)
+    strictly_closer = distance < best_distance
+    equal_distance = distance == best_distance
+    smaller_tie_tag = tie_tags[row] < best_tie_tag
+    better = strictly_closer + equal_distance * smaller_tie_tag
+    best_distance = better.if_else(distance, best_distance)
+    best_label = better.if_else(labels[row], best_label)
+    best_tie_tag = better.if_else(tie_tags[row], best_tie_tag)
+
+accepted = relation_ok * (best_distance <= ACCEPT_THRESHOLD)
+opened_relation_ok = relation_ok.reveal()
+opened_accept = accepted.reveal()
+opened_decision = accepted.if_else(best_label, sint(-1)).reveal()
+
+stop_timer(11)
+
+print_ln(
+    "MSLE_MPC_RESULT n=%s root_bits=%s locator_bits=%s epoch=%s "
+    "relation_ok=%s accepted=%s identity=%s",
+    N_RECORDS,
+    ROOT_BITS,
+    LOCATOR_BITS,
+    NEW_EPOCH,
+    opened_relation_ok,
+    opened_accept,
+    opened_decision,
+)
+print_ln(
+    "MSLE_MPC_PRIVATE raw_roots=not_stored masks=not_opened "
+    "distances=not_opened locators=not_opened keys=not_opened "
+    "mapping=not_materialized"
+)

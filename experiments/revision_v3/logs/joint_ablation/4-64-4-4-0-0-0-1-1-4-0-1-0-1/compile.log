@@ -1,0 +1,34 @@
+{"argv": ["python3", "compile.py", "-P", "340282366920938463463374607431764574209", "-b", "64", "-M", "msle_joint_ablation", "4", "64", "4", "4", "0", "0", "0", "1", "1", "4", "0", "1", "0", "1"], "cwd": "/home/ossen2/.cache/tbiom_revision/msle_20261029_zr7tpaj8"}
+WARNING: --prime/-P activates code that usually isn't the most efficient variant. Consider using --field/-F and set the prime only during the actual computation.
+Default bit length for compilation: 126
+Default security parameter for compilation: 40
+Compiling file Programs/Source/msle_joint_ablation.mpc
+Changed bit length for comparisons etc. to 64
+Changed statistical security for comparison etc. to 80
+Writing to Programs/Bytecode/msle_joint_ablation-4-64-4-4-0-0-0-1-1-4-0-1-0-1-EQZ(2)_64-1.bc
+Writing to Programs/Bytecode/msle_joint_ablation-4-64-4-4-0-0-0-1-1-4-0-1-0-1-LTZ(4)_65-3.bc
+Writing to Programs/Bytecode/msle_joint_ablation-4-64-4-4-0-0-0-1-1-4-0-1-0-1-EQZ(1)_64-5.bc
+Writing to Programs/Bytecode/msle_joint_ablation-4-64-4-4-0-0-0-1-1-4-0-1-0-1-LTZ(2)_65-6.bc
+Writing to Programs/Bytecode/msle_joint_ablation-4-64-4-4-0-0-0-1-1-4-0-1-0-1-LTZ(1)_65-7.bc
+Writing to Programs/Schedules/msle_joint_ablation-4-64-4-4-0-0-0-1-1-4-0-1-0-1.sch
+Writing to Programs/Bytecode/msle_joint_ablation-4-64-4-4-0-0-0-1-1-4-0-1-0-1-0.bc
+Hash: 434e6cd48bf5351259910bef5b502bbbd536baf1ddbabd1d638c45a5a6d4dac3
+Program requires at most:
+        9019 integer inputs from player 0
+        6505 integer inputs from player 1
+        2343 integer inputs from player 2
+        2343 integer inputs from player 3
+        2343 integer inputs from player 4
+      432915 integer triples
+      424041 integer simple multiplications
+           6 integer randoms
+          37 integer opens
+         inf bit inverses
+           1 integer shuffle generations
+           1 integer shuffle applications
+          24 strict edabits of length 128
+       11883 bit triples
+        1548 integer dabits
+        3152 bit opens
+           7 strict edabits of length 1
+        2766 virtual machine rounds

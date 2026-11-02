@@ -1,0 +1,26 @@
+{
+  "created_utc": "2026-10-29T19:47:54Z",
+  "all_pass": true,
+  "checks": {
+    "final_build_not_draft": true,
+    "secure_batch_finished": true,
+    "all_current_system_oracle_checks": true,
+    "all_eight_faults_reject": true,
+    "large_state_checks_128_and_256": true,
+    "persisted_lifecycle_finished": true,
+    "all_persisted_checks": true,
+    "persisted_rollback_and_reload": true,
+    "compact_baseline_finished": true,
+    "primitives_pass": true,
+    "retained_simulation_reproduced": true,
+    "historical_celeba_all_20_exact": true,
+    "fixed_celeba_bits_exact": true,
+    "runtime_source_audit": true,
+    "no_manuscript_placeholders": true
+  },
+  "current_system_runs": 95,
+  "persisted_runs": 63,
+  "compact_runs": 13,
+  "build_manifest_sha256": "524b51bb95d86b0b79c10cd2cd6d65326ab9ab45c20d6f1a30208eccbf00d5db",
+  "note": "Automated evidence consistency only; PDF visual inspection is recorded separately. Old-source measurements are retained but excluded from final means."
+}

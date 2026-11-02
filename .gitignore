@@ -39,6 +39,12 @@ outputs/
 credentials*.json
 kaggle.json
 
+# Audited reconstruction metadata and deidentified 0/1 outcome flags only.
+!experiments/**/data/
+!experiments/**/data/*.json
+!experiments/**/results/**/subject_outcomes.npz
+!experiments/**/results/frontend_confirmation/*_subject_outcomes.npz
+
 # Editors and operating systems
 .idea/
 .vscode/

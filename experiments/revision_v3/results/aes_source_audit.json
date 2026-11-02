@@ -1,0 +1,7 @@
+{
+  "base_sha256": "bf76a47314930abf93436b8952321719228192ad4a1ff0f8a420c405c433f361",
+  "aes_system_sha256": "eccac9df26f1c8272ccb9f16a086dbef3665217e9e71b3f9e8e36ddd00c5cd32",
+  "fixture_sha256": "ba5986f7edb24a16f2a76c766b3613b200bbe68a127982fd242e4b13b66fe225",
+  "config_sha256": "86ca2b0a335588a3e1627968fcc4d02e18a8a9992da7bf7d7ef04227474eab1e",
+  "changes": "Only encryption/key count and tag-aware mask calls; same transition checks and complete-state maintenance. Strong compact-sort and direct controls use TRANSITION1/0."
+}
